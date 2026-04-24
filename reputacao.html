@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard de Reputação - Morro dos Anjos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Montserrat', sans-serif; box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #f5f5f5; padding: 24px; }
+    .dashboard { max-width: 1200px; margin: 0 auto; background: white; padding: 24px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid #00AEEF; }
+    .header-text h1 { font-size: 20px; font-weight: 700; color: #1D1E46; margin: 0; }
+    .header-text p { font-size: 12px; color: #666; margin: 4px 0 0; }
+    .periodo-badge { background: #00AEEF; color: white; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+    .section-title { font-size: 14px; font-weight: 700; color: #1D1E46; margin: 24px 0 12px; padding-bottom: 8px; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 8px; }
+    .section-title .icon { width: 20px; height: 20px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: white; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+    .kpi-card { background: linear-gradient(135deg, #1D1E46 0%, #2a2b5a 100%); border-radius: 12px; padding: 16px; color: white; text-align: center; }
+    .kpi-card.accent { background: linear-gradient(135deg, #00AEEF 0%, #0095cc 100%); }
+    .kpi-card.warning { background: linear-gradient(135deg, #F27466 0%, #d85a4d 100%); }
+    .kpi-card.success { background: linear-gradient(135deg, #29948F 0%, #1f7570 100%); }
+    .kpi-card.aperfeicoamento { background: linear-gradient(135deg, #F5C45D 0%, #d4a84d 100%); color: #1D1E46; }
+    .kpi-label { font-size: 10px; text-transform: uppercase; opacity: 0.85; letter-spacing: 0.5px; }
+    .kpi-value { font-size: 28px; font-weight: 700; margin: 4px 0; }
+    .kpi-sub { font-size: 10px; opacity: 0.75; }
+    .fonte-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+    .fonte-card { background: #FFF7E6; border-radius: 12px; padding: 16px; border-left: 4px solid #00AEEF; }
+    .fonte-card.google { border-left-color: #4285F4; }
+    .fonte-card.reclame { border-left-color: #F27466; }
+    .fonte-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .fonte-name { font-size: 12px; font-weight: 700; color: #1D1E46; }
+    .fonte-badge { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+    .fonte-badge.excelente { background: #29948F; color: white; }
+    .fonte-badge.bom { background: #00AEEF; color: white; }
+    .fonte-badge.regular { background: #F27466; color: white; }
+    .fonte-badge.aperfeicoamento { background: #F5C45D; color: #1D1E46; }
+    .fonte-main { display: flex; align-items: baseline; gap: 6px; margin-bottom: 8px; }
+    .fonte-main .value { font-size: 32px; font-weight: 700; color: #1D1E46; }
+    .fonte-main .unit { font-size: 14px; color: #666; }
+    .fonte-metrics { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .fonte-metric { text-align: center; padding: 6px; background: rgba(255,255,255,0.7); border-radius: 6px; }
+    .fonte-metric .label { font-size: 9px; color: #666; text-transform: uppercase; }
+    .fonte-metric .val { font-size: 14px; font-weight: 700; color: #1D1E46; }
+    .chart-container { background: white; border-radius: 12px; padding: 16px; border: 1px solid #eee; margin-bottom: 16px; }
+    .chart-title { font-size: 12px; font-weight: 600; color: #1D1E46; margin-bottom: 12px; }
+    .chart-wrapper { position: relative; height: 220px; }
+    .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; font-size: 11px; }
+    .legend-item { display: flex; align-items: center; gap: 4px; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 2px; }
+    .insights-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 16px; }
+    .insight-card { background: #f8f9fa; border-radius: 8px; padding: 12px; border-left: 3px solid #00AEEF; }
+    .insight-card.alert { border-left-color: #F27466; background: #FFF7E6; }
+    .insight-card.success { border-left-color: #29948F; }
+    .insight-title { font-size: 11px; font-weight: 700; color: #1D1E46; margin-bottom: 4px; }
+    .insight-text { font-size: 10px; color: #666; line-height: 1.4; }
+    .footer { margin-top: 24px; padding-top: 16px; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+    .footer-text { font-size: 10px; color: #999; }
+    .gauge-container { display: flex; flex-direction: column; align-items: center; padding: 8px 0; }
+    .gauge-value { font-size: 28px; font-weight: 700; color: #1D1E46; margin-top: -30px; }
+    .gauge-label { font-size: 10px; color: #666; margin-top: 4px; }
+    .nps-formula { background: #f0f4f8; border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 11px; color: #1D1E46; }
+    .nps-formula-title { font-weight: 700; margin-bottom: 6px; font-size: 10px; text-transform: uppercase; color: #666; }
+    .nps-formula code { background: white; padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+    .nps-classification { background: #f8f9fa; border-radius: 8px; padding: 10px; margin-top: 12px; font-size: 10px; }
+    .nps-classification-title { font-weight: 700; color: #1D1E46; margin-bottom: 6px; }
+    .nps-classification-item { display: flex; align-items: center; gap: 6px; margin: 4px 0; color: #666; }
+    .nps-classification-dot { width: 8px; height: 8px; border-radius: 2px; }
+
+    @media (max-width: 900px) {
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+      .fonte-row { grid-template-columns: 1fr; }
+      .insights-grid { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: white; padding: 0; }
+      .dashboard { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <div class="header">
+      <svg width="50" height="50" viewBox="0 0 100 100">
+        <circle cx="50" cy="22" r="10" fill="#00AEEF"/>
+        <path d="M50 35 C30 35 15 50 10 70 Q30 55 50 55 Q70 55 90 70 C85 50 70 35 50 35Z" fill="#00AEEF"/>
+        <path d="M50 55 C35 55 20 65 10 80 Q30 68 50 68 Q70 68 90 80 C80 65 65 55 50 55Z" fill="white" stroke="#1D1E46" stroke-width="1"/>
+      </svg>
+      <div class="header-text">
+        <h1>Dashboard de Reputação</h1>
+        <p>Morro dos Anjos · Águas Quentes Hotel Resort</p>
+      </div>
+      <div style="margin-left: auto;">
+        <span class="periodo-badge">Fev/2025 - Abr/2026</span>
+      </div>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card aperfeicoamento">
+        <div class="kpi-label">NPS Médio</div>
+        <div class="kpi-value">+49</div>
+        <div class="kpi-sub">Zona de Aperfeiçoamento</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Google Reviews</div>
+        <div class="kpi-value">4.3★</div>
+        <div class="kpi-sub">694 avaliações</div>
+      </div>
+      <div class="kpi-card warning">
+        <div class="kpi-label">Reclame Aqui</div>
+        <div class="kpi-value">6.7</div>
+        <div class="kpi-sub">Reputação Regular</div>
+      </div>
+      <div class="kpi-card success">
+        <div class="kpi-label">Aval. 5 Estrelas</div>
+        <div class="kpi-value">64%</div>
+        <div class="kpi-sub">306 de 477</div>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <span class="icon" style="background: #00AEEF;">📊</span>
+      Visão por Fonte de Reputação
+    </div>
+
+    <div class="fonte-row">
+      <div class="fonte-card">
+        <div class="fonte-header">
+          <span class="fonte-name">NPS Letsbook</span>
+          <span class="fonte-badge aperfeicoamento">Aperfeiçoamento</span>
+        </div>
+        <div class="gauge-container">
+          <svg width="160" height="95" viewBox="0 0 160 95">
+            <!-- Arco de fundo -->
+            <path d="M 20 80 A 60 60 0 0 1 140 80" fill="none" stroke="#eee" stroke-width="14" stroke-linecap="round"/>
+            <!-- Zona Crítica: -100 a 0 (vermelho) -->
+            <path d="M 20 80 A 60 60 0 0 1 80 20" fill="none" stroke="#F27466" stroke-width="12" stroke-linecap="round"/>
+            <!-- Zona Aperfeiçoamento: 0 a 50 (amarelo) -->
+            <path d="M 80 20 A 60 60 0 0 1 125 35" fill="none" stroke="#F5C45D" stroke-width="12"/>
+            <!-- Zona Qualidade: 50 a 75 (azul) -->
+            <path d="M 125 35 A 60 60 0 0 1 138 55" fill="none" stroke="#00AEEF" stroke-width="12"/>
+            <!-- Zona Excelência: 75 a 100 (verde) -->
+            <path d="M 138 55 A 60 60 0 0 1 140 80" fill="none" stroke="#29948F" stroke-width="12" stroke-linecap="round"/>
+            <!-- Agulha para +49 -->
+            <line x1="80" y1="80" x2="80" y2="30" stroke="#1D1E46" stroke-width="3" stroke-linecap="round" transform="rotate(44, 80, 80)"/>
+            <circle cx="80" cy="80" r="8" fill="#1D1E46"/>
+            <circle cx="80" cy="80" r="4" fill="white"/>
+            <!-- Labels -->
+            <text x="12" y="88" font-size="9" fill="#999" font-family="Montserrat">-100</text>
+            <text x="136" y="88" font-size="9" fill="#999" font-family="Montserrat">+100</text>
+          </svg>
+          <div class="gauge-value">+49</div>
+          <div class="gauge-label">pontos</div>
+        </div>
+        <div class="fonte-metrics">
+          <div class="fonte-metric">
+            <div class="label">Promotores</div>
+            <div class="val">65.4%</div>
+          </div>
+          <div class="fonte-metric">
+            <div class="label">Detratores</div>
+            <div class="val">14.2%</div>
+          </div>
+          <div class="fonte-metric">
+            <div class="label">Respostas</div>
+            <div class="val">254</div>
+          </div>
+          <div class="fonte-metric">
+            <div class="label">Período</div>
+            <div class="val">Fev-Abr/26</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fonte-card google">
+        <div class="fonte-header">
+          <span class="fonte-name">Google Reviews</span>
+          <span class="fonte-badge bom">Bom</span>
+        </div>
+        <div class="fonte-main">
+          <span class="value">4.3</span>
+          <span class="unit">estrelas</span>
+        </div>
+        <div class="fonte-metrics">
+          <div class="fonte-metric">
+            <div class="label">Total Aval.</div>
+            <div class="val">694</div>
+          </div>
+          <div class="fonte-metric">
+            <div class="label">5 Estrelas</div>
+            <div class="val">64.2%</div>
+          </div>
+          <div class="fonte-metric">
+            <div class="label">Negativas</div>
+            <div class="val">17.4%</div>
+          </div>
+          <div class="fonte-metric">
+            <div class="label">Média 2026</div>
+            <div class="val">4.09★</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fonte-card reclame">
+        <div class="fonte-header">
+          <span class="fonte-name">Reclame Aqui</span>
+          <span class="fonte-badge regular">Regular</span>
+        </div>
+        <div class="fonte-main">
+          <span class="value">6.7</span>
+          <span class="unit">/ 10</span>
+        </div>
+        <div class="fonte-metrics">
+          <div class="fonte-metric">
+            <div class="label">Respondidas</div>
+            <div class="val">90.2%</div>
+          </div>
+          <div class="fonte-metric">
+            <div class="label">Resolvidas</div>
+            <div class="val">61.5%</div>
+          </div>
+          <div class="fonte-metric">
+            <div class="label">Voltariam</div>
+            <div class="val">61.5%</div>
+          </div>
+          <div class="fonte-metric">
+            <div class="label">Reclamações</div>
+            <div class="val">41</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <span class="icon" style="background: #29948F;">📈</span>
+      Evolução Google Reviews (desde abertura)
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-title">Volume de avaliações e nota média mensal</div>
+      <div class="legend">
+        <span class="legend-item"><span class="legend-dot" style="background: #00AEEF;"></span> Qtd. avaliações</span>
+        <span class="legend-item"><span class="legend-dot" style="background: #F27466;"></span> Nota média</span>
+      </div>
+      <div class="chart-wrapper">
+        <canvas id="googleChart"></canvas>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <span class="icon" style="background: #1D1E46;">🎯</span>
+      Detalhamento NPS Letsbook
+    </div>
+
+    <div class="nps-formula">
+      <div class="nps-formula-title">Como calculamos o NPS</div>
+      <code>NPS = % Promotores - % Detratores</code>
+      <div style="margin-top: 8px; display: flex; gap: 16px; flex-wrap: wrap;">
+        <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 8px; border-radius: 2px; background: #F27466;"></span> Crítico: -100 a 0</span>
+        <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 8px; border-radius: 2px; background: #F5C45D;"></span> Aperfeiçoamento: 1 a 50</span>
+        <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 8px; border-radius: 2px; background: #00AEEF;"></span> Qualidade: 51 a 75</span>
+        <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 8px; height: 8px; border-radius: 2px; background: #29948F;"></span> Excelência: 76 a 100</span>
+      </div>
+    </div>
+
+    <div class="nps-classification">
+      <div class="nps-classification-title">Classificação das notas (escala 1-5 Letsbook)</div>
+      <div style="display: flex; gap: 24px; flex-wrap: wrap;">
+        <div class="nps-classification-item"><span class="nps-classification-dot" style="background: #F27466;"></span> Detratores: notas 1 e 2</div>
+        <div class="nps-classification-item"><span class="nps-classification-dot" style="background: #F5C45D;"></span> Neutros: nota 3</div>
+        <div class="nps-classification-item"><span class="nps-classification-dot" style="background: #29948F;"></span> Promotores: notas 4 e 5</div>
+      </div>
+    </div>
+
+    <div class="chart-container" style="margin-top: 16px;">
+      <div class="chart-title">Evolução mensal: Detratores, Neutros e Promotores</div>
+      <div class="legend">
+        <span class="legend-item"><span class="legend-dot" style="background: #F27466;"></span> Detratores</span>
+        <span class="legend-item"><span class="legend-dot" style="background: #F5C45D;"></span> Neutros</span>
+        <span class="legend-item"><span class="legend-dot" style="background: #29948F;"></span> Promotores</span>
+      </div>
+      <div class="chart-wrapper" style="height: 200px;">
+        <canvas id="npsEvolutionChart"></canvas>
+      </div>
+      <div style="display: flex; justify-content: space-around; margin-top: 12px; text-align: center;">
+        <div>
+          <div style="font-size: 24px; font-weight: 700; color: #1D1E46;">+48</div>
+          <div style="font-size: 10px; color: #666;">Fev/26 · 93 resp.</div>
+        </div>
+        <div>
+          <div style="font-size: 24px; font-weight: 700; color: #29948F;">+58</div>
+          <div style="font-size: 10px; color: #666;">Mar/26 · 112 resp.</div>
+        </div>
+        <div>
+          <div style="font-size: 24px; font-weight: 700; color: #1D1E46;">+41</div>
+          <div style="font-size: 10px; color: #666;">Abr/26 · 49 resp.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <span class="icon" style="background: #F27466;">⭐</span>
+      Distribuição de Notas Google (período completo)
+    </div>
+
+    <div class="chart-container">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <div>
+          <div class="chart-title">Por estrelas (477 avaliações analisadas)</div>
+          <div class="chart-wrapper" style="height: 180px;">
+            <canvas id="distChart"></canvas>
+          </div>
+        </div>
+        <div>
+          <div class="chart-title">Comparativo 2025 vs 2026</div>
+          <div class="chart-wrapper" style="height: 180px;">
+            <canvas id="yearChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <span class="icon" style="background: #00AEEF;">💡</span>
+      Insights e Alertas
+    </div>
+
+    <div class="insights-grid">
+      <div class="insight-card">
+        <div class="insight-title">📈 NPS em zona de aperfeiçoamento</div>
+        <div class="insight-text">Média de +49 pontos. Março atingiu zona de qualidade (+58). Meta: manter acima de +50 consistentemente.</div>
+      </div>
+      <div class="insight-card alert">
+        <div class="insight-title">⚠ Reclame Aqui precisa de atenção</div>
+        <div class="insight-text">Taxa de solução de 61.5% está abaixo do ideal (>70%). 7.594 visualizações em 12 meses indica alta visibilidade.</div>
+      </div>
+      <div class="insight-card success">
+        <div class="insight-title">✓ Abril/2026 em alta no Google</div>
+        <div class="insight-text">Melhor mês com 63 avaliações e média de 4.38★. Volume crescente indica consolidação da operação.</div>
+      </div>
+      <div class="insight-card alert">
+        <div class="insight-title">⚠ Abril/2026 NPS em queda</div>
+        <div class="insight-text">NPS caiu para +41 (20.4% detratores). Investigar causas: amostra menor (49) ou problemas operacionais?</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-text">Dados atualizados até 14/04/2026 · Dashboard gerado automaticamente</div>
+      <div class="footer-text" style="color: #00AEEF; font-weight: 600;">Morro dos Anjos Resort</div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <script>
+    const textColor = '#1D1E46';
+    const gridColor = 'rgba(0,0,0,0.05)';
+
+    // Google Reviews Evolution Chart
+    const googleData = {
+      labels: ['Fev/25', 'Mar/25', 'Abr/25', 'Mai/25', 'Jun/25', 'Jul/25', 'Ago/25', 'Set/25', 'Out/25', 'Nov/25', 'Dez/25', 'Jan/26', 'Fev/26', 'Mar/26', 'Abr/26'],
+      volumes: [5, 9, 8, 25, 20, 35, 23, 17, 22, 57, 40, 46, 52, 49, 63],
+      notas: [3.80, 4.67, 2.63, 3.88, 4.05, 3.94, 3.87, 3.82, 4.05, 4.21, 4.28, 4.17, 3.79, 4.31, 4.38]
+    };
+
+    new Chart(document.getElementById('googleChart'), {
+      type: 'bar',
+      data: {
+        labels: googleData.labels,
+        datasets: [
+          {
+            type: 'bar',
+            label: 'Avaliações',
+            data: googleData.volumes,
+            backgroundColor: '#00AEEF',
+            borderRadius: 4,
+            yAxisID: 'y'
+          },
+          {
+            type: 'line',
+            label: 'Nota média',
+            data: googleData.notas,
+            borderColor: '#F27466',
+            backgroundColor: 'transparent',
+            borderWidth: 3,
+            pointBackgroundColor: '#F27466',
+            pointRadius: 4,
+            tension: 0.3,
+            yAxisID: 'y1'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { intersect: false, mode: 'index' },
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { 
+            grid: { display: false },
+            ticks: { color: textColor, font: { size: 10, family: 'Montserrat' }, maxRotation: 45 }
+          },
+          y: { 
+            position: 'left',
+            grid: { color: gridColor },
+            ticks: { color: textColor, font: { size: 10, family: 'Montserrat' } },
+            title: { display: true, text: 'Qtd. avaliações', color: textColor, font: { size: 10, family: 'Montserrat' } }
+          },
+          y1: {
+            position: 'right',
+            min: 1,
+            max: 5,
+            grid: { display: false },
+            ticks: { color: '#F27466', font: { size: 10, family: 'Montserrat' }, callback: v => v.toFixed(1) + '★' },
+            title: { display: true, text: 'Nota média', color: '#F27466', font: { size: 10, family: 'Montserrat' } }
+          }
+        }
+      }
+    });
+
+    // NPS Evolution Chart - Stacked Bar
+    new Chart(document.getElementById('npsEvolutionChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Fevereiro 2026', 'Março 2026', 'Abril 2026'],
+        datasets: [
+          {
+            label: 'Detratores',
+            data: [17.2, 8.9, 20.4],
+            backgroundColor: '#F27466',
+            borderRadius: 0
+          },
+          {
+            label: 'Neutros',
+            data: [17.2, 24.1, 18.4],
+            backgroundColor: '#F5C45D',
+            borderRadius: 0
+          },
+          {
+            label: 'Promotores',
+            data: [65.6, 67.0, 61.2],
+            backgroundColor: '#29948F',
+            borderRadius: { topLeft: 4, topRight: 4 }
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { 
+            stacked: true,
+            grid: { display: false },
+            ticks: { color: textColor, font: { size: 11, family: 'Montserrat' } }
+          },
+          y: { 
+            stacked: true,
+            max: 100,
+            grid: { color: gridColor },
+            ticks: { 
+              color: textColor, 
+              font: { size: 10, family: 'Montserrat' },
+              callback: v => v + '%'
+            }
+          }
+        }
+      }
+    });
+
+    // Distribution Doughnut
+    new Chart(document.getElementById('distChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['5 estrelas', '4 estrelas', '3 estrelas', '2 estrelas', '1 estrela'],
+        datasets: [{
+          data: [306, 47, 39, 35, 48],
+          backgroundColor: ['#29948F', '#00AEEF', '#F5C45D', '#F27466', '#1D1E46'],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '60%',
+        plugins: {
+          legend: {
+            position: 'right',
+            labels: { color: textColor, font: { size: 10, family: 'Montserrat' }, boxWidth: 12, padding: 8 }
+          }
+        }
+      }
+    });
+
+    // Year Comparison
+    new Chart(document.getElementById('yearChart'), {
+      type: 'bar',
+      data: {
+        labels: ['5★', '4★', '3★', '2★', '1★'],
+        datasets: [
+          {
+            label: '2025',
+            data: [169, 19, 17, 19, 28],
+            backgroundColor: '#1D1E46',
+            borderRadius: 4
+          },
+          {
+            label: '2026',
+            data: [91, 16, 15, 11, 14],
+            backgroundColor: '#00AEEF',
+            borderRadius: 4
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top',
+            labels: { color: textColor, font: { size: 10, family: 'Montserrat' }, boxWidth: 12 }
+          }
+        },
+        scales: {
+          x: { grid: { display: false }, ticks: { color: textColor, font: { size: 10, family: 'Montserrat' } } },
+          y: { grid: { color: gridColor }, ticks: { color: textColor, font: { size: 10, family: 'Montserrat' } } }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
