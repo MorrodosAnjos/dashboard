@@ -1,53 +1,59 @@
-
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campanha de Aniversário · Resultados ADS</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
-
-.dash { background: #1D1E46; color: #fff; padding: 24px; }
-
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:#10122e; }
+.dash { background: #1D1E46; color: #fff; padding: 24px; max-width: 1480px; margin: 0 auto; }
 .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid rgba(0,174,239,0.25); }
 .header-left { display: flex; align-items: center; gap: 14px; }
 .logo-dot { width: 36px; height: 36px; border-radius: 8px; background: #00AEEF; display: flex; align-items: center; justify-content: center; }
 .logo-dot svg { width: 20px; height: 20px; }
-.header h1 { font-size: 16px; font-weight: 600; color: #fff; letter-spacing: 0.02em; }
+.header h1 { font-size: 17px; font-weight: 700; color: #fff; letter-spacing: 0.02em; }
 .header p { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 2px; }
-.badge-platform { font-size: 10px; padding: 3px 10px; border-radius: 20px; font-weight: 600; letter-spacing: 0.05em; }
+.badge-platform { font-size: 10px; padding: 3px 10px; border-radius: 20px; font-weight: 700; letter-spacing: 0.05em; }
 .badge-meta { background: rgba(0,174,239,0.18); color: #00AEEF; border: 1px solid rgba(0,174,239,0.3); }
-.badge-tiktok { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.15); margin-left: 6px; }
+.badge-tiktok { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.15); margin-left: 6px; }
 
 .kpi-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; margin-bottom: 20px; }
-.kpi { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 16px; }
+.kpi { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; }
 .kpi.accent { background: #00AEEF; border-color: #00AEEF; }
 .kpi-label { font-size: 11px; color: rgba(255,255,255,0.5); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.06em; }
 .kpi.accent .kpi-label { color: rgba(255,255,255,0.75); }
-.kpi-value { font-size: 26px; font-weight: 700; color: #fff; line-height: 1; }
-.kpi-sub { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 5px; }
-.kpi.accent .kpi-sub { color: rgba(255,255,255,0.7); }
+.kpi-value { font-size: 29px; font-weight: 800; color: #fff; line-height: 1; }
+.kpi-sub { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 6px; line-height:1.35; }
+.kpi.accent .kpi-sub { color: rgba(255,255,255,0.78); }
 
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
 .three-col { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; margin-bottom: 16px; }
-.panel { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 18px; }
-.panel-title { font-size: 11px; font-weight: 600; color: #00AEEF; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+.panel { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 18px; }
+.panel-title { font-size: 11px; font-weight: 700; color: #00AEEF; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+.panel-note { font-size: 10px; color: rgba(255,255,255,0.38); line-height: 1.5; margin-top: 10px; }
 
 .camp-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-.camp-table th { font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.05em; padding: 4px 8px; text-align: right; font-weight: 500; }
+.camp-table th { font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.05em; padding: 4px 8px; text-align: right; font-weight: 600; }
 .camp-table th:first-child { text-align: left; }
-.camp-table td { padding: 9px 8px; border-top: 1px solid rgba(255,255,255,0.07); color: #fff; text-align: right; font-size: 12px; }
-.camp-table td:first-child { text-align: left; color: rgba(255,255,255,0.85); }
-.camp-table tr.best td { background: rgba(0,174,239,0.1); }
-.camp-table tr.best td:first-child { color: #fff; font-weight: 600; }
-.roas-val { font-weight: 700; color: #00AEEF; }
+.camp-table td { padding: 10px 8px; border-top: 1px solid rgba(255,255,255,0.07); color: #fff; text-align: right; font-size: 12px; }
+.camp-table td:first-child { text-align: left; color: rgba(255,255,255,0.88); }
+.camp-table td:first-child small { display:block; font-size:9px; color:rgba(255,255,255,.38); margin-top:2px; letter-spacing:.06em; }
+.camp-table tr.best td { background: rgba(0,174,239,0.11); }
+.camp-table tr.aware td { background: rgba(212,160,23,0.08); }
+.camp-table tr.best td:first-child { color: #fff; font-weight: 700; }
+.roas-val { font-weight: 800; color: #00AEEF; }
 
 .heatmap-wrap { overflow-x: auto; }
 .heatmap { width: 100%; border-collapse: collapse; font-size: 11px; }
-.heatmap th { font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.04em; padding: 4px 6px; text-align: center; font-weight: 500; }
-.heatmap th:first-child { text-align: left; min-width: 130px; }
-.heatmap td { padding: 7px 6px; text-align: center; font-size: 11px; font-weight: 600; border: 1px solid rgba(255,255,255,0.05); border-radius: 4px; }
-.heatmap td:first-child { text-align: left; color: rgba(255,255,255,0.8); font-weight: 400; font-size: 11px; border: none; padding-left: 0; }
-.heatmap tr.star td:first-child { color: #fff; font-weight: 600; }
+.heatmap th { font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.04em; padding: 4px 6px; text-align: center; font-weight: 600; }
+.heatmap th:first-child { text-align: left; min-width: 160px; }
+.heatmap td { padding: 7px 6px; text-align: center; font-size: 11px; font-weight: 700; border: 1px solid rgba(255,255,255,0.05); }
+.heatmap td:first-child { text-align: left; color: rgba(255,255,255,0.8); font-weight: 500; font-size: 11px; border: none; padding-left: 0; }
+.heatmap tr.star td:first-child { color: #fff; font-weight: 800; }
 
 .h-high { background: #00AEEF; color: #fff; }
-.h-mid { background: rgba(0,174,239,0.25); color: #7dd6f7; }
+.h-mid { background: rgba(0,174,239,0.25); color: #89ddff; }
 .h-low { background: rgba(255,100,60,0.2); color: #ff9070; }
 .h-none { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.25); font-weight: 400; }
 .h-zero { background: rgba(255,180,0,0.12); color: #f5c842; border: 1px solid rgba(255,180,0,0.25) !important; }
@@ -57,36 +63,39 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
 .leg-dot { width: 10px; height: 10px; border-radius: 2px; }
 
 .bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-.bar-label { font-size: 11px; color: rgba(255,255,255,0.7); width: 130px; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.bar-track { flex: 1; height: 20px; background: rgba(255,255,255,0.07); border-radius: 4px; overflow: hidden; display: flex; }
-.bar-seg { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; color: #fff; }
-.bar-total { font-size: 12px; font-weight: 700; color: #00AEEF; width: 28px; text-align: right; }
+.bar-label { font-size: 11px; color: rgba(255,255,255,0.7); width: 145px; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar-track { flex: 1; height: 22px; background: rgba(255,255,255,0.07); border-radius: 5px; overflow: hidden; display: flex; }
+.bar-seg { height: 100%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 800; color: #fff; min-width: 14px; }
+.bar-total { font-size: 12px; font-weight: 800; color: #00AEEF; width: 30px; text-align: right; }
 
-.insight-row { display: flex; gap: 6px; align-items: flex-start; margin-bottom: 10px; }
-.insight-num { background: #00AEEF; color: #1D1E46; font-size: 10px; font-weight: 700; border-radius: 4px; padding: 2px 6px; flex-shrink: 0; margin-top: 1px; }
-.insight-num.warn { background: rgba(255,140,60,0.9); color: #fff; }
-.insight-text strong { display: block; font-size: 12px; font-weight: 600; color: #fff; margin-bottom: 2px; }
-.insight-text span { font-size: 11px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+.section-sep { height: 1px; background: rgba(255,255,255,0.07); margin: 22px 0; }
+.section-label { font-size: 10px; color: rgba(255,255,255,0.34); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px; }
 
-.tiktok-cards { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; }
-.tt-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 14px; }
-.tt-card.featured { border-color: #00AEEF; background: rgba(0,174,239,0.1); }
-.tt-tag { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding: 3px 8px; border-radius: 3px; display: inline-block; margin-bottom: 8px; }
-.tt-tag.gold { background: #d4a017; color: #fff; }
-.tt-tag.blue { background: rgba(0,174,239,0.3); color: #00AEEF; }
-.tt-tag.gray { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
-.tt-name { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 8px; }
-.tt-desc { font-size: 10px; color: rgba(255,255,255,0.5); line-height: 1.5; }
-.tt-footer { font-size: 10px; margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.08); color: rgba(0,174,239,0.8); font-weight: 500; }
+.tt-overview { display:grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap:12px; margin-bottom:16px; }
+.tt-kpi-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 15px; min-height: 143px; }
+.tt-kpi-card:first-child { border-color: rgba(0,174,239,.35); background: rgba(0,174,239,.10); }
+.tt-pill { font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:#1D1E46; background:#00AEEF; padding:3px 7px; border-radius:999px; display:inline-block; margin-bottom:8px; }
+.tt-kpi-card h3 { font-size:13px; color:#fff; margin-bottom:8px; }
+.tt-main { font-size:22px; font-weight:800; color:#fff; margin-bottom:5px; }
+.tt-kpi-card p { font-size:10.5px; color:rgba(255,255,255,.48); line-height:1.45; }
+.tt-metrics { display:flex; gap:7px; flex-wrap:wrap; margin-top:10px; }
+.tt-metrics span { font-size:9.5px; color:rgba(255,255,255,.5); background:rgba(255,255,255,.06); padding:4px 6px; border-radius:6px; }
+.tt-metrics b { color:#fff; }
+
+.insight-row { display: flex; gap: 7px; align-items: flex-start; margin-bottom: 11px; }
+.insight-num { background: #00AEEF; color: #1D1E46; font-size: 10px; font-weight: 800; border-radius: 4px; padding: 2px 6px; flex-shrink: 0; margin-top: 1px; }
+.insight-num.warn { background: rgba(255,140,60,0.92); color: #fff; }
+.insight-text strong { display: block; font-size: 12px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+.insight-text span { font-size: 11px; color: rgba(255,255,255,0.56); line-height: 1.5; }
 
 .next-cols { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
 .next-card { border-radius: 10px; padding: 16px; }
 .next-card.c1 { background: rgba(0,174,239,0.12); border: 1px solid rgba(0,174,239,0.25); }
 .next-card.c2 { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); }
 .next-card.c3 { background: rgba(212,160,23,0.12); border: 1px solid rgba(212,160,23,0.3); }
-.next-when { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; }
+.next-when { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; }
 .c1 .next-when { color: #00AEEF; }
-.c2 .next-when { color: rgba(255,255,255,0.5); }
+.c2 .next-when { color: rgba(255,255,255,0.55); }
 .c3 .next-when { color: #d4a017; }
 .next-item { display: flex; align-items: flex-start; gap: 7px; margin-bottom: 8px; font-size: 11px; color: rgba(255,255,255,0.75); line-height: 1.45; }
 .next-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
@@ -94,31 +103,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
 .c2 .next-dot { background: rgba(255,255,255,0.3); }
 .c3 .next-dot { background: #d4a017; }
 
-.section-sep { height: 1px; background: rgba(255,255,255,0.07); margin: 20px 0; }
-.section-label { font-size: 10px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px; }
-
-.postit-flow { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
-.postit-step { border-radius: 10px; padding: 14px; }
-.postit-step.s1 { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); }
-.postit-step.s2 { background: rgba(0,174,239,0.12); border: 1px solid rgba(0,174,239,0.3); }
-.postit-step.s3 { background: rgba(212,160,23,0.1); border: 1px solid rgba(212,160,23,0.25); }
-.step-num { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
-.s1 .step-num { color: rgba(255,255,255,0.2); }
-.s2 .step-num { color: #00AEEF; }
-.s3 .step-num { color: #d4a017; }
-.step-place { font-size: 12px; font-weight: 600; color: #fff; margin-bottom: 3px; }
-.step-result { font-size: 11px; font-weight: 700; margin-bottom: 6px; }
-.s1 .step-result { color: rgba(255,140,60,0.9); }
-.s2 .step-result { color: #00AEEF; }
-.s3 .step-result { color: #d4a017; }
-.step-note { font-size: 10px; color: rgba(255,255,255,0.5); line-height: 1.5; }
-.conclusion-box { background: rgba(0,174,239,0.08); border: 1px solid rgba(0,174,239,0.2); border-radius: 8px; padding: 12px 14px; margin-top: 12px; font-size: 11px; color: rgba(255,255,255,0.7); line-height: 1.6; }
-.conclusion-box strong { color: #00AEEF; }
-
 .footer { margin-top: 20px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.07); display: flex; justify-content: space-between; align-items: center; }
-.footer p { font-size: 10px; color: rgba(255,255,255,0.25); }
+.footer p { font-size: 10px; color: rgba(255,255,255,0.28); }
+@media (max-width: 1000px) {
+  .kpi-grid,.tt-overview,.two-col,.three-col,.next-cols { grid-template-columns: 1fr; }
+}
 </style>
-
+</head>
+<body>
 <div class="dash">
 
 <div class="header">
@@ -128,7 +120,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
     </div>
     <div>
       <h1>Campanha de Aniversário · Resultados ADS</h1>
-      <p>Morro dos Anjos Hotel Resort · Abril 2026</p>
+      <p>Morro dos Anjos Hotel Resort · Período: 01 a 26/04/2026</p>
     </div>
   </div>
   <div>
@@ -137,26 +129,27 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
   </div>
 </div>
 
+<div class="section-label">Meta Ads · performance de venda</div>
 <div class="kpi-grid">
   <div class="kpi">
-    <div class="kpi-label">Investimento total</div>
-    <div class="kpi-value">R$ 10,8k</div>
-    <div class="kpi-sub">4 campanhas Meta</div>
+    <div class="kpi-label">Investimento Meta</div>
+    <div class="kpi-value">R$ 46,2k</div>
+    <div class="kpi-sub">5 campanhas · vendas + awareness</div>
   </div>
   <div class="kpi">
     <div class="kpi-label">Vendas geradas</div>
-    <div class="kpi-value">74</div>
-    <div class="kpi-sub">reservas convertidas</div>
+    <div class="kpi-value">216</div>
+    <div class="kpi-sub">reservas atribuídas</div>
   </div>
   <div class="kpi">
     <div class="kpi-label">Receita atribuída</div>
-    <div class="kpi-value">R$ 246k</div>
-    <div class="kpi-sub">Meta Ads</div>
+    <div class="kpi-value">R$ 694,9k</div>
+    <div class="kpi-sub">vendas diretas rastreadas</div>
   </div>
   <div class="kpi accent">
     <div class="kpi-label">ROAS médio</div>
-    <div class="kpi-value">23,3×</div>
-    <div class="kpi-sub">melhor: Sul PR 31,4×</div>
+    <div class="kpi-value">15,0×</div>
+    <div class="kpi-sub">melhor campanha: Norte PR 20,7×</div>
   </div>
 </div>
 
@@ -175,62 +168,63 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
       </thead>
       <tbody>
         <tr class="best">
-          <td>Prospecting Sul PR ★</td>
-          <td>R$ 1.798</td>
+          <td><span>PROSPECTING | NORTE PR</span><small>VENDAS</small></td>
+          <td>R$ 15.974,82</td>
+          <td>113</td>
+          <td>R$ 330.401,00</td>
+          <td class="roas-val">20,7×</td>
+        </tr>
+        <tr class="">
+          <td><span>PROSPECTING | SUL PR</span><small>VENDAS</small></td>
+          <td>R$ 7.310,82</td>
+          <td>38</td>
+          <td>R$ 137.833,00</td>
+          <td class="roas-val">18,9×</td>
+        </tr>
+        <tr class="">
+          <td><span>RETARGETING</span><small>VENDAS</small></td>
+          <td>R$ 11.715,40</td>
+          <td>49</td>
+          <td>R$ 157.808,00</td>
+          <td class="roas-val">13,5×</td>
+        </tr>
+        <tr class="">
+          <td><span>PROSPECTING | SP</span><small>VENDAS</small></td>
+          <td>R$ 8.087,16</td>
           <td>15</td>
-          <td>R$ 56.400</td>
-          <td class="roas-val">31,4×</td>
+          <td>R$ 66.088,00</td>
+          <td class="roas-val">8,2×</td>
         </tr>
-        <tr>
-          <td>Prospecting Norte PR</td>
-          <td>R$ 4.000</td>
-          <td>33</td>
-          <td>R$ 95.000</td>
-          <td class="roas-val">23,8×</td>
-        </tr>
-        <tr>
-          <td>Retargeting</td>
-          <td>R$ 2.600</td>
-          <td>19</td>
-          <td>R$ 50.000</td>
-          <td class="roas-val">19,2×</td>
-        </tr>
-        <tr>
-          <td>Prospecting SP</td>
-          <td>R$ 2.405</td>
-          <td>7</td>
-          <td>R$ 45.000</td>
-          <td class="roas-val">18,7×</td>
+        <tr class="aware">
+          <td><span>INSTITUCIONAL</span><small>AWARENESS</small></td>
+          <td>R$ 3.122,46</td>
+          <td>1</td>
+          <td>R$ 2.788,00</td>
+          <td class="roas-val">0,9×</td>
         </tr>
       </tbody>
     </table>
+    <div class="panel-note">A campanha Institucional foi mantida separada na leitura estratégica por ter objetivo principal de awareness.</div>
   </div>
 
   <div class="panel">
-    <div class="panel-title">Vendas por anúncio · barras empilhadas</div>
-    <div style="margin-top:4px;">
-      <div class="legend-row">
-        <span class="leg-item"><span class="leg-dot" style="background:#3B5BDB"></span>Retargeting</span>
-        <span class="leg-item"><span class="leg-dot" style="background:#00AEEF"></span>Sul PR</span>
-        <span class="leg-item"><span class="leg-dot" style="background:#1abc9c"></span>Norte PR</span>
-        <span class="leg-item"><span class="leg-dot" style="background:#d4a017"></span>SP</span>
-      </div>
-      <div class="bar-row"><span class="bar-label">Vídeo Aniversário</span><div class="bar-track"><div class="bar-seg" style="width:30%;background:#3B5BDB">6</div><div class="bar-seg" style="width:40%;background:#00AEEF">8</div><div class="bar-seg" style="width:5%;background:#1abc9c">1</div><div class="bar-seg" style="width:25%;background:#d4a017">5</div></div><span class="bar-total">20</span></div>
-      <div class="bar-row"><span class="bar-label">Estático</span><div class="bar-track"><div class="bar-seg" style="width:6.25%;background:#1abc9c;opacity:0.2">0</div><div class="bar-seg" style="width:6.25%;background:#00AEEF">1</div><div class="bar-seg" style="width:87.5%;background:#1abc9c">14</div></div><span class="bar-total">16</span></div>
-      <div class="bar-row"><span class="bar-label">Recepção</span><div class="bar-track"><div class="bar-seg" style="width:9%;background:#00AEEF">1</div><div class="bar-seg" style="width:91%;background:#1abc9c">10</div></div><span class="bar-total">11</span></div>
-      <div class="bar-row"><span class="bar-label">Giba Camiseta</span><div class="bar-track"><div class="bar-seg" style="width:60%;background:#3B5BDB">6</div><div class="bar-seg" style="width:40%;background:#00AEEF">4</div></div><span class="bar-total">10</span></div>
-      <div class="bar-row"><span class="bar-label">SAC</span><div class="bar-track"><div class="bar-seg" style="width:11%;background:#3B5BDB">1</div><div class="bar-seg" style="width:11%;background:#00AEEF">1</div><div class="bar-seg" style="width:78%;background:#1abc9c">7</div></div><span class="bar-total">9</span></div>
-      <div class="bar-row"><span class="bar-label">Giba Neles</span><div class="bar-track"><div class="bar-seg" style="width:50%;background:#3B5BDB">3</div><div class="bar-seg" style="width:33%;background:#1abc9c">2</div><div class="bar-seg" style="width:17%;background:#d4a017">1</div></div><span class="bar-total">6</span></div>
-      <div class="bar-row"><span class="bar-label">Feriado Garantido ★</span><div class="bar-track"><div class="bar-seg" style="width:100%;background:#3B5BDB">2</div></div><span class="bar-total">2</span></div>
+    <div class="panel-title">Vendas por anúncio · Meta Ads</div>
+    <div class="legend-row">
+      <span class="leg-item"><span class="leg-dot" style="background:#3B5BDB"></span>Retargeting</span>
+      <span class="leg-item"><span class="leg-dot" style="background:#00AEEF"></span>Sul PR</span>
+      <span class="leg-item"><span class="leg-dot" style="background:#1abc9c"></span>Norte PR</span>
+      <span class="leg-item"><span class="leg-dot" style="background:#d4a017"></span>SP</span>
     </div>
+    <div class="bar-row"><span class="bar-label">Vídeo Aniversário</span><div class="bar-track"><div class="bar-seg" style="width:10.98%;background:#3B5BDB">9</div><div class="bar-seg" style="width:15.85%;background:#00AEEF">13</div><div class="bar-seg" style="width:62.20%;background:#1abc9c">51</div><div class="bar-seg" style="width:10.98%;background:#d4a017">9</div></div><span class="bar-total">82</span></div><div class="bar-row"><span class="bar-label">Estático</span><div class="bar-track"><div class="bar-seg" style="width:2.63%;background:#3B5BDB">1</div><div class="bar-seg" style="width:34.21%;background:#00AEEF">13</div><div class="bar-seg" style="width:60.53%;background:#1abc9c">23</div><div class="bar-seg" style="width:2.63%;background:#d4a017">1</div></div><span class="bar-total">38</span></div><div class="bar-row"><span class="bar-label">Giba Camiseta Brasil</span><div class="bar-track"><div class="bar-seg" style="width:70.97%;background:#3B5BDB">22</div><div class="bar-seg" style="width:22.58%;background:#00AEEF">7</div><div class="bar-seg" style="width:6.45%;background:#d4a017">2</div></div><span class="bar-total">31</span></div><div class="bar-row"><span class="bar-label">Recepção</span><div class="bar-track"><div class="bar-seg" style="width:10.71%;background:#00AEEF">3</div><div class="bar-seg" style="width:89.29%;background:#1abc9c">25</div></div><span class="bar-total">28</span></div><div class="bar-row"><span class="bar-label">Sac</span><div class="bar-track"><div class="bar-seg" style="width:20.00%;background:#3B5BDB">3</div><div class="bar-seg" style="width:6.67%;background:#00AEEF">1</div><div class="bar-seg" style="width:66.67%;background:#1abc9c">10</div><div class="bar-seg" style="width:6.67%;background:#d4a017">1</div></div><span class="bar-total">15</span></div><div class="bar-row"><span class="bar-label">Giba Neles</span><div class="bar-track"><div class="bar-seg" style="width:36.36%;background:#3B5BDB">4</div><div class="bar-seg" style="width:9.09%;background:#00AEEF">1</div><div class="bar-seg" style="width:36.36%;background:#1abc9c">4</div><div class="bar-seg" style="width:18.18%;background:#d4a017">2</div></div><span class="bar-total">11</span></div><div class="bar-row"><span class="bar-label">Vídeo Última Chamada</span><div class="bar-track"><div class="bar-seg" style="width:100.00%;background:#3B5BDB">3</div></div><span class="bar-total">3</span></div><div class="bar-row"><span class="bar-label">Feriado Garantido</span><div class="bar-track"><div class="bar-seg" style="width:100.00%;background:#3B5BDB">2</div></div><span class="bar-total">2</span></div><div class="bar-row"><span class="bar-label">Estático Última Chamada</span><div class="bar-track"><div class="bar-seg" style="width:100.00%;background:#3B5BDB">2</div></div><span class="bar-total">2</span></div><div class="bar-row"><span class="bar-label">Marcinho</span><div class="bar-track"><div class="bar-seg" style="width:100.00%;background:#3B5BDB">2</div></div><span class="bar-total">2</span></div>
+    <div class="panel-note">Total por criativo baseado na planilha de vendas por anúncio. Pode haver pequena diferença vs. total de campanha por atribuições não detalhadas por peça.</div>
   </div>
 </div>
 
 <div class="panel" style="margin-bottom:16px;">
   <div class="panel-title">ROAS por anúncio × praça · Meta Ads</div>
   <div class="legend-row">
-    <span class="leg-item"><span class="leg-dot" style="background:#00AEEF"></span>Alto (&gt; 40×)</span>
-    <span class="leg-item"><span class="leg-dot" style="background:rgba(0,174,239,0.25)"></span>Médio (10–40×)</span>
+    <span class="leg-item"><span class="leg-dot" style="background:#00AEEF"></span>Alto (≥ 30×)</span>
+    <span class="leg-item"><span class="leg-dot" style="background:rgba(0,174,239,0.25)"></span>Médio (10–29×)</span>
     <span class="leg-item"><span class="leg-dot" style="background:rgba(255,100,60,0.25)"></span>Baixo (&lt; 10×)</span>
     <span class="leg-item"><span class="leg-dot" style="background:rgba(255,255,255,0.05)"></span>— não foi ao ar</span>
     <span class="leg-item"><span class="leg-dot" style="background:rgba(255,180,0,0.12);border:1px solid rgba(255,180,0,0.4)"></span>0 subiu, sem retorno</span>
@@ -240,74 +234,164 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
       <thead>
         <tr><th>Anúncio</th><th>Retargeting</th><th>Sul PR</th><th>Norte PR</th><th>SP</th></tr>
       </thead>
-      <tbody>
-        <tr><td>Giba Camiseta Brasil</td><td class="h-mid">14,2×</td><td class="h-high">51,8×</td><td class="h-none">—</td><td class="h-none">—</td></tr>
-        <tr><td>Vídeo Aniversário</td><td class="h-mid">17,1×</td><td class="h-high">49,2×</td><td class="h-low">6,0×</td><td class="h-high">44,7×</td></tr>
-        <tr><td>SAC</td><td class="h-low">7,9×</td><td class="h-high">47,0×</td><td class="h-mid">29,3×</td><td class="h-none">—</td></tr>
-        <tr><td>Giba Neles</td><td class="h-mid">21,4×</td><td class="h-none">—</td><td class="h-mid">11,3×</td><td class="h-low">4,6×</td></tr>
-        <tr><td>Estático</td><td class="h-zero">0</td><td class="h-low">7,5×</td><td class="h-mid">36,2×</td><td class="h-low">2,6×</td></tr>
-        <tr><td>Recepção</td><td class="h-none">—</td><td class="h-low">3,7×</td><td class="h-mid">22,0×</td><td class="h-zero">0</td></tr>
-        <tr class="star"><td>Feriado Garantido ★</td><td class="h-high" style="font-size:13px">1500×</td><td class="h-none">—</td><td class="h-none">—</td><td class="h-none">—</td></tr>
-        <tr><td>POST-IT</td><td class="h-zero">0</td><td class="h-none">—</td><td class="h-none">—</td><td class="h-none">—</td></tr>
+      <tbody><tr class=''><td>Vídeo Aniversário</td><td class="h-mid">16,0×</td><td class="h-high">31,1×</td><td class="h-mid">24,9×</td><td class="h-mid">18,0×</td></tr><tr class=''><td>Estático</td><td class="h-mid">13,3×</td><td class="h-mid">23,2×</td><td class="h-mid">24,8×</td><td class="h-low">2,6×</td></tr><tr class=''><td>Giba Camiseta Brasil</td><td class="h-mid">13,7×</td><td class="h-mid">26,6×</td><td class="h-none">—</td><td class="h-low">6,5×</td></tr><tr class=''><td>Recepção</td><td class="h-none">—</td><td class="h-low">5,6×</td><td class="h-mid">24,1×</td><td class="h-none">—</td></tr><tr class=''><td>Sac</td><td class="h-mid">17,3×</td><td class="h-high">34,4×</td><td class="h-mid">20,2×</td><td class="h-low">1,0×</td></tr><tr class=''><td>Giba Neles</td><td class="h-mid">17,0×</td><td class="h-mid">21,9×</td><td class="h-mid">15,4×</td><td class="h-low">2,4×</td></tr><tr class=''><td>Vídeo Última Chamada</td><td class="h-high">59,8×</td><td class="h-none">—</td><td class="h-none">—</td><td class="h-none">—</td></tr><tr class='star'><td>Feriado Garantido</td><td class="h-high">900,0×</td><td class="h-none">—</td><td class="h-none">—</td><td class="h-none">—</td></tr><tr class=''><td>Estático Última Chamada</td><td class="h-low">8,9×</td><td class="h-none">—</td><td class="h-none">—</td><td class="h-none">—</td></tr><tr class=''><td>Marcinho</td><td class="h-low">3,6×</td><td class="h-none">—</td><td class="h-none">—</td><td class="h-none">—</td></tr><tr class=''><td>Post-It</td><td class="h-zero">0</td><td class="h-none">—</td><td class="h-none">—</td><td class="h-none">—</td></tr><tr class=''><td>Gustavinho</td><td class="h-zero">0</td><td class="h-none">—</td><td class="h-none">—</td><td class="h-none">—</td></tr>
       </tbody>
     </table>
   </div>
-  <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-top:10px;">★ Feriado Garantido · ROAS 1500× no retargeting &nbsp;|&nbsp; — = anúncio não foi ao ar nesta praça &nbsp;|&nbsp; 0 = foi ao ar, sem conversão registrada</div>
+  <div class="panel-note">Destaques: Feriado Garantido manteve ROAS extremamente alto no retargeting; Vídeo Última Chamada também se destacou em audiência quente.</div>
 </div>
 
 <div class="section-sep"></div>
-<div class="section-label">TikTok Ads · objetivo tráfego · 4 anúncios ativos</div>
+<div class="section-label">TikTok Ads · nova leitura de performance</div>
 
-<div class="tiktok-cards" style="margin-bottom:16px;">
-  <div class="tt-card featured">
-    <span class="tt-tag gold">Melhor CTR</span>
-    <div class="tt-name">POST-IT</div>
-    <div class="tt-desc">CPM mais alto — a plataforma entrega menos, mas para quem certo. CTR superior indica que o criativo ressoa com a audiência qualificada.</div>
-    <div class="tt-footer">Alta qualidade de entrega</div>
+<div class="kpi-grid">
+  <div class="kpi">
+    <div class="kpi-label">Investimento TikTok</div>
+    <div class="kpi-value">R$ 8,6k</div>
+    <div class="kpi-sub">tráfego + alcance</div>
   </div>
-  <div class="tt-card">
-    <span class="tt-tag blue">Maior volume</span>
-    <div class="tt-name">SAC</div>
-    <div class="tt-desc">Subiu primeiro, acumulou mais entrega. Volume de impressões alto, porém CTR mais baixo — possível cansaço de audiência.</div>
-    <div class="tt-footer">Monitorar frequência</div>
+  <div class="kpi">
+    <div class="kpi-label">Impressões</div>
+    <div class="kpi-value">2,85 mi</div>
+    <div class="kpi-sub">2.846.101 entregas totais</div>
   </div>
-  <div class="tt-card">
-    <span class="tt-tag gray">Em análise</span>
-    <div class="tt-name">Anúncio 3</div>
-    <div class="tt-desc">Aguardar período maior de veiculação para avaliação consistente de CTR e custo por clique.</div>
-    <div class="tt-footer">Aguardar dados</div>
+  <div class="kpi">
+    <div class="kpi-label">Cliques</div>
+    <div class="kpi-value">121,3k</div>
+    <div class="kpi-sub">CPC médio R$ 0,07</div>
   </div>
-  <div class="tt-card">
-    <span class="tt-tag gray">Em análise</span>
-    <div class="tt-name">Anúncio 4</div>
-    <div class="tt-desc">Aguardar período maior de veiculação para avaliação consistente de CTR e custo por clique.</div>
-    <div class="tt-footer">Aguardar dados</div>
+  <div class="kpi accent">
+    <div class="kpi-label">CTR consolidado</div>
+    <div class="kpi-value">4,26%</div>
+    <div class="kpi-sub">CPM médio R$ 3,03</div>
   </div>
 </div>
 
-<div class="panel" style="margin-bottom:16px;">
-  <div class="panel-title">Criativo POST-IT · hipótese de awareness</div>
-  <div class="postit-flow">
-    <div class="postit-step s1">
-      <div class="step-num">1</div>
-      <div class="step-place">Retargeting Meta</div>
-      <div class="step-result">Não gerou venda</div>
-      <div class="step-note">Audiência já conhecia o produto — criativo de topo de funil não converte em fundo de funil.</div>
+<div class="tt-overview">
+  
+    <div class="tt-kpi-card">
+      <span class="tt-pill">TRÁFEGO</span>
+      <h3>Tráfego · fase 1</h3>
+      <div class="tt-main">R$ 4.946,22</div>
+      <p>1.271.822 impressões · 115.122 cliques</p>
+      <div class="tt-metrics">
+        <span>CTR <b>9,05%</b></span>
+        <span>CPC <b>R$ 0,04</b></span>
+        <span>CPM <b>R$ 3,89</b></span>
+      </div>
     </div>
-    <div class="postit-step s2">
-      <div class="step-num">2</div>
-      <div class="step-place">TikTok Ads</div>
-      <div class="step-result">Arrasou no resultado</div>
-      <div class="step-note">Melhor CTR entre os 4 criativos. Audiência fria + objetivo tráfego = contexto ideal de awareness.</div>
+    <div class="tt-kpi-card">
+      <span class="tt-pill">TRÁFEGO</span>
+      <h3>Tráfego · fase 2</h3>
+      <div class="tt-main">R$ 2.595,74</div>
+      <p>770.168 impressões · 5.471 cliques</p>
+      <div class="tt-metrics">
+        <span>CTR <b>0,71%</b></span>
+        <span>CPC <b>R$ 0,47</b></span>
+        <span>CPM <b>R$ 3,37</b></span>
+      </div>
     </div>
-    <div class="postit-step s3">
-      <div class="step-num">3</div>
-      <div class="step-place">Prospecting Meta</div>
-      <div class="step-result">Teste: próxima semana</div>
-      <div class="step-note">Se arrasou em audiência fria no TikTok, pode performar em prospecting do Meta também.</div>
+    <div class="tt-kpi-card">
+      <span class="tt-pill">ALCANCE</span>
+      <h3>Alcance</h3>
+      <div class="tt-main">R$ 1.070,36</div>
+      <p>804.111 impressões · 661 cliques</p>
+      <div class="tt-metrics">
+        <span>CTR <b>0,08%</b></span>
+        <span>CPC <b>R$ 1,62</b></span>
+        <span>CPM <b>R$ 1,33</b></span>
+      </div>
     </div>
+  <div class="tt-kpi-card">
+    <span class="tt-pill">Síntese</span>
+    <h3>Leitura geral</h3>
+    <div class="tt-main">CPC forte</div>
+    <p>O TikTok funcionou como mídia de descoberta. A fase 1 teve volume e CTR muito superiores; alcance sustentou awareness com CPM baixo.</p>
+    <div class="tt-metrics"><span>Melhor CTR <b>Recepção</b></span><span>Maior volume <b>SAC</b></span></div>
   </div>
-  <div class="conclusion-box"><strong>Conclusão:</strong> O POST-IT parece um criativo de topo de funil — ideal para gerar awareness e atrair cliques frios. O teste no prospecting do Meta será decisivo para confirmar essa hipótese.</div>
+</div>
+
+<div class="two-col">
+  <div class="panel">
+    <div class="panel-title">Top criativos TikTok · por CTR</div>
+    <table class="camp-table">
+      <thead>
+        <tr>
+          <th>Campanha</th>
+          <th>Anúncio</th>
+          <th>Custo</th>
+          <th>Impr.</th>
+          <th>Cliques</th>
+          <th>CTR</th>
+          <th>CPC</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tráfego · fase 1</td>
+          <td>Recepcao</td>
+          <td>R$ 1.419,53</td>
+          <td>234.333</td>
+          <td>35.356</td>
+          <td class="roas-val">15,09%</td>
+          <td>R$ 0,04</td>
+        </tr>
+        <tr>
+          <td>Tráfego · fase 1</td>
+          <td>Post-It</td>
+          <td>R$ 493,70</td>
+          <td>101.977</td>
+          <td>12.553</td>
+          <td class="roas-val">12,31%</td>
+          <td>R$ 0,04</td>
+        </tr>
+        <tr>
+          <td>Tráfego · fase 1</td>
+          <td>Giba Neles</td>
+          <td>R$ 85,86</td>
+          <td>15.538</td>
+          <td>1.842</td>
+          <td class="roas-val">11,85%</td>
+          <td>R$ 0,05</td>
+        </tr>
+        <tr>
+          <td>Tráfego · fase 2</td>
+          <td>Marcinho</td>
+          <td>R$ 1.368,77</td>
+          <td>395.566</td>
+          <td>3.404</td>
+          <td class="roas-val">0,86%</td>
+          <td>R$ 0,40</td>
+        </tr>
+        <tr>
+          <td>Tráfego · fase 2</td>
+          <td>Giba Neles</td>
+          <td>R$ 393,44</td>
+          <td>117.783</td>
+          <td>754</td>
+          <td class="roas-val">0,64%</td>
+          <td>R$ 0,52</td>
+        </tr>
+        <tr>
+          <td>Tráfego · fase 2</td>
+          <td>Recepcao</td>
+          <td>R$ 237,31</td>
+          <td>76.763</td>
+          <td>431</td>
+          <td class="roas-val">0,56%</td>
+          <td>R$ 0,55</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">Interpretação estratégica · TikTok</div>
+    <div class="insight-row"><span class="insight-num">01</span><div class="insight-text"><strong>Fase 1 de tráfego foi a mais eficiente</strong><span>CTR de 9,05% e CPC médio de R$ 0,04. É a melhor base para entender quais criativos realmente geraram intenção de clique.</span></div></div>
+    <div class="insight-row"><span class="insight-num">02</span><div class="insight-text"><strong>Recepção e POST-IT ganharam força no TikTok</strong><span>Recepção liderou CTR na fase 1; POST-IT teve alto CTR e valida a hipótese de criativo de descoberta/topo de funil.</span></div></div>
+    <div class="insight-row"><span class="insight-num">03</span><div class="insight-text"><strong>SAC foi o criativo de maior volume</strong><span>Apesar de CTR menor que Recepção e POST-IT, concentrou a maior quantidade de cliques na fase 1, ajudando a alimentar remarketing.</span></div></div>
+    <div class="insight-row"><span class="insight-num warn">04</span><div class="insight-text"><strong>Separar sempre tráfego, alcance e vendas</strong><span>No TikTok, a leitura correta é por clique, CTR, CPC, CPM e alcance. Não comparar diretamente com ROAS do Meta.</span></div></div>
+  </div>
 </div>
 
 <div class="section-sep"></div>
@@ -315,14 +399,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
 
 <div class="two-col" style="margin-bottom:16px;">
   <div class="panel">
-    <div class="insight-row"><span class="insight-num">01</span><div class="insight-text"><strong>Feriado Garantido · ativar em Maio com prioridade máxima</strong><span>ROAS de 1500× no retargeting. Evidência clara de que a oferta ressoa com audiência quente. Voltar em Maio com mais verba e criativos complementares.</span></div></div>
-    <div class="insight-row"><span class="insight-num">02</span><div class="insight-text"><strong>Vídeo Aniversário é o criativo âncora</strong><span>Único criativo com bom desempenho em todas as praças e tipos de campanha. Candidato a criativo base nos próximos voos.</span></div></div>
-    <div class="insight-row"><span class="insight-num">03</span><div class="insight-text"><strong>Norte PR é a praça de maior volume</strong><span>33 vendas e R$ 95k. Estático e Recepção funcionam exclusivamente aqui — criativos com apelo regional específico.</span></div></div>
+    <div class="insight-row"><span class="insight-num">01</span><div class="insight-text"><strong>Norte PR é o motor de escala da campanha</strong><span>Maior volume absoluto: 113 vendas, R$ 330,4k em receita e ROAS 20,7×. É a praça mais forte para sustentar verba.</span></div></div>
+    <div class="insight-row"><span class="insight-num">02</span><div class="insight-text"><strong>Vídeo Aniversário virou criativo âncora</strong><span>82 vendas mapeadas por anúncio e presença em todas as praças. É o criativo mais estável para escala e variações.</span></div></div>
+    <div class="insight-row"><span class="insight-num">03</span><div class="insight-text"><strong>Retargeting ainda é altamente lucrativo</strong><span>49 vendas e R$ 157,8k em receita. Feriado Garantido e Vídeo Última Chamada mostram força de urgência em audiência quente.</span></div></div>
   </div>
   <div class="panel">
-    <div class="insight-row"><span class="insight-num warn">04</span><div class="insight-text"><strong>SP precisa de mix diferente de criativos</strong><span>Menor ROAS (18,7×) com o maior investimento de prospecting. Só o Vídeo Aniversário sustenta resultado. Revisar antes de escalar.</span></div></div>
-    <div class="insight-row"><span class="insight-num">05</span><div class="insight-text"><strong>TikTok e Meta têm lógicas diferentes — e isso é uma vantagem</strong><span>O que não converte no retargeting Meta pode ser o melhor criativo de awareness no TikTok. Testar cross-platform antes de descartar qualquer criativo.</span></div></div>
-    <div style="background:rgba(0,174,239,0.08);border:1px solid rgba(0,174,239,0.2);border-radius:8px;padding:10px 12px;margin-top:4px;font-size:11px;color:rgba(255,255,255,0.6);">No TikTok: <strong style="color:#00AEEF">CPM alto ≠ mal desempenho.</strong> CPM mais alto pode indicar entrega mais seletiva. A métrica decisiva é custo por clique, não impressões.</div>
+    <div class="insight-row"><span class="insight-num warn">04</span><div class="insight-text"><strong>SP segue como praça mais cara/frágil</strong><span>ROAS de 8,2×. Precisa de mix criativo mais específico e talvez argumento mais forte de deslocamento/experiência.</span></div></div>
+    <div class="insight-row"><span class="insight-num">05</span><div class="insight-text"><strong>Awareness deve ser avaliado por contribuição, não por ROAS</strong><span>Institucional teve ROAS baixo, mas cumpre papel de alimentar demanda e sustentar lembrança de marca durante o mês de aniversário.</span></div></div>
+    <div style="background:rgba(0,174,239,0.08);border:1px solid rgba(0,174,239,0.2);border-radius:8px;padding:10px 12px;margin-top:4px;font-size:11px;color:rgba(255,255,255,0.64);line-height:1.55;">Leitura executiva: <strong style="color:#00AEEF">Meta fecha a conta de vendas.</strong> TikTok amplia descoberta, gera tráfego barato e cria público para remarketing. A régua correta é integração entre canais.</div>
   </div>
 </div>
 
@@ -331,26 +415,28 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
 
 <div class="next-cols">
   <div class="next-card c1">
-    <div class="next-when">Próxima semana</div>
-    <div class="next-item"><span class="next-dot"></span>Subir POST-IT nas campanhas de Prospecting do Meta Ads</div>
-    <div class="next-item"><span class="next-dot"></span>Monitorar CTR e custo por clique vs resultado no TikTok</div>
+    <div class="next-when">Escala imediata</div>
+    <div class="next-item"><span class="next-dot"></span>Manter Norte PR como praça prioritária de volume e rentabilidade</div>
+    <div class="next-item"><span class="next-dot"></span>Criar variações do Vídeo Aniversário com urgência e prova social</div>
   </div>
   <div class="next-card c2">
-    <div class="next-when">Curto prazo</div>
-    <div class="next-item"><span class="next-dot"></span>Revisar mix de criativos para SP — testar novos antes de escalar verba</div>
-    <div class="next-item"><span class="next-dot"></span>Analisar frequência dos anúncios TikTok (especialmente SAC)</div>
+    <div class="next-when">TikTok</div>
+    <div class="next-item"><span class="next-dot"></span>Replicar lógica de Recepção, POST-IT e SAC em novos cortes curtos</div>
+    <div class="next-item"><span class="next-dot"></span>Usar públicos engajados do TikTok para remarketing no Meta/Google quando possível</div>
   </div>
   <div class="next-card c3">
-    <div class="next-when">Maio — com tudo</div>
-    <div class="next-item"><span class="next-dot"></span>Reativar Feriado Garantido com mais verba no retargeting</div>
-    <div class="next-item"><span class="next-dot"></span>Desenvolver criativos complementares para a oferta de feriado</div>
-    <div class="next-item"><span class="next-dot"></span>Expandir verba no Norte PR — maior volume da campanha</div>
+    <div class="next-when">Maio</div>
+    <div class="next-item"><span class="next-dot"></span>Reativar Feriado Garantido e Última Chamada em retargeting</div>
+    <div class="next-item"><span class="next-dot"></span>Revisar SP antes de escalar: nova promessa, novos criativos e segmentação mais qualificada</div>
+    <div class="next-item"><span class="next-dot"></span>Separar dashboard por objetivo: vendas, tráfego e awareness</div>
   </div>
 </div>
 
 <div class="footer">
   <p>Morro dos Anjos Hotel Resort · Campanha de Aniversário · Relatório ADS · Abril 2026</p>
-  <p>Meta Ads + TikTok Ads</p>
+  <p>Atualizado com Meta Ads + TikTok Ads · 01 a 26/04/2026</p>
 </div>
 
 </div>
+</body>
+</html>
