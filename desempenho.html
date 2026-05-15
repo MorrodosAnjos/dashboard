@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparativo de Vendas — Morro dos Anjos Resort</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --azul-claro: #00AEEF;
+    --azul-escuro: #1D1E46;
+    --branco: #FFFFFF;
+    --azul-medio: #0E6F99;
+    --azul-pale: #E8F7FD;
+    --azul-glass: rgba(0,174,239,0.12);
+    --azul-glass2: rgba(29,30,70,0.08);
+    --texto: #1D1E46;
+    --texto-muted: #6B7A99;
+    --alerta: #FF6B35;
+    --verde: #00C878;
+    --shadow: 0 8px 40px rgba(29,30,70,0.10);
+    --shadow-card: 0 4px 24px rgba(29,30,70,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: #F0F7FC;
+    color: var(--texto);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--azul-escuro);
+    position: relative;
+    overflow: hidden;
+    padding: 60px 48px 80px;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,174,239,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 20%;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,174,239,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: end;
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,174,239,0.15);
+    border: 1px solid rgba(0,174,239,0.35);
+    color: var(--azul-claro);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--azul-claro);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+
+  .hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 800;
+    color: var(--branco);
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .hero h1 span {
+    color: var(--azul-claro);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+    letter-spacing: 0.5px;
+  }
+
+  .hero-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-end;
+  }
+
+  .hero-stat-pill {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 12px;
+    padding: 12px 20px;
+    text-align: right;
+    backdrop-filter: blur(10px);
+  }
+
+  .hero-stat-pill .label { font-size: 10px; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 1.5px; }
+  .hero-stat-pill .value { font-size: 22px; font-weight: 700; color: var(--branco); }
+  .hero-stat-pill .value span { color: var(--azul-claro); }
+
+  /* ── ALERTA CONTEXTO ── */
+  .context-banner {
+    background: linear-gradient(135deg, #FF6B35 0%, #E8520E 100%);
+    padding: 0 48px;
+    max-width: 100%;
+  }
+
+  .context-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 18px 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .context-icon {
+    width: 36px; height: 36px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .context-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+  }
+
+  .context-text {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.92);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .context-text strong { font-weight: 600; }
+
+  /* ── MAIN LAYOUT ── */
+  .main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 48px 48px 80px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--azul-claro);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--azul-escuro);
+    margin-bottom: 32px;
+  }
+
+  /* ── KPI STRIP ── */
+  .kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .kpi-card {
+    background: var(--branco);
+    border-radius: 16px;
+    padding: 22px 20px;
+    box-shadow: var(--shadow-card);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: default;
+  }
+
+  .kpi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(29,30,70,0.14);
+  }
+
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .kpi-card.jan::before { background: var(--azul-escuro); }
+  .kpi-card.fev::before { background: #6B7A99; }
+  .kpi-card.mar::before { background: var(--azul-medio); }
+  .kpi-card.abr::before { background: var(--azul-claro); }
+  .kpi-card.mai::before { background: var(--alerta); }
+
+  .kpi-month {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--texto-muted);
+    margin-bottom: 10px;
+  }
+
+  .kpi-value {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--azul-escuro);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .kpi-label {
+    font-size: 11px;
+    color: var(--texto-muted);
+    font-weight: 400;
+  }
+
+  .kpi-delta {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 100px;
+    margin-top: 10px;
+  }
+
+  .kpi-delta.down { background: rgba(255,107,53,0.10); color: var(--alerta); }
+  .kpi-delta.up { background: rgba(0,200,120,0.10); color: var(--verde); }
+  .kpi-delta.neutral { background: rgba(107,122,153,0.10); color: var(--texto-muted); }
+
+  .kpi-card.mai .kpi-value { color: var(--alerta); }
+  .kpi-card.abr .kpi-value { color: var(--azul-claro); }
+  .kpi-card.jan .kpi-value { color: var(--verde); }
+
+  /* ── CHART GRID ── */
+  .chart-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .chart-grid-3 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .chart-grid-equal {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .chart-card {
+    background: var(--branco);
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.2s ease;
+  }
+
+  .chart-card:hover { transform: translateY(-2px); }
+
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6px;
+  }
+
+  .chart-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--azul-escuro);
+  }
+
+  .chart-sub {
+    font-size: 11px;
+    color: var(--texto-muted);
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+
+  .chart-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+    background: var(--azul-pale);
+    color: var(--azul-medio);
+  }
+
+  .chart-badge.alert { background: rgba(255,107,53,0.10); color: var(--alerta); }
+  .chart-badge.green { background: rgba(0,200,120,0.10); color: var(--verde); }
+
+  canvas { max-width: 100%; }
+
+  /* ── FUNIL VISUAL ── */
+  .funnel-section {
+    margin-bottom: 24px;
+  }
+
+  .funnel-card {
+    background: var(--azul-escuro);
+    border-radius: 20px;
+    padding: 32px 36px;
+    color: var(--branco);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .funnel-card::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 250px; height: 250px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,174,239,0.15) 0%, transparent 70%);
+  }
+
+  .funnel-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--branco);
+    margin-bottom: 4px;
+  }
+
+  .funnel-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 32px;
+  }
+
+  .funnel-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .funnel-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 80px;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .funnel-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 500;
+    text-align: right;
+  }
+
+  .funnel-track {
+    height: 28px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .funnel-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.9);
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .funnel-fill.jan { background: linear-gradient(90deg, #00C878, #00A860); }
+  .funnel-fill.mai { background: linear-gradient(90deg, #FF6B35, #E8520E); }
+  .funnel-fill.abr { background: linear-gradient(90deg, #00AEEF, #0088C7); }
+
+  .funnel-num {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--branco);
+    text-align: right;
+  }
+
+  /* ── COMPARATIVO CARD ── */
+  .compare-card {
+    background: linear-gradient(135deg, var(--azul-escuro) 0%, #2A2B5E 100%);
+    border-radius: 20px;
+    padding: 28px;
+    color: var(--branco);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .compare-card::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; right: -40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(0,174,239,0.08);
+  }
+
+  /* ── TABELA ── */
+  .table-card {
+    background: var(--branco);
+    border-radius: 20px;
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+
+  .table-header {
+    padding: 24px 28px 16px;
+    border-bottom: 1px solid rgba(29,30,70,0.06);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead th {
+    padding: 12px 16px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--texto-muted);
+    text-align: right;
+    background: var(--azul-pale);
+  }
+
+  thead th:first-child { text-align: left; }
+
+  tbody tr {
+    border-bottom: 1px solid rgba(29,30,70,0.04);
+    transition: background 0.15s;
+  }
+
+  tbody tr:hover { background: var(--azul-pale); }
+  tbody tr:last-child { border-bottom: none; }
+
+  tbody td {
+    padding: 13px 16px;
+    font-size: 13px;
+    color: var(--texto);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  tbody td:first-child {
+    text-align: left;
+    font-weight: 500;
+    color: var(--azul-escuro);
+  }
+
+  .td-mai {
+    font-weight: 700;
+    color: var(--alerta) !important;
+  }
+
+  .td-jan {
+    font-weight: 700;
+    color: var(--verde) !important;
+  }
+
+  .td-abr {
+    font-weight: 600;
+    color: var(--azul-claro) !important;
+  }
+
+  /* ── INSIGHT CARDS ── */
+  .insight-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .insight-card {
+    background: var(--branco);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow-card);
+    border-left: 4px solid var(--azul-claro);
+    position: relative;
+  }
+
+  .insight-card.warn { border-left-color: var(--alerta); }
+  .insight-card.good { border-left-color: var(--verde); }
+
+  .insight-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 6px;
+    color: var(--azul-escuro);
+  }
+
+  .insight-card.warn .insight-num { color: var(--alerta); }
+  .insight-card.good .insight-num { color: var(--verde); }
+
+  .insight-desc {
+    font-size: 13px;
+    color: var(--texto-muted);
+    line-height: 1.5;
+  }
+
+  /* ── RACIONAL ── */
+  .rational-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+
+  .rational-card {
+    background: var(--branco);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: var(--shadow-card);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rational-card::before {
+    content: attr(data-num);
+    position: absolute;
+    top: -10px; right: 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 80px;
+    font-weight: 900;
+    color: var(--azul-pale);
+    line-height: 1;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .rational-card-content { position: relative; z-index: 1; }
+
+  .rational-icon {
+    width: 44px; height: 44px;
+    background: var(--azul-pale);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .rational-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--azul-escuro);
+    margin-bottom: 10px;
+  }
+
+  .rational-text {
+    font-size: 13px;
+    color: var(--texto-muted);
+    line-height: 1.7;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--azul-escuro);
+    padding: 32px 48px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--branco);
+    margin-bottom: 6px;
+  }
+
+  .footer-logo span { color: var(--azul-claro); }
+
+  .footer-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 1px;
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { padding: 40px 24px 60px; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-stats { flex-direction: row; align-items: flex-start; flex-wrap: wrap; }
+    .main { padding: 32px 24px 60px; }
+    .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+    .chart-grid-2, .chart-grid-3, .chart-grid-equal { grid-template-columns: 1fr; }
+    .insight-grid, .rational-grid { grid-template-columns: 1fr; }
+    .funnel-row { grid-template-columns: 100px 1fr 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-badge">Relatório de Performance</div>
+      <h1>Comparativo de<br><span>Vendas</span> 2026</h1>
+      <p class="hero-sub">Primeiros 10 dias · Janeiro → Maio · Morro dos Anjos Resort</p>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat-pill">
+        <div class="label">Melhor Mês</div>
+        <div class="value"><span>R$ 1,1M</span></div>
+      </div>
+      <div class="hero-stat-pill">
+        <div class="label">Maior Conversão</div>
+        <div class="value"><span>343</span> reservas</div>
+      </div>
+      <div class="hero-stat-pill">
+        <div class="label">Período</div>
+        <div class="value">Jan<span>→</span>Mai</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── ALERTA CONTEXTO ── -->
+<div class="context-banner">
+  <div class="context-inner">
+    <div class="context-icon">⚠️</div>
+    <div>
+      <div class="context-title">Contexto Importante — Maio/2026</div>
+    </div>
+    <div class="context-text">
+      <strong>Budget aprovado com atraso</strong> · Campanhas iniciadas com verba mínima e nova estrutura · <strong>Fase de aprendizado das campanhas (~7 dias)</strong> · Dados refletem cenário operacional atípico registrado formalmente por e-mail
+    </div>
+  </div>
+</div>
+
+<main class="main">
+
+  <!-- ── KPI STRIP ── -->
+  <div class="section-label">Receita Total</div>
+  <div class="section-title">Dias 1 a 10 por Mês</div>
+
+  <div class="kpi-strip fade-up">
+    <div class="kpi-card jan">
+      <div class="kpi-month">Janeiro</div>
+      <div class="kpi-value">R$ 1,1M</div>
+      <div class="kpi-label">R$ 1.109.459</div>
+      <div class="kpi-delta up">↑ Melhor mês</div>
+    </div>
+    <div class="kpi-card fev">
+      <div class="kpi-month">Fevereiro</div>
+      <div class="kpi-value">R$ 383K</div>
+      <div class="kpi-label">R$ 383.001</div>
+      <div class="kpi-delta down">↓ −65% vs Jan</div>
+    </div>
+    <div class="kpi-card mar">
+      <div class="kpi-month">Março</div>
+      <div class="kpi-value">R$ 613K</div>
+      <div class="kpi-label">R$ 612.611</div>
+      <div class="kpi-delta up">↑ +60% vs Fev</div>
+    </div>
+    <div class="kpi-card abr">
+      <div class="kpi-month">Abril</div>
+      <div class="kpi-value">R$ 873K</div>
+      <div class="kpi-label">R$ 873.021</div>
+      <div class="kpi-delta up">↑ +42% vs Mar</div>
+    </div>
+    <div class="kpi-card mai">
+      <div class="kpi-month">Maio ⚠</div>
+      <div class="kpi-value">R$ 353K</div>
+      <div class="kpi-label">R$ 352.867</div>
+      <div class="kpi-delta down">↓ −60% vs Abr</div>
+    </div>
+  </div>
+
+  <!-- ── CHART ROW 1 ── -->
+  <div class="chart-grid-3 fade-up">
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Receita Total</div>
+          <div class="chart-sub">Booking Engine + Central de Reservas (R$)</div>
+        </div>
+        <span class="chart-badge alert">Maio em queda</span>
+      </div>
+      <canvas id="chartReceita" height="220"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Mix de Receita</div>
+          <div class="chart-sub">Booking Engine vs Central · Maio/26</div>
+        </div>
+        <span class="chart-badge">Canais</span>
+      </div>
+      <canvas id="chartMix" height="220"></canvas>
+    </div>
+  </div>
+
+  <!-- ── CHART ROW 2 ── -->
+  <div class="chart-grid-2 fade-up">
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Reservas × Investimento em Ads</div>
+          <div class="chart-sub">Correlação entre verba e número de reservas</div>
+        </div>
+        <span class="chart-badge">Correlação</span>
+      </div>
+      <canvas id="chartReservasAds" height="200"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Custo por Reserva (CPA)</div>
+          <div class="chart-sub">Investimento em Ads ÷ Nº de Reservas (R$)</div>
+        </div>
+        <span class="chart-badge green">Eficiência</span>
+      </div>
+      <canvas id="chartCPA" height="200"></canvas>
+    </div>
+  </div>
+
+  <!-- ── INSIGHT CARDS ── -->
+  <div class="insight-grid fade-up">
+    <div class="insight-card warn">
+      <div class="insight-num">−68%</div>
+      <div class="insight-desc">Queda de receita nos primeiros 10 dias de Maio vs Janeiro — o maior impacto do período.</div>
+    </div>
+    <div class="insight-card good">
+      <div class="insight-num">R$ 18,45</div>
+      <div class="insight-desc">CPA de Janeiro: com R$6.325 em ads e 343 reservas, o menor custo por reserva do histórico analisado.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-num">R$ 45,28</div>
+      <div class="insight-desc">CPA de Maio: R$5.390 em ads com 119 reservas. Contexto: verba mínima + fase de aprendizado das campanhas.</div>
+    </div>
+  </div>
+
+  <!-- ── ASKSUITE ── -->
+  <div class="section-label">Atendimento</div>
+  <div class="section-title">Pipeline Asksuite</div>
+
+  <div class="chart-grid-equal fade-up">
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Atendimentos</div>
+          <div class="chart-sub">Total de atendimentos por mês</div>
+        </div>
+      </div>
+      <canvas id="chartAtend" height="200"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Oportunidades Geradas</div>
+          <div class="chart-sub">Leads qualificados pelo Asksuite</div>
+        </div>
+      </div>
+      <canvas id="chartOpor" height="200"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Valor em Oportunidades</div>
+          <div class="chart-sub">R$ total de oportunidades abertas</div>
+        </div>
+      </div>
+      <canvas id="chartValorOp" height="200"></canvas>
+    </div>
+  </div>
+
+  <!-- ── FUNIL ASKSUITE ── -->
+  <div class="funnel-section fade-up">
+    <div class="funnel-card">
+      <div class="funnel-title">Funil de Atendimento — Comparativo Jan vs Abr vs Mai</div>
+      <div class="funnel-sub">Visualização proporcional por mês (base = valor máximo de cada etapa)</div>
+      <div class="funnel-bars">
+        <!-- Atendimentos -->
+        <div class="funnel-row">
+          <div class="funnel-label">Atendimentos</div>
+          <div class="funnel-track">
+            <div class="funnel-fill jan" style="width:97.7%" data-w="97.7">Jan 3.413</div>
+          </div>
+          <div class="funnel-num">3.413</div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-label"></div>
+          <div class="funnel-track">
+            <div class="funnel-fill abr" style="width:100%" data-w="100">Abr 3.495</div>
+          </div>
+          <div class="funnel-num">3.495</div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-label"></div>
+          <div class="funnel-track">
+            <div class="funnel-fill mai" style="width:35.2%" data-w="35.2">Mai 1.231</div>
+          </div>
+          <div class="funnel-num" style="color:var(--alerta)">1.231 ⚠</div>
+        </div>
+        <!-- Oportunidades -->
+        <div style="height:8px"></div>
+        <div class="funnel-row">
+          <div class="funnel-label">Oportunidades</div>
+          <div class="funnel-track">
+            <div class="funnel-fill jan" style="width:100%" data-w="100">Jan 2.096</div>
+          </div>
+          <div class="funnel-num">2.096</div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-label"></div>
+          <div class="funnel-track">
+            <div class="funnel-fill abr" style="width:85.4%" data-w="85.4">Abr 1.791</div>
+          </div>
+          <div class="funnel-num">1.791</div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-label"></div>
+          <div class="funnel-track">
+            <div class="funnel-fill mai" style="width:28.5%" data-w="28.5">Mai 598</div>
+          </div>
+          <div class="funnel-num" style="color:var(--alerta)">598 ⚠</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SITE ── -->
+  <div class="section-label">Site</div>
+  <div class="section-title">Performance Digital</div>
+
+  <div class="chart-grid-2 fade-up">
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Acessos ao Site</div>
+          <div class="chart-sub">Sessões únicas nos primeiros 10 dias</div>
+        </div>
+        <span class="chart-badge">Tráfego</span>
+      </div>
+      <canvas id="chartAcessos" height="220"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Funil do Site</div>
+          <div class="chart-sub">Acessos → Add Carrinho → Compras (Maio vs Abril)</div>
+        </div>
+        <span class="chart-badge alert">Impacto</span>
+      </div>
+      <canvas id="chartFunilSite" height="220"></canvas>
+    </div>
+  </div>
+
+  <div class="chart-grid-3 fade-up">
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Receita Site × ARPU</div>
+          <div class="chart-sub">Receita total e ticket médio por usuário</div>
+        </div>
+      </div>
+      <canvas id="chartArpu" height="220"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Taxa de Conversão</div>
+          <div class="chart-sub">Compras ÷ Acessos (%)</div>
+        </div>
+        <span class="chart-badge green">Taxa</span>
+      </div>
+      <canvas id="chartConversao" height="220"></canvas>
+      <div style="margin-top: 20px; padding: 16px 18px; background: var(--azul-pale); border-radius: 12px; border-left: 4px solid var(--azul-claro);">
+        <div style="font-size: 22px; font-weight: 800; color: var(--azul-claro); line-height: 1; margin-bottom: 8px;">0,57% — maior do período</div>
+        <div style="font-size: 12.5px; color: var(--texto-muted); line-height: 1.6;">
+          <strong style="color: var(--azul-escuro);">Efeito residual da campanha de aniversário de Abril.</strong>
+          Com tráfego reduzido em Maio, quem acessou o site já chegava com intenção de compra — usuários impactados pelos ~83 mil acessos de Abril que retornaram convertendo. O ROI real de Abril é maior do que os números do próprio mês indicam.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TABELA COMPLETA ── -->
+  <div class="section-label">Scorecard</div>
+  <div class="section-title">Todos os Indicadores</div>
+
+  <div class="table-card fade-up">
+    <div class="table-header">
+      <div class="chart-title">Comparativo Completo — Dias 1 a 10</div>
+      <div class="chart-sub">Verde = melhor período · Laranja = Maio (contexto atípico) · Azul = 2º melhor</div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Indicador</th>
+          <th>Jan/26</th>
+          <th>Fev/26</th>
+          <th>Mar/26</th>
+          <th>Abr/26</th>
+          <th>Mai/26 ⚠</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Receita Total</td><td class="td-jan">R$ 1.109.459</td><td>R$ 383.001</td><td>R$ 612.611</td><td class="td-abr">R$ 873.021</td><td class="td-mai">R$ 352.867</td></tr>
+        <tr><td>Booking Engine</td><td>R$ 335.304</td><td>R$ 142.901</td><td>R$ 162.680</td><td class="td-abr">R$ 425.239</td><td class="td-mai">R$ 146.279</td></tr>
+        <tr><td>Central de Reservas</td><td class="td-jan">R$ 774.155</td><td>R$ 240.100</td><td>R$ 449.931</td><td>R$ 447.782</td><td class="td-mai">R$ 206.588</td></tr>
+        <tr><td>Nº de Reservas</td><td class="td-jan">343</td><td>119</td><td>226</td><td>258</td><td class="td-mai">119</td></tr>
+        <tr><td>Invest. Ads</td><td>R$ 6.325</td><td>R$ 9.353</td><td>R$ 8.279</td><td class="td-abr">R$ 25.873</td><td class="td-mai">R$ 5.390</td></tr>
+        <tr><td>CPA (Ads/Reserva)</td><td class="td-jan">R$ 18,44</td><td>R$ 78,59</td><td>R$ 36,63</td><td>R$ 100,28</td><td class="td-mai">R$ 45,29</td></tr>
+        <tr><td>Atend. Asksuite</td><td class="td-jan">3.413</td><td>2.148</td><td>2.195</td><td>3.495</td><td class="td-mai">1.231</td></tr>
+        <tr><td>Oportunidades</td><td class="td-jan">2.096</td><td>1.156</td><td>1.107</td><td>1.791</td><td class="td-mai">598</td></tr>
+        <tr><td>R$ Oportunidades</td><td class="td-jan">R$ 3.826.672</td><td>R$ 1.895.010</td><td>R$ 1.621.778</td><td class="td-abr">R$ 2.694.935</td><td class="td-mai">R$ 773.571</td></tr>
+        <tr><td>Acessos Site</td><td>23.000</td><td>17.000</td><td>15.000</td><td class="td-jan">83.000</td><td class="td-mai">7.900</td></tr>
+        <tr><td>Add Carrinho</td><td>2.100</td><td>1.200</td><td>1.200</td><td class="td-abr">2.600</td><td class="td-mai">593</td></tr>
+        <tr><td>Compras Site</td><td>99</td><td>43</td><td>62</td><td class="td-jan">117</td><td class="td-mai">45</td></tr>
+        <tr><td>Receita Site</td><td>R$ 374.000</td><td>R$ 176.000</td><td>R$ 171.000</td><td class="td-abr">R$ 425.000</td><td class="td-mai">R$ 140.000</td></tr>
+        <tr><td>ARPU</td><td>R$ 4.200</td><td class="td-abr">R$ 4.300</td><td>R$ 2.900</td><td>R$ 3.900</td><td>R$ 3.200</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── RACIONAL MAIO ── -->
+  <div class="section-label">Análise</div>
+  <div class="section-title">Por que Maio Iniciou Diferente?</div>
+
+  <div class="rational-grid fade-up">
+    <div class="rational-card" data-num="01">
+      <div class="rational-card-content">
+        <div class="rational-icon">📅</div>
+        <div class="rational-title">Budget aprovado com atraso</div>
+        <div class="rational-text">O investimento para maio foi definido após o início do mês, comprometendo a janela de planejamento estratégico e a distribuição da verba entre canais e praças. Não se trata apenas de "subir campanha" — há uma etapa operacional anterior essencial.</div>
+      </div>
+    </div>
+    <div class="rational-card" data-num="02">
+      <div class="rational-card-content">
+        <div class="rational-icon">🔧</div>
+        <div class="rational-title">Reestruturação obrigatória</div>
+        <div class="rational-text">Com verba reduzida, não foi possível manter a segmentação por praças (Norte PR, Interior PR, SP) usada na campanha de aniversário. A estrutura precisou ser consolidada para garantir volume mínimo de entrega por conjunto.</div>
+      </div>
+    </div>
+    <div class="rational-card" data-num="03">
+      <div class="rational-card-content">
+        <div class="rational-icon">🧠</div>
+        <div class="rational-title">Fase de aprendizado (~7 dias)</div>
+        <div class="rational-text">Toda campanha nova ou reestruturada entra em fase de aprendizado. A plataforma precisa de tempo para identificar as melhores combinações de público, criativo e posicionamento. Oscilações em CPA, ROAS e reservas são esperadas nesse período.</div>
+      </div>
+    </div>
+    <div class="rational-card" data-num="04" style="border-top: 3px solid #00AEEF;">
+      <div class="rational-card-content">
+        <div class="rational-icon" style="background: rgba(0,174,239,0.12);">✨</div>
+        <div class="rational-title" style="color: #00AEEF;">Efeito residual de Abril — sinal positivo</div>
+        <div class="rational-text">Maio registrou a <strong>maior taxa de conversão do período (0,57%)</strong>, mesmo com o menor volume de tráfego. Isso indica que parte dos ~83 mil usuários impactados pela campanha de aniversário de Abril retornou em Maio já com decisão de compra tomada. É o chamado <em>efeito de janela de conversão</em>: o usuário é impactado, considera, e converte dias depois. Isso reforça que o ROI real da campanha de Abril é maior do que os números do próprio mês sugerem.</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="footer-logo">Morro dos Anjos <span>Resort</span></div>
+  <div class="footer-sub">Performance Report · Primeiros 10 Dias · Janeiro — Maio 2026</div>
+</footer>
+
+<script>
+// ── CORES ──
+const C = {
+  jan:    '#00C878',
+  fev:    '#94A3B8',
+  mar:    '#0E6F99',
+  abr:    '#00AEEF',
+  mai:    '#FF6B35',
+  escuro: '#1D1E46',
+  pale:   '#E8F7FD',
+  grid:   'rgba(29,30,70,0.06)',
+};
+
+const MONTHS = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai'];
+const COLORS = [C.jan, C.fev, C.mar, C.abr, C.mai];
+
+Chart.defaults.font.family = "'Montserrat', sans-serif";
+Chart.defaults.color = '#6B7A99';
+
+const commonOptions = {
+  responsive: true,
+  plugins: {
+    legend: { display: false },
+    tooltip: {
+      backgroundColor: '#1D1E46',
+      titleColor: '#fff',
+      bodyColor: 'rgba(255,255,255,0.7)',
+      padding: 12,
+      cornerRadius: 10,
+      titleFont: { weight: '600' },
+    }
+  },
+  scales: {
+    x: {
+      grid: { display: false },
+      border: { display: false },
+      ticks: { font: { size: 12, weight: '500' } }
+    },
+    y: {
+      grid: { color: C.grid },
+      border: { display: false, dash: [4, 4] },
+      ticks: { font: { size: 11 } }
+    }
+  }
+};
+
+// ── RECEITA TOTAL ──
+new Chart(document.getElementById('chartReceita'), {
+  type: 'bar',
+  data: {
+    labels: MONTHS,
+    datasets: [{
+      data: [1109459, 383001, 612611, 873021, 352867],
+      backgroundColor: COLORS,
+      borderRadius: 8,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    ...commonOptions,
+    plugins: {
+      ...commonOptions.plugins,
+      tooltip: {
+        ...commonOptions.plugins.tooltip,
+        callbacks: {
+          label: (c) => ' R$ ' + c.raw.toLocaleString('pt-BR')
+        }
+      }
+    },
+    scales: {
+      ...commonOptions.scales,
+      y: {
+        ...commonOptions.scales.y,
+        ticks: { callback: (v) => 'R$' + (v/1000).toFixed(0) + 'K', font: { size: 11 } }
+      }
+    }
+  }
+});
+
+// ── MIX DOUGHNUT (todos os meses) ──
+new Chart(document.getElementById('chartMix'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Booking Engine', 'Central de Reservas'],
+    datasets: [{
+      data: [146279, 206588],
+      backgroundColor: [C.abr, C.escuro],
+      borderWidth: 0,
+      hoverOffset: 8,
+    }]
+  },
+  options: {
+    responsive: true,
+    cutout: '70%',
+    plugins: {
+      legend: {
+        display: true,
+        position: 'bottom',
+        labels: { padding: 16, usePointStyle: true, pointStyleWidth: 8, font: { size: 12 } }
+      },
+      tooltip: {
+        ...commonOptions.plugins.tooltip,
+        callbacks: { label: (c) => ' R$ ' + c.raw.toLocaleString('pt-BR') }
+      }
+    }
+  }
+});
+
+// ── RESERVAS × ADS (dual axis) ──
+new Chart(document.getElementById('chartReservasAds'), {
+  type: 'bar',
+  data: {
+    labels: MONTHS,
+    datasets: [
+      {
+        label: 'Reservas',
+        data: [343, 119, 226, 258, 119],
+        backgroundColor: COLORS,
+        borderRadius: 6,
+        yAxisID: 'y',
+        order: 1,
+      },
+      {
+        label: 'Invest. Ads (R$)',
+        data: [6325, 9353, 8279, 25873, 5390],
+        type: 'line',
+        borderColor: '#FF6B35',
+        backgroundColor: 'rgba(255,107,53,0.08)',
+        borderWidth: 2.5,
+        pointBackgroundColor: '#FF6B35',
+        pointRadius: 5,
+        fill: true,
+        tension: 0.4,
+        yAxisID: 'y1',
+        order: 0,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'bottom',
+        labels: { padding: 16, usePointStyle: true, font: { size: 12 } }
+      },
+      tooltip: { ...commonOptions.plugins.tooltip }
+    },
+    scales: {
+      x: { ...commonOptions.scales.x },
+      y: {
+        grid: { color: C.grid },
+        border: { display: false },
+        ticks: { font: { size: 11 } },
+        title: { display: true, text: 'Reservas', font: { size: 11 } }
+      },
+      y1: {
+        position: 'right',
+        grid: { display: false },
+        border: { display: false },
+        ticks: { callback: (v) => 'R$' + (v/1000).toFixed(0) + 'K', font: { size: 11 } },
+        title: { display: true, text: 'Ads (R$)', font: { size: 11 } }
+      }
+    }
+  }
+});
+
+// ── CPA ──
+const cpaVals = [6325/343, 9353/119, 8279/226, 25873/258, 5390/119];
+new Chart(document.getElementById('chartCPA'), {
+  type: 'bar',
+  data: {
+    labels: MONTHS,
+    datasets: [{
+      data: cpaVals.map(v => +v.toFixed(2)),
+      backgroundColor: COLORS,
+      borderRadius: 8,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    ...commonOptions,
+    plugins: {
+      ...commonOptions.plugins,
+      tooltip: {
+        ...commonOptions.plugins.tooltip,
+        callbacks: { label: (c) => ' R$ ' + c.raw.toFixed(2) + ' / reserva' }
+      }
+    },
+    scales: {
+      ...commonOptions.scales,
+      y: {
+        ...commonOptions.scales.y,
+        ticks: { callback: (v) => 'R$ ' + v.toFixed(0), font: { size: 11 } }
+      }
+    }
+  }
+});
+
+// ── ATENDIMENTOS ──
+new Chart(document.getElementById('chartAtend'), {
+  type: 'bar',
+  data: {
+    labels: MONTHS,
+    datasets: [{
+      data: [3413, 2148, 2195, 3495, 1231],
+      backgroundColor: COLORS,
+      borderRadius: 7,
+      borderSkipped: false,
+    }]
+  },
+  options: { ...commonOptions }
+});
+
+// ── OPORTUNIDADES RADAR ──
+new Chart(document.getElementById('chartOpor'), {
+  type: 'radar',
+  data: {
+    labels: MONTHS,
+    datasets: [{
+      label: 'Oportunidades',
+      data: [2096, 1156, 1107, 1791, 598],
+      borderColor: C.abr,
+      backgroundColor: 'rgba(0,174,239,0.12)',
+      borderWidth: 2.5,
+      pointBackgroundColor: COLORS,
+      pointRadius: 5,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: { ...commonOptions.plugins.tooltip }
+    },
+    scales: {
+      r: {
+        grid: { color: C.grid },
+        angleLines: { color: C.grid },
+        ticks: { font: { size: 10 }, display: false },
+        pointLabels: { font: { size: 12, weight: '600' }, color: C.escuro }
+      }
+    }
+  }
+});
+
+// ── VALOR OPORTUNIDADES ──
+new Chart(document.getElementById('chartValorOp'), {
+  type: 'line',
+  data: {
+    labels: MONTHS,
+    datasets: [{
+      label: 'R$ Oportunidades',
+      data: [3826672, 1895010, 1621778, 2694935, 773571],
+      borderColor: C.jan,
+      backgroundColor: 'rgba(0,200,120,0.08)',
+      borderWidth: 2.5,
+      pointBackgroundColor: COLORS,
+      pointRadius: 6,
+      fill: true,
+      tension: 0.4,
+    }]
+  },
+  options: {
+    ...commonOptions,
+    plugins: {
+      ...commonOptions.plugins,
+      tooltip: {
+        ...commonOptions.plugins.tooltip,
+        callbacks: { label: (c) => ' R$ ' + c.raw.toLocaleString('pt-BR') }
+      }
+    },
+    scales: {
+      ...commonOptions.scales,
+      y: {
+        ...commonOptions.scales.y,
+        ticks: { callback: (v) => 'R$' + (v/1000000).toFixed(1) + 'M', font: { size: 11 } }
+      }
+    }
+  }
+});
+
+// ── ACESSOS SITE ──
+new Chart(document.getElementById('chartAcessos'), {
+  type: 'line',
+  data: {
+    labels: MONTHS,
+    datasets: [{
+      label: 'Acessos',
+      data: [23000, 17000, 15000, 83000, 7900],
+      borderColor: C.abr,
+      backgroundColor: 'rgba(0,174,239,0.08)',
+      borderWidth: 2.5,
+      pointBackgroundColor: COLORS,
+      pointRadius: 7,
+      fill: true,
+      tension: 0.4,
+    }]
+  },
+  options: {
+    ...commonOptions,
+    plugins: {
+      ...commonOptions.plugins,
+      tooltip: {
+        ...commonOptions.plugins.tooltip,
+        callbacks: { label: (c) => ' ' + c.raw.toLocaleString('pt-BR') + ' sessões' }
+      }
+    },
+    scales: {
+      ...commonOptions.scales,
+      y: {
+        ...commonOptions.scales.y,
+        ticks: { callback: (v) => (v/1000).toFixed(0) + 'K', font: { size: 11 } }
+      }
+    }
+  }
+});
+
+// ── FUNIL SITE HORIZONTAL ──
+new Chart(document.getElementById('chartFunilSite'), {
+  type: 'bar',
+  data: {
+    labels: ['Acessos', 'Add Carrinho', 'Compras'],
+    datasets: [
+      {
+        label: 'Abril',
+        data: [83000, 2600, 117],
+        backgroundColor: C.abr,
+        borderRadius: 6,
+      },
+      {
+        label: 'Maio',
+        data: [7900, 593, 45],
+        backgroundColor: C.mai,
+        borderRadius: 6,
+      }
+    ]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'bottom',
+        labels: { padding: 16, usePointStyle: true, font: { size: 12 } }
+      },
+      tooltip: { ...commonOptions.plugins.tooltip }
+    },
+    scales: {
+      x: { ...commonOptions.scales.x, ticks: { callback: (v) => v >= 1000 ? (v/1000).toFixed(0)+'K' : v } },
+      y: { grid: { display: false }, border: { display: false }, ticks: { font: { size: 12, weight: '600' } } }
+    }
+  }
+});
+
+// ── RECEITA SITE + ARPU (combo) ──
+new Chart(document.getElementById('chartArpu'), {
+  type: 'bar',
+  data: {
+    labels: MONTHS,
+    datasets: [
+      {
+        label: 'Receita Site',
+        data: [374000, 176000, 171000, 425000, 140000],
+        backgroundColor: COLORS,
+        borderRadius: 6,
+        yAxisID: 'y',
+        order: 1,
+      },
+      {
+        label: 'ARPU (R$)',
+        data: [4200, 4300, 2900, 3900, 3200],
+        type: 'line',
+        borderColor: C.escuro,
+        backgroundColor: 'rgba(29,30,70,0.05)',
+        borderWidth: 2.5,
+        pointBackgroundColor: COLORS,
+        pointRadius: 5,
+        tension: 0.4,
+        yAxisID: 'y1',
+        order: 0,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true, position: 'bottom',
+        labels: { padding: 14, usePointStyle: true, font: { size: 11 } }
+      },
+      tooltip: { ...commonOptions.plugins.tooltip }
+    },
+    scales: {
+      x: { ...commonOptions.scales.x },
+      y: {
+        grid: { color: C.grid }, border: { display: false },
+        ticks: { callback: (v) => 'R$'+(v/1000).toFixed(0)+'K', font: { size: 10 } },
+      },
+      y1: {
+        position: 'right', grid: { display: false }, border: { display: false },
+        ticks: { callback: (v) => 'R$'+v.toLocaleString('pt-BR'), font: { size: 10 } },
+      }
+    }
+  }
+});
+
+// ── TAXA DE CONVERSÃO ──
+const taxaConv = [99/23000*100, 43/17000*100, 62/15000*100, 117/83000*100, 45/7900*100];
+new Chart(document.getElementById('chartConversao'), {
+  type: 'bar',
+  data: {
+    labels: MONTHS,
+    datasets: [{
+      data: taxaConv.map(v => +v.toFixed(3)),
+      backgroundColor: COLORS,
+      borderRadius: 8,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    ...commonOptions,
+    plugins: {
+      ...commonOptions.plugins,
+      tooltip: {
+        ...commonOptions.plugins.tooltip,
+        callbacks: { label: (c) => ' ' + c.raw.toFixed(3) + '%' }
+      }
+    },
+    scales: {
+      ...commonOptions.scales,
+      y: {
+        ...commonOptions.scales.y,
+        ticks: { callback: (v) => v.toFixed(2) + '%', font: { size: 11 } }
+      }
+    }
+  }
+});
+
+// ── FADE UP OBSERVER ──
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+// Trigger first visible
+setTimeout(() => {
+  document.querySelectorAll('.fade-up').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) el.classList.add('visible');
+  });
+}, 100);
+</script>
+</body>
+</html>
