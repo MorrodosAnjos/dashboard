@@ -1,0 +1,2307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Big Data Comercial — Morro dos Anjos Resort</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+/* ══════════════════════════════════════════
+   VARIÁVEIS E RESET
+══════════════════════════════════════════ */
+:root {
+  --azul-claro: #00AEEF;
+  --azul-escuro: #1D1E46;
+  --branco: #FFFFFF;
+  --azul-medio: #0E6F99;
+  --azul-pale: #E8F7FD;
+  --texto: #1D1E46;
+  --texto-muted: #6B7A99;
+  --alerta: #FF6B35;
+  --verde: #00C878;
+  --cinza: #94A3B8;
+  --fundo: #F0F7FC;
+  --shadow: 0 8px 40px rgba(29,30,70,0.10);
+  --shadow-card: 0 4px 24px rgba(29,30,70,0.08);
+  /* funil */
+  --fundo-claro: #F0F7FC;
+  --azul-pale-f: #E8F7FD;
+  --texto-pri: #1D1E46;
+  --texto-sec: #6B7A99;
+  --laranja: #FF6B35;
+  --sombra-card: 0 2px 16px rgba(29,30,70,.08);
+  --sombra-hover: 0 8px 32px rgba(29,30,70,.13);
+  --radius-card: 18px;
+  --radius-btn: 50px;
+  --transition: .3s cubic-bezier(.4,0,.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--fundo);
+  color: var(--texto);
+  overflow-x: hidden;
+}
+
+/* ══════════════════════════════════════════
+   HERO
+══════════════════════════════════════════ */
+.hero {
+  background: var(--azul-escuro);
+  position: relative;
+  overflow: hidden;
+  padding: 60px 48px 80px;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,174,239,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: 20%;
+  width: 350px; height: 350px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,174,239,0.10) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: end;
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,174,239,0.15);
+  border: 1px solid rgba(0,174,239,0.35);
+  color: var(--azul-claro);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+}
+.hero-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--azul-claro);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
+}
+.hero h1 {
+  font-size: clamp(34px, 5vw, 62px);
+  font-weight: 800;
+  color: var(--branco);
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.hero h1 span { color: var(--azul-claro); }
+.hero-resort {
+  font-size: clamp(18px, 2.5vw, 28px);
+  font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 14px;
+  letter-spacing: 1px;
+}
+.hero-sub {
+  font-size: 14px;
+  color: rgba(255,255,255,0.40);
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  max-width: 600px;
+  line-height: 1.6;
+}
+.hero-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
+}
+.hero-stat-pill {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 12px;
+  padding: 12px 20px;
+  text-align: right;
+  backdrop-filter: blur(10px);
+  min-width: 200px;
+}
+.hero-stat-pill .label {
+  font-size: 10px;
+  color: rgba(255,255,255,0.40);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 4px;
+}
+.hero-stat-pill .value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--branco);
+}
+.hero-stat-pill .value span { color: var(--azul-claro); }
+
+/* ══════════════════════════════════════════
+   CONTEXT BANNER
+══════════════════════════════════════════ */
+.context-banner {
+  background: linear-gradient(135deg, var(--azul-claro) 0%, #0088C7 100%);
+  padding: 0 48px;
+}
+.context-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 18px 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.context-icon {
+  width: 36px; height: 36px;
+  background: rgba(255,255,255,0.20);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.context-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.75);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  white-space: nowrap;
+}
+.context-text {
+  font-size: 13.5px;
+  color: rgba(255,255,255,0.95);
+  font-weight: 400;
+  line-height: 1.5;
+}
+.context-text strong { font-weight: 700; }
+
+/* ══════════════════════════════════════════
+   LAYOUT PRINCIPAL
+══════════════════════════════════════════ */
+.main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 52px 48px 80px;
+}
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--azul-claro);
+  margin-bottom: 8px;
+}
+.section-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--azul-escuro);
+  margin-bottom: 28px;
+}
+
+/* ══════════════════════════════════════════
+   KPI STRIP — ACUMULADO
+══════════════════════════════════════════ */
+.kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.kpi-strip-2 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 48px;
+}
+.kpi-card {
+  background: var(--branco);
+  border-radius: 16px;
+  padding: 22px 20px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+}
+.kpi-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(29,30,70,0.14);
+}
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.kpi-card.blue::before { background: var(--azul-claro); }
+.kpi-card.dark::before { background: var(--azul-escuro); }
+.kpi-card.green::before { background: var(--verde); }
+.kpi-card.alert::before { background: var(--alerta); }
+.kpi-card.mid::before { background: var(--azul-medio); }
+.kpi-month {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--texto-muted);
+  margin-bottom: 10px;
+}
+.kpi-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--azul-escuro);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.kpi-card.blue .kpi-value { color: var(--azul-claro); }
+.kpi-card.green .kpi-value { color: var(--verde); }
+.kpi-card.alert .kpi-value { color: var(--alerta); }
+.kpi-card.mid .kpi-value { color: var(--azul-medio); }
+.kpi-label {
+  font-size: 11px;
+  color: var(--texto-muted);
+  font-weight: 400;
+}
+.kpi-delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 100px;
+  margin-top: 10px;
+}
+.kpi-delta.up { background: rgba(0,200,120,0.10); color: var(--verde); }
+.kpi-delta.down { background: rgba(255,107,53,0.10); color: var(--alerta); }
+.kpi-delta.neutral { background: rgba(107,122,153,0.10); color: var(--texto-muted); }
+.kpi-delta.info { background: rgba(0,174,239,0.10); color: var(--azul-claro); }
+
+/* ══════════════════════════════════════════
+   CHART GRIDS (apresentação principal)
+══════════════════════════════════════════ */
+.chart-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+.chart-grid-3 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+.chart-grid-full { margin-bottom: 24px; }
+.chart-card {
+  background: var(--branco);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease;
+}
+.chart-card:hover { transform: translateY(-2px); }
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 6px;
+}
+.chart-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--azul-escuro);
+}
+.chart-sub {
+  font-size: 11px;
+  color: var(--texto-muted);
+  margin-bottom: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.chart-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: var(--azul-pale);
+  color: var(--azul-medio);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.chart-badge.alert { background: rgba(255,107,53,0.10); color: var(--alerta); }
+.chart-badge.green { background: rgba(0,200,120,0.10); color: var(--verde); }
+.chart-badge.dark { background: rgba(29,30,70,0.08); color: var(--azul-escuro); }
+canvas { max-width: 100%; }
+
+/* ══════════════════════════════════════════
+   INSIGHT CARDS (apresentação principal)
+══════════════════════════════════════════ */
+.insight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.insight-card {
+  background: var(--branco);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  border-left: 4px solid var(--azul-claro);
+}
+.insight-card.warn { border-left-color: var(--alerta); }
+.insight-card.good { border-left-color: var(--verde); }
+.insight-card.mid { border-left-color: var(--azul-medio); }
+.insight-num {
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 8px;
+  color: var(--azul-escuro);
+}
+.insight-card.warn .insight-num { color: var(--alerta); }
+.insight-card.good .insight-num { color: var(--verde); }
+.insight-card.mid .insight-num { color: var(--azul-medio); }
+.insight-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--texto-muted);
+  margin-bottom: 10px;
+}
+.insight-desc {
+  font-size: 13px;
+  color: var(--texto-muted);
+  line-height: 1.6;
+}
+
+/* ══════════════════════════════════════════
+   GRUPOS CARD (dark)
+══════════════════════════════════════════ */
+.grupos-section {
+  background: var(--azul-escuro);
+  border-radius: 20px;
+  padding: 32px 36px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.grupos-section::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,174,239,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.grupos-section::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: 10%;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,174,239,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.grupos-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+.grupos-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--branco);
+  margin-bottom: 4px;
+}
+.grupos-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,0.40);
+}
+.grupos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 240px;
+  gap: 24px;
+  position: relative;
+  z-index: 1;
+}
+.grupos-chart-wrap canvas { max-width: 100%; }
+.grupos-highlight {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+.grupos-hl-item .hl-label {
+  font-size: 10px;
+  color: rgba(255,255,255,0.40);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 4px;
+}
+.grupos-hl-item .hl-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--branco);
+  margin-bottom: 2px;
+}
+.grupos-hl-item .hl-value span { color: var(--azul-claro); }
+.grupos-hl-item .hl-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+}
+
+/* ══════════════════════════════════════════
+   TABELA
+══════════════════════════════════════════ */
+.table-card {
+  background: var(--branco);
+  border-radius: 20px;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+.table-header {
+  padding: 24px 28px 16px;
+  border-bottom: 1px solid rgba(29,30,70,0.06);
+}
+.table-wrap { overflow-x: auto; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+thead th {
+  padding: 12px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--texto-muted);
+  text-align: right;
+  background: var(--azul-pale);
+}
+thead th:first-child { text-align: left; }
+tbody tr {
+  border-bottom: 1px solid rgba(29,30,70,0.04);
+  transition: background 0.15s;
+}
+tbody tr:hover { background: #F6FBFF; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr.separator td {
+  background: rgba(29,30,70,0.025);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--azul-claro);
+  padding: 8px 14px;
+}
+tbody td {
+  padding: 12px 14px;
+  font-size: 12.5px;
+  color: var(--texto);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+tbody td:first-child {
+  text-align: left;
+  font-weight: 500;
+  color: var(--azul-escuro);
+}
+.td-best { font-weight: 700; color: var(--verde) !important; }
+.td-second { font-weight: 600; color: var(--azul-claro) !important; }
+.td-warn { font-weight: 600; color: var(--alerta) !important; }
+
+/* ══════════════════════════════════════════
+   ANÁLISE EXECUTIVA
+══════════════════════════════════════════ */
+.rational-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 48px;
+}
+.rational-card {
+  background: var(--branco);
+  border-radius: 16px;
+  padding: 28px 24px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+.rational-card::before {
+  content: attr(data-num);
+  position: absolute;
+  top: -8px; right: 14px;
+  font-size: 80px;
+  font-weight: 900;
+  color: var(--azul-pale);
+  line-height: 1;
+  pointer-events: none;
+  z-index: 0;
+}
+.rational-card-content { position: relative; z-index: 1; }
+.rational-icon {
+  width: 44px; height: 44px;
+  background: var(--azul-pale);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+.rational-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--azul-escuro);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.rational-text {
+  font-size: 12.5px;
+  color: var(--texto-muted);
+  line-height: 1.7;
+}
+
+/* ══════════════════════════════════════════
+   FUNIL INTERATIVO — SEÇÃO
+══════════════════════════════════════════ */
+.funil-wrapper {
+  background: var(--fundo);
+  padding: 0;
+}
+
+.interactive-funnel-section {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Cabeçalho da seção funil */
+.funil-section-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+.funil-section-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--azul-claro);
+  background: var(--azul-pale);
+  border: 1px solid rgba(0,174,239,.2);
+  border-radius: 50px;
+  padding: 4px 16px;
+  margin-bottom: 12px;
+}
+.funil-section-title {
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 800;
+  color: var(--azul-escuro);
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.funil-section-subtitle {
+  font-size: 14px;
+  color: var(--texto-muted);
+  font-weight: 400;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Navegação de meses */
+.month-selector {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+.month-btn {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: var(--radius-btn);
+  border: 1.5px solid rgba(29,30,70,.14);
+  background: var(--branco);
+  color: var(--texto-sec);
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 1px 4px rgba(0,0,0,.05);
+  outline: none;
+  white-space: nowrap;
+}
+.month-btn:hover {
+  border-color: var(--azul-claro);
+  color: var(--azul-claro);
+  box-shadow: 0 3px 12px rgba(0,174,239,.18);
+  transform: translateY(-1px);
+}
+.month-btn.active {
+  background: var(--azul-escuro);
+  color: var(--branco);
+  border-color: var(--azul-escuro);
+  box-shadow: 0 4px 18px rgba(29,30,70,.28);
+}
+
+/* KPI grid funil */
+.funnel-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.funil-kpi-card {
+  background: var(--branco);
+  border-radius: var(--radius-card);
+  padding: 20px 18px 16px;
+  box-shadow: var(--sombra-card);
+  border: 1px solid rgba(29,30,70,.05);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.funil-kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+}
+.funil-kpi-card.color-azul::before   { background: var(--azul-claro); }
+.funil-kpi-card.color-verde::before  { background: var(--verde); }
+.funil-kpi-card.color-laranja::before{ background: var(--laranja); }
+.funil-kpi-card.color-escuro::before { background: var(--azul-escuro); }
+.funil-kpi-card.color-cinza::before  { background: var(--cinza); }
+.funil-kpi-card:hover {
+  box-shadow: var(--sombra-hover);
+  transform: translateY(-2px);
+}
+.funil-kpi-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--texto-sec);
+  margin-bottom: 8px;
+}
+.funil-kpi-icon {
+  font-size: 18px;
+  margin-bottom: 6px;
+  display: block;
+}
+.funil-kpi-value {
+  font-size: clamp(16px, 2.2vw, 22px);
+  font-weight: 800;
+  color: var(--azul-escuro);
+  line-height: 1.1;
+  margin-bottom: 4px;
+  transition: var(--transition);
+}
+.funil-kpi-sub {
+  font-size: 11px;
+  color: var(--texto-sec);
+  font-weight: 500;
+}
+
+/* Grid funnels lado a lado */
+.interactive-funnel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.funnel-visual-card {
+  background: var(--branco);
+  border-radius: var(--radius-card);
+  padding: 28px 26px 24px;
+  box-shadow: var(--sombra-card);
+  border: 1px solid rgba(29,30,70,.05);
+}
+.funnel-card-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--azul-escuro);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.funnel-card-title-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--azul-claro);
+  flex-shrink: 0;
+}
+.funnel-card-title-dot.verde { background: var(--verde); }
+.funnel-card-sub {
+  font-size: 12px;
+  color: var(--texto-sec);
+  margin-bottom: 22px;
+  padding-left: 16px;
+}
+
+/* Funil de barras */
+.funnel-steps { display: flex; flex-direction: column; gap: 14px; }
+.funnel-step { display: flex; flex-direction: column; gap: 5px; }
+.funnel-step-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.funnel-step-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--texto-pri);
+}
+.funnel-step-meta {
+  font-size: 11px;
+  color: var(--texto-sec);
+  font-weight: 500;
+  text-align: right;
+}
+.funnel-step-meta span {
+  font-weight: 700;
+  color: var(--azul-escuro);
+}
+.funnel-bar-track {
+  height: 10px;
+  background: var(--fundo-claro);
+  border-radius: 50px;
+  overflow: hidden;
+}
+.funnel-bar-fill {
+  height: 100%;
+  border-radius: 50px;
+  transition: width .55s cubic-bezier(.4,0,.2,1);
+  min-width: 2px;
+}
+.fill-azul    { background: linear-gradient(90deg, #00AEEF, #0082C8); }
+.fill-azul2   { background: linear-gradient(90deg, #1D1E46, #3B3E8A); }
+.fill-verde   { background: linear-gradient(90deg, #00C878, #00A868); }
+.fill-laranja { background: linear-gradient(90deg, #FF6B35, #E5501A); }
+
+.funnel-final-card {
+  margin-top: 16px;
+  background: linear-gradient(135deg, var(--azul-escuro), #2D2F6A);
+  border-radius: 14px;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.funnel-final-card .fc-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.6);
+  margin-bottom: 3px;
+}
+.funnel-final-card .fc-value {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--branco);
+}
+.funnel-final-stats {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.fc-stat { text-align: right; }
+.fc-stat .fc-label { text-align: right; }
+.fc-stat .fc-value { font-size: 14px; color: var(--azul-claro); }
+
+/* Grid chart + insight funil */
+.funil-chart-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.funil-chart-card {
+  background: var(--branco);
+  border-radius: var(--radius-card);
+  padding: 28px 26px 24px;
+  box-shadow: var(--sombra-card);
+  border: 1px solid rgba(29,30,70,.05);
+}
+.funil-chart-card-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--azul-escuro);
+  margin-bottom: 4px;
+}
+.funil-chart-card-sub {
+  font-size: 12px;
+  color: var(--texto-sec);
+  margin-bottom: 20px;
+}
+.funil-chart-wrapper {
+  position: relative;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Insight card funil */
+.month-insight-card {
+  background: var(--branco);
+  border-radius: var(--radius-card);
+  padding: 28px 26px;
+  box-shadow: var(--sombra-card);
+  border: 1px solid rgba(29,30,70,.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.insight-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.insight-icon-wrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--azul-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.insight-title-f {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--azul-escuro);
+}
+.insight-month-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--azul-claro);
+  background: var(--azul-pale);
+  border-radius: 50px;
+  padding: 2px 10px;
+  display: inline-block;
+  margin-bottom: 12px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+.insight-text {
+  font-size: 14px;
+  color: var(--texto-pri);
+  line-height: 1.75;
+  font-weight: 400;
+  transition: opacity .3s;
+}
+.insight-divider {
+  height: 1px;
+  background: var(--fundo-claro);
+  margin: 20px 0;
+}
+.insight-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.insight-pill {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 50px;
+  background: var(--fundo-claro);
+  color: var(--azul-escuro);
+  transition: var(--transition);
+}
+.insight-pill.azul    { background: var(--azul-pale);              color: var(--azul-claro); }
+.insight-pill.verde   { background: rgba(0,200,120,.1);             color: #009B60; }
+.insight-pill.laranja { background: rgba(255,107,53,.1);            color: var(--laranja); }
+
+/* Animação de conteúdo funil */
+.funnel-animated {
+  transition: opacity .28s ease, transform .28s ease;
+}
+.funnel-animated.updating {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+/* Divisor seção funil */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 28px 0 20px;
+}
+.section-divider-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(29,30,70,.08);
+}
+.section-divider-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--texto-sec);
+  white-space: nowrap;
+}
+
+/* Separador visual entre seções */
+.big-section-separator {
+  background: var(--azul-escuro);
+  padding: 28px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.big-section-separator::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,174,239,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.big-section-separator-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+.big-section-separator-icon {
+  width: 52px; height: 52px;
+  background: rgba(0,174,239,0.15);
+  border: 1px solid rgba(0,174,239,0.3);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+.big-section-separator-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--azul-claro);
+  margin-bottom: 4px;
+}
+.big-section-separator-title {
+  font-size: clamp(18px, 2.5vw, 26px);
+  font-weight: 700;
+  color: var(--branco);
+  line-height: 1.2;
+}
+.big-section-separator-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  margin-top: 4px;
+}
+
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+.footer {
+  background: var(--azul-escuro);
+  padding: 32px 48px;
+  text-align: center;
+}
+.footer-logo {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--branco);
+  margin-bottom: 6px;
+}
+.footer-logo span { color: var(--azul-claro); }
+.footer-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,0.30);
+  letter-spacing: 1px;
+}
+
+/* ══════════════════════════════════════════
+   ANIMAÇÕES
+══════════════════════════════════════════ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVO
+══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .hero { padding: 40px 24px 60px; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-stats { flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
+  .context-banner { padding: 0 24px; }
+  .main { padding: 32px 24px 60px; }
+  .kpi-strip, .kpi-strip-2 { grid-template-columns: repeat(2, 1fr); }
+  .chart-grid-2, .chart-grid-3 { grid-template-columns: 1fr; }
+  .insight-grid { grid-template-columns: 1fr; }
+  .rational-grid { grid-template-columns: 1fr 1fr; }
+  .grupos-grid { grid-template-columns: 1fr; }
+  .funnel-kpi-grid { grid-template-columns: repeat(3, 1fr); }
+  .interactive-funnel-grid { grid-template-columns: 1fr; }
+  .funil-chart-grid { grid-template-columns: 1fr; }
+  .big-section-separator { padding: 24px 24px; }
+}
+@media (max-width: 600px) {
+  .rational-grid { grid-template-columns: 1fr; }
+  .kpi-strip, .kpi-strip-2 { grid-template-columns: 1fr; }
+  .funnel-kpi-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<header class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-badge">Big Data Comercial</div>
+      <h1>Big Data<br><span>Comercial</span></h1>
+      <p class="hero-resort">Morro dos Anjos Resort</p>
+      <p class="hero-sub">Evolução mensal dos principais indicadores digitais, comerciais, mídia e atendimento · Setembro/2025 a Abril/2026</p>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat-pill">
+        <div class="label">Receita Acumulada</div>
+        <div class="value" id="heroReceita">—</div>
+      </div>
+      <div class="hero-stat-pill">
+        <div class="label">Melhor Mês</div>
+        <div class="value"><span>Abril/2026</span></div>
+      </div>
+      <div class="hero-stat-pill">
+        <div class="label">Total de Reservas</div>
+        <div class="value" id="heroReservas">—</div>
+      </div>
+      <div class="hero-stat-pill">
+        <div class="label">Pico de Acessos</div>
+        <div class="value"><span>168K</span> Abr/26</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     CONTEXT BANNER
+══════════════════════════════════════════ -->
+<div class="context-banner">
+  <div class="context-inner">
+    <div class="context-icon">📊</div>
+    <div>
+      <div class="context-title">Leitura Executiva</div>
+    </div>
+    <div class="context-text">
+      <strong>Abril/2026</strong> concentra o maior volume de acessos (168 mil), maior receita total (R$ 3,0M) e maior investimento em mídia do período — indicando forte pressão de campanha e maior <strong>tração comercial</strong> do ciclo analisado.
+    </div>
+  </div>
+</div>
+
+<main class="main">
+
+  <!-- ══════════════════════════════════════════
+       KPI STRIP — INDICADORES ACUMULADOS
+  ══════════════════════════════════════════ -->
+  <div class="section-label">Visão Geral do Período</div>
+  <div class="section-title">Indicadores Acumulados — Set/2025 a Abr/2026</div>
+
+  <div class="kpi-strip fade-up">
+    <div class="kpi-card blue">
+      <div class="kpi-month">Receita Total Acumulada</div>
+      <div class="kpi-value" id="kpiReceitaTotal">—</div>
+      <div class="kpi-label">Booking + Central + OTAs</div>
+      <div class="kpi-delta up">↑ 8 meses</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-month">Receita — Abril/2026</div>
+      <div class="kpi-value">R$ 3,0M</div>
+      <div class="kpi-label">R$ 3.019.979 · pico do período</div>
+      <div class="kpi-delta up">↑ Maior mês</div>
+    </div>
+    <div class="kpi-card dark">
+      <div class="kpi-month">Total de Reservas</div>
+      <div class="kpi-value" id="kpiReservasTotal">—</div>
+      <div class="kpi-label">Todos os canais · período</div>
+      <div class="kpi-delta info">Set/25 → Abr/26</div>
+    </div>
+    <div class="kpi-card alert">
+      <div class="kpi-month">Acessos Acumulados</div>
+      <div class="kpi-value" id="kpiAcessos">—</div>
+      <div class="kpi-label">Visitantes únicos estimados</div>
+      <div class="kpi-delta neutral">Site oficial</div>
+    </div>
+  </div>
+
+  <div class="kpi-strip-2 fade-up">
+    <div class="kpi-card mid">
+      <div class="kpi-month">Valor em Oportunidades</div>
+      <div class="kpi-value" id="kpiOportunidades">—</div>
+      <div class="kpi-label">Asksuite · pipeline total</div>
+      <div class="kpi-delta up">↑ Inteligência comercial</div>
+    </div>
+    <div class="kpi-card dark">
+      <div class="kpi-month">Investimento em Ads</div>
+      <div class="kpi-value" id="kpiAds">—</div>
+      <div class="kpi-label">Total mídia paga · período</div>
+      <div class="kpi-delta neutral">Meta + Google Ads</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-month">ROAS Geral</div>
+      <div class="kpi-value" id="kpiRoas">—</div>
+      <div class="kpi-label">Receita ÷ Investimento em Ads</div>
+      <div class="kpi-delta up">↑ Eficiência de mídia</div>
+    </div>
+    <div class="kpi-card blue">
+      <div class="kpi-month">CPA Médio</div>
+      <div class="kpi-value" id="kpiCpa">—</div>
+      <div class="kpi-label">Custo por reserva gerada</div>
+      <div class="kpi-delta info">Ads ÷ Reservas</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       GRÁFICOS — VENDAS
+  ══════════════════════════════════════════ -->
+  <div class="section-label">Performance Comercial</div>
+  <div class="section-title">Receita e Canais de Venda</div>
+
+  <div class="chart-grid-3 fade-up">
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Receita Total Mensal</div>
+          <div class="chart-sub">Booking Engine + Central de Reservas + OTAs (R$)</div>
+        </div>
+        <span class="chart-badge alert">Pico Abr/26</span>
+      </div>
+      <canvas id="chartReceita" height="220"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Mix de Receita — Abril/2026</div>
+          <div class="chart-sub">Participação percentual por canal</div>
+        </div>
+        <span class="chart-badge">Canais</span>
+      </div>
+      <canvas id="chartMixAbr" height="220"></canvas>
+    </div>
+  </div>
+
+  <div class="chart-grid-full fade-up">
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Receita por Canal — Mensal</div>
+          <div class="chart-sub">Booking Engine · Central de Reservas · OTAs, Agências e Operadores (R$)</div>
+        </div>
+        <span class="chart-badge dark">Canais Empilhados</span>
+      </div>
+      <canvas id="chartCanais" height="160"></canvas>
+    </div>
+  </div>
+
+  <div class="chart-grid-2 fade-up">
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Reservas × Investimento em Ads</div>
+          <div class="chart-sub">Correlação entre verba de mídia e volume de reservas</div>
+        </div>
+        <span class="chart-badge">Correlação</span>
+      </div>
+      <canvas id="chartReservasAds" height="220"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">CPA Mensal</div>
+          <div class="chart-sub">Custo por Reserva = Ads ÷ Reservas (R$)</div>
+        </div>
+        <span class="chart-badge alert">Eficiência</span>
+      </div>
+      <canvas id="chartCpa" height="220"></canvas>
+    </div>
+  </div>
+
+  <div class="chart-grid-2 fade-up">
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">ROAS Mensal Aproximado</div>
+          <div class="chart-sub">Receita Total ÷ Investimento em Ads</div>
+        </div>
+        <span class="chart-badge green">Retorno</span>
+      </div>
+      <canvas id="chartRoas" height="220"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">ARPU — Ticket Médio por Reserva</div>
+          <div class="chart-sub">Receita Total ÷ Número de Reservas (R$)</div>
+        </div>
+        <span class="chart-badge">Ticket</span>
+      </div>
+      <canvas id="chartArpu" height="220"></canvas>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       GRÁFICOS — SITE
+  ══════════════════════════════════════════ -->
+  <div class="section-label">Comportamento Digital</div>
+  <div class="section-title">Acessos e Funil do Site</div>
+
+  <div class="chart-grid-3 fade-up">
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Acessos ao Site</div>
+          <div class="chart-sub">Visitantes mensais · pico em Abril/2026 com 168 mil acessos</div>
+        </div>
+        <span class="chart-badge alert">168K Abr</span>
+      </div>
+      <canvas id="chartAcessos" height="220"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Taxa de Add ao Carrinho</div>
+          <div class="chart-sub">Add Carrinho ÷ Acessos × 100 (%)</div>
+        </div>
+        <span class="chart-badge">Conversão</span>
+      </div>
+      <canvas id="chartAddCart" height="220"></canvas>
+    </div>
+  </div>
+
+  <div class="chart-grid-full fade-up">
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Funil Digital — Acessos vs Add ao Carrinho</div>
+          <div class="chart-sub">Volume mensal de acessos e add carrinho — intensidade do interesse comercial</div>
+        </div>
+        <span class="chart-badge dark">Funil</span>
+      </div>
+      <canvas id="chartFunil" height="160"></canvas>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       GRÁFICOS — ASKSUITE
+  ══════════════════════════════════════════ -->
+  <div class="section-label">Inteligência de Atendimento</div>
+  <div class="section-title">Asksuite — Atendimentos e Oportunidades</div>
+
+  <div class="chart-grid-2 fade-up">
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Atendimentos e Oportunidades</div>
+          <div class="chart-sub">Volume mensal via chatbot Asksuite</div>
+        </div>
+        <span class="chart-badge alert">13,8K Mar/26</span>
+      </div>
+      <canvas id="chartAsksuite" height="220"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Valor em Oportunidades</div>
+          <div class="chart-sub">Pipeline comercial gerado via Asksuite (R$)</div>
+        </div>
+        <span class="chart-badge green">Pipeline</span>
+      </div>
+      <canvas id="chartPipeline" height="220"></canvas>
+    </div>
+  </div>
+
+  <div class="chart-grid-2 fade-up">
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Taxa de Oportunidade Asksuite</div>
+          <div class="chart-sub">Oportunidades ÷ Atendimentos × 100 (%)</div>
+        </div>
+        <span class="chart-badge">Efetividade</span>
+      </div>
+      <canvas id="chartTaxaOp" height="220"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Insights de Atendimento</div>
+          <div class="chart-sub">Leitura dos dados Asksuite — período completo</div>
+        </div>
+        <span class="chart-badge dark">Análise</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;padding-top:8px;" id="asksuiteInsights"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       ASKSUITE GRUPOS
+  ══════════════════════════════════════════ -->
+  <div class="section-label">Vendas de Grupos e Eventos</div>
+  <div class="section-title">Asksuite Grupos — Potencial e Cotações</div>
+
+  <div class="grupos-section fade-up">
+    <div class="grupos-header">
+      <div>
+        <div class="grupos-title">Asksuite Grupos</div>
+        <div class="grupos-sub">Potencial de vendas e cotações de grupos · Set/2025 a Abr/2026</div>
+      </div>
+      <span class="chart-badge" style="background:rgba(0,174,239,0.15);color:#00AEEF;">Canal Estratégico</span>
+    </div>
+    <div class="grupos-grid">
+      <div class="grupos-chart-wrap">
+        <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.6);margin-bottom:12px;">Potencial de Vendas (R$)</div>
+        <canvas id="chartGruposPot" height="200"></canvas>
+      </div>
+      <div class="grupos-chart-wrap">
+        <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.6);margin-bottom:12px;">Cotações de Grupos (un.)</div>
+        <canvas id="chartGruposCot" height="200"></canvas>
+      </div>
+      <div class="grupos-highlight">
+        <div class="grupos-hl-item">
+          <div class="hl-label">Maior nº de Cotações</div>
+          <div class="hl-value"><span>48</span></div>
+          <div class="hl-sub">Março/2026</div>
+        </div>
+        <div style="height:1px;background:rgba(255,255,255,0.08);"></div>
+        <div class="grupos-hl-item">
+          <div class="hl-label">Maior Potencial</div>
+          <div class="hl-value"><span>R$ 828K</span></div>
+          <div class="hl-sub">Março/2026</div>
+        </div>
+        <div style="height:1px;background:rgba(255,255,255,0.08);"></div>
+        <div class="grupos-hl-item">
+          <div class="hl-label">Potencial Acumulado</div>
+          <div class="hl-value" id="gruposPotAcum">—</div>
+          <div class="hl-sub">Set/25 a Abr/26</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       INSIGHT CARDS
+  ══════════════════════════════════════════ -->
+  <div class="section-label">Destaques do Período</div>
+  <div class="section-title">Insights Executivos</div>
+
+  <div class="insight-grid fade-up">
+    <div class="insight-card good">
+      <div class="insight-label">Melhor Mês</div>
+      <div class="insight-num">R$ 3,0M</div>
+      <div class="insight-desc">Abril/2026 foi o maior mês de receita do período, com R$ 3.019.979 — concentrando também o maior volume de acessos (168 mil) e o maior investimento em mídia.</div>
+    </div>
+    <div class="insight-card warn">
+      <div class="insight-label">Pico Digital</div>
+      <div class="insight-num">168K</div>
+      <div class="insight-desc">Abril/2026 concentrou 168 mil acessos ao site — 2,7× acima da média dos meses anteriores. Campanha de mídia com R$ 108K de investimento impulsionou fortemente o tráfego.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-label">Asksuite · Mar/26</div>
+      <div class="insight-num">13,8K</div>
+      <div class="insight-desc">Março/2026 foi o maior mês em atendimentos Asksuite, com 13.839 contatos e R$ 11,75 milhões em oportunidades — o maior pipeline mensal do período.</div>
+    </div>
+  </div>
+
+  <div class="insight-grid fade-up">
+    <div class="insight-card mid">
+      <div class="insight-label">Jan/26 — Performance</div>
+      <div class="insight-num">R$ 2,8M</div>
+      <div class="insight-desc">Janeiro/2026 teve forte performance comercial, com R$ 2.825.554 em receita total e 838 reservas — segundo melhor mês do período em volume de vendas.</div>
+    </div>
+    <div class="insight-card good">
+      <div class="insight-label">Canal Direto</div>
+      <div class="insight-num">↑ Direto</div>
+      <div class="insight-desc">Booking Engine + Central de Reservas representa a maior fatia da receita na maioria dos meses, indicando maturidade do canal direto e menor dependência de OTAs.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-label">Grupos · Mar/26</div>
+      <div class="insight-num">48</div>
+      <div class="insight-desc">Março/2026 registrou 48 cotações de grupos com potencial de R$ 828.487 — maior volume do período, sinalando oportunidade real no segmento de eventos e grupos.</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       TABELA COMPLETA
+  ══════════════════════════════════════════ -->
+  <div class="section-label">Dados Completos</div>
+  <div class="section-title">Tabela Mensal — Todos os Indicadores</div>
+
+  <div class="table-card fade-up">
+    <div class="table-header">
+      <div class="chart-title">Big Data Mensal Consolidado</div>
+      <div class="chart-sub">Set/2025 a Abr/2026 · Verde = melhor mês · Azul = 2º melhor · Laranja = maior investimento</div>
+    </div>
+    <div class="table-wrap">
+      <table id="tabelaCompleta"></table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       ANÁLISE EXECUTIVA FINAL
+  ══════════════════════════════════════════ -->
+  <div class="section-label">Análise Estratégica</div>
+  <div class="section-title">Leitura Executiva Final</div>
+
+  <div class="rational-grid fade-up">
+    <div class="rational-card" data-num="01">
+      <div class="rational-card-content">
+        <div class="rational-icon">📈</div>
+        <div class="rational-title">Abril como Pico de Escala</div>
+        <div class="rational-text">Abril/2026 concentrou o maior volume em todas as dimensões: receita (R$ 3,0M), acessos (168K) e mídia (R$ 108K). O alinhamento entre campanha agressiva e pico de tráfego e receita indica modelo escalável que deve ser replicado em datas estratégicas.</div>
+      </div>
+    </div>
+    <div class="rational-card" data-num="02">
+      <div class="rational-card-content">
+        <div class="rational-icon">🎯</div>
+        <div class="rational-title">Canal Direto como Ativo Estratégico</div>
+        <div class="rational-text">Booking Engine e Central de Reservas lideram a composição da receita na maioria dos meses. A redução progressiva da dependência de OTAs e agências protege margem e fortalece o relacionamento direto com o hóspede. Canal direto = menor CAC e maior LTV.</div>
+      </div>
+    </div>
+    <div class="rational-card" data-num="03">
+      <div class="rational-card-content">
+        <div class="rational-icon">💬</div>
+        <div class="rational-title">Asksuite como Termômetro de Demanda</div>
+        <div class="rational-text">Os picos de atendimento (Mar/26: 13.839) e o volume de oportunidades (R$ 11,75M em mar) antecedem ou coincidem com meses de alta receita, tornando o Asksuite um indicador preditivo de demanda comercial a ser monitorado em tempo real.</div>
+      </div>
+    </div>
+    <div class="rational-card" data-num="04">
+      <div class="rational-card-content">
+        <div class="rational-icon">🤝</div>
+        <div class="rational-title">Grupos como Oportunidade Paralela</div>
+        <div class="rational-text">Março e abril concentram os maiores volumes de cotações de grupos (48 e 31) e potencial de vendas (R$ 828K e R$ 779K). O segmento de grupos e eventos representa uma frente comercial estratégica com menor sazonalidade e ticket médio mais elevado.</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ══════════════════════════════════════════
+     SEPARADOR — FUNIL INTERATIVO
+══════════════════════════════════════════ -->
+<div class="big-section-separator">
+  <div class="big-section-separator-inner">
+    <div class="big-section-separator-icon">🔽</div>
+    <div>
+      <div class="big-section-separator-label">Análise Detalhada por Mês</div>
+      <div class="big-section-separator-title">Funil Comercial Interativo</div>
+      <div class="big-section-separator-sub">Selecione um mês e navegue pela jornada completa: tráfego → carrinho → reserva → receita → oportunidades</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     FUNIL INTERATIVO
+══════════════════════════════════════════ -->
+<div class="funil-wrapper">
+  <div class="main" style="padding-top:48px;">
+
+    <section class="interactive-funnel-section">
+
+      <div class="funil-section-header">
+        <div class="funil-section-label">Funil Mensal</div>
+        <h2 class="funil-section-title">Funil Comercial Interativo</h2>
+        <p class="funil-section-subtitle">Selecione um mês para visualizar a jornada completa: tráfego, intenção, reservas, receita e oportunidades.</p>
+      </div>
+
+      <div class="month-selector">
+        <button class="month-btn" data-month="Set/25">Set/25</button>
+        <button class="month-btn" data-month="Out/25">Out/25</button>
+        <button class="month-btn" data-month="Nov/25">Nov/25</button>
+        <button class="month-btn" data-month="Dez/25">Dez/25</button>
+        <button class="month-btn" data-month="Jan/26">Jan/26</button>
+        <button class="month-btn" data-month="Fev/26">Fev/26</button>
+        <button class="month-btn" data-month="Mar/26">Mar/26</button>
+        <button class="month-btn active" data-month="Abr/26">Abr/26</button>
+      </div>
+
+      <!-- KPI CARDS TOPO -->
+      <div class="funnel-kpi-grid funnel-animated" id="kpiGrid">
+        <div class="funil-kpi-card color-azul">
+          <span class="funil-kpi-icon">🌐</span>
+          <div class="funil-kpi-label">Acessos ao Site</div>
+          <div class="funil-kpi-value" id="kpi-acessos">—</div>
+          <div class="funil-kpi-sub">visitantes únicos</div>
+        </div>
+        <div class="funil-kpi-card color-cinza">
+          <span class="funil-kpi-icon">🛒</span>
+          <div class="funil-kpi-label">Add ao Carrinho</div>
+          <div class="funil-kpi-value" id="kpi-cart">—</div>
+          <div class="funil-kpi-sub" id="kpi-cart-sub">—</div>
+        </div>
+        <div class="funil-kpi-card color-verde">
+          <span class="funil-kpi-icon">📋</span>
+          <div class="funil-kpi-label">Reservas</div>
+          <div class="funil-kpi-value" id="kpi-reservas">—</div>
+          <div class="funil-kpi-sub" id="kpi-reservas-sub">—</div>
+        </div>
+        <div class="funil-kpi-card color-escuro">
+          <span class="funil-kpi-icon">💰</span>
+          <div class="funil-kpi-label">Receita Total</div>
+          <div class="funil-kpi-value" id="kpi-receita">—</div>
+          <div class="funil-kpi-sub" id="kpi-roas">ROAS —</div>
+        </div>
+        <div class="funil-kpi-card color-laranja">
+          <span class="funil-kpi-icon">🎯</span>
+          <div class="funil-kpi-label">Oportunidades</div>
+          <div class="funil-kpi-value" id="kpi-oportunidades">—</div>
+          <div class="funil-kpi-sub" id="kpi-oport-val">—</div>
+        </div>
+      </div>
+
+      <!-- GRID FUNNEIS LADO A LADO -->
+      <div class="interactive-funnel-grid">
+
+        <!-- FUNIL COMERCIAL -->
+        <div class="funnel-visual-card">
+          <div class="funnel-card-title">
+            <span class="funnel-card-title-dot"></span>
+            Funil Comercial
+          </div>
+          <div class="funnel-card-sub">Da visita ao carrinho, da reserva à receita</div>
+
+          <div class="funnel-steps funnel-animated" id="funnelComercial">
+            <div class="funnel-step">
+              <div class="funnel-step-header">
+                <span class="funnel-step-name">🌐 Acessos ao Site</span>
+                <span class="funnel-step-meta"><span id="fc-acessos-val">—</span> · base 100%</span>
+              </div>
+              <div class="funnel-bar-track">
+                <div class="funnel-bar-fill fill-azul" id="bar-acessos" style="width:100%"></div>
+              </div>
+            </div>
+            <div class="funnel-step">
+              <div class="funnel-step-header">
+                <span class="funnel-step-name">🛒 Add ao Carrinho</span>
+                <span class="funnel-step-meta"><span id="fc-cart-val">—</span> · <span id="fc-cart-pct">—</span></span>
+              </div>
+              <div class="funnel-bar-track">
+                <div class="funnel-bar-fill fill-azul2" id="bar-cart" style="width:0%"></div>
+              </div>
+            </div>
+            <div class="funnel-step">
+              <div class="funnel-step-header">
+                <span class="funnel-step-name">📋 Reservas Geradas</span>
+                <span class="funnel-step-meta"><span id="fc-res-val">—</span> · <span id="fc-res-pct">—</span></span>
+              </div>
+              <div class="funnel-bar-track">
+                <div class="funnel-bar-fill fill-verde" id="bar-res" style="width:0%"></div>
+              </div>
+            </div>
+            <div class="funnel-step">
+              <div class="funnel-step-header">
+                <span class="funnel-step-name">📣 Investimento Ads</span>
+                <span class="funnel-step-meta"><span id="fc-ads-val">—</span> · CPA: <span id="fc-cpa">—</span></span>
+              </div>
+              <div class="funnel-bar-track">
+                <div class="funnel-bar-fill fill-laranja" id="bar-ads" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="funnel-final-card funnel-animated" id="finalCard">
+            <div>
+              <div class="fc-label">Receita Total do Mês</div>
+              <div class="fc-value" id="fc-receita-final">—</div>
+            </div>
+            <div class="funnel-final-stats">
+              <div class="fc-stat">
+                <div class="fc-label">ROAS</div>
+                <div class="fc-value" id="fc-roas-final">—</div>
+              </div>
+              <div class="fc-stat">
+                <div class="fc-label">Conv. Site→Res.</div>
+                <div class="fc-value" id="fc-conv-final">—</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FUNIL ASKSUITE -->
+        <div class="funnel-visual-card">
+          <div class="funnel-card-title">
+            <span class="funnel-card-title-dot verde"></span>
+            Funil de Atendimento Asksuite
+          </div>
+          <div class="funnel-card-sub">Atendimentos, oportunidades e valor gerado</div>
+
+          <div class="funnel-steps funnel-animated" id="funnelAsksuite">
+            <div class="funnel-step">
+              <div class="funnel-step-header">
+                <span class="funnel-step-name">💬 Atendimentos Totais</span>
+                <span class="funnel-step-meta"><span id="ask-atend-val">—</span> · base 100%</span>
+              </div>
+              <div class="funnel-bar-track">
+                <div class="funnel-bar-fill fill-verde" id="bar-atend" style="width:100%"></div>
+              </div>
+            </div>
+            <div class="funnel-step">
+              <div class="funnel-step-header">
+                <span class="funnel-step-name">🎯 Oportunidades</span>
+                <span class="funnel-step-meta"><span id="ask-oport-val">—</span> · <span id="ask-oport-pct">—</span></span>
+              </div>
+              <div class="funnel-bar-track">
+                <div class="funnel-bar-fill fill-azul" id="bar-oport" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="funnel-final-card funnel-animated" style="background: linear-gradient(135deg,#007A48,#00A868); margin-top:16px;" id="askCard">
+            <div>
+              <div class="fc-label">Valor em Oportunidades</div>
+              <div class="fc-value" id="ask-valor-final">—</div>
+            </div>
+            <div class="funnel-final-stats">
+              <div class="fc-stat">
+                <div class="fc-label">Taxa Oport.</div>
+                <div class="fc-value" id="ask-taxa-final" style="color:#6EFFC4">—</div>
+              </div>
+              <div class="fc-stat">
+                <div class="fc-label">Ticket Médio</div>
+                <div class="fc-value" id="ask-ticket-final" style="color:#6EFFC4">—</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-divider" style="margin-top:24px; margin-bottom:0">
+            <div class="section-divider-line"></div>
+            <div class="section-divider-label">Atendimentos vs Oportunidades</div>
+            <div class="section-divider-line"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- GRID: GRÁFICO + INSIGHT -->
+      <div class="funil-chart-grid">
+
+        <div class="funil-chart-card">
+          <div class="funil-chart-card-title">Mix de Canais de Receita</div>
+          <div class="funil-chart-card-sub" id="chart-sub-label">Distribuição da receita por canal — Abr/26</div>
+          <div class="funil-chart-wrapper">
+            <canvas id="chartMixReceitaMes"></canvas>
+          </div>
+        </div>
+
+        <div class="month-insight-card">
+          <div>
+            <div class="insight-header">
+              <div class="insight-icon-wrap">💡</div>
+              <div class="insight-title-f">Insight do Mês</div>
+            </div>
+            <div class="insight-month-tag" id="insight-month-tag">Abr/26</div>
+            <p class="insight-text funnel-animated" id="insightText">—</p>
+          </div>
+          <div>
+            <div class="insight-divider"></div>
+            <div class="insight-highlights" id="insightPills"></div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-logo">Morro dos Anjos <span>Resort</span></div>
+  <div class="footer-sub">Big Data Comercial · Set/2025 a Abr/2026 · Uso Interno — Diretoria</div>
+</footer>
+
+<script>
+/* ══════════════════════════════════════════
+   DADOS PRINCIPAIS
+══════════════════════════════════════════ */
+const MESES = ['Set/25','Out/25','Nov/25','Dez/25','Jan/26','Fev/26','Mar/26','Abr/26'];
+
+const D = {
+  acessos:    [47000, 47000, 56000, 50000, 64000, 43000, 62000, 168000],
+  addCarr:    [2300,  1900,  3500,  3000,  5400,  3100,  5400,  7200],
+  booking:    [342192, 194011, 870497, 566705, 807475, 348444, 670930, 1453785],
+  central:    [352936, 253740, 1553532, 904353, 1614987, 938861, 1501236, 1318956],
+  otas:       [847509, 509074, 140528, 204163, 403093, 381513, 284857, 247238],
+  receita:    [1542637, 956825, 2564557, 1675221, 2825554, 1668819, 2457023, 3019979],
+  reservas:   [660, 337, 882, 410, 838, 561, 822, 928],
+  arpu:       [2337, 2839, 2908, 4086, 3372, 2975, 2989, 3254],
+  ads:        [24934, 24771, 31249, 34622, 27717, 27061, 27811, 108463],
+  atend:      [4395, 4655, 5484, 6498, 8400, 6476, 13839, 9353],
+  opors:      [2262, 2316, 3156, 3799, 5151, 3350, 8041, 5013],
+  valOp:      [1828978, 3632104, 5530352, 6991590, 9491119, 5421913, 11750350, 7031417],
+  grpPot:     [191280, 198270, 218400, 285970, 391420, 449600, 828487, 779200],
+  grpCot:     [8, 10, 14, 18, 22, 28, 48, 31]
+};
+
+const sum = arr => arr.reduce((a, b) => a + b, 0);
+const txAdd = D.addCarr.map((v, i) => v / D.acessos[i] * 100);
+const txOp  = D.opors.map((v, i) => v / D.atend[i] * 100);
+const cpa   = D.ads.map((v, i) => v / D.reservas[i]);
+const roas  = D.receita.map((v, i) => v / D.ads[i]);
+
+/* formatadores */
+const fNum = v => new Intl.NumberFormat('pt-BR').format(Math.round(v));
+const fBRL = v => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(v);
+const fK   = v => 'R$ ' + (v / 1000).toFixed(0) + 'K';
+const fPct = v => v.toFixed(1).replace('.', ',') + '%';
+
+/* hero */
+document.getElementById('heroReceita').textContent = fBRL(sum(D.receita));
+document.getElementById('heroReservas').textContent = fNum(sum(D.reservas));
+document.getElementById('kpiReceitaTotal').textContent = fBRL(sum(D.receita));
+document.getElementById('kpiReservasTotal').textContent = fNum(sum(D.reservas));
+document.getElementById('kpiAcessos').textContent = fNum(sum(D.acessos));
+document.getElementById('kpiOportunidades').textContent = fBRL(sum(D.valOp));
+document.getElementById('kpiAds').textContent = fBRL(sum(D.ads));
+document.getElementById('kpiRoas').textContent = (sum(D.receita)/sum(D.ads)).toFixed(1).replace('.',',') + 'x';
+document.getElementById('kpiCpa').textContent = fBRL(sum(D.ads)/sum(D.reservas));
+document.getElementById('gruposPotAcum').textContent = fBRL(sum(D.grpPot));
+
+/* ══════════════════════════════════════════
+   CORES E CONFIG CHART.JS
+══════════════════════════════════════════ */
+const C = {
+  azul: '#00AEEF', escuro: '#1D1E46', verde: '#00C878',
+  alerta: '#FF6B35', cinza: '#94A3B8',
+  jan: '#00C878', abr: '#FF6B35'
+};
+
+const baseOpts = {
+  responsive: true,
+  maintainAspectRatio: true,
+  plugins: {
+    legend: { display: false },
+    tooltip: {
+      backgroundColor: 'rgba(29,30,70,0.92)',
+      titleFont: { family: 'Montserrat', weight: '700', size: 12 },
+      bodyFont:  { family: 'Montserrat', size: 11 },
+      padding: 10, cornerRadius: 8, displayColors: false
+    }
+  },
+  scales: {
+    x: { grid: { color: 'rgba(29,30,70,0.04)' }, ticks: { font: { family: 'Montserrat', size: 10 }, color: '#94A3B8' } },
+    y: { grid: { color: 'rgba(29,30,70,0.05)' }, ticks: { font: { family: 'Montserrat', size: 10 }, color: '#94A3B8' } }
+  }
+};
+
+/* Receita Total */
+new Chart(document.getElementById('chartReceita'), {
+  type: 'bar',
+  data: {
+    labels: MESES,
+    datasets: [{
+      data: D.receita,
+      backgroundColor: D.receita.map((v,i) => i===7 ? 'rgba(0,200,120,0.85)' : i===4 ? 'rgba(0,174,239,0.7)' : 'rgba(0,174,239,0.4)'),
+      borderColor: D.receita.map((v,i) => i===7 ? '#00C878' : i===4 ? '#00AEEF' : 'transparent'),
+      borderWidth: 2, borderRadius: 6
+    }]
+  },
+  options: { ...baseOpts, plugins: { ...baseOpts.plugins, tooltip: { ...baseOpts.plugins.tooltip, callbacks: { label: ctx => ' Receita: ' + fBRL(ctx.raw) } } }, scales: { ...baseOpts.scales, y: { ...baseOpts.scales.y, ticks: { callback: v => 'R$' + (v/1000000).toFixed(1) + 'M' } } } }
+});
+
+/* Mix Abril */
+new Chart(document.getElementById('chartMixAbr'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Booking Engine', 'Central de Reservas', 'OTAs / Agências'],
+    datasets: [{ data: [1453785, 1318956, 247238], backgroundColor: [C.azul, C.escuro, C.alerta], borderColor: ['#fff','#fff','#fff'], borderWidth: 3, hoverOffset: 8 }]
+  },
+  options: { responsive: true, maintainAspectRatio: true, cutout: '65%', plugins: { legend: { position: 'bottom', labels: { font: { family: 'Montserrat', size: 10 }, padding: 14, usePointStyle: true } }, tooltip: { callbacks: { label: ctx => ' ' + fBRL(ctx.raw) }, backgroundColor: 'rgba(29,30,70,0.92)', bodyFont: { family: 'Montserrat' } } } }
+});
+
+/* Canais empilhados */
+new Chart(document.getElementById('chartCanais'), {
+  type: 'bar',
+  data: {
+    labels: MESES,
+    datasets: [
+      { label: 'Booking Engine',       data: D.booking, backgroundColor: C.azul + 'CC', borderRadius: 0 },
+      { label: 'Central de Reservas',  data: D.central, backgroundColor: C.escuro + 'BB', borderRadius: 0 },
+      { label: 'OTAs / Agências',      data: D.otas,    backgroundColor: C.alerta + 'AA', borderRadius: 6 }
+    ]
+  },
+  options: { ...baseOpts, plugins: { ...baseOpts.plugins, legend: { display: true, position: 'bottom', labels: { padding: 14, font: { size: 11 }, usePointStyle: true } }, tooltip: { ...baseOpts.plugins.tooltip, callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + fBRL(ctx.raw) } } }, scales: { ...baseOpts.scales, x: { ...baseOpts.scales.x, stacked: true }, y: { ...baseOpts.scales.y, stacked: true, ticks: { callback: v => 'R$' + (v/1000000).toFixed(1) + 'M' } } } }
+});
+
+/* Reservas x Ads */
+new Chart(document.getElementById('chartReservasAds'), {
+  type: 'bar',
+  data: {
+    labels: MESES,
+    datasets: [
+      { label: 'Reservas', data: D.reservas, backgroundColor: C.azul + '88', yAxisID: 'y', borderRadius: 4 },
+      { label: 'Ads (R$)', data: D.ads, type: 'line', borderColor: C.alerta, backgroundColor: C.alerta + '22', pointBackgroundColor: C.alerta, tension: 0.3, yAxisID: 'y2', fill: true }
+    ]
+  },
+  options: { ...baseOpts, plugins: { ...baseOpts.plugins, legend: { display: true, position: 'bottom', labels: { padding: 14, font: { size: 11 }, usePointStyle: true } } }, scales: { x: baseOpts.scales.x, y: { ...baseOpts.scales.y, position: 'left', ticks: { callback: v => fNum(v) } }, y2: { ...baseOpts.scales.y, position: 'right', grid: { display: false }, ticks: { callback: v => 'R$' + (v/1000).toFixed(0) + 'K' } } } }
+});
+
+/* CPA */
+new Chart(document.getElementById('chartCpa'), {
+  type: 'line',
+  data: {
+    labels: MESES,
+    datasets: [{
+      data: cpa,
+      borderColor: C.alerta,
+      backgroundColor: C.alerta + '18',
+      pointBackgroundColor: cpa.map((v,i) => i===3 ? C.alerta : C.azul),
+      pointRadius: cpa.map((v,i) => i===3 ? 7 : 4),
+      tension: 0.3, fill: true
+    }]
+  },
+  options: { ...baseOpts, plugins: { ...baseOpts.plugins, tooltip: { ...baseOpts.plugins.tooltip, callbacks: { label: ctx => ' CPA: ' + fBRL(ctx.raw) } } }, scales: { ...baseOpts.scales, y: { ...baseOpts.scales.y, ticks: { callback: v => 'R$' + (v/1000).toFixed(0) + 'K' } } } }
+});
+
+/* ROAS */
+new Chart(document.getElementById('chartRoas'), {
+  type: 'line',
+  data: {
+    labels: MESES,
+    datasets: [{
+      data: roas,
+      borderColor: C.verde,
+      backgroundColor: C.verde + '18',
+      pointBackgroundColor: roas.map((v,i) => i===7 ? C.verde : C.azul),
+      pointRadius: roas.map((v,i) => i===7 ? 7 : 4),
+      tension: 0.35, fill: true
+    }]
+  },
+  options: { ...baseOpts, plugins: { ...baseOpts.plugins, tooltip: { ...baseOpts.plugins.tooltip, callbacks: { label: ctx => ' ROAS: ' + ctx.raw.toFixed(1).replace('.',',') + 'x' } } }, scales: { ...baseOpts.scales, y: { ...baseOpts.scales.y, ticks: { callback: v => v.toFixed(0) + 'x' } } } }
+});
+
+/* ARPU */
+new Chart(document.getElementById('chartArpu'), {
+  type: 'bar',
+  data: {
+    labels: MESES,
+    datasets: [{
+      data: D.arpu,
+      backgroundColor: D.arpu.map((v,i) => i===3 ? C.verde + 'CC' : C.azul + '88'),
+      borderColor: D.arpu.map((v,i) => i===3 ? C.verde : 'transparent'),
+      borderWidth: 1.5, borderRadius: 6
+    }]
+  },
+  options: { ...baseOpts, plugins: { ...baseOpts.plugins, tooltip: { ...baseOpts.plugins.tooltip, callbacks: { label: ctx => ' ARPU: ' + fBRL(ctx.raw) } } }, scales: { ...baseOpts.scales, y: { ...baseOpts.scales.y, ticks: { callback: v => 'R$' + (v/1000).toFixed(1) + 'K' } } } }
+});
+
+/* Acessos */
+new Chart(document.getElementById('chartAcessos'), {
+  type: 'bar',
+  data: {
+    labels: MESES,
+    datasets: [{
+      data: D.acessos,
+      backgroundColor: D.acessos.map((v,i) => i===7 ? C.alerta + 'CC' : C.azul + '66'),
+      borderColor: D.acessos.map((v,i) => i===7 ? C.alerta : 'transparent'),
+      borderWidth: 1.5, borderRadius: 6
+    }]
+  },
+  options: { ...baseOpts, plugins: { ...baseOpts.plugins, tooltip: { ...baseOpts.plugins.tooltip, callbacks: { label: ctx => ' Acessos: ' + fNum(ctx.raw) } } }, scales: { ...baseOpts.scales, y: { ...baseOpts.scales.y, ticks: { callback: v => (v/1000).toFixed(0) + 'K' } } } }
+});
+
+/* Add Carrinho taxa */
+new Chart(document.getElementById('chartAddCart'), {
+  type: 'bar',
+  data: {
+    labels: MESES,
+    datasets: [{
+      data: txAdd,
+      backgroundColor: txAdd.map(v => v > 4 ? C.jan + 'AA' : '#00AEEF88'),
+      borderColor: txAdd.map(v => v > 4 ? C.jan : '#00AEEF'),
+      borderWidth: 1.5, borderRadius: 6
+    }]
+  },
+  options: { ...baseOpts, plugins: { ...baseOpts.plugins, tooltip: { ...baseOpts.plugins.tooltip, callbacks: { label: ctx => ' Taxa: ' + ctx.raw.toFixed(2).replace('.',',') + '%' } } }, scales: { ...baseOpts.scales, y: { ...baseOpts.scales.y, ticks: { callback: v => v + '%' } } } }
+});
+
+/* Funil barras */
+new Chart(document.getElementById('chartFunil'), {
+  type: 'bar',
+  data: {
+    labels: MESES,
+    datasets: [
+      { label: 'Acessos', data: D.acessos, backgroundColor: '#00AEEF77', borderRadius: 0, borderSkipped: false },
+      { label: 'Add Carrinho', data: D.addCarr, backgroundColor: '#00C87899', borderRadius: 6, borderSkipped: false }
+    ]
+  },
+  options: { ...baseOpts, plugins: { ...baseOpts.plugins, legend: { display: true, position: 'bottom', labels: { padding: 14, font: { size: 11 }, usePointStyle: true } }, tooltip: { ...baseOpts.plugins.tooltip, callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + fNum(ctx.raw) } } }, scales: { ...baseOpts.scales, y: { ...baseOpts.scales.y, ticks: { callback: v => (v/1000).toFixed(0) + 'K' } } } }
+});
+
+/* Asksuite */
+new Chart(document.getElementById('chartAsksuite'), {
+  type: 'bar',
+  data: {
+    labels: MESES,
+    datasets: [
+      { label: 'Atendimentos', data: D.atend, backgroundColor: '#00AEEF88', borderRadius: 0 },
+      { label: 'Oportunidades', data: D.opors, backgroundColor: '#00C87899', borderRadius: 6 }
+    ]
+  },
+  options: { ...baseOpts, plugins: { ...baseOpts.plugins, legend: { display: true, position: 'bottom', labels: { padding: 14, font: { size: 11 }, usePointStyle: true } }, tooltip: { ...baseOpts.plugins.tooltip, callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + fNum(ctx.raw) } } }, scales: { ...baseOpts.scales, y: { ...baseOpts.scales.y, ticks: { callback: v => (v/1000).toFixed(0) + 'K' } } } }
+});
+
+/* Pipeline */
+new Chart(document.getElementById('chartPipeline'), {
+  type: 'line',
+  data: {
+    labels: MESES,
+    datasets: [{
+      data: D.valOp,
+      borderColor: C.jan,
+      backgroundColor: 'rgba(0,200,120,0.10)',
+      pointBackgroundColor: D.valOp.map((v,i) => i===6 ? C.abr : C.jan),
+      pointRadius: D.valOp.map((v,i) => i===6 ? 7 : 4),
+      tension: 0.35, fill: true
+    }]
+  },
+  options: { ...baseOpts, plugins: { ...baseOpts.plugins, tooltip: { ...baseOpts.plugins.tooltip, callbacks: { label: ctx => ' Pipeline: ' + fK(ctx.raw) } } }, scales: { ...baseOpts.scales, y: { ...baseOpts.scales.y, ticks: { callback: v => 'R$' + (v/1000000).toFixed(1) + 'M' } } } }
+});
+
+/* Taxa Oportunidade */
+new Chart(document.getElementById('chartTaxaOp'), {
+  type: 'bar',
+  data: {
+    labels: MESES,
+    datasets: [{
+      data: txOp,
+      backgroundColor: txOp.map(v => v > 57 ? C.jan + 'AA' : '#00AEEF88'),
+      borderColor: txOp.map(v => v > 57 ? C.jan : '#00AEEF'),
+      borderWidth: 1.5, borderRadius: 6
+    }]
+  },
+  options: { ...baseOpts, plugins: { ...baseOpts.plugins, tooltip: { ...baseOpts.plugins.tooltip, callbacks: { label: ctx => ' Taxa: ' + ctx.raw.toFixed(1).replace('.',',') + '%' } } }, scales: { ...baseOpts.scales, y: { ...baseOpts.scales.y, ticks: { callback: v => v + '%' } } } }
+});
+
+/* Insights Asksuite */
+const askInsights = [
+  { label: 'Maior atendimento', val: '13.839', desc: 'Março/2026 — pico do período', color: '#FF6B35' },
+  { label: 'Maior pipeline', val: 'R$ 11,75M', desc: 'Março/2026 em oportunidades', color: '#00C878' },
+  { label: 'Taxa média de oportunidade', val: fPct(sum(txOp)/txOp.length), desc: 'Opors ÷ Atendimentos', color: '#00AEEF' },
+  { label: 'Total de atendimentos', val: fNum(sum(D.atend)), desc: 'Set/25 a Abr/26', color: '#0E6F99' }
+];
+document.getElementById('asksuiteInsights').innerHTML = askInsights.map(i => `
+  <div style="display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid rgba(29,30,70,0.06);">
+    <div style="width:3px;height:40px;background:${i.color};border-radius:3px;flex-shrink:0;"></div>
+    <div>
+      <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#6B7A99;margin-bottom:3px;">${i.label}</div>
+      <div style="font-size:20px;font-weight:700;color:${i.color};line-height:1;">${i.val}</div>
+      <div style="font-size:11px;color:#94A3B8;margin-top:2px;">${i.desc}</div>
+    </div>
+  </div>
+`).join('');
+
+/* Grupos */
+new Chart(document.getElementById('chartGruposPot'), {
+  type: 'bar',
+  data: {
+    labels: MESES,
+    datasets: [{
+      data: D.grpPot,
+      backgroundColor: D.grpPot.map((v,i) => i===6 ? 'rgba(0,174,239,0.8)' : 'rgba(255,255,255,0.15)'),
+      borderColor: D.grpPot.map((v,i) => i===6 ? '#00AEEF' : 'rgba(255,255,255,0.25)'),
+      borderWidth: 1.5, borderRadius: 6
+    }]
+  },
+  options: { ...baseOpts, plugins: { ...baseOpts.plugins, tooltip: { ...baseOpts.plugins.tooltip, callbacks: { label: ctx => ' Potencial: ' + fBRL(ctx.raw) } } }, scales: { x: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { color: 'rgba(255,255,255,0.45)', font: { size: 10 } } }, y: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { color: 'rgba(255,255,255,0.45)', callback: v => 'R$' + (v/1000).toFixed(0) + 'K' } } } }
+});
+
+new Chart(document.getElementById('chartGruposCot'), {
+  type: 'bar',
+  data: {
+    labels: MESES,
+    datasets: [{
+      data: D.grpCot,
+      backgroundColor: D.grpCot.map((v,i) => i===6 ? 'rgba(255,107,53,0.8)' : 'rgba(255,255,255,0.15)'),
+      borderColor: D.grpCot.map((v,i) => i===6 ? '#FF6B35' : 'rgba(255,255,255,0.25)'),
+      borderWidth: 1.5, borderRadius: 6
+    }]
+  },
+  options: { ...baseOpts, plugins: { ...baseOpts.plugins, tooltip: { ...baseOpts.plugins.tooltip, callbacks: { label: ctx => ' Cotações: ' + ctx.raw } } }, scales: { x: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { color: 'rgba(255,255,255,0.45)', font: { size: 10 } } }, y: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { color: 'rgba(255,255,255,0.45)' } } } }
+});
+
+/* ══════════════════════════════════════════
+   TABELA COMPLETA
+══════════════════════════════════════════ */
+function idxBest(arr, bigger=true) {
+  const sorted = [...arr].map((v,i)=>({v,i})).sort((a,b)=>bigger ? b.v-a.v : a.v-b.v);
+  return { best: sorted[0].i, second: sorted[1].i };
+}
+const linhas = [
+  { grupo: 'SITE', nome: 'Acessos', arr: D.acessos, fmt: fNum },
+  { nome: 'Add ao Carrinho', arr: D.addCarr, fmt: fNum },
+  { nome: 'Taxa Add Carrinho (%)', arr: txAdd, fmt: v => v.toFixed(2).replace('.',',')+' %' },
+  { grupo: 'VENDAS', nome: 'Booking Engine', arr: D.booking, fmt: fBRL },
+  { nome: 'Central de Reservas', arr: D.central, fmt: fBRL },
+  { nome: 'OTAs, Agências e Op.', arr: D.otas, fmt: fBRL },
+  { nome: 'Receita Total', arr: D.receita, fmt: fBRL, destaque: true },
+  { nome: 'Reservas', arr: D.reservas, fmt: fNum },
+  { nome: 'ARPU', arr: D.arpu, fmt: fBRL },
+  { nome: 'Ads', arr: D.ads, fmt: fBRL, warnHighest: true },
+  { nome: 'CPA (Ads ÷ Reservas)', arr: cpa, fmt: v => fBRL(v), warnHighest: true },
+  { nome: 'ROAS', arr: roas, fmt: v => v.toFixed(1).replace('.',',')+' x' },
+  { grupo: 'ASKSUITE', nome: 'Atendimentos', arr: D.atend, fmt: fNum },
+  { nome: 'Oportunidades', arr: D.opors, fmt: fNum },
+  { nome: 'Taxa de Oportunidade (%)', arr: txOp, fmt: v => v.toFixed(1).replace('.',',')+' %' },
+  { nome: 'Valor em Oportunidades', arr: D.valOp, fmt: fBRL },
+  { grupo: 'GRUPOS', nome: 'Potencial de Vendas', arr: D.grpPot, fmt: fBRL },
+  { nome: 'Cotações de Grupos', arr: D.grpCot, fmt: fNum }
+];
+let htmlTabela = '<thead><tr><th>Indicador</th>' + MESES.map(m=>`<th>${m}</th>`).join('') + '</tr></thead><tbody>';
+linhas.forEach(l => {
+  if (l.grupo) htmlTabela += `<tr class="separator"><td colspan="${MESES.length+1}">${l.grupo}</td></tr>`;
+  const { best, second } = idxBest(l.arr, !l.warnHighest);
+  const warnIdx = l.warnHighest ? idxBest(l.arr, true).best : -1;
+  htmlTabela += `<tr${l.destaque ? ' style="font-weight:600;"' : ''}><td>${l.nome}</td>`;
+  l.arr.forEach((v, i) => {
+    let cls = '';
+    if (l.warnHighest && i === warnIdx) cls = 'td-warn';
+    else if (!l.warnHighest && i === best) cls = 'td-best';
+    else if (!l.warnHighest && i === second) cls = 'td-second';
+    htmlTabela += `<td class="${cls}">${l.fmt(v)}</td>`;
+  });
+  htmlTabela += '</tr>';
+});
+htmlTabela += '</tbody>';
+document.getElementById('tabelaCompleta').innerHTML = htmlTabela;
+
+/* ══════════════════════════════════════════
+   FUNIL INTERATIVO — DADOS E LÓGICA
+══════════════════════════════════════════ */
+const funnelData = {
+  "Set/25": { acessos: 47000, addCarrinho: 2300, reservas: 660, receitaTotal: 1542637, bookingEngine: 342192, centralReservas: 352936, otasAgencias: 847509, ads: 24934, atendimentos: 4395, oportunidades: 2262, valorOportunidades: 1828978 },
+  "Out/25": { acessos: 47000, addCarrinho: 1900, reservas: 337, receitaTotal: 956825, bookingEngine: 194011, centralReservas: 253740, otasAgencias: 509074, ads: 24771, atendimentos: 4655, oportunidades: 2316, valorOportunidades: 3632104 },
+  "Nov/25": { acessos: 56000, addCarrinho: 3500, reservas: 882, receitaTotal: 2564557, bookingEngine: 870497, centralReservas: 1553532, otasAgencias: 140528, ads: 31249, atendimentos: 5484, oportunidades: 3156, valorOportunidades: 5530352 },
+  "Dez/25": { acessos: 50000, addCarrinho: 3000, reservas: 410, receitaTotal: 1675221, bookingEngine: 566705, centralReservas: 904353, otasAgencias: 204163, ads: 34622, atendimentos: 6498, oportunidades: 3799, valorOportunidades: 6991590 },
+  "Jan/26": { acessos: 64000, addCarrinho: 5400, reservas: 838, receitaTotal: 2825554, bookingEngine: 807475, centralReservas: 1614987, otasAgencias: 403093, ads: 27717, atendimentos: 8400, oportunidades: 5151, valorOportunidades: 9491119 },
+  "Fev/26": { acessos: 43000, addCarrinho: 3100, reservas: 561, receitaTotal: 1668819, bookingEngine: 348444, centralReservas: 938861, otasAgencias: 381513, ads: 27061, atendimentos: 6476, oportunidades: 3350, valorOportunidades: 5421913 },
+  "Mar/26": { acessos: 62000, addCarrinho: 5400, reservas: 822, receitaTotal: 2457023, bookingEngine: 670930, centralReservas: 1501236, otasAgencias: 284857, ads: 27811, atendimentos: 13839, oportunidades: 8041, valorOportunidades: 11750350 },
+  "Abr/26": { acessos: 168000, addCarrinho: 7200, reservas: 928, receitaTotal: 3019979, bookingEngine: 1453785, centralReservas: 1318956, otasAgencias: 247238, ads: 108463, atendimentos: 9353, oportunidades: 5013, valorOportunidades: 7031417 }
+};
+
+const insightsCopy = {
+  "Set/25": { text: "Setembro/2025 marcou o início do período de análise com performance sólida em atendimentos e oportunidades Asksuite. A receita foi impulsionada principalmente por OTAs e agências, que responderam por mais da metade do faturamento mensal.", pills: [{ label: "📊 OTAs dominam mix", type: "azul" }, { label: "🔁 Boa taxa de carrinho", type: "verde" }, { label: "💬 4.395 atendimentos", type: "" }] },
+  "Out/25": { text: "Outubro/2025 apresentou queda nas reservas em relação a setembro, com menor taxa de conversão do funil. O volume de oportunidades geradas pela Asksuite, porém, mais que compensou em valor, registrando R$ 3,6M em pipeline — o maior da temporada inicial.", pills: [{ label: "📉 Menor taxa reserva", type: "laranja" }, { label: "📈 R$ 3,6M em pipeline", type: "verde" }, { label: "🏨 OTAs ainda lideram", type: "azul" }] },
+  "Nov/25": { text: "Novembro/2025 foi o melhor mês da primeira temporada em receita, com forte presença da Central de Reservas (61% do mix). A taxa de add ao carrinho atingiu 6,25% — a mais alta do período set-dez. Excelente performance de conversão.", pills: [{ label: "🏆 Maior receita set-dez", type: "verde" }, { label: "📞 Central 61% do mix", type: "azul" }, { label: "🛒 6,25% taxa carrinho", type: "verde" }] },
+  "Dez/25": { text: "Dezembro/2025 registrou o maior CPA do período, com investimento em ads mais elevado em relação às reservas geradas. A Central de Reservas consolidou liderança no mix com 54%. Volume de atendimentos crescente indica aquecimento da demanda para janeiro.", pills: [{ label: "📣 CPA mais alto", type: "laranja" }, { label: "📞 Central lidera mix", type: "azul" }, { label: "💬 6.498 atendimentos", type: "" }] },
+  "Jan/26": { text: "Janeiro/2026 apresentou forte performance comercial: maior volume de add ao carrinho proporcional, receita acima de R$ 2,8M e ROAS elevado. A Central de Reservas manteve protagonismo com 57% da receita. Melhor mês de volume de oportunidades até então.", pills: [{ label: "💰 R$ 2,8M receita", type: "verde" }, { label: "🎯 5.151 oportunidades", type: "azul" }, { label: "📈 ROAS alto", type: "verde" }] },
+  "Fev/26": { text: "Fevereiro/2026 registrou o menor volume de acessos do período analisado, impactando naturalmente o funil comercial. Ainda assim, a Central de Reservas respondeu por 56% da receita, com pipeline de oportunidades robusto de R$ 5,4M.", pills: [{ label: "📉 Menor tráfego", type: "laranja" }, { label: "📞 Central segura mix", type: "azul" }, { label: "🎯 R$ 5,4M pipeline", type: "verde" }] },
+  "Mar/26": { text: "Março/2026 teve o maior volume de atendimentos Asksuite de todo o período (13.839), gerando 8.041 oportunidades e R$ 11,75M em pipeline — ambos recordes absolutos. Forte sinal de demanda crescente que se confirmou em abril.", pills: [{ label: "🏆 Recorde atendimentos", type: "verde" }, { label: "📈 R$ 11,75M pipeline", type: "verde" }, { label: "🔥 Demanda aquecida", type: "laranja" }] },
+  "Abr/26": { text: "Abril/2026 foi o maior mês do período em receita (R$ 3,0M), acessos (168K) e investimento em mídia (R$ 108K). O Booking Engine assumiu a liderança do mix com 48%, sinalizando maturidade do canal direto. ROAS de 27,8x demonstra eficiência excepcional da mídia paga.", pills: [{ label: "🏆 Maior receita do período", type: "verde" }, { label: "🌐 168K acessos", type: "azul" }, { label: "⚡ ROAS 27,8x", type: "verde" }] }
+};
+
+const fmtNum = new Intl.NumberFormat('pt-BR');
+const fmtCur = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+const fmtCurDec = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+function fmtNumber(n) { return fmtNum.format(n); }
+function fmtCurrency(n) { return fmtCur.format(n); }
+function fmtCurrencyDec(n) { return fmtCurDec.format(n); }
+function fmtPercent(n, dec=2) { return n.toFixed(dec).replace('.', ',') + '%'; }
+function fmtX(n) { return n.toFixed(1).replace('.', ',') + 'x'; }
+
+let mixChart;
+
+function initFunnelChart(data) {
+  const ctx = document.getElementById('chartMixReceitaMes').getContext('2d');
+  mixChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Booking Engine', 'Central de Reservas', 'OTAs / Agências'],
+      datasets: [{
+        data: [data.bookingEngine, data.centralReservas, data.otasAgencias],
+        backgroundColor: ['#00AEEF', '#1D1E46', '#FF6B35'],
+        borderColor: ['#fff', '#fff', '#fff'],
+        borderWidth: 3, hoverOffset: 8
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '68%',
+      plugins: {
+        legend: { position: 'bottom', labels: { font: { family: 'Montserrat', size: 11, weight: '600' }, color: '#6B7A99', padding: 16, usePointStyle: true, pointStyleWidth: 8 } },
+        tooltip: { callbacks: { label: ctx => { const total = ctx.chart.data.datasets[0].data.reduce((a,b)=>a+b,0); const pct = (ctx.raw/total*100).toFixed(1).replace('.',','); return ` ${fmtCurrency(ctx.raw)} · ${pct}%`; } }, titleFont: { family: 'Montserrat', weight: '700' }, bodyFont: { family: 'Montserrat' } }
+      }
+    }
+  });
+}
+
+function setBar(id, pct) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  requestAnimationFrame(() => { el.style.width = Math.max(pct, 0.5) + '%'; });
+}
+
+function updateFunnel(month) {
+  const d = funnelData[month];
+  if (!d) return;
+
+  const taxaCart  = d.addCarrinho / d.acessos * 100;
+  const taxaRes   = d.reservas    / d.acessos * 100;
+  const taxaAds   = d.ads         / d.acessos * 100;
+  const cpaF      = d.ads         / d.reservas;
+  const roasF     = d.receitaTotal / d.ads;
+  const taxaOport = d.oportunidades / d.atendimentos * 100;
+  const ticketOp  = d.valorOportunidades / d.oportunidades;
+
+  const animated = document.querySelectorAll('.funnel-animated');
+  animated.forEach(el => el.classList.add('updating'));
+
+  setTimeout(() => {
+    document.getElementById('kpi-acessos').textContent       = fmtNumber(d.acessos);
+    document.getElementById('kpi-cart').textContent          = fmtNumber(d.addCarrinho);
+    document.getElementById('kpi-cart-sub').textContent      = fmtPercent(taxaCart) + ' dos acessos';
+    document.getElementById('kpi-reservas').textContent      = fmtNumber(d.reservas);
+    document.getElementById('kpi-reservas-sub').textContent  = fmtPercent(taxaRes) + ' dos acessos';
+    document.getElementById('kpi-receita').textContent       = fmtCurrency(d.receitaTotal);
+    document.getElementById('kpi-roas').textContent          = 'ROAS ' + fmtX(roasF);
+    document.getElementById('kpi-oportunidades').textContent = fmtNumber(d.oportunidades);
+    document.getElementById('kpi-oport-val').textContent     = fmtCurrency(d.valorOportunidades);
+
+    document.getElementById('fc-acessos-val').textContent = fmtNumber(d.acessos);
+    document.getElementById('fc-cart-val').textContent    = fmtNumber(d.addCarrinho);
+    document.getElementById('fc-cart-pct').textContent    = fmtPercent(taxaCart);
+    document.getElementById('fc-res-val').textContent     = fmtNumber(d.reservas);
+    document.getElementById('fc-res-pct').textContent     = fmtPercent(taxaRes);
+    document.getElementById('fc-ads-val').textContent     = fmtCurrency(d.ads);
+    document.getElementById('fc-cpa').textContent         = fmtCurrencyDec(cpaF);
+
+    setBar('bar-acessos', 100);
+    setBar('bar-cart', taxaCart * 10);
+    setBar('bar-res',  taxaRes  * 20);
+    setBar('bar-ads',  taxaAds  * 20);
+
+    document.getElementById('fc-receita-final').textContent = fmtCurrency(d.receitaTotal);
+    document.getElementById('fc-roas-final').textContent    = fmtX(roasF);
+    document.getElementById('fc-conv-final').textContent    = fmtPercent(taxaRes);
+
+    document.getElementById('ask-atend-val').textContent  = fmtNumber(d.atendimentos);
+    document.getElementById('ask-oport-val').textContent  = fmtNumber(d.oportunidades);
+    document.getElementById('ask-oport-pct').textContent  = fmtPercent(taxaOport);
+
+    setBar('bar-atend', 100);
+    setBar('bar-oport', taxaOport);
+
+    document.getElementById('ask-valor-final').textContent  = fmtCurrency(d.valorOportunidades);
+    document.getElementById('ask-taxa-final').textContent   = fmtPercent(taxaOport);
+    document.getElementById('ask-ticket-final').textContent = fmtCurrency(ticketOp);
+
+    document.getElementById('chart-sub-label').textContent = 'Distribuição da receita por canal — ' + month;
+
+    if (mixChart) {
+      mixChart.data.datasets[0].data = [d.bookingEngine, d.centralReservas, d.otasAgencias];
+      mixChart.update('active');
+    }
+
+    const ins = insightsCopy[month];
+    document.getElementById('insight-month-tag').textContent = month;
+    document.getElementById('insightText').textContent = ins ? ins.text : 'Este mês mostra a relação entre volume de tráfego, intenção de compra, reservas e receita.';
+
+    const pillsContainer = document.getElementById('insightPills');
+    pillsContainer.innerHTML = '';
+    if (ins && ins.pills) {
+      ins.pills.forEach(p => {
+        const pill = document.createElement('span');
+        pill.className = 'insight-pill ' + (p.type || '');
+        pill.textContent = p.label;
+        pillsContainer.appendChild(pill);
+      });
+    }
+
+    animated.forEach(el => el.classList.remove('updating'));
+  }, 200);
+}
+
+document.querySelectorAll('.month-btn').forEach(btn => {
+  btn.addEventListener('click', function () {
+    document.querySelectorAll('.month-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    updateFunnel(this.dataset.month);
+  });
+});
+
+initFunnelChart(funnelData['Abr/26']);
+updateFunnel('Abr/26');
+
+/* ══════════════════════════════════════════
+   ANIMAÇÕES SCROLL
+══════════════════════════════════════════ */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
