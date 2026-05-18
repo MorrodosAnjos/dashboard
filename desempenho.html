@@ -24,7 +24,6 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -111,9 +110,7 @@
     margin-bottom: 12px;
   }
 
-  .hero h1 span {
-    color: var(--azul-claro);
-  }
+  .hero h1 span { color: var(--azul-claro); }
 
   .hero-sub {
     font-size: 16px;
@@ -212,15 +209,15 @@
   /* ── KPI STRIP ── */
   .kpi-strip {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 16px;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 12px;
     margin-bottom: 48px;
   }
 
   .kpi-card {
     background: var(--branco);
     border-radius: 16px;
-    padding: 22px 20px;
+    padding: 18px 14px;
     box-shadow: var(--shadow-card);
     position: relative;
     overflow: hidden;
@@ -240,11 +237,15 @@
     height: 3px;
   }
 
-  .kpi-card.jan::before { background: var(--azul-escuro); }
-  .kpi-card.fev::before { background: #6B7A99; }
-  .kpi-card.mar::before { background: var(--azul-medio); }
-  .kpi-card.abr::before { background: var(--azul-claro); }
-  .kpi-card.mai::before { background: var(--alerta); }
+  .kpi-card.set::before  { background: #8B5CF6; }
+  .kpi-card.out::before  { background: #F59E0B; }
+  .kpi-card.nov::before  { background: #10B981; }
+  .kpi-card.dez::before  { background: #EC4899; }
+  .kpi-card.jan::before  { background: var(--verde); }
+  .kpi-card.fev::before  { background: #6B7A99; }
+  .kpi-card.mar::before  { background: var(--azul-medio); }
+  .kpi-card.abr::before  { background: var(--azul-claro); }
+  .kpi-card.mai::before  { background: var(--alerta); }
 
   .kpi-month {
     font-size: 10px;
@@ -252,20 +253,20 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--texto-muted);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
 
   .kpi-value {
     font-family: 'Montserrat', sans-serif;
-    font-size: 26px;
+    font-size: 20px;
     font-weight: 700;
     color: var(--azul-escuro);
     line-height: 1;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 
   .kpi-label {
-    font-size: 11px;
+    font-size: 10px;
     color: var(--texto-muted);
     font-weight: 400;
   }
@@ -274,20 +275,21 @@
     display: inline-flex;
     align-items: center;
     gap: 3px;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
-    padding: 3px 8px;
+    padding: 3px 7px;
     border-radius: 100px;
-    margin-top: 10px;
+    margin-top: 8px;
   }
 
-  .kpi-delta.down { background: rgba(255,107,53,0.10); color: var(--alerta); }
-  .kpi-delta.up { background: rgba(0,200,120,0.10); color: var(--verde); }
+  .kpi-delta.down    { background: rgba(255,107,53,0.10); color: var(--alerta); }
+  .kpi-delta.up      { background: rgba(0,200,120,0.10);  color: var(--verde); }
   .kpi-delta.neutral { background: rgba(107,122,153,0.10); color: var(--texto-muted); }
 
-  .kpi-card.mai .kpi-value { color: var(--alerta); }
-  .kpi-card.abr .kpi-value { color: var(--azul-claro); }
   .kpi-card.jan .kpi-value { color: var(--verde); }
+  .kpi-card.abr .kpi-value { color: var(--azul-claro); }
+  .kpi-card.mai .kpi-value { color: var(--alerta); }
+  .kpi-card.nov .kpi-value { color: #10B981; }
 
   /* ── CHART GRID ── */
   .chart-grid-2 {
@@ -353,14 +355,12 @@
   }
 
   .chart-badge.alert { background: rgba(255,107,53,0.10); color: var(--alerta); }
-  .chart-badge.green { background: rgba(0,200,120,0.10); color: var(--verde); }
+  .chart-badge.green { background: rgba(0,200,120,0.10);  color: var(--verde); }
 
   canvas { max-width: 100%; }
 
   /* ── FUNIL VISUAL ── */
-  .funnel-section {
-    margin-bottom: 24px;
-  }
+  .funnel-section { margin-bottom: 24px; }
 
   .funnel-card {
     background: var(--azul-escuro);
@@ -442,31 +442,13 @@
   .funnel-fill.jan { background: linear-gradient(90deg, #00C878, #00A860); }
   .funnel-fill.mai { background: linear-gradient(90deg, #FF6B35, #E8520E); }
   .funnel-fill.abr { background: linear-gradient(90deg, #00AEEF, #0088C7); }
+  .funnel-fill.nov { background: linear-gradient(90deg, #10B981, #059669); }
 
   .funnel-num {
     font-size: 15px;
     font-weight: 700;
     color: var(--branco);
     text-align: right;
-  }
-
-  /* ── COMPARATIVO CARD ── */
-  .compare-card {
-    background: linear-gradient(135deg, var(--azul-escuro) 0%, #2A2B5E 100%);
-    border-radius: 20px;
-    padding: 28px;
-    color: var(--branco);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .compare-card::after {
-    content: '';
-    position: absolute;
-    bottom: -40px; right: -40px;
-    width: 180px; height: 180px;
-    border-radius: 50%;
-    background: rgba(0,174,239,0.08);
   }
 
   /* ── TABELA ── */
@@ -483,14 +465,11 @@
     border-bottom: 1px solid rgba(29,30,70,0.06);
   }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
+  table { width: 100%; border-collapse: collapse; }
 
   thead th {
-    padding: 12px 16px;
-    font-size: 11px;
+    padding: 12px 10px;
+    font-size: 10px;
     font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
@@ -510,8 +489,8 @@
   tbody tr:last-child { border-bottom: none; }
 
   tbody td {
-    padding: 13px 16px;
-    font-size: 13px;
+    padding: 12px 10px;
+    font-size: 12px;
     color: var(--texto);
     text-align: right;
     font-variant-numeric: tabular-nums;
@@ -521,22 +500,13 @@
     text-align: left;
     font-weight: 500;
     color: var(--azul-escuro);
+    font-size: 13px;
   }
 
-  .td-mai {
-    font-weight: 700;
-    color: var(--alerta) !important;
-  }
-
-  .td-jan {
-    font-weight: 700;
-    color: var(--verde) !important;
-  }
-
-  .td-abr {
-    font-weight: 600;
-    color: var(--azul-claro) !important;
-  }
+  .td-mai  { font-weight: 700; color: var(--alerta) !important; }
+  .td-jan  { font-weight: 700; color: var(--verde) !important; }
+  .td-abr  { font-weight: 600; color: var(--azul-claro) !important; }
+  .td-nov  { font-weight: 600; color: #10B981 !important; }
 
   /* ── INSIGHT CARDS ── */
   .insight-grid {
@@ -665,6 +635,9 @@
   }
 
   /* ── RESPONSIVE ── */
+  @media (max-width: 1100px) {
+    .kpi-strip { grid-template-columns: repeat(3, 1fr); }
+  }
   @media (max-width: 900px) {
     .hero { padding: 40px 24px 60px; }
     .hero-grid { grid-template-columns: 1fr; }
@@ -684,21 +657,21 @@
   <div class="hero-grid">
     <div>
       <div class="hero-badge">Relatório de Performance</div>
-      <h1>Comparativo de<br><span>Vendas</span> 2026</h1>
-      <p class="hero-sub">Primeiros 10 dias · Janeiro → Maio · Morro dos Anjos Resort</p>
+      <h1>Comparativo de<br><span>Vendas</span> 2025–2026</h1>
+      <p class="hero-sub">Primeiros 15 dias · Setembro/2025 → Maio/2026 · Morro dos Anjos Resort</p>
     </div>
     <div class="hero-stats">
       <div class="hero-stat-pill">
-        <div class="label">Melhor Mês</div>
-        <div class="value"><span>R$ 1,1M</span></div>
+        <div class="label">Melhor Mês (15 dias)</div>
+        <div class="value"><span>R$ 1,75M</span></div>
       </div>
       <div class="hero-stat-pill">
-        <div class="label">Maior Conversão</div>
-        <div class="value"><span>343</span> reservas</div>
+        <div class="label">Maior Nº Reservas</div>
+        <div class="value"><span>532</span> reservas</div>
       </div>
       <div class="hero-stat-pill">
         <div class="label">Período</div>
-        <div class="value">Jan<span>→</span>Mai</div>
+        <div class="value">Set/25<span>→</span>Mai/26</div>
       </div>
     </div>
   </div>
@@ -721,38 +694,71 @@
 
   <!-- ── KPI STRIP ── -->
   <div class="section-label">Receita Total</div>
-  <div class="section-title">Dias 1 a 10 por Mês</div>
+  <div class="section-title">Dias 1 a 15 por Mês</div>
 
   <div class="kpi-strip fade-up">
+    <!-- Set/25 -->
+    <div class="kpi-card set">
+      <div class="kpi-month">Set/25</div>
+      <div class="kpi-value">R$ 698K</div>
+      <div class="kpi-label">R$ 698.135</div>
+      <div class="kpi-delta neutral">— Referência</div>
+    </div>
+    <!-- Out/25 -->
+    <div class="kpi-card out">
+      <div class="kpi-month">Out/25</div>
+      <div class="kpi-value">R$ 535K</div>
+      <div class="kpi-label">R$ 534.703</div>
+      <div class="kpi-delta down">↓ −23% vs Set</div>
+    </div>
+    <!-- Nov/25 -->
+    <div class="kpi-card nov">
+      <div class="kpi-month">Nov/25</div>
+      <div class="kpi-value">R$ 1,33M</div>
+      <div class="kpi-label">R$ 1.332.000</div>
+      <div class="kpi-delta up">↑ +149% vs Out</div>
+    </div>
+    <!-- Dez/25 -->
+    <div class="kpi-card dez">
+      <div class="kpi-month">Dez/25</div>
+      <div class="kpi-value">R$ 329K</div>
+      <div class="kpi-label">R$ 329.188</div>
+      <div class="kpi-delta down">↓ −75% vs Nov</div>
+    </div>
+    <!-- Jan/26 -->
     <div class="kpi-card jan">
-      <div class="kpi-month">Janeiro</div>
-      <div class="kpi-value">R$ 1,1M</div>
-      <div class="kpi-label">R$ 1.109.459</div>
+      <div class="kpi-month">Jan/26</div>
+      <div class="kpi-value">R$ 1,75M</div>
+      <div class="kpi-label">R$ 1.751.548</div>
       <div class="kpi-delta up">↑ Melhor mês</div>
     </div>
+    <!-- Fev/26 -->
     <div class="kpi-card fev">
-      <div class="kpi-month">Fevereiro</div>
-      <div class="kpi-value">R$ 383K</div>
-      <div class="kpi-label">R$ 383.001</div>
-      <div class="kpi-delta down">↓ −65% vs Jan</div>
+      <div class="kpi-month">Fev/26</div>
+      <div class="kpi-value">R$ 858K</div>
+      <div class="kpi-label">R$ 858.085</div>
+      <div class="kpi-delta down">↓ −51% vs Jan</div>
     </div>
+    <!-- Mar/26 -->
     <div class="kpi-card mar">
-      <div class="kpi-month">Março</div>
-      <div class="kpi-value">R$ 613K</div>
-      <div class="kpi-label">R$ 612.611</div>
-      <div class="kpi-delta up">↑ +60% vs Fev</div>
+      <div class="kpi-month">Mar/26</div>
+      <div class="kpi-value">R$ 981K</div>
+      <div class="kpi-label">R$ 981.485</div>
+      <div class="kpi-delta up">↑ +14% vs Fev</div>
     </div>
+    <!-- Abr/26 -->
     <div class="kpi-card abr">
-      <div class="kpi-month">Abril</div>
-      <div class="kpi-value">R$ 873K</div>
-      <div class="kpi-label">R$ 873.021</div>
-      <div class="kpi-delta up">↑ +42% vs Mar</div>
+      <div class="kpi-month">Abr/26</div>
+      <div class="kpi-value">R$ 1,40M</div>
+      <div class="kpi-label">R$ 1.403.496</div>
+      <div class="kpi-delta up">↑ +43% vs Mar</div>
     </div>
+    <!-- Mai/26 -->
     <div class="kpi-card mai">
-      <div class="kpi-month">Maio ⚠</div>
-      <div class="kpi-value">R$ 353K</div>
-      <div class="kpi-label">R$ 352.867</div>
-      <div class="kpi-delta down">↓ −60% vs Abr</div>
+      <div class="kpi-month">Mai/26 ⚠</div>
+      <div class="kpi-value">R$ 610K</div>
+      <div class="kpi-label">R$ 609.679</div>
+      <div class="kpi-delta down">↓ −57% vs Abr</div>
     </div>
   </div>
 
@@ -762,9 +768,9 @@
       <div class="chart-header">
         <div>
           <div class="chart-title">Receita Total</div>
-          <div class="chart-sub">Booking Engine + Central de Reservas (R$)</div>
+          <div class="chart-sub">Booking Engine + Central de Reservas + OTAs (R$)</div>
         </div>
-        <span class="chart-badge alert">Maio em queda</span>
+        <span class="chart-badge alert">Jan/26 pico</span>
       </div>
       <canvas id="chartReceita" height="220"></canvas>
     </div>
@@ -772,7 +778,7 @@
       <div class="chart-header">
         <div>
           <div class="chart-title">Mix de Receita</div>
-          <div class="chart-sub">Booking Engine vs Central · Maio/26</div>
+          <div class="chart-sub">Canais por mês — Abr/26 (melhor mês 2026)</div>
         </div>
         <span class="chart-badge">Canais</span>
       </div>
@@ -807,16 +813,16 @@
   <!-- ── INSIGHT CARDS ── -->
   <div class="insight-grid fade-up">
     <div class="insight-card warn">
-      <div class="insight-num">−68%</div>
-      <div class="insight-desc">Queda de receita nos primeiros 10 dias de Maio vs Janeiro — o maior impacto do período.</div>
+      <div class="insight-num">−65%</div>
+      <div class="insight-desc">Queda de receita nos primeiros 15 dias de Maio vs Janeiro — o maior impacto do período analisado.</div>
     </div>
     <div class="insight-card good">
-      <div class="insight-num">R$ 18,45</div>
-      <div class="insight-desc">CPA de Janeiro: com R$6.325 em ads e 343 reservas, o menor custo por reserva do histórico analisado.</div>
+      <div class="insight-num">R$ 18,41</div>
+      <div class="insight-desc">CPA de Janeiro/26: com R$ 9.792 em ads e 532 reservas, o menor custo por reserva do histórico analisado.</div>
     </div>
     <div class="insight-card">
-      <div class="insight-num">R$ 45,28</div>
-      <div class="insight-desc">CPA de Maio: R$5.390 em ads com 119 reservas. Contexto: verba mínima + fase de aprendizado das campanhas.</div>
+      <div class="insight-num">R$ 43,08</div>
+      <div class="insight-desc">CPA de Maio/26: R$ 9.046 em ads com 210 reservas. Contexto: verba mínima + fase de aprendizado das campanhas.</div>
     </div>
   </div>
 
@@ -857,53 +863,67 @@
   <!-- ── FUNIL ASKSUITE ── -->
   <div class="funnel-section fade-up">
     <div class="funnel-card">
-      <div class="funnel-title">Funil de Atendimento — Comparativo Jan vs Abr vs Mai</div>
+      <div class="funnel-title">Funil de Atendimento — Comparativo Jan vs Abr vs Nov vs Mai</div>
       <div class="funnel-sub">Visualização proporcional por mês (base = valor máximo de cada etapa)</div>
       <div class="funnel-bars">
         <!-- Atendimentos -->
         <div class="funnel-row">
           <div class="funnel-label">Atendimentos</div>
           <div class="funnel-track">
-            <div class="funnel-fill jan" style="width:97.7%" data-w="97.7">Jan 3.413</div>
+            <div class="funnel-fill jan" style="width:91.6%">Jan 4.786</div>
           </div>
-          <div class="funnel-num">3.413</div>
+          <div class="funnel-num">4.786</div>
         </div>
         <div class="funnel-row">
           <div class="funnel-label"></div>
           <div class="funnel-track">
-            <div class="funnel-fill abr" style="width:100%" data-w="100">Abr 3.495</div>
+            <div class="funnel-fill nov" style="width:46.8%">Nov 2.445</div>
           </div>
-          <div class="funnel-num">3.495</div>
+          <div class="funnel-num">2.445</div>
         </div>
         <div class="funnel-row">
           <div class="funnel-label"></div>
           <div class="funnel-track">
-            <div class="funnel-fill mai" style="width:35.2%" data-w="35.2">Mai 1.231</div>
+            <div class="funnel-fill abr" style="width:100%">Abr 5.225</div>
           </div>
-          <div class="funnel-num" style="color:var(--alerta)">1.231 ⚠</div>
+          <div class="funnel-num">5.225</div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-label"></div>
+          <div class="funnel-track">
+            <div class="funnel-fill mai" style="width:35.7%">Mai 1.866</div>
+          </div>
+          <div class="funnel-num" style="color:var(--alerta)">1.866 ⚠</div>
         </div>
         <!-- Oportunidades -->
         <div style="height:8px"></div>
         <div class="funnel-row">
           <div class="funnel-label">Oportunidades</div>
           <div class="funnel-track">
-            <div class="funnel-fill jan" style="width:100%" data-w="100">Jan 2.096</div>
+            <div class="funnel-fill jan" style="width:100%">Jan 2.954</div>
           </div>
-          <div class="funnel-num">2.096</div>
+          <div class="funnel-num">2.954</div>
         </div>
         <div class="funnel-row">
           <div class="funnel-label"></div>
           <div class="funnel-track">
-            <div class="funnel-fill abr" style="width:85.4%" data-w="85.4">Abr 1.791</div>
+            <div class="funnel-fill nov" style="width:47.2%">Nov 1.393</div>
           </div>
-          <div class="funnel-num">1.791</div>
+          <div class="funnel-num">1.393</div>
         </div>
         <div class="funnel-row">
           <div class="funnel-label"></div>
           <div class="funnel-track">
-            <div class="funnel-fill mai" style="width:28.5%" data-w="28.5">Mai 598</div>
+            <div class="funnel-fill abr" style="width:92.8%">Abr 2.742</div>
           </div>
-          <div class="funnel-num" style="color:var(--alerta)">598 ⚠</div>
+          <div class="funnel-num">2.742</div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-label"></div>
+          <div class="funnel-track">
+            <div class="funnel-fill mai" style="width:25.9%">Mai 764</div>
+          </div>
+          <div class="funnel-num" style="color:var(--alerta)">764 ⚠</div>
         </div>
       </div>
     </div>
@@ -918,7 +938,7 @@
       <div class="chart-header">
         <div>
           <div class="chart-title">Acessos ao Site</div>
-          <div class="chart-sub">Sessões únicas nos primeiros 10 dias</div>
+          <div class="chart-sub">Sessões únicas nos primeiros 15 dias</div>
         </div>
         <span class="chart-badge">Tráfego</span>
       </div>
@@ -928,7 +948,7 @@
       <div class="chart-header">
         <div>
           <div class="chart-title">Funil do Site</div>
-          <div class="chart-sub">Acessos → Add Carrinho → Compras (Maio vs Abril)</div>
+          <div class="chart-sub">Acessos → Add Carrinho (Abr vs Jan vs Mai)</div>
         </div>
         <span class="chart-badge alert">Impacto</span>
       </div>
@@ -949,17 +969,17 @@
     <div class="chart-card">
       <div class="chart-header">
         <div>
-          <div class="chart-title">Taxa de Conversão</div>
-          <div class="chart-sub">Compras ÷ Acessos (%)</div>
+          <div class="chart-title">Add ao Carrinho por Acesso</div>
+          <div class="chart-sub">Carrinho ÷ Acessos (%)</div>
         </div>
-        <span class="chart-badge green">Taxa</span>
+        <span class="chart-badge green">Engajamento</span>
       </div>
       <canvas id="chartConversao" height="220"></canvas>
       <div style="margin-top: 20px; padding: 16px 18px; background: var(--azul-pale); border-radius: 12px; border-left: 4px solid var(--azul-claro);">
-        <div style="font-size: 22px; font-weight: 800; color: var(--azul-claro); line-height: 1; margin-bottom: 8px;">0,57% — maior do período</div>
+        <div style="font-size: 22px; font-weight: 800; color: var(--azul-claro); line-height: 1; margin-bottom: 8px;">3,14% — Abr/26, maior do período</div>
         <div style="font-size: 12.5px; color: var(--texto-muted); line-height: 1.6;">
-          <strong style="color: var(--azul-escuro);">Efeito residual da campanha de aniversário de Abril.</strong>
-          Com tráfego reduzido em Maio, quem acessou o site já chegava com intenção de compra — usuários impactados pelos ~83 mil acessos de Abril que retornaram convertendo. O ROI real de Abril é maior do que os números do próprio mês indicam.
+          <strong style="color: var(--azul-escuro);">Campanha de aniversário de Abril com alto engajamento.</strong>
+          Com 121 mil acessos e 3.800 adds ao carrinho, Abril concentrou o maior volume de intenção de compra. O tráfego qualificado de Abril pode gerar conversões residuais nos meses seguintes.
         </div>
       </div>
     </div>
@@ -967,17 +987,21 @@
 
   <!-- ── TABELA COMPLETA ── -->
   <div class="section-label">Scorecard</div>
-  <div class="section-title">Todos os Indicadores</div>
+  <div class="section-title">Todos os Indicadores — Dias 1 a 15</div>
 
   <div class="table-card fade-up">
     <div class="table-header">
-      <div class="chart-title">Comparativo Completo — Dias 1 a 10</div>
-      <div class="chart-sub">Verde = melhor período · Laranja = Maio (contexto atípico) · Azul = 2º melhor</div>
+      <div class="chart-title">Comparativo Completo — Dias 1 a 15</div>
+      <div class="chart-sub">Verde = Jan/26 (melhor mês) · Azul = 2º melhor · Verde escuro = Nov/25 destaque · Laranja = Maio/26 (contexto atípico)</div>
     </div>
     <table>
       <thead>
         <tr>
           <th>Indicador</th>
+          <th>Set/25</th>
+          <th>Out/25</th>
+          <th>Nov/25</th>
+          <th>Dez/25</th>
           <th>Jan/26</th>
           <th>Fev/26</th>
           <th>Mar/26</th>
@@ -986,20 +1010,186 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>Receita Total</td><td class="td-jan">R$ 1.109.459</td><td>R$ 383.001</td><td>R$ 612.611</td><td class="td-abr">R$ 873.021</td><td class="td-mai">R$ 352.867</td></tr>
-        <tr><td>Booking Engine</td><td>R$ 335.304</td><td>R$ 142.901</td><td>R$ 162.680</td><td class="td-abr">R$ 425.239</td><td class="td-mai">R$ 146.279</td></tr>
-        <tr><td>Central de Reservas</td><td class="td-jan">R$ 774.155</td><td>R$ 240.100</td><td>R$ 449.931</td><td>R$ 447.782</td><td class="td-mai">R$ 206.588</td></tr>
-        <tr><td>Nº de Reservas</td><td class="td-jan">343</td><td>119</td><td>226</td><td>258</td><td class="td-mai">119</td></tr>
-        <tr><td>Invest. Ads</td><td>R$ 6.325</td><td>R$ 9.353</td><td>R$ 8.279</td><td class="td-abr">R$ 25.873</td><td class="td-mai">R$ 5.390</td></tr>
-        <tr><td>CPA (Ads/Reserva)</td><td class="td-jan">R$ 18,44</td><td>R$ 78,59</td><td>R$ 36,63</td><td>R$ 100,28</td><td class="td-mai">R$ 45,29</td></tr>
-        <tr><td>Atend. Asksuite</td><td class="td-jan">3.413</td><td>2.148</td><td>2.195</td><td>3.495</td><td class="td-mai">1.231</td></tr>
-        <tr><td>Oportunidades</td><td class="td-jan">2.096</td><td>1.156</td><td>1.107</td><td>1.791</td><td class="td-mai">598</td></tr>
-        <tr><td>R$ Oportunidades</td><td class="td-jan">R$ 3.826.672</td><td>R$ 1.895.010</td><td>R$ 1.621.778</td><td class="td-abr">R$ 2.694.935</td><td class="td-mai">R$ 773.571</td></tr>
-        <tr><td>Acessos Site</td><td>23.000</td><td>17.000</td><td>15.000</td><td class="td-jan">83.000</td><td class="td-mai">7.900</td></tr>
-        <tr><td>Add Carrinho</td><td>2.100</td><td>1.200</td><td>1.200</td><td class="td-abr">2.600</td><td class="td-mai">593</td></tr>
-        <tr><td>Compras Site</td><td>99</td><td>43</td><td>62</td><td class="td-jan">117</td><td class="td-mai">45</td></tr>
-        <tr><td>Receita Site</td><td>R$ 374.000</td><td>R$ 176.000</td><td>R$ 171.000</td><td class="td-abr">R$ 425.000</td><td class="td-mai">R$ 140.000</td></tr>
-        <tr><td>ARPU</td><td>R$ 4.200</td><td class="td-abr">R$ 4.300</td><td>R$ 2.900</td><td>R$ 3.900</td><td>R$ 3.200</td></tr>
+        <tr>
+          <td>Receita Total</td>
+          <td>R$ 698.135</td>
+          <td>R$ 534.703</td>
+          <td class="td-nov">R$ 1.332.000</td>
+          <td>R$ 329.188</td>
+          <td class="td-jan">R$ 1.751.548</td>
+          <td>R$ 858.085</td>
+          <td>R$ 981.485</td>
+          <td class="td-abr">R$ 1.403.496</td>
+          <td class="td-mai">R$ 609.679</td>
+        </tr>
+        <tr>
+          <td>Booking Engine</td>
+          <td>R$ 176.292</td>
+          <td>R$ 72.663</td>
+          <td>R$ 294.689</td>
+          <td>R$ 112.610</td>
+          <td>R$ 499.742</td>
+          <td>R$ 207.554</td>
+          <td>R$ 255.667</td>
+          <td class="td-jan">R$ 631.473</td>
+          <td class="td-mai">R$ 193.019</td>
+        </tr>
+        <tr>
+          <td>Central de Reservas</td>
+          <td>R$ 194.009</td>
+          <td>R$ 138.211</td>
+          <td class="td-abr">R$ 950.769</td>
+          <td>R$ 145.925</td>
+          <td class="td-jan">R$ 1.136.875</td>
+          <td>R$ 420.996</td>
+          <td>R$ 630.533</td>
+          <td>R$ 647.573</td>
+          <td class="td-mai">R$ 341.700</td>
+        </tr>
+        <tr>
+          <td>OTAs / Agências</td>
+          <td>R$ 327.834</td>
+          <td class="td-jan">R$ 323.829</td>
+          <td>R$ 86.541</td>
+          <td>R$ 70.653</td>
+          <td>R$ 114.930</td>
+          <td>R$ 229.535</td>
+          <td>R$ 95.284</td>
+          <td>R$ 124.449</td>
+          <td class="td-mai">R$ 74.960</td>
+        </tr>
+        <tr>
+          <td>Nº de Reservas</td>
+          <td>276</td>
+          <td>214</td>
+          <td>519</td>
+          <td>75</td>
+          <td class="td-jan">532</td>
+          <td>268</td>
+          <td>360</td>
+          <td class="td-abr">427</td>
+          <td class="td-mai">210</td>
+        </tr>
+        <tr>
+          <td>Invest. Ads</td>
+          <td>R$ 9.880</td>
+          <td>R$ 12.301</td>
+          <td>R$ 12.054</td>
+          <td>R$ 17.274</td>
+          <td>R$ 9.792</td>
+          <td>R$ 15.086</td>
+          <td>R$ 12.428</td>
+          <td class="td-abr">R$ 41.866</td>
+          <td class="td-mai">R$ 9.046</td>
+        </tr>
+        <tr>
+          <td>CPA (Ads/Reserva)</td>
+          <td>R$ 35,80</td>
+          <td>R$ 57,48</td>
+          <td>R$ 23,23</td>
+          <td>R$ 230,32</td>
+          <td class="td-jan">R$ 18,41</td>
+          <td>R$ 56,29</td>
+          <td>R$ 34,52</td>
+          <td>R$ 98,04</td>
+          <td class="td-mai">R$ 43,08</td>
+        </tr>
+        <tr>
+          <td>ARPU</td>
+          <td>R$ 2.529</td>
+          <td>R$ 2.499</td>
+          <td>R$ 2.566</td>
+          <td class="td-jan">R$ 4.389</td>
+          <td>R$ 3.292</td>
+          <td>R$ 3.202</td>
+          <td>R$ 2.726</td>
+          <td>R$ 3.287</td>
+          <td>R$ 2.903</td>
+        </tr>
+        <tr>
+          <td>Atend. Asksuite</td>
+          <td>2.363</td>
+          <td>2.038</td>
+          <td>2.445</td>
+          <td>2.338</td>
+          <td>4.786</td>
+          <td>3.487</td>
+          <td>3.350</td>
+          <td class="td-jan">5.225</td>
+          <td class="td-mai">1.866</td>
+        </tr>
+        <tr>
+          <td>Oportunidades</td>
+          <td>1.244</td>
+          <td>971</td>
+          <td>1.393</td>
+          <td>1.362</td>
+          <td class="td-jan">2.954</td>
+          <td>1.880</td>
+          <td>1.758</td>
+          <td class="td-abr">2.742</td>
+          <td class="td-mai">764</td>
+        </tr>
+        <tr>
+          <td>R$ Oportunidades</td>
+          <td>R$ 1.591.364</td>
+          <td>R$ 898.005</td>
+          <td>R$ 2.712.881</td>
+          <td>R$ 2.405.077</td>
+          <td class="td-jan">R$ 5.409.910</td>
+          <td>R$ 2.882.380</td>
+          <td>R$ 2.613.481</td>
+          <td class="td-abr">R$ 3.986.289</td>
+          <td class="td-mai">R$ 962.911</td>
+        </tr>
+        <tr>
+          <td>Acessos Site</td>
+          <td>19.000</td>
+          <td>23.000</td>
+          <td>27.000</td>
+          <td>23.000</td>
+          <td>32.000</td>
+          <td>26.000</td>
+          <td>20.000</td>
+          <td class="td-jan">121.000</td>
+          <td class="td-mai">13.000</td>
+        </tr>
+        <tr>
+          <td>Add Carrinho</td>
+          <td>688</td>
+          <td>845</td>
+          <td>1.500</td>
+          <td>1.000</td>
+          <td class="td-abr">3.000</td>
+          <td>1.700</td>
+          <td>1.900</td>
+          <td class="td-jan">3.800</td>
+          <td class="td-mai">955</td>
+        </tr>
+        <tr>
+          <td>Receita Site</td>
+          <td>R$ 97.000</td>
+          <td>R$ 69.000</td>
+          <td>R$ 330.000</td>
+          <td>R$ 109.000</td>
+          <td class="td-jan">R$ 557.000</td>
+          <td>R$ 248.000</td>
+          <td>R$ 271.000</td>
+          <td class="td-abr">R$ 618.000</td>
+          <td class="td-mai">R$ 183.000</td>
+        </tr>
+        <tr>
+          <td>ARPU Site</td>
+          <td>R$ 3.100</td>
+          <td>R$ 3.100</td>
+          <td>R$ 3.600</td>
+          <td class="td-jan">R$ 4.900</td>
+          <td>R$ 4.100</td>
+          <td>R$ 3.800</td>
+          <td>R$ 3.000</td>
+          <td>R$ 3.900</td>
+          <td>R$ 3.200</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -1034,7 +1224,7 @@
       <div class="rational-card-content">
         <div class="rational-icon" style="background: rgba(0,174,239,0.12);">✨</div>
         <div class="rational-title" style="color: #00AEEF;">Efeito residual de Abril — sinal positivo</div>
-        <div class="rational-text">Maio registrou a <strong>maior taxa de conversão do período (0,57%)</strong>, mesmo com o menor volume de tráfego. Isso indica que parte dos ~83 mil usuários impactados pela campanha de aniversário de Abril retornou em Maio já com decisão de compra tomada. É o chamado <em>efeito de janela de conversão</em>: o usuário é impactado, considera, e converte dias depois. Isso reforça que o ROI real da campanha de Abril é maior do que os números do próprio mês sugerem.</div>
+        <div class="rational-text">Com 121 mil acessos e 3.800 adds ao carrinho em Abril, parte dos usuários impactados pela campanha de aniversário retorna em Maio já com decisão de compra. É o chamado <em>efeito de janela de conversão</em>: o usuário é impactado, considera, e converte dias depois. O ROI real de Abril tende a ser maior do que os números do próprio mês indicam.</div>
       </div>
     </div>
   </div>
@@ -1044,12 +1234,16 @@
 <!-- ── FOOTER ── -->
 <footer class="footer">
   <div class="footer-logo">Morro dos Anjos <span>Resort</span></div>
-  <div class="footer-sub">Performance Report · Primeiros 10 Dias · Janeiro — Maio 2026</div>
+  <div class="footer-sub">Performance Report · Primeiros 15 Dias · Setembro/2025 — Maio/2026</div>
 </footer>
 
 <script>
 // ── CORES ──
 const C = {
+  set:    '#8B5CF6',
+  out:    '#F59E0B',
+  nov:    '#10B981',
+  dez:    '#EC4899',
   jan:    '#00C878',
   fev:    '#94A3B8',
   mar:    '#0E6F99',
@@ -1060,8 +1254,8 @@ const C = {
   grid:   'rgba(29,30,70,0.06)',
 };
 
-const MONTHS = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai'];
-const COLORS = [C.jan, C.fev, C.mar, C.abr, C.mai];
+const MONTHS = ['Set/25', 'Out/25', 'Nov/25', 'Dez/25', 'Jan/26', 'Fev/26', 'Mar/26', 'Abr/26', 'Mai/26'];
+const COLORS = [C.set, C.out, C.nov, C.dez, C.jan, C.fev, C.mar, C.abr, C.mai];
 
 Chart.defaults.font.family = "'Montserrat', sans-serif";
 Chart.defaults.color = '#6B7A99';
@@ -1083,7 +1277,7 @@ const commonOptions = {
     x: {
       grid: { display: false },
       border: { display: false },
-      ticks: { font: { size: 12, weight: '500' } }
+      ticks: { font: { size: 10, weight: '500' } }
     },
     y: {
       grid: { color: C.grid },
@@ -1099,7 +1293,7 @@ new Chart(document.getElementById('chartReceita'), {
   data: {
     labels: MONTHS,
     datasets: [{
-      data: [1109459, 383001, 612611, 873021, 352867],
+      data: [698135, 534703, 1332000, 329188, 1751548, 858085, 981485, 1403496, 609679],
       backgroundColor: COLORS,
       borderRadius: 8,
       borderSkipped: false,
@@ -1111,29 +1305,27 @@ new Chart(document.getElementById('chartReceita'), {
       ...commonOptions.plugins,
       tooltip: {
         ...commonOptions.plugins.tooltip,
-        callbacks: {
-          label: (c) => ' R$ ' + c.raw.toLocaleString('pt-BR')
-        }
+        callbacks: { label: (c) => ' R$ ' + c.raw.toLocaleString('pt-BR') }
       }
     },
     scales: {
       ...commonOptions.scales,
       y: {
         ...commonOptions.scales.y,
-        ticks: { callback: (v) => 'R$' + (v/1000).toFixed(0) + 'K', font: { size: 11 } }
+        ticks: { callback: (v) => 'R$' + (v/1000000).toFixed(1) + 'M', font: { size: 11 } }
       }
     }
   }
 });
 
-// ── MIX DOUGHNUT (todos os meses) ──
+// ── MIX DOUGHNUT — Abr/26 (melhor mês 2026) ──
 new Chart(document.getElementById('chartMix'), {
   type: 'doughnut',
   data: {
-    labels: ['Booking Engine', 'Central de Reservas'],
+    labels: ['Booking Engine', 'Central de Reservas', 'OTAs / Agências'],
     datasets: [{
-      data: [146279, 206588],
-      backgroundColor: [C.abr, C.escuro],
+      data: [631473, 647573, 124449],
+      backgroundColor: [C.abr, C.escuro, C.out],
       borderWidth: 0,
       hoverOffset: 8,
     }]
@@ -1145,7 +1337,7 @@ new Chart(document.getElementById('chartMix'), {
       legend: {
         display: true,
         position: 'bottom',
-        labels: { padding: 16, usePointStyle: true, pointStyleWidth: 8, font: { size: 12 } }
+        labels: { padding: 16, usePointStyle: true, pointStyleWidth: 8, font: { size: 11 } }
       },
       tooltip: {
         ...commonOptions.plugins.tooltip,
@@ -1163,7 +1355,7 @@ new Chart(document.getElementById('chartReservasAds'), {
     datasets: [
       {
         label: 'Reservas',
-        data: [343, 119, 226, 258, 119],
+        data: [276, 214, 519, 75, 532, 268, 360, 427, 210],
         backgroundColor: COLORS,
         borderRadius: 6,
         yAxisID: 'y',
@@ -1171,7 +1363,7 @@ new Chart(document.getElementById('chartReservasAds'), {
       },
       {
         label: 'Invest. Ads (R$)',
-        data: [6325, 9353, 8279, 25873, 5390],
+        data: [9880, 12301, 12054, 17274, 9792, 15086, 12428, 41866, 9046],
         type: 'line',
         borderColor: '#FF6B35',
         backgroundColor: 'rgba(255,107,53,0.08)',
@@ -1215,13 +1407,16 @@ new Chart(document.getElementById('chartReservasAds'), {
 });
 
 // ── CPA ──
-const cpaVals = [6325/343, 9353/119, 8279/226, 25873/258, 5390/119];
+const adsVals = [9880, 12301, 12054, 17274, 9792, 15086, 12428, 41866, 9046];
+const resVals = [276, 214, 519, 75, 532, 268, 360, 427, 210];
+const cpaVals = adsVals.map((a, i) => +(a / resVals[i]).toFixed(2));
+
 new Chart(document.getElementById('chartCPA'), {
   type: 'bar',
   data: {
     labels: MONTHS,
     datasets: [{
-      data: cpaVals.map(v => +v.toFixed(2)),
+      data: cpaVals,
       backgroundColor: COLORS,
       borderRadius: 8,
       borderSkipped: false,
@@ -1252,7 +1447,7 @@ new Chart(document.getElementById('chartAtend'), {
   data: {
     labels: MONTHS,
     datasets: [{
-      data: [3413, 2148, 2195, 3495, 1231],
+      data: [2363, 2038, 2445, 2338, 4786, 3487, 3350, 5225, 1866],
       backgroundColor: COLORS,
       borderRadius: 7,
       borderSkipped: false,
@@ -1268,7 +1463,7 @@ new Chart(document.getElementById('chartOpor'), {
     labels: MONTHS,
     datasets: [{
       label: 'Oportunidades',
-      data: [2096, 1156, 1107, 1791, 598],
+      data: [1244, 971, 1393, 1362, 2954, 1880, 1758, 2742, 764],
       borderColor: C.abr,
       backgroundColor: 'rgba(0,174,239,0.12)',
       borderWidth: 2.5,
@@ -1286,8 +1481,8 @@ new Chart(document.getElementById('chartOpor'), {
       r: {
         grid: { color: C.grid },
         angleLines: { color: C.grid },
-        ticks: { font: { size: 10 }, display: false },
-        pointLabels: { font: { size: 12, weight: '600' }, color: C.escuro }
+        ticks: { font: { size: 9 }, display: false },
+        pointLabels: { font: { size: 10, weight: '600' }, color: C.escuro }
       }
     }
   }
@@ -1300,7 +1495,7 @@ new Chart(document.getElementById('chartValorOp'), {
     labels: MONTHS,
     datasets: [{
       label: 'R$ Oportunidades',
-      data: [3826672, 1895010, 1621778, 2694935, 773571],
+      data: [1591364, 898005, 2712881, 2405077, 5409910, 2882380, 2613481, 3986289, 962911],
       borderColor: C.jan,
       backgroundColor: 'rgba(0,200,120,0.08)',
       borderWidth: 2.5,
@@ -1336,7 +1531,7 @@ new Chart(document.getElementById('chartAcessos'), {
     labels: MONTHS,
     datasets: [{
       label: 'Acessos',
-      data: [23000, 17000, 15000, 83000, 7900],
+      data: [19000, 23000, 27000, 23000, 32000, 26000, 20000, 121000, 13000],
       borderColor: C.abr,
       backgroundColor: 'rgba(0,174,239,0.08)',
       borderWidth: 2.5,
@@ -1369,17 +1564,23 @@ new Chart(document.getElementById('chartAcessos'), {
 new Chart(document.getElementById('chartFunilSite'), {
   type: 'bar',
   data: {
-    labels: ['Acessos', 'Add Carrinho', 'Compras'],
+    labels: ['Acessos', 'Add Carrinho'],
     datasets: [
       {
-        label: 'Abril',
-        data: [83000, 2600, 117],
+        label: 'Abr/26',
+        data: [121000, 3800],
         backgroundColor: C.abr,
         borderRadius: 6,
       },
       {
-        label: 'Maio',
-        data: [7900, 593, 45],
+        label: 'Jan/26',
+        data: [32000, 3000],
+        backgroundColor: C.jan,
+        borderRadius: 6,
+      },
+      {
+        label: 'Mai/26',
+        data: [13000, 955],
         backgroundColor: C.mai,
         borderRadius: 6,
       }
@@ -1403,7 +1604,7 @@ new Chart(document.getElementById('chartFunilSite'), {
   }
 });
 
-// ── RECEITA SITE + ARPU (combo) ──
+// ── RECEITA SITE + ARPU SITE (combo) ──
 new Chart(document.getElementById('chartArpu'), {
   type: 'bar',
   data: {
@@ -1411,15 +1612,15 @@ new Chart(document.getElementById('chartArpu'), {
     datasets: [
       {
         label: 'Receita Site',
-        data: [374000, 176000, 171000, 425000, 140000],
+        data: [97000, 69000, 330000, 109000, 557000, 248000, 271000, 618000, 183000],
         backgroundColor: COLORS,
         borderRadius: 6,
         yAxisID: 'y',
         order: 1,
       },
       {
-        label: 'ARPU (R$)',
-        data: [4200, 4300, 2900, 3900, 3200],
+        label: 'ARPU Site (R$)',
+        data: [3100, 3100, 3600, 4900, 4100, 3800, 3000, 3900, 3200],
         type: 'line',
         borderColor: C.escuro,
         backgroundColor: 'rgba(29,30,70,0.05)',
@@ -1455,14 +1656,17 @@ new Chart(document.getElementById('chartArpu'), {
   }
 });
 
-// ── TAXA DE CONVERSÃO ──
-const taxaConv = [99/23000*100, 43/17000*100, 62/15000*100, 117/83000*100, 45/7900*100];
+// ── ADD CARRINHO / ACESSOS (%) ──
+const addCarrinho = [688, 845, 1500, 1000, 3000, 1700, 1900, 3800, 955];
+const acessos     = [19000, 23000, 27000, 23000, 32000, 26000, 20000, 121000, 13000];
+const taxaAdd = addCarrinho.map((a, i) => +(a / acessos[i] * 100).toFixed(3));
+
 new Chart(document.getElementById('chartConversao'), {
   type: 'bar',
   data: {
     labels: MONTHS,
     datasets: [{
-      data: taxaConv.map(v => +v.toFixed(3)),
+      data: taxaAdd,
       backgroundColor: COLORS,
       borderRadius: 8,
       borderSkipped: false,
@@ -1498,7 +1702,6 @@ const obs = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
-// Trigger first visible
 setTimeout(() => {
   document.querySelectorAll('.fade-up').forEach(el => {
     const rect = el.getBoundingClientRect();
