@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Morro dos Anjos — Bem-vindo(a)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1D1E46;
+    --bg-2:#2a2c6e;
+    --accent:#00AEEF;
+    --accent-2:#8DE0F2;
+    --cream:#FFF7E6;
+    --gold:#CB9C66;
+    --coral:#F27466;
+    --rose:#FAA0AA;
+    --teal:#29948F;
+    --teal-d:#124747;
+    --line:rgba(255,255,255,.14);
+    --line-2:rgba(255,255,255,.28);
+    --muted:rgba(255,255,255,.6);
+    --soft:rgba(255,255,255,.05);
+    --soft-2:rgba(255,255,255,.1);
+    --sans:'Manrope',system-ui,-apple-system,Roboto,sans-serif;
+    --serif:'Cormorant Garamond',Georgia,serif;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    background:radial-gradient(ellipse at 50% 0%, #2a2c6e 0%, #1D1E46 55%, #14153a 100%);
+    background-attachment:fixed;
+    color:#fff;
+    font-family:var(--sans);
+    line-height:1.55;
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:#fff}
+  button{font-family:inherit}
+
+  /* TOP BAR */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(14px);
+    background:rgba(20,21,58,.7);
+    border-bottom:1px solid var(--line);
+    display:none;
+  }
+  .topbar.show{display:block}
+  .topbar-inner{
+    max-width:1080px;margin:0 auto;
+    padding:14px 24px;display:flex;align-items:center;gap:18px;
+  }
+  .brandmark{display:flex;align-items:center;gap:10px;font-weight:600;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase}
+  .brandmark svg{width:36px;height:24px}
+  .progress-wrap{flex:1;display:flex;align-items:center;gap:14px}
+  .progress-bar{flex:1;height:3px;background:var(--line);border-radius:3px;overflow:hidden}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--cream));width:0;transition:width .5s}
+  .progress-count{font-family:var(--serif);font-style:italic;color:var(--cream);font-size:1rem;min-width:62px;text-align:right}
+  .skip-q{
+    background:none;border:1px solid var(--line);color:var(--muted);
+    padding:6px 14px;border-radius:999px;cursor:pointer;
+    font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
+    transition:.2s;
+  }
+  .skip-q:hover{color:#fff;border-color:#fff}
+
+  /* WELCOME */
+  .welcome{
+    min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:60px 24px 80px;text-align:center;
+    position:relative;
+  }
+  .logo-mark{width:120px;margin:0 auto 36px;display:block;animation:floaty 6s ease-in-out infinite}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+  .welcome h1{
+    font-family:var(--sans);
+    font-weight:800;
+    font-size:clamp(2.2rem,6vw,4rem);
+    line-height:1.05;
+    letter-spacing:-.028em;
+    margin:0 auto 28px;
+    max-width:18ch;
+  }
+  .welcome h1 em{
+    font-family:var(--serif);font-style:italic;font-weight:600;
+    color:var(--accent-2);font-size:1.05em;
+  }
+  .welcome .lead{
+    max-width:580px;
+    font-size:clamp(1rem,1.6vw,1.12rem);
+    color:rgba(255,255,255,.82);
+    line-height:1.7;margin:0 auto 22px;
+  }
+  .welcome .lead + .lead{margin-top:0}
+  .time-badge{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:8px 18px;border:1px solid var(--line-2);
+    border-radius:999px;font-size:.86rem;color:#fff;
+    background:rgba(0,174,239,.08);margin-top:14px;
+  }
+
+  .cta-pill{
+    margin-top:40px;
+    background:var(--cream);color:var(--bg);
+    border:none;cursor:pointer;
+    padding:20px 42px;border-radius:999px;
+    font-weight:700;font-size:.84rem;
+    letter-spacing:.22em;text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:14px;
+    transition:.25s;box-shadow:0 18px 40px rgba(0,0,0,.3);
+  }
+  .cta-pill:hover{transform:translateY(-3px);box-shadow:0 24px 50px rgba(0,0,0,.4)}
+  .cta-pill .arr{transition:transform .25s}
+  .cta-pill:hover .arr{transform:translateX(5px)}
+
+  .privacy{margin-top:14px;font-size:.78rem;color:var(--muted);max-width:480px}
+  .consent{margin:24px auto 0;max-width:520px;text-align:left}
+  .consent-row{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:14px 16px;cursor:pointer;font-size:.82rem;line-height:1.5;color:rgba(255,255,255,.78)}
+  .consent-row input[type=checkbox]{margin-top:3px;flex-shrink:0;width:16px;height:16px;accent-color:var(--accent);cursor:pointer}
+  .consent-row strong{color:#fff;font-weight:600}
+
+  /* STAGE */
+  .form-wrap{display:none;padding:60px 24px 120px}
+  .form-wrap.show{display:block}
+  .form-inner{max-width:880px;margin:0 auto}
+
+  .stage{display:none;animation:fade .45s ease}
+  .stage.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+  .stage-eyebrow{
+    font-family:var(--sans);
+    font-size:.78rem;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--cream);font-weight:600;
+    display:inline-flex;align-items:center;gap:14px;margin-bottom:22px;
+  }
+  .stage-eyebrow::before{content:"";width:36px;height:1px;background:var(--cream);opacity:.6}
+  .stage h2{
+    font-family:var(--sans);
+    font-weight:800;
+    font-size:clamp(2.4rem,6vw,4.2rem);
+    line-height:1.02;letter-spacing:-.028em;
+    margin:0 0 18px;
+    max-width:18ch;
+  }
+  .stage h2 em{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--accent-2)}
+  .stage-intro{
+    color:rgba(255,255,255,.7);
+    font-size:1.06rem;max-width:56ch;margin-bottom:42px;
+  }
+
+  /* SOLO INPUTS */
+  .input-solo{
+    width:100%;background:transparent;
+    border:none;border-bottom:2px solid var(--line-2);
+    color:#fff;font-family:var(--serif);font-style:italic;
+    font-size:clamp(1.6rem,3.4vw,2.4rem);
+    padding:14px 0;outline:none;transition:.2s;
+  }
+  .input-solo::placeholder{color:rgba(255,255,255,.28)}
+  .input-solo:focus{border-bottom-color:var(--accent)}
+
+  .duo-fields{display:grid;gap:24px}
+  .field-line{display:flex;flex-direction:column;gap:6px}
+  .field-line label{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream);font-weight:600}
+  .field-line input{
+    background:transparent;border:none;
+    border-bottom:2px solid var(--line-2);
+    color:#fff;font-family:var(--serif);font-style:italic;
+    font-size:clamp(1.4rem,2.8vw,2rem);padding:10px 0;outline:none;transition:.2s;
+  }
+  .field-line input:focus{border-bottom-color:var(--accent)}
+  .field-line input::placeholder{color:rgba(255,255,255,.28)}
+  .field-line input[type=date]{font-family:var(--sans);font-style:normal;font-size:1.2rem;color-scheme:dark}
+
+  /* DETAILS GRID (merged step) */
+  .details-grid{
+    display:grid;gap:30px 32px;
+    grid-template-columns:repeat(2,1fr);
+  }
+  @media (max-width:720px){
+    .details-grid{grid-template-columns:1fr;gap:22px}
+  }
+
+  /* BIRTHDAY SELECTS */
+  .birth-row{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+  .birth-sel{
+    flex:1;min-width:80px;
+    background:transparent;
+    border:none;border-bottom:2px solid var(--line-2);
+    color:#fff;font-family:var(--serif);font-style:italic;
+    font-size:1.5rem;padding:10px 0;outline:none;transition:.2s;
+    appearance:none;-webkit-appearance:none;
+    background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8' viewBox='0 0 14 8' fill='none' stroke='%23ffffff80' stroke-width='2' stroke-linecap='round'%3e%3cpath d='M1 1l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat:no-repeat;background-position:right 4px center;
+    padding-right:22px;cursor:pointer;
+  }
+  .birth-sel:focus{border-bottom-color:var(--accent)}
+  .birth-sel option{background:var(--bg);color:#fff;font-family:var(--sans);font-style:normal;font-size:.95rem}
+
+  /* CARD GRID */
+  .cards{
+    display:grid;gap:14px;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  }
+  .cards.large{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+
+  .card{
+    position:relative;cursor:pointer;
+    aspect-ratio:1.25/1;
+    border-radius:22px;
+    overflow:hidden;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    padding:20px;
+    transition:.28s cubic-bezier(.2,.7,.3,1);
+    border:1px solid transparent;
+    user-select:none;
+  }
+  .card::before{
+    content:"";position:absolute;inset:0;
+    background:var(--g,linear-gradient(135deg,#29948F,#124747));
+    opacity:.95;transition:.3s;
+  }
+  .card::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.35) 100%);
+    pointer-events:none;
+  }
+  .card:hover{transform:translateY(-5px)}
+  .card:hover::before{opacity:1}
+  .card.selected{border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.25),0 24px 40px rgba(0,0,0,.4);transform:translateY(-3px)}
+
+  .card .num{
+    position:absolute;top:14px;left:14px;z-index:2;
+    width:28px;height:28px;border-radius:8px;
+    background:rgba(255,255,255,.95);color:#1D1E46;
+    display:grid;place-items:center;
+    font-weight:800;font-size:.82rem;
+  }
+  .card .emo{position:absolute;top:14px;right:18px;z-index:2;font-size:2.2rem;filter:drop-shadow(0 4px 8px rgba(0,0,0,.3))}
+  .card .meta{position:relative;z-index:2;color:#fff}
+  .card .meta .t{
+    font-weight:800;font-size:1.18rem;
+    text-transform:uppercase;letter-spacing:-.005em;line-height:1.05;
+  }
+  .card .meta .s{
+    font-family:var(--serif);font-style:italic;
+    font-size:1.05rem;margin-top:6px;font-weight:500;
+    opacity:.92;
+  }
+  .card .check{
+    position:absolute;top:14px;right:14px;z-index:3;
+    width:28px;height:28px;border-radius:50%;
+    background:#fff;color:#1D1E46;
+    display:none;place-items:center;
+    box-shadow:0 4px 10px rgba(0,0,0,.3);
+  }
+  .card.selected .check{display:grid}
+  .card.selected .emo{display:none}
+
+  .g-coral{--g:linear-gradient(135deg,#F27466,#FAA0AA)}
+  .g-rose{--g:linear-gradient(135deg,#FAA0AA,#F27466 80%)}
+  .g-blue{--g:linear-gradient(135deg,#00AEEF,#1D3C73)}
+  .g-teal{--g:linear-gradient(135deg,#29948F,#124747)}
+  .g-mint{--g:linear-gradient(135deg,#8DE0F2,#29948F)}
+  .g-gold{--g:linear-gradient(135deg,#CB9C66,#A87C4B)}
+  .g-cream{--g:linear-gradient(135deg,#FFF7E6,#CB9C66)}
+  .g-navy{--g:linear-gradient(135deg,#1D3C73,#1D1E46)}
+  .g-sun{--g:linear-gradient(135deg,#FAA0AA,#CB9C66)}
+  .g-night{--g:linear-gradient(135deg,#1D1E46,#124747)}
+  .g-ocean{--g:linear-gradient(135deg,#00AEEF,#29948F)}
+  .g-cream .meta,.g-cream .num,.g-cream .meta .t,.g-cream .meta .s{color:#1D1E46}
+
+  /* AUDIO */
+  .audio-box{
+    border:1px dashed var(--line-2);background:var(--soft);
+    border-radius:18px;padding:22px;
+    display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  }
+  .audio-btn{
+    background:var(--accent);color:var(--bg);
+    border:none;border-radius:999px;padding:13px 24px;
+    font-weight:800;letter-spacing:.06em;font-size:.86rem;
+    cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:.2s;
+  }
+  .audio-btn.recording{background:var(--coral);color:#fff;animation:pulse 1.4s infinite}
+  @keyframes pulse{50%{box-shadow:0 0 0 10px rgba(242,116,102,.25)}}
+  .audio-status{font-size:.86rem;color:var(--muted)}
+  .audio-box audio{flex:1;min-width:200px}
+
+  /* UPLOAD */
+  .uploader{
+    border:1.5px dashed var(--line-2);background:var(--soft);
+    border-radius:18px;padding:32px;text-align:center;cursor:pointer;
+    transition:.2s;
+  }
+  .uploader:hover,.uploader.drag{border-color:var(--accent);background:rgba(0,174,239,.06)}
+  .uploader input{display:none}
+  .uploader .up-title{font-weight:600;font-size:1.05rem;margin-bottom:6px}
+  .uploader .up-sub{color:var(--muted);font-size:.88rem}
+  .upload-list{margin-top:14px;display:grid;gap:8px}
+  .upload-item{
+    background:var(--soft-2);border:1px solid var(--line);border-radius:12px;
+    padding:10px 14px;display:flex;align-items:center;gap:12px;font-size:.9rem;
+  }
+  .upload-item .x{margin-left:auto;cursor:pointer;color:var(--muted);background:none;border:none;font-size:1.2rem}
+  .upload-item .x:hover{color:var(--coral)}
+  .upload-item img{width:40px;height:40px;border-radius:7px;object-fit:cover}
+
+  textarea.solo{
+    width:100%;background:var(--soft);border:1px solid var(--line);
+    border-radius:14px;padding:16px;color:#fff;font-family:var(--sans);
+    font-size:1.05rem;line-height:1.6;min-height:160px;
+    transition:.2s;outline:none;
+  }
+  textarea.solo:focus{border-color:var(--accent);background:var(--soft-2);box-shadow:0 0 0 3px rgba(0,174,239,.18)}
+  textarea.solo::placeholder{color:rgba(255,255,255,.36)}
+
+  /* NAV */
+  .nav-row{
+    margin-top:50px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  }
+  .btn{
+    border:none;cursor:pointer;font-family:inherit;
+    padding:16px 32px;border-radius:999px;
+    font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-size:.78rem;
+    transition:.25s;display:inline-flex;align-items:center;gap:10px;
+  }
+  .btn.primary{background:var(--cream);color:var(--bg)}
+  .btn.primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.35)}
+  .btn.ghost{background:transparent;color:#fff;border:1px solid var(--line-2)}
+  .btn.ghost:hover{border-color:#fff;background:rgba(255,255,255,.06)}
+  .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+  .nav-spacer{flex:1}
+
+  /* SUBMIT INTEGRATION */
+  .submit-wrap{
+    margin-top:36px;padding:28px 30px;
+    border:1.5px solid rgba(0,174,239,.35);
+    border-radius:24px;
+    background:linear-gradient(135deg,rgba(0,174,239,.07),rgba(141,224,242,.05));
+  }
+  .submit-wrap .submit-title{
+    font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--accent-2);font-weight:700;margin-bottom:6px;
+  }
+  .submit-wrap .submit-desc{
+    font-size:.9rem;color:rgba(255,255,255,.7);line-height:1.55;margin-bottom:20px;
+  }
+  .btn-submit{
+    background:linear-gradient(135deg,var(--accent),#0090c8);
+    color:#fff;border:none;cursor:pointer;
+    padding:18px 36px;border-radius:999px;
+    font-weight:800;font-size:.84rem;
+    letter-spacing:.18em;text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:12px;
+    transition:.28s;box-shadow:0 14px 34px rgba(0,174,239,.3);
+    font-family:inherit;
+  }
+  .btn-submit:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 20px 42px rgba(0,174,239,.4)}
+  .btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none}
+  .btn-submit.loading{pointer-events:none}
+  .btn-submit .spin{
+    width:18px;height:18px;border:2.5px solid rgba(255,255,255,.3);
+    border-top-color:#fff;border-radius:50%;
+    animation:spin .8s linear infinite;flex-shrink:0;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .submit-status{
+    margin-top:18px;padding:16px 20px;border-radius:14px;
+    font-size:.9rem;line-height:1.55;display:none;
+  }
+  .submit-status.success{
+    background:rgba(41,148,143,.15);border:1px solid rgba(41,148,143,.4);color:#8DE0F2;display:block;
+  }
+  .submit-status.error{
+    background:rgba(242,116,102,.1);border:1px solid rgba(242,116,102,.35);color:#FAA0AA;display:block;
+  }
+  .submit-status .ss-icon{font-size:1.4rem;margin-right:8px;vertical-align:middle}
+  @media (max-width:540px){
+    .submit-wrap{padding:22px 18px}
+    .btn-submit{padding:16px 26px;font-size:.78rem}
+  }
+
+  /* SUMMARY */
+  .summary-box{
+    background:var(--soft);border:1px solid var(--line);
+    border-radius:22px;padding:30px;margin-bottom:24px;
+  }
+  .summary-section{padding:14px 0;border-bottom:1px dashed var(--line)}
+  .summary-section:last-child{border-bottom:none}
+  .summary-section h4{
+    margin:0 0 10px;font-size:.74rem;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--cream);font-weight:600;
+  }
+  .summary-row{display:flex;gap:14px;padding:5px 0;font-size:.94rem}
+  .summary-row .k{color:var(--muted);min-width:170px;font-size:.84rem}
+  .summary-row .v{color:#fff;flex:1}
+
+  .voucher{
+    margin-top:8px;border:1.5px dashed var(--cream);
+    border-radius:28px;padding:34px 32px 32px;
+    background:linear-gradient(135deg,rgba(255,247,230,.14),rgba(0,174,239,.08));
+    position:relative;overflow:hidden;
+  }
+  .voucher::before{
+    content:"";position:absolute;top:-50px;left:50%;transform:translateX(-50%);
+    width:220px;height:90px;background:radial-gradient(ellipse,var(--cream),transparent 70%);
+    opacity:.16;pointer-events:none;
+  }
+  .voucher .v-top{
+    display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:22px;
+  }
+  .voucher .v-logo{width:48px;height:30px;flex-shrink:0}
+  .voucher .v-logo svg{width:100%;height:100%;display:block}
+  .voucher .v-eyebrow{
+    font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--cream);font-weight:700;
+  }
+  .voucher h3{
+    font-family:var(--sans);font-weight:800;
+    font-size:clamp(1.5rem,4.4vw,2.3rem);
+    margin:6px 0 8px;letter-spacing:-.018em;text-align:center;
+  }
+  .voucher h3 em{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--accent-2)}
+  .voucher .v-sub{
+    text-align:center;color:rgba(255,255,255,.8);
+    font-size:.98rem;line-height:1.55;margin:0 auto 18px;max-width:42ch;
+  }
+  .voucher .v-divider{
+    height:1px;background:var(--line-2);margin:22px -32px;position:relative;
+  }
+  .voucher .v-divider::before,
+  .voucher .v-divider::after{
+    content:"";position:absolute;top:50%;transform:translateY(-50%);
+    width:22px;height:22px;border-radius:50%;background:#1d2153;
+  }
+  .voucher .v-divider::before{left:-11px}
+  .voucher .v-divider::after{right:-11px}
+  .voucher .v-guest-label{
+    font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;
+    text-align:center;color:var(--muted);margin-top:8px;
+  }
+  .voucher .v-guest{
+    font-family:var(--serif);font-style:italic;
+    font-size:clamp(1.5rem,3.6vw,2rem);
+    text-align:center;color:#fff;margin:6px 0 4px;letter-spacing:.01em;
+  }
+  .voucher .v-meta{
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px 28px;
+    margin-top:22px;font-size:.82rem;color:#fff;
+  }
+  .voucher .v-meta > div{flex:1;min-width:120px}
+  .voucher .v-meta b{
+    display:block;color:var(--cream);font-weight:700;
+    letter-spacing:.18em;font-size:.66rem;text-transform:uppercase;margin-bottom:4px;
+  }
+  .voucher .v-instr{
+    margin-top:22px;padding:18px 20px;border-radius:14px;
+    background:rgba(0,174,239,.1);border:1px solid rgba(0,174,239,.3);
+    color:#fff;text-align:center;font-size:.96rem;line-height:1.6;
+  }
+  .voucher .v-instr strong{color:var(--accent-2);font-weight:700}
+  @media (max-width:540px){
+    .voucher{padding:28px 22px}
+    .voucher .v-divider{margin:20px -22px}
+    .voucher .v-meta{flex-direction:column;gap:14px}
+  }
+
+  .links-grid{
+    display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    margin-top:24px;
+  }
+  .link-card{
+    background:var(--soft);border:1px solid var(--line);border-radius:16px;
+    padding:20px;text-decoration:none;color:#fff;
+    transition:.25s;display:flex;flex-direction:column;gap:6px;
+  }
+  .link-card:hover{border-color:var(--accent);transform:translateY(-2px);background:var(--soft-2)}
+  .link-card .lc-eyebrow{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--cream)}
+  .link-card .lc-title{font-family:var(--serif);font-style:italic;font-size:1.25rem;color:#fff}
+  .link-card .lc-sub{font-size:.82rem;color:var(--muted)}
+
+  .toast{
+    position:fixed;bottom:30px;left:50%;
+    transform:translateX(-50%) translateY(20px);
+    background:var(--cream);color:var(--bg);
+    padding:14px 24px;border-radius:999px;
+    font-weight:600;font-size:.86rem;letter-spacing:.04em;
+    box-shadow:0 18px 40px rgba(0,0,0,.5);
+    opacity:0;transition:.3s;pointer-events:none;z-index:200;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  .confetti{position:fixed;inset:0;pointer-events:none;z-index:300;display:none}
+  .confetti.show{display:block}
+  .confetti span{
+    position:absolute;top:-20px;width:10px;height:14px;
+    animation:fall 3s linear forwards;
+  }
+  @keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+
+  @media (max-width:720px){
+    .topbar-inner{padding:12px 16px;gap:10px}
+    .brandmark span{display:none}
+    .progress-count{min-width:54px;font-size:.88rem}
+    .skip-q{padding:5px 10px;font-size:.66rem;letter-spacing:.1em}
+    .welcome{padding:48px 22px 60px}
+    .form-wrap{padding:42px 20px 90px}
+    .cards{gap:10px;grid-template-columns:repeat(2,1fr)}
+    .cards.large{grid-template-columns:repeat(2,1fr)}
+    .card{aspect-ratio:1/1;padding:14px;border-radius:18px}
+    .card .meta .t{font-size:.96rem}
+    .card .meta .s{font-size:.88rem}
+    .card .emo{font-size:1.7rem;top:10px;right:12px}
+    .card .num{width:24px;height:24px;font-size:.72rem;top:10px;left:10px}
+    .stage h2{font-size:1.95rem}
+    .summary-row{flex-direction:column;gap:2px}
+    .summary-row .k{min-width:0}
+  }
+  @media print{
+    body{background:#fff;color:#000}
+    .topbar,.welcome,.skip-q,.confetti,.nav-row{display:none !important}
+    .form-wrap{display:block !important;padding:0}
+    .stage{display:block !important;page-break-after:always;color:#000}
+    .stage h2,.stage h2 em{color:#000}
+    .summary-box,.voucher{border-color:#000;background:#fff;color:#000}
+    .voucher h3,.voucher .v-guest,.voucher .v-sub,.voucher .v-meta,.voucher .v-instr{color:#000}
+    .voucher h3 em{color:#1D3C73}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar" id="topbar">
+  <div class="topbar-inner">
+    <div class="brandmark">
+      <svg viewBox="0 0 1000 580" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g fill="#1A2655">
+          <path d="M495 545 C 470 460, 410 380, 280 350 C 160 325, 60 340, 25 380 C 0 415, 30 460, 110 470 C 230 480, 380 480, 460 525 Z"/>
+          <path d="M505 545 C 530 460, 590 380, 720 350 C 840 325, 940 340, 975 380 C 1000 415, 970 460, 890 470 C 770 480, 620 480, 540 525 Z"/>
+        </g>
+        <g fill="#00AEEF">
+          <circle cx="500" cy="100" r="80"/>
+          <path d="M495 510 C 470 420, 410 340, 280 310 C 160 285, 60 300, 25 340 C 0 375, 30 420, 110 430 C 230 440, 380 440, 460 485 Z"/>
+          <path d="M505 510 C 530 420, 590 340, 720 310 C 840 285, 940 300, 975 340 C 1000 375, 970 420, 890 430 C 770 440, 620 440, 540 485 Z"/>
+        </g>
+      </svg>
+      <span>Morro dos Anjos</span>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-count" id="progressCount">01 / 22</div>
+    </div>
+    <button class="skip-q" id="skipQ">Pular</button>
+  </div>
+</header>
+
+<section class="welcome" id="welcome">
+  <svg class="logo-mark" viewBox="0 0 1000 580" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="#1A2655">
+      <path d="M495 545 C 470 460, 410 380, 280 350 C 160 325, 60 340, 25 380 C 0 415, 30 460, 110 470 C 230 480, 380 480, 460 525 Z"/>
+      <path d="M505 545 C 530 460, 590 380, 720 350 C 840 325, 940 340, 975 380 C 1000 415, 970 460, 890 470 C 770 480, 620 480, 540 525 Z"/>
+    </g>
+    <g fill="#00AEEF">
+      <circle cx="500" cy="100" r="80"/>
+      <path d="M495 510 C 470 420, 410 340, 280 310 C 160 285, 60 300, 25 340 C 0 375, 30 420, 110 430 C 230 440, 380 440, 460 485 Z"/>
+      <path d="M505 510 C 530 420, 590 340, 720 310 C 840 285, 940 300, 975 340 C 1000 375, 970 420, 890 430 C 770 440, 620 440, 540 485 Z"/>
+    </g>
+  </svg>
+
+  <h1>Complete o seu perfil e ganhe um <em>drink especial</em> no Bar Folha.</h1>
+
+  <p class="lead">
+    Cada hóspede vive o Morro dos Anjos de um jeito. Por isso queremos conhecer você melhor
+    para criar experiências e benefícios mais alinhados ao seu jeito de viajar.
+  </p>
+
+  <div class="time-badge">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    Leva menos de 5 minutos 💙
+  </div>
+
+  <button class="cta-pill" id="startBtn">
+    Participar
+    <span class="arr"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+  </button>
+
+  <div class="consent">
+    <label class="consent-row">
+      <input type="checkbox" id="consentChk" checked>
+      <span>
+        Ao tocar em <strong>Participar</strong>, autorizo o Morro dos Anjos Resort a coletar e tratar meus dados pessoais (nome, contato, preferências e mídias enviadas)
+        para personalizar minha experiência, em conformidade com a <strong>LGPD</strong>.
+        Os dados ficam apenas com a equipe do resort e posso solicitar exclusão a qualquer momento.
+      </span>
+    </label>
+  </div>
+</section>
+
+<main class="form-wrap" id="formWrap">
+  <div class="form-inner" id="formInner"></div>
+</main>
+
+<div class="toast" id="toast"></div>
+<div class="confetti" id="confetti"></div>
+
+<script>
+/* ─────────────────────────────────────────────────────
+   INTEGRAÇÃO GOOGLE SHEETS
+   Substitua a URL abaixo pela URL do seu Web App Apps Script
+   ───────────────────────────────────────────────────── */
+const SUBMIT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzM36uQgfxNtzh1Gj7OfOjbWvNyE_ErGyNZZq16kaiX0u29xVgVkTDdQjW5SiGmrd_D/exec';
+
+const STORAGE_KEY='mda_profile_v3';
+const state=loadState();
+function loadState(){try{const r=localStorage.getItem(STORAGE_KEY);return r?JSON.parse(r):{}}catch(e){return{}}}
+function saveState(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}catch(e){}}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('show'),2400)}
+
+/* ─────────────────────────────────────────────────────
+   ENVIO PARA GOOGLE SHEETS
+   ───────────────────────────────────────────────────── */
+async function submitSurvey(){
+  /* 1 · Validação básica */
+  const name=(state.name||'').trim();
+  const email=(state.email||'').trim();
+  if(!name){toast('Por favor, informe seu nome antes de enviar.');return;}
+  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){toast('Por favor, informe um e-mail válido antes de enviar.');return;}
+
+  /* 2 · Impede envio duplicado */
+  if(state.submitted){toast('Suas respostas já foram enviadas. Apresente o voucher na recepção.');return;}
+
+  /* 3 · Referências na tela */
+  const btn=document.getElementById('submitBtn');
+  const statusEl=document.getElementById('submitStatus');
+  if(btn){btn.disabled=true;btn.classList.add('loading');btn.innerHTML='<span class="spin"></span>Enviando…';}
+  if(statusEl){statusEl.className='submit-status';statusEl.innerHTML='';}
+
+  /* 4 · Monta payload */
+  const payload={
+    submitted_at     : new Date().toISOString(),
+    voucher_code     : state.voucher_code||'',
+    consent_lgpd     : state.consent_lgpd?'Sim':'Não',
+    name             : name,
+    email            : email,
+    phone            : state.phone||'',
+    birthday         : state.birthday||'',
+    city             : state.city||'',
+    profession       : state.profession||'',
+    how_heard        : arrayToString(state.how_heard),
+    how_heard_other  : state.how_heard_other||'',
+    companions       : arrayToString(state.companions),
+    kids             : arrayToString(state.kids),
+    occasion         : arrayToString(state.occasion),
+    food_styles      : arrayToString(state.food_styles),
+    restrictions     : state.restrictions||'',
+    drink            : arrayToString(state.drink),
+    breakfast        : arrayToString(state.breakfast),
+    day_activities   : arrayToString(state.day_activities),
+    sport            : arrayToString(state.sport),
+    team             : state.team||'',
+    night_vibe       : arrayToString(state.night_vibe),
+    music_taste      : arrayToString(state.music_taste),
+    channel          : arrayToString(state.channel),
+    dream_attractions: arrayToString(state.dream_attractions),
+    world_travel     : arrayToString(state.world_travel),
+    vacation_club    : arrayToString(state.vacation_club),
+    story            : state.story||'',
+    story_audio      : state.story_audio||'',
+    uploads_count    : (state.uploads&&state.uploads.length)?state.uploads.length:0,
+    user_agent       : navigator.userAgent,
+    raw_json         : JSON.stringify(state)
+  };
+
+  /* 5 · Dispara o POST */
+  try{
+    const res=await fetch(SUBMIT_ENDPOINT,{
+      method:'POST',
+      mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload)
+    });
+    /* no-cors sempre retorna opaque → consideramos sucesso se não lançou erro */
+    state.submitted=true;
+    saveState();
+    if(btn){btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg> Enviado com sucesso!';btn.style.background='linear-gradient(135deg,#29948F,#124747)';}
+    if(statusEl){
+      statusEl.innerHTML='<span class="ss-icon">🎉</span><strong>Respostas enviadas com sucesso.</strong> Apresente este voucher na recepção.';
+      statusEl.className='submit-status success';
+    }
+    fireConfetti();
+  }catch(err){
+    console.error('submitSurvey error:',err);
+    if(btn){btn.disabled=false;btn.classList.remove('loading');btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg> Tentar novamente';}
+    if(statusEl){
+      statusEl.innerHTML='<span class="ss-icon">⚠️</span>Não conseguimos enviar agora. Tente novamente ou apresente esta tela na recepção.';
+      statusEl.className='submit-status error';
+    }
+  }
+}
+
+function arrayToString(v){
+  if(!v)return '';
+  if(Array.isArray(v))return v.join(', ');
+  return String(v);
+}
+
+const STAGES=[
+  {id:'name',type:'input',inputType:'text',eyebrow:'Etapa 01',title:'Como podemos <em>te chamar</em>?',placeholder:'Seu nome completo',required:true},
+  {id:'email',type:'input',inputType:'email',eyebrow:'Etapa 02',title:'Qual é o seu <em>e-mail</em>?',placeholder:'voce@exemplo.com',required:true},
+  {id:'__details',type:'details',eyebrow:'Etapa 03',title:'Sobre <em>você</em>',intro:'Para te surpreender nas datas certas e entender de onde você vem.',
+    fields:[
+      {id:'phone',label:'WhatsApp / Telefone',type:'tel',placeholder:'(00) 00000-0000'},
+      {id:'birthday',label:'Aniversário',type:'birthdate'},
+      {id:'city',label:'Cidade',type:'text',placeholder:'Ex.: São Paulo · SP'},
+      {id:'profession',label:'Profissão / Ocupação',type:'text',placeholder:'Em uma linha'}
+    ]},
+  {id:'how_heard',type:'choice',eyebrow:'Etapa 04',title:'Como conheceu o <em>Morro dos Anjos</em>?',otherField:'how_heard_other',
+    options:[
+      {v:'redes',t:'Redes sociais',s:'Instagram, TikTok…',emo:'📱',g:'g-blue'},
+      {v:'amigos',t:'Amigos ou família',s:'Boca a boca',emo:'👨‍👩‍👧',g:'g-coral'},
+      {v:'ads',t:'Propaganda na internet',s:'Anúncios online',emo:'📣',g:'g-gold'},
+      {v:'google',t:'Google / pesquisa online',s:'Procurando hotel',emo:'🔍',g:'g-mint'},
+      {v:'influencers',t:'Influenciadores',s:'Vi alguém divulgando',emo:'⭐',g:'g-rose'},
+      {v:'evento',t:'Evento ou indicação',s:'Em feira ou por alguém',emo:'🤝',g:'g-teal'},
+      {v:'regiao',t:'Passei pela região',s:'Conheci de perto',emo:'🛣️',g:'g-sun'},
+      {v:'outro',t:'Outro',s:'Conte mais abaixo',emo:'✍️',g:'g-navy'}
+    ]},
+  {id:'companions',type:'choice',multi:true,eyebrow:'Etapa 05',title:'Quem está com você nesta <em>jornada</em>?',intro:'Marque uma ou mais — a configuração da viagem muda tudo.',
+    options:[
+      {v:'casal',t:'Viagem de casal',s:'Adoro!',emo:'💑',g:'g-coral'},
+      {v:'familia',t:'Em família',s:'Amo!',emo:'👨‍👩‍👧',g:'g-blue'},
+      {v:'amigos',t:'Com amigos',s:'Essa é minha vibe',emo:'🥂',g:'g-gold'},
+      {v:'sozinho',t:'Sozinho(a)',s:'Momento meu',emo:'🌿',g:'g-teal'},
+      {v:'negocios',t:'Negócios',s:'Evento corporativo',emo:'💼',g:'g-navy'}
+    ]},
+  {id:'kids',type:'choice',eyebrow:'Etapa 06',title:'Há <em>crianças</em> na viagem?',
+    options:[
+      {v:'nao',t:'Sem crianças',s:'Adultos apenas',emo:'🍷',g:'g-navy'},
+      {v:'0-5',t:'De 0 a 5 anos',s:'Pequenininhos',emo:'🧸',g:'g-rose'},
+      {v:'6-12',t:'De 6 a 12 anos',s:'Curiosos',emo:'🎈',g:'g-mint'},
+      {v:'teen',t:'Adolescentes',s:'Aventureiros',emo:'🛹',g:'g-coral'}
+    ]},
+  {id:'occasion',type:'choice',eyebrow:'Etapa 07',title:'Há uma <em>ocasião especial</em>?',
+    options:[
+      {v:'nenhuma',t:'Só descansar',s:'Nada para celebrar — só desacelerar',emo:'🌙',g:'g-night'},
+      {v:'aniversario',t:'Aniversário',s:'Comemorar mais um ano',emo:'🎂',g:'g-coral'},
+      {v:'lua',t:'Lua de mel',s:'A dois, em estado de graça',emo:'💍',g:'g-rose'},
+      {v:'feriado',t:'Feriado',s:'Família reunida',emo:'🎉',g:'g-gold'},
+      {v:'ferias',t:'Férias',s:'Pausa merecida',emo:'🌴',g:'g-mint'},
+      {v:'workation',t:'Workation',s:'Trabalhar com vista',emo:'💻',g:'g-ocean'}
+    ]},
+  {id:'food_styles',type:'choice',multi:true,eyebrow:'Etapa 08',title:'À mesa, o que <em>te conquista</em>?',intro:'Marque tudo que faz seus olhos brilharem.',
+    options:[
+      {v:'mineira',t:'Mineira',s:'Fogão a lenha',emo:'🍲',g:'g-gold'},
+      {v:'italiana',t:'Italiana',s:'Massas e molhos',emo:'🍝',g:'g-coral'},
+      {v:'churrasco',t:'Churrasco',s:'Carnes nobres',emo:'🥩',g:'g-rose'},
+      {v:'mar',t:'Frutos do mar',s:'Peixes e mariscos',emo:'🦐',g:'g-blue'},
+      {v:'oriental',t:'Oriental',s:'Sushi & cia',emo:'🍣',g:'g-navy'},
+      {v:'arabe',t:'Árabe',s:'Sabores do Oriente Médio',emo:'🥙',g:'g-teal'},
+      {v:'mexicana',t:'Mexicana',s:'Tacos e tequila',emo:'🌮',g:'g-sun'},
+      {v:'plant',t:'Plant-based',s:'Vegetariana / vegana',emo:'🥗',g:'g-mint'},
+      {v:'fit',t:'Saudável / Fit',s:'Leve e nutritivo',emo:'🥑',g:'g-ocean'},
+      {v:'burger',t:'Hambúrguer',s:'Bom de morder',emo:'🍔',g:'g-cream'},
+      {v:'boteco',t:'Comida de boteco',s:'Petiscos clássicos',emo:'🍻',g:'g-coral'}
+    ]},
+  {id:'restrictions',type:'input',inputType:'text',eyebrow:'Etapa 09',title:'Alguma <em>restrição alimentar</em>?',intro:'Se houver. Se não, deixe em branco — pode pular.',placeholder:'Glúten, lactose, frutos do mar…'},
+  {id:'drink',type:'choice',multi:true,eyebrow:'Etapa 10',title:'Sua <em>bebida favorita</em>?',
+    options:[
+      {v:'vinho',t:'Vinho',s:'Tinto ou branco',emo:'🍷',g:'g-rose'},
+      {v:'espumante',t:'Espumante',s:'Brindar a vida',emo:'🥂',g:'g-gold'},
+      {v:'destilado',t:'Destilados',s:'Whisky, gin, cachaça',emo:'🥃',g:'g-navy'},
+      {v:'cerveja',t:'Cerveja',s:'Artesanal',emo:'🍺',g:'g-sun'},
+      {v:'drinks',t:'Drinks',s:'Autorais',emo:'🍹',g:'g-coral'},
+      {v:'cafe',t:'Café especial',s:'Sem álcool',emo:'☕',g:'g-teal'},
+      {v:'sem',t:'Não bebo álcool',s:'Suco e água saborizada',emo:'🥤',g:'g-mint'}
+    ]},
+  {id:'breakfast',type:'choice',eyebrow:'Etapa 11',title:'Como prefere <em>o café da manhã</em>?',
+    options:[
+      {v:'amanhecer',t:'Cedinho',s:'Logo ao amanhecer',emo:'🌅',g:'g-sun'},
+      {v:'tranquilo',t:'Tranquilo',s:'Das 8h às 10h',emo:'🥐',g:'g-cream'},
+      {v:'tarde',t:'Sem pressa',s:'O mais tarde possível',emo:'🛏️',g:'g-rose'},
+      {v:'no-quarto',t:'No quarto',s:'Sob medida',emo:'🍳',g:'g-gold'}
+    ]},
+  {id:'day_activities',type:'choice',multi:true,eyebrow:'Etapa 12',title:'Como quer <em>preencher</em> seus dias?',intro:'Marque tudo que te chama.',
+    options:[
+      {v:'piscina',t:'Piscina',s:'Área molhada',emo:'🏊',g:'g-blue'},
+      {v:'spa',t:'Spa',s:'Massagens & relax',emo:'💆',g:'g-rose'},
+      {v:'trilha',t:'Trilhas',s:'Natureza pura',emo:'🥾',g:'g-teal'},
+      {v:'cavalgada',t:'Cavalgadas',s:'Pelo campo',emo:'🐴',g:'g-gold'},
+      {v:'pesca',t:'Pesca',s:'Esportiva',emo:'🎣',g:'g-mint'},
+      {v:'leitura',t:'Leitura',s:'No jardim',emo:'📖',g:'g-cream'},
+      {v:'fazenda',t:'Fazenda',s:'Animais & tour',emo:'🐄',g:'g-sun'},
+      {v:'bike',t:'Bike',s:'Pedalada',emo:'🚴',g:'g-coral'},
+      {v:'yoga_med',t:'Yoga & meditação',s:'Centrar-se',emo:'🧘',g:'g-mint'},
+      {v:'outdoor',t:'Esportes ao ar livre',s:'Sentir o corpo',emo:'🤸',g:'g-ocean'},
+      {v:'vinho_sunset',t:'Vinho ao pôr do sol',s:'Brinde no fim do dia',emo:'🍷',g:'g-rose'},
+      {v:'fogueira_noite',t:'Fogueira à noite',s:'Calor e prosa',emo:'🔥',g:'g-coral'},
+      {v:'kids',t:'Programação infantil',s:'Para os pequenos',emo:'🎠',g:'g-navy'}
+    ]},
+  {id:'sport',type:'choice',multi:true,eyebrow:'Etapa 13',title:'Esportes que <em>te movem</em>?',
+    options:[
+      {v:'corrida',t:'Corrida',s:'Trilhas ou rua',emo:'🏃',g:'g-coral'},
+      {v:'yoga',t:'Yoga',s:'Meditação',emo:'🧘',g:'g-mint'},
+      {v:'tenis',t:'Tênis',s:'Quadra clássica',emo:'🎾',g:'g-sun'},
+      {v:'beachtennis',t:'Beach Tennis',s:'Na areia',emo:'🏖️',g:'g-ocean'},
+      {v:'futebol',t:'Futebol',s:'A clássica',emo:'⚽',g:'g-teal'},
+      {v:'volei',t:'Vôlei',s:'Praia ou quadra',emo:'🏐',g:'g-gold'},
+      {v:'crossfit',t:'CrossFit',s:'Funcional',emo:'🏋️',g:'g-navy'},
+      {v:'natacao',t:'Natação',s:'Nas águas',emo:'🏊‍♀️',g:'g-blue'},
+      {v:'boliche',t:'Boliche',s:'Strike em família',emo:'🎳',g:'g-rose'},
+      {v:'nenhum',t:'Não pratico',s:'Vim para descansar',emo:'😌',g:'g-cream'}
+    ]},
+  {id:'team',type:'input',inputType:'text',eyebrow:'Etapa 14',title:'Time do <em>coração</em>?',intro:'Para combinarmos a TV do bar nos jogos. Pode pular se não tiver.',placeholder:'Ex.: Palmeiras, Flamengo, Atlético…'},
+  {id:'night_vibe',type:'choice',multi:true,eyebrow:'Etapa 15',title:'E quando o sol <em>se põe</em>?',intro:'Cada noite pode ser um capítulo diferente.',
+    options:[
+      {v:'jantar',t:'Jantar romântico',s:'À luz de velas',emo:'🕯️',g:'g-rose'},
+      {v:'fogueira',t:'Fogueira',s:'Vinho ao ar livre',emo:'🔥',g:'g-coral'},
+      {v:'musica',t:'Música ao vivo',s:'No bar',emo:'🎶',g:'g-gold'},
+      {v:'cinema',t:'Cinema ao ar livre',s:'Sob estrelas',emo:'🎬',g:'g-navy'},
+      {v:'observacao',t:'Astronomia',s:'Olhar o céu',emo:'⭐',g:'g-night'},
+      {v:'sauna',t:'Sauna',s:'Hidromassagem',emo:'🛁',g:'g-mint'},
+      {v:'cedo',t:'Dormir cedo',s:'Manhã preguiçosa',emo:'🌙',g:'g-teal'}
+    ]},
+  {id:'music_taste',type:'choice',multi:true,eyebrow:'Etapa 16',title:'Sua <em>trilha sonora</em>?',
+    options:[
+      {v:'samba',t:'Samba',s:'Aquele de responsa',emo:'🎵',g:'g-coral'},
+      {v:'rock',t:'Rock n roll',s:'Na veia',emo:'🎸',g:'g-navy'},
+      {v:'sertanejo',t:'Sertanejo',s:'Minha praia',emo:'🤠',g:'g-gold'},
+      {v:'mpb',t:'MPB / Bossa',s:'Brasilidade',emo:'🎷',g:'g-mint'},
+      {v:'eletronica',t:'House',s:'Eletrônica',emo:'🎧',g:'g-blue'},
+      {v:'gospel',t:'Gospel',s:'Começo o dia ouvindo',emo:'🙌',g:'g-cream'},
+      {v:'classica',t:'Clássica',s:'Instrumental',emo:'🎻',g:'g-teal'},
+      {v:'pop',t:'Pop',s:'Internacional',emo:'🌟',g:'g-rose'}
+    ]},
+  {id:'channel',type:'choice',multi:true,eyebrow:'Etapa 17',title:'Como prefere <em>conversar</em> com a gente?',
+    options:[
+      {v:'wpp',t:'WhatsApp',s:'Direto e prático',emo:'💬',g:'g-mint'},
+      {v:'email',t:'E-mail',s:'No seu tempo',emo:'✉️',g:'g-blue'},
+      {v:'sms',t:'SMS',s:'Curto e claro',emo:'📱',g:'g-rose'},
+      {v:'tel',t:'Ligação',s:'Voz humana',emo:'📞',g:'g-gold'},
+      {v:'app',t:'App do resort',s:'Tudo num lugar',emo:'🏨',g:'g-navy'}
+    ]},
+  {id:'dream_attractions',type:'choice',multi:true,eyebrow:'Etapa 18',title:'Quais atrações você gostaria de <em>viver aqui</em>?',intro:'Imagine o Morro dos Anjos dos sonhos — marque tudo que te animaria.',
+    options:[
+      {v:'parque_aquatico',t:'Parque aquático radical',s:'Toboáguas e adrenalina',emo:'🌊',g:'g-blue'},
+      {v:'surf_sim',t:'Simulador de surf',s:'Ondas garantidas',emo:'🏄',g:'g-ocean'},
+      {v:'tirolesa',t:'Tirolesa',s:'Adrenalina no ar',emo:'🪂',g:'g-coral'},
+      {v:'spa_premium',t:'Spa premium',s:'Cuidado em outro nível',emo:'💆',g:'g-rose'},
+      {v:'cinema_open',t:'Cinema ao ar livre',s:'Filmes sob estrelas',emo:'🎬',g:'g-navy'},
+      {v:'acampamento',t:'Acampamento',s:'Noite na natureza',emo:'⛺',g:'g-teal'},
+      {v:'futebol_campo',t:'Campo de futebol',s:'Pelada no resort',emo:'⚽',g:'g-mint'},
+      {v:'fazendinha',t:'Fazendinha',s:'Animais de perto',emo:'🐄',g:'g-sun'},
+      {v:'cavalo_atr',t:'Passeios a cavalo',s:'Pelo campo',emo:'🐴',g:'g-gold'},
+      {v:'pesca_atr',t:'Pesca',s:'No nosso lago',emo:'🎣',g:'g-mint'},
+      {v:'lago_esportes',t:'Esportes aquáticos no lago',s:'Stand-up, caiaque…',emo:'🛶',g:'g-blue'},
+      {v:'observatorio',t:'Observatório noturno',s:'Estrelas guiadas',emo:'🔭',g:'g-night'},
+      {v:'quadriciclo',t:'Passeio de quadriciclo',s:'Aventura sobre rodas',emo:'🏞️',g:'g-coral'},
+      {v:'pet_friendly',t:'Espaço pet friendly',s:'Pet incluso',emo:'🐾',g:'g-cream'},
+      {v:'skate',t:'Skate park',s:'Manobras urbanas',emo:'🛹',g:'g-navy'}
+    ]},
+  {id:'world_travel',type:'choice',multi:true,eyebrow:'Etapa 19',title:'Você gosta de <em>viajar pelo mundo</em>?',intro:'Marque os destinos que mais te chamam — pode escolher quantos quiser.',
+    options:[
+      {v:'nordeste',t:'Nordeste brasileiro',s:'Praias e cultura',emo:'🌞',g:'g-sun'},
+      {v:'sul',t:'Sul do Brasil',s:'Serra e enoturismo',emo:'🍇',g:'g-rose'},
+      {v:'america_sul',t:'América do Sul',s:'Patagônia, Andes…',emo:'🗻',g:'g-teal'},
+      {v:'eua',t:'Estados Unidos',s:'Cidades & aventura',emo:'🗽',g:'g-blue'},
+      {v:'caribe',t:'Caribe',s:'Águas turquesa',emo:'🏝️',g:'g-mint'},
+      {v:'europa',t:'Europa',s:'Cidades históricas',emo:'🏰',g:'g-navy'},
+      {v:'asia',t:'Ásia',s:'Sabores e tradição',emo:'🏯',g:'g-coral'},
+      {v:'oriente',t:'Oriente Médio',s:'Dubai, Marrocos…',emo:'🕌',g:'g-gold'},
+      {v:'oceania',t:'Oceania',s:'Austrália, NZ',emo:'🦘',g:'g-ocean'},
+      {v:'africa',t:'África',s:'Safári e contrastes',emo:'🦁',g:'g-cream'},
+      {v:'pouco',t:'Viajo pouco',s:'Curto a vida em casa',emo:'🌿',g:'g-night'}
+    ]},
+  {id:'vacation_club',type:'choice',eyebrow:'Etapa 20',title:'Que tal viajar <em>mais e com mais liberdade</em>?',intro:'Já imaginou aproveitar o Morro dos Anjos quando quiser ou usar suas férias para conhecer destinos turísticos pelo mundo? O Vacation Club do Morro dos Anjos transforma suas viagens em experiências mais flexíveis, com acesso ao resort e a milhares de hotéis e resorts parceiros ao redor do mundo.',
+    options:[
+      {v:'sim',t:'Quero saber mais',s:'Me contem tudo',emo:'✨',g:'g-gold'},
+      {v:'depois',t:'Talvez no futuro',s:'Pode me contar depois',emo:'🤔',g:'g-mint'},
+      {v:'nao',t:'Sem interesse agora',s:'Foco na estadia',emo:'🌿',g:'g-teal'}
+    ]},
+  {id:'__story',type:'story',eyebrow:'Etapa 21 · Tudo opcional',title:'Quer deixar uma <em>mensagem</em> pro Morro dos Anjos?',intro:'Texto, áudio, fotos — fique à vontade. Tudo aqui é opcional, pode pular para finalizar.'},
+  {id:'__summary',type:'summary',eyebrow:'Pronto!',title:'Parabéns, sua <em>cortesia</em> está pronta 💙'}
+];
+
+const formInner=document.getElementById('formInner');
+
+function buildStages(){
+  formInner.innerHTML='';
+  STAGES.forEach((stage,idx)=>{
+    const sec=document.createElement('section');
+    sec.className='stage'+(idx===0?' active':'');
+    sec.dataset.idx=idx;sec.dataset.id=stage.id;
+    let html=`<div class="stage-eyebrow">${stage.eyebrow}</div><h2>${stage.title}</h2>`;
+    if(stage.intro)html+=`<p class="stage-intro">${stage.intro}</p>`;
+    sec.innerHTML=html;
+
+    if(stage.type==='input'){
+      const i=document.createElement('input');
+      i.className='input-solo';i.type=stage.inputType||'text';i.id='q_'+stage.id;
+      i.placeholder=stage.placeholder||'';
+      i.addEventListener('input',e=>{state[stage.id]=e.target.value;saveState();});
+      i.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();tryAdvance(idx);}});
+      sec.appendChild(i);
+    }
+    else if(stage.type==='duo'){
+      const wrap=document.createElement('div');wrap.className='duo-fields';
+      stage.fields.forEach(f=>{
+        const fl=document.createElement('div');fl.className='field-line';
+        fl.innerHTML=`<label>${f.label}</label>`;
+        const i=document.createElement('input');i.id='q_'+f.id;i.type=f.type;i.placeholder=f.placeholder||'';
+        i.addEventListener('input',e=>{state[f.id]=e.target.value;saveState();});
+        fl.appendChild(i);wrap.appendChild(fl);
+      });
+      sec.appendChild(wrap);
+    }
+    else if(stage.type==='details'){
+      const wrap=document.createElement('div');wrap.className='details-grid';
+      stage.fields.forEach(f=>{
+        const fl=document.createElement('div');fl.className='field-line';
+        fl.innerHTML=`<label>${f.label}</label>`;
+        if(f.type==='birthdate'){
+          fl.appendChild(buildBirthdate(f.id));
+        } else {
+          const i=document.createElement('input');
+          i.id='q_'+f.id;i.type=f.type;i.placeholder=f.placeholder||'';
+          i.addEventListener('input',e=>{state[f.id]=e.target.value;saveState();});
+          fl.appendChild(i);
+        }
+        wrap.appendChild(fl);
+      });
+      sec.appendChild(wrap);
+    }
+    else if(stage.type==='choice'){
+      const grid=document.createElement('div');
+      grid.className='cards'+(stage.options.length<=5?' large':'');
+      stage.options.forEach((opt,i)=>{
+        const c=document.createElement('div');
+        c.className='card '+(opt.g||'g-teal');
+        c.dataset.value=opt.v;c.dataset.qid=stage.id;
+        c.innerHTML=`<span class="num">${String(i+1).padStart(2,'0')}</span>
+                     <span class="emo">${opt.emo||'✦'}</span>
+                     <span class="check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
+                     <div class="meta"><div class="t">${opt.t}</div><div class="s">${opt.s||''}</div></div>`;
+        c.addEventListener('click',()=>{
+          if(stage.multi){
+            state[stage.id]=state[stage.id]||[];
+            const has=state[stage.id].includes(opt.v);
+            if(has)state[stage.id]=state[stage.id].filter(x=>x!==opt.v);
+            else state[stage.id].push(opt.v);
+            c.classList.toggle('selected',!has);
+          } else {
+            state[stage.id]=opt.v;
+            [...grid.querySelectorAll('.card')].forEach(cc=>cc.classList.toggle('selected',cc.dataset.value===opt.v));
+            let shouldAdvance=true;
+            if(stage.otherField){
+              const isOutro=opt.v==='outro';
+              const ofWrap=document.getElementById('of_'+stage.id);
+              if(ofWrap)ofWrap.style.display=isOutro?'block':'none';
+              const navBtn=sec.querySelector('.nav-next');
+              if(navBtn)navBtn.style.display=isOutro?'inline-flex':'none';
+              if(isOutro){
+                const ofInput=document.getElementById('q_'+stage.otherField);
+                setTimeout(()=>ofInput&&ofInput.focus(),120);
+                shouldAdvance=false;
+              }
+            }
+            if(shouldAdvance)setTimeout(()=>goTo(idx+1),420);
+          }
+          saveState();
+        });
+        grid.appendChild(c);
+      });
+      sec.appendChild(grid);
+      if(stage.otherField){
+        const ofWrap=document.createElement('div');
+        ofWrap.id='of_'+stage.id;
+        ofWrap.style.cssText='margin-top:28px;display:'+(state[stage.id]==='outro'?'block':'none');
+        const lbl=document.createElement('label');
+        lbl.style.cssText='display:block;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream);font-weight:600;margin-bottom:8px';
+        lbl.textContent='Conte mais (opcional)';
+        const inp=document.createElement('input');
+        inp.id='q_'+stage.otherField;
+        inp.type='text';
+        inp.className='input-solo';
+        inp.style.fontSize='1.3rem';
+        inp.placeholder='Como você ficou sabendo?';
+        inp.addEventListener('input',e=>{state[stage.otherField]=e.target.value;saveState();});
+        ofWrap.appendChild(lbl);
+        ofWrap.appendChild(inp);
+        sec.appendChild(ofWrap);
+      }
+    }
+    else if(stage.type==='story'){
+      const ta=document.createElement('textarea');
+      ta.className='solo';ta.id='q_story';ta.placeholder='Sugestões, elogios, ideias, sonhos que gostaria de viver aqui…';
+      ta.addEventListener('input',e=>{state.story=e.target.value;saveState();});
+      sec.appendChild(ta);
+      const lbl=document.createElement('div');
+      lbl.style.cssText='margin:24px 0 12px;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream);font-weight:600';
+      lbl.textContent='OU GRAVE EM ÁUDIO (OPCIONAL)';
+      sec.appendChild(lbl);
+      sec.appendChild(buildAudio('story_audio'));
+
+      const lbl2=document.createElement('div');
+      lbl2.style.cssText='margin:28px 0 12px;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream);font-weight:600';
+      lbl2.textContent='ANEXOS (OPCIONAL)';
+      sec.appendChild(lbl2);
+      sec.appendChild(buildUploader('uploads'));
+    }
+    else if(stage.type==='summary'){
+      sec.appendChild(buildSummaryArea());
+    }
+
+    sec.appendChild(buildNav(idx));
+    formInner.appendChild(sec);
+  });
+  updateProgress();hydrateValues();
+}
+
+function buildBirthdate(key){
+  const wrap=document.createElement('div');wrap.className='birth-row';
+  const months=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  const yNow=new Date().getFullYear();
+  const dSel=document.createElement('select');dSel.className='birth-sel';dSel.id='q_'+key+'_d';
+  dSel.innerHTML='<option value="">Dia</option>'+Array.from({length:31},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join('');
+  const mSel=document.createElement('select');mSel.className='birth-sel';mSel.id='q_'+key+'_m';
+  mSel.innerHTML='<option value="">Mês</option>'+months.map((m,i)=>`<option value="${i+1}">${m}</option>`).join('');
+  const ySel=document.createElement('select');ySel.className='birth-sel';ySel.id='q_'+key+'_y';
+  ySel.innerHTML='<option value="">Ano</option>'+Array.from({length:90},(_,i)=>`<option value="${yNow-i-12}">${yNow-i-12}</option>`).join('');
+  function update(){
+    const d=dSel.value,m=mSel.value,y=ySel.value;
+    if(d&&m){
+      state[key]=y?`${String(d).padStart(2,'0')}/${String(m).padStart(2,'0')}/${y}`:`${String(d).padStart(2,'0')}/${String(m).padStart(2,'0')}`;
+    } else {state[key]='';}
+    saveState();
+  }
+  [dSel,mSel,ySel].forEach(s=>s.addEventListener('change',update));
+  wrap.appendChild(dSel);wrap.appendChild(mSel);wrap.appendChild(ySel);
+  return wrap;
+}
+
+function buildAudio(key){
+  const b=document.createElement('div');b.className='audio-box';
+  b.innerHTML=`<button type="button" class="audio-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg><span class="audio-label">Gravar</span></button><div class="audio-status">Toque em gravar para começar</div><audio controls style="display:none"></audio>`;
+  const btn=b.querySelector('.audio-btn'),lab=b.querySelector('.audio-label'),st=b.querySelector('.audio-status'),au=b.querySelector('audio');
+  let mr=null,ck=[];
+  btn.addEventListener('click',async()=>{
+    if(btn.classList.contains('recording')){mr&&mr.stop();btn.classList.remove('recording');lab.textContent='Gravar de novo';st.textContent='Gravação salva ✓';return;}
+    try{
+      const s=await navigator.mediaDevices.getUserMedia({audio:true});
+      mr=new MediaRecorder(s);ck=[];
+      mr.ondataavailable=e=>ck.push(e.data);
+      mr.onstop=()=>{const bl=new Blob(ck,{type:'audio/webm'});au.src=URL.createObjectURL(bl);au.style.display='block';state[key]='[gravado em '+new Date().toLocaleString('pt-BR')+']';saveState();s.getTracks().forEach(t=>t.stop());};
+      mr.start();btn.classList.add('recording');lab.textContent='Parar';st.textContent='Gravando…';
+    }catch(e){st.textContent='Permissão de microfone negada.';}
+  });
+  return b;
+}
+
+function buildUploader(key){
+  const w=document.createElement('div');
+  const u=document.createElement('label');u.className='uploader';
+  u.innerHTML=`<input type="file" multiple accept="image/*,application/pdf,audio/*"><div class="up-title">Solte arquivos aqui ou toque para escolher</div><div class="up-sub">Imagens, PDFs ou áudios — o que quiser compartilhar</div>`;
+  const list=document.createElement('div');list.className='upload-list';
+  state[key]=state[key]||[];
+  function render(){
+    list.innerHTML='';
+    state[key].forEach((f,i)=>{
+      const it=document.createElement('div');it.className='upload-item';
+      const isImg=f.type&&f.type.startsWith('image');
+      it.innerHTML=(isImg?`<img src="${f.dataUrl}">`:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>')+`<span>${f.name} <small style="color:var(--muted)">· ${(f.size/1024).toFixed(0)} KB</small></span><button type="button" class="x" data-i="${i}">×</button>`;
+      list.appendChild(it);
+    });
+    list.querySelectorAll('.x').forEach(b=>b.addEventListener('click',()=>{state[key].splice(+b.dataset.i,1);saveState();render();}));
+  }
+  function ingest(files){[...files].forEach(file=>{const r=new FileReader();r.onload=e=>{state[key].push({name:file.name,size:file.size,type:file.type,dataUrl:e.target.result});saveState();render();};r.readAsDataURL(file);});}
+  u.querySelector('input').addEventListener('change',e=>ingest(e.target.files));
+  u.addEventListener('dragover',e=>{e.preventDefault();u.classList.add('drag');});
+  u.addEventListener('dragleave',()=>u.classList.remove('drag'));
+  u.addEventListener('drop',e=>{e.preventDefault();u.classList.remove('drag');ingest(e.dataTransfer.files);});
+  w.appendChild(u);w.appendChild(list);render();return w;
+}
+
+function buildSummaryArea(){
+  const w=document.createElement('div');
+  const c=document.createElement('div');c.className='voucher';
+  c.innerHTML=`
+    <div class="v-top">
+      <div class="v-eyebrow">Vale Drink · Cortesia</div>
+      <div class="v-logo">
+        <svg viewBox="0 0 1000 580" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g fill="#1A2655">
+            <path d="M495 545 C 470 460, 410 380, 280 350 C 160 325, 60 340, 25 380 C 0 415, 30 460, 110 470 C 230 480, 380 480, 460 525 Z"/>
+            <path d="M505 545 C 530 460, 590 380, 720 350 C 840 325, 940 340, 975 380 C 1000 415, 970 460, 890 470 C 770 480, 620 480, 540 525 Z"/>
+          </g>
+          <g fill="#00AEEF">
+            <circle cx="500" cy="100" r="80"/>
+            <path d="M495 510 C 470 420, 410 340, 280 310 C 160 285, 60 300, 25 340 C 0 375, 30 420, 110 430 C 230 440, 380 440, 460 485 Z"/>
+            <path d="M505 510 C 530 420, 590 340, 720 310 C 840 285, 940 300, 975 340 C 1000 375, 970 420, 890 430 C 770 440, 620 440, 540 485 Z"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <h3>Parabéns! Um <em>drink especial</em> te espera no Bar Folha</h3>
+    <p class="v-sub">Apresente este cartão na <strong>recepção</strong> para retirar seu vale drink — nossa cortesia para você curtir ainda mais o Morro dos Anjos. 💙</p>
+    <div class="v-divider"></div>
+    <div class="v-guest-label">Para</div>
+    <div class="v-guest" id="voucherGuest">—</div>
+    <div class="v-meta">
+      <div><b>Emitido em</b><span id="voucherDate">—</span></div>
+      <div><b>Código</b><span id="voucherCode">—</span></div>
+      <div><b>Validade</b>Durante sua estadia</div>
+    </div>
+    <p class="v-instr">Mostre esta tela na <strong>recepção</strong> e brindemos juntos a sua chegada.</p>
+  `;
+  w.appendChild(c);
+  const box=document.createElement('div');box.className='summary-box';box.id='summaryBox';
+  box.style.marginTop='40px';
+  w.appendChild(box);
+  const l=document.createElement('div');l.style.marginTop='40px';
+  l.innerHTML=`<h3 style="font-family:var(--sans);font-weight:600;font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;color:var(--cream);margin:0 0 4px;">Links importantes</h3><p style="color:var(--muted);font-size:.92rem;margin:0 0 18px">Tudo que você precisa enquanto estiver com a gente.</p><div class="links-grid"><a class="link-card" href="https://morrodosanjos.com.br" target="_blank" rel="noopener"><span class="lc-eyebrow">Site oficial</span><span class="lc-title">morrodosanjos.com.br</span><span class="lc-sub">Conheça toda a estrutura</span></a><a class="link-card" href="https://wa.me/5543999999999" target="_blank" rel="noopener"><span class="lc-eyebrow">Concierge 24h</span><span class="lc-title">WhatsApp <em>direto</em></span><span class="lc-sub">Tire dúvidas, peça serviços</span></a><a class="link-card" href="https://www.instagram.com/morrodosanjosresort/" target="_blank" rel="noopener"><span class="lc-eyebrow">Instagram</span><span class="lc-title">@morrodosanjos<em>resort</em></span><span class="lc-sub">Bastidores e novidades</span></a></div>`;
+  w.appendChild(l);
+
+  /* ── BOTÃO DE ENVIO PARA GOOGLE SHEETS ── */
+  const submitWrap=document.createElement('div');
+  submitWrap.className='submit-wrap';
+  submitWrap.innerHTML=`
+    <div class="submit-title">📋 Finalizar &amp; Registrar</div>
+    <p class="submit-desc">
+      Clique abaixo para enviar suas respostas ao Morro dos Anjos e liberar oficialmente sua cortesia.
+      O voucher acima já é válido, mas o envio garante que a equipe conheça suas preferências antes mesmo da sua chegada.
+    </p>
+    <button id="submitBtn" class="btn-submit" type="button" onclick="submitSurvey()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      Enviar respostas e liberar cortesia
+    </button>
+    <div id="submitStatus" class="submit-status"></div>
+  `;
+  w.appendChild(submitWrap);
+
+  return w;
+}
+
+function buildNav(idx){
+  const r=document.createElement('div');r.className='nav-row';
+  const last=idx===STAGES.length-1,first=idx===0,stage=STAGES[idx];
+  if(!first){const p=document.createElement('button');p.className='btn ghost';p.type='button';p.innerHTML='&larr; Voltar';p.addEventListener('click',()=>goTo(idx-1));r.appendChild(p);}
+  const sp=document.createElement('div');sp.className='nav-spacer';r.appendChild(sp);
+  const isSingleChoice=stage.type==='choice'&&!stage.multi;
+  const needsNext=!last && (!isSingleChoice || stage.otherField);
+  if(needsNext){
+    const n=document.createElement('button');n.className='btn primary nav-next';n.type='button';
+    n.innerHTML='Próximo &rarr;';
+    n.addEventListener('click',()=>tryAdvance(idx));
+    if(isSingleChoice && stage.otherField && state[stage.id]!=='outro'){
+      n.style.display='none';
+    }
+    r.appendChild(n);
+  }
+  return r;
+}
+
+function tryAdvance(idx){
+  const stage=STAGES[idx];
+  if(stage.required&&!state[stage.id]){toast('Por favor preencha este campo');const el=document.getElementById('q_'+stage.id);el&&el.focus();return;}
+  if(idx<STAGES.length-1)goTo(idx+1);
+}
+
+function goTo(i){
+  formInner.querySelectorAll('.stage').forEach((s,idx)=>s.classList.toggle('active',idx===i));
+  if(STAGES[i].type==='summary'){renderSummary();fireConfetti();}
+  updateProgress();window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(()=>{
+    const stage=STAGES[i];
+    if(stage.type==='input'){const el=document.getElementById('q_'+stage.id);el&&el.focus();}
+    else if(stage.type==='duo'||stage.type==='details'){const el=document.getElementById('q_'+stage.fields[0].id);el&&el.focus();}
+  },300);
+}
+
+function updateProgress(){
+  let a=0;formInner.querySelectorAll('.stage').forEach((s,i)=>{if(s.classList.contains('active'))a=i;});
+  const pct=((a+1)/STAGES.length)*100;
+  document.getElementById('progressFill').style.width=pct+'%';
+  document.getElementById('progressCount').textContent=String(a+1).padStart(2,'0')+' / '+String(STAGES.length).padStart(2,'0');
+}
+
+function hydrateValues(){
+  STAGES.forEach(stage=>{
+    if(stage.type==='input'){const v=state[stage.id];if(v!=null){const el=document.getElementById('q_'+stage.id);if(el)el.value=v;}}
+    else if(stage.type==='duo'){stage.fields.forEach(f=>{const v=state[f.id];if(v!=null){const el=document.getElementById('q_'+f.id);if(el)el.value=v;}});}
+    else if(stage.type==='details'){stage.fields.forEach(f=>{
+      const v=state[f.id];if(v==null)return;
+      if(f.type==='birthdate'){
+        const parts=String(v).split('/');
+        const dEl=document.getElementById('q_'+f.id+'_d');
+        const mEl=document.getElementById('q_'+f.id+'_m');
+        const yEl=document.getElementById('q_'+f.id+'_y');
+        if(dEl&&parts[0])dEl.value=parseInt(parts[0],10);
+        if(mEl&&parts[1])mEl.value=parseInt(parts[1],10);
+        if(yEl&&parts[2])yEl.value=parts[2];
+      } else {
+        const el=document.getElementById('q_'+f.id);if(el)el.value=v;
+      }
+    });}
+    else if(stage.type==='choice'){
+      const v=state[stage.id];
+      if(v!=null){
+        const arr=stage.multi?(Array.isArray(v)?v:[v]):[v];
+        document.querySelectorAll(`.card[data-qid="${stage.id}"]`).forEach(c=>c.classList.toggle('selected',arr.includes(c.dataset.value)));
+      }
+      if(stage.otherField){
+        const ofWrap=document.getElementById('of_'+stage.id);
+        if(ofWrap)ofWrap.style.display=(state[stage.id]==='outro')?'block':'none';
+        const ofInput=document.getElementById('q_'+stage.otherField);
+        if(ofInput&&state[stage.otherField])ofInput.value=state[stage.otherField];
+      }
+    }
+    else if(stage.type==='story'){if(state.story){const el=document.getElementById('q_story');if(el)el.value=state.story;}}
+  });
+}
+
+function valueDisplay(stage,v){
+  if(v==null||v===''||(Array.isArray(v)&&!v.length))return '—';
+  if(stage.type==='choice'&&stage.options){
+    if(Array.isArray(v))return v.map(x=>{const o=stage.options.find(o=>o.v===x);return o?o.t:x;}).join(', ');
+    const o=stage.options.find(o=>o.v===v);return o?o.t:v;
+  }
+  return v;
+}
+function renderSummary(){
+  // Update voucher fields
+  const guestEl=document.getElementById('voucherGuest');
+  if(guestEl){
+    const raw=(state.name||'').trim();
+    guestEl.textContent=raw?raw.split(' ').slice(0,3).join(' '):'Hóspede Morro dos Anjos';
+  }
+  const dateEl=document.getElementById('voucherDate');
+  if(dateEl){
+    const now=new Date();
+    dateEl.textContent=now.toLocaleDateString('pt-BR');
+    if(!state.voucher_code){
+      state.voucher_code='MDA-'+now.getFullYear()+String(now.getMonth()+1).padStart(2,'0')+String(now.getDate()).padStart(2,'0')+'-'+Math.random().toString(36).slice(2,5).toUpperCase();
+    }
+    const codeEl=document.getElementById('voucherCode');
+    if(codeEl)codeEl.textContent=state.voucher_code;
+  }
+  const box=document.getElementById('summaryBox');if(!box)return;box.innerHTML='';
+  STAGES.forEach(stage=>{
+    if(stage.type==='summary')return;
+    if(stage.type==='input'||stage.type==='choice'){
+      const sec=document.createElement('div');sec.className='summary-section';
+      sec.innerHTML=`<h4>${stage.eyebrow}</h4>`;
+      const r=document.createElement('div');r.className='summary-row';
+      let val=valueDisplay(stage,state[stage.id]);
+      if(stage.otherField&&state[stage.id]==='outro'&&state[stage.otherField]){
+        val+=' — '+state[stage.otherField];
+      }
+      r.innerHTML=`<div class="k">${stage.title.replace(/<[^>]+>/g,'')}</div><div class="v">${val}</div>`;
+      sec.appendChild(r);box.appendChild(sec);
+    } else if(stage.type==='duo'||stage.type==='details'){
+      const sec=document.createElement('div');sec.className='summary-section';
+      sec.innerHTML=`<h4>${stage.eyebrow}</h4>`;
+      stage.fields.forEach(f=>{
+        const r=document.createElement('div');r.className='summary-row';
+        r.innerHTML=`<div class="k">${f.label}</div><div class="v">${state[f.id]||'—'}</div>`;
+        sec.appendChild(r);
+      });
+      box.appendChild(sec);
+    } else if(stage.type==='story'){
+      const sec=document.createElement('div');sec.className='summary-section';
+      sec.innerHTML=`<h4>${stage.eyebrow}</h4>`;
+      const r=document.createElement('div');r.className='summary-row';
+      r.innerHTML=`<div class="k">Mensagem</div><div class="v">${state.story||'—'}</div>`;sec.appendChild(r);
+      if(state.story_audio){const r2=document.createElement('div');r2.className='summary-row';r2.innerHTML=`<div class="k">Áudio</div><div class="v">${state.story_audio}</div>`;sec.appendChild(r2);}
+      if(state.uploads&&state.uploads.length){const r3=document.createElement('div');r3.className='summary-row';r3.innerHTML=`<div class="k">Anexos</div><div class="v">${state.uploads.length} arquivo(s)</div>`;sec.appendChild(r3);}
+      box.appendChild(sec);
+    }
+  });
+  saveState();
+
+  /* Restaura estado do botão de envio se já foi submetido */
+  setTimeout(()=>{
+    const btn=document.getElementById('submitBtn');
+    const statusEl=document.getElementById('submitStatus');
+    if(state.submitted){
+      if(btn){btn.disabled=true;btn.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg> Enviado com sucesso!';btn.style.background='linear-gradient(135deg,#29948F,#124747)';}
+      if(statusEl){statusEl.innerHTML='<span class="ss-icon">🎉</span><strong>Respostas já enviadas.</strong> Apresente este voucher na recepção.';statusEl.className='submit-status success';}
+    }
+  },100);
+}
+
+function fireConfetti(){
+  const c=document.getElementById('confetti');c.innerHTML='';c.classList.add('show');
+  const colors=['#00AEEF','#FFF7E6','#CB9C66','#F27466','#FAA0AA','#8DE0F2'];
+  for(let i=0;i<60;i++){
+    const s=document.createElement('span');
+    s.style.left=Math.random()*100+'%';
+    s.style.background=colors[Math.floor(Math.random()*colors.length)];
+    s.style.animationDelay=(Math.random()*1.2)+'s';
+    s.style.transform=`rotate(${Math.random()*360}deg)`;
+    c.appendChild(s);
+  }
+  setTimeout(()=>c.classList.remove('show'),3500);
+}
+
+function showForm(){
+  document.getElementById('welcome').style.display='none';
+  document.getElementById('formWrap').classList.add('show');
+  document.getElementById('topbar').classList.add('show');
+  buildStages();
+  setTimeout(()=>{const el=document.getElementById('q_'+STAGES[0].id);el&&el.focus();},300);
+}
+document.getElementById('startBtn').addEventListener('click',()=>{
+  const chk=document.getElementById('consentChk');
+  if(chk&&!chk.checked){toast('Marque a autorização de coleta de dados para continuar');return;}
+  state.consent_lgpd={accepted:true,at:new Date().toISOString()};saveState();
+  showForm();
+});
+document.getElementById('skipQ').addEventListener('click',()=>{
+  let idx=0;formInner.querySelectorAll('.stage').forEach((s,i)=>{if(s.classList.contains('active'))idx=i;});
+  if(idx<STAGES.length-1)goTo(idx+1);
+});
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('formWrap').classList.contains('show'))return;
+  if(e.target.tagName==='TEXTAREA')return;
+  let idx=0;formInner.querySelectorAll('.stage').forEach((s,i)=>{if(s.classList.contains('active'))idx=i;});
+  if(e.key==='ArrowRight'&&idx<STAGES.length-1)tryAdvance(idx);
+  if(e.key==='ArrowLeft'&&idx>0)goTo(idx-1);
+});
+</script>
+</body>
+</html>
