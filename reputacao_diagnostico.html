@@ -308,8 +308,8 @@
       </div>
       <div class="diag-card yellow">
         <div class="diag-label">Efeito Projeto 5 Estrelas</div>
-        <div class="diag-num">47,4%</div>
-        <div class="diag-sub">dos elogios positivos citam colaboradores, não estrutura ou produto</div>
+        <div class="diag-num">38,5%</div>
+        <div class="diag-sub">das aval. 5★ mencionam colaboradores (177 de 459 — sem dupla contagem)</div>
         <span class="diag-badge yellow">Viés de reputação induzida</span>
       </div>
     </div>
@@ -533,40 +533,83 @@
       As avaliações positivas reforçam o valor do atendimento humano, mas nem sempre comprovam evolução estrutural da experiência. Por isso, o elogio ao colaborador deve ser analisado separadamente do elogio ao produto-resort.
     </div>
 
-    <div class="elogio-split">
-      <div class="elogio-card">
-        <div class="elogio-header">
-          <div class="elogio-icon" style="background:#EAF7F7;">🤝</div>
-          <div>
-            <div class="elogio-title">Elogio a Pessoas / Atendimento</div>
-            <div class="elogio-sub">Colaborador, equipe, nome próprio, motorista, recreador</div>
+    <!-- 459 avaliações 5★ divididas em 4 categorias sem dupla contagem:
+         Só colaborador: 65 (14,2%)
+         Só produto: 90 (19,6%)
+         Ambos: 112 (24,4%)
+         Genérico/sem texto: 192 (41,8%)  [105 sem info útil + 87 sem texto = 192]
+    -->
+    <div class="chart-container" style="margin-bottom:20px;">
+      <div style="display:grid;grid-template-columns:220px 1fr;gap:24px;align-items:center;">
+        <!-- Donut -->
+        <div style="position:relative;display:flex;align-items:center;justify-content:center;">
+          <canvas id="elogioDonut" width="200" height="200"></canvas>
+          <div style="position:absolute;text-align:center;pointer-events:none;">
+            <div style="font-size:28px;font-weight:700;color:#1D1E46;line-height:1;">459</div>
+            <div style="font-size:10px;color:#888;">aval. 5★</div>
           </div>
         </div>
-        <div class="elogio-count-row">
-          <div class="elogio-count">177</div>
-          <div class="elogio-pct">avaliações · <strong>47,4%</strong> das positivas analisadas</div>
-        </div>
-        <div class="bar-track"><div class="bar-fill" style="width:47.4%;background:#29948F;"></div></div>
-        <div class="elogio-note">Comentários que citam funcionários pelo nome (Wesley, Ana, equipe de recreação etc.), elogiam cordialidade, simpatia ou prestatividade individual de colaboradores.</div>
-      </div>
-      <div class="elogio-card">
-        <div class="elogio-header">
-          <div class="elogio-icon" style="background:#E8F5FF;">🏊</div>
-          <div>
-            <div class="elogio-title">Elogio ao Produto / Resort</div>
-            <div class="elogio-sub">Águas termais, estrutura, quarto, alimentação, lazer</div>
+        <!-- Legenda detalhada -->
+        <div>
+          <div style="font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;">Distribuição das 459 avaliações 5★ — sem dupla contagem</div>
+
+          <!-- Só colaborador -->
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <div style="width:12px;height:12px;border-radius:3px;background:#29948F;flex-shrink:0;"></div>
+            <div style="flex:1;">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;">
+                <span style="font-size:12px;font-weight:700;color:#1D1E46;">🤝 Só colaborador / atendimento</span>
+                <span style="font-size:13px;font-weight:700;color:#29948F;">65 &nbsp;<span style="font-size:10px;color:#888;font-weight:400;">14,2%</span></span>
+              </div>
+              <div style="background:#eee;border-radius:6px;height:6px;margin-top:4px;"><div style="width:14.2%;background:#29948F;height:6px;border-radius:6px;"></div></div>
+              <div style="font-size:10px;color:#888;margin-top:3px;">Elogia exclusivamente pessoas — nome, simpatia, prestatividade</div>
+            </div>
+          </div>
+
+          <!-- Só produto -->
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <div style="width:12px;height:12px;border-radius:3px;background:#00AEEF;flex-shrink:0;"></div>
+            <div style="flex:1;">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;">
+                <span style="font-size:12px;font-weight:700;color:#1D1E46;">🏊 Só produto / resort</span>
+                <span style="font-size:13px;font-weight:700;color:#00AEEF;">90 &nbsp;<span style="font-size:10px;color:#888;font-weight:400;">19,6%</span></span>
+              </div>
+              <div style="background:#eee;border-radius:6px;height:6px;margin-top:4px;"><div style="width:19.6%;background:#00AEEF;height:6px;border-radius:6px;"></div></div>
+              <div style="font-size:10px;color:#888;margin-top:3px;">Elogia águas, estrutura, quarto, lazer, alimentação</div>
+            </div>
+          </div>
+
+          <!-- Ambos -->
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <div style="width:12px;height:12px;border-radius:3px;background:#F5A623;flex-shrink:0;"></div>
+            <div style="flex:1;">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;">
+                <span style="font-size:12px;font-weight:700;color:#1D1E46;">✨ Colaborador + produto</span>
+                <span style="font-size:13px;font-weight:700;color:#F5A623;">112 &nbsp;<span style="font-size:10px;color:#888;font-weight:400;">24,4%</span></span>
+              </div>
+              <div style="background:#eee;border-radius:6px;height:6px;margin-top:4px;"><div style="width:24.4%;background:#F5A623;height:6px;border-radius:6px;"></div></div>
+              <div style="font-size:10px;color:#888;margin-top:3px;">Menciona ambos — o mais completo em termos de experiência</div>
+            </div>
+          </div>
+
+          <!-- Genérico -->
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:0;">
+            <div style="width:12px;height:12px;border-radius:3px;background:#ddd;flex-shrink:0;"></div>
+            <div style="flex:1;">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;">
+                <span style="font-size:12px;font-weight:700;color:#1D1E46;">💬 Sem texto útil / nota apenas</span>
+                <span style="font-size:13px;font-weight:700;color:#999;">192 &nbsp;<span style="font-size:10px;color:#888;font-weight:400;">41,8%</span></span>
+              </div>
+              <div style="background:#eee;border-radius:6px;height:6px;margin-top:4px;"><div style="width:41.8%;background:#ddd;height:6px;border-radius:6px;"></div></div>
+              <div style="font-size:10px;color:#888;margin-top:3px;">105 genéricos ("ótimo!", sem detalhe) + 87 só com nota, sem comentário</div>
+            </div>
           </div>
         </div>
-        <div class="elogio-count-row">
-          <div class="elogio-count">202</div>
-          <div class="elogio-pct">avaliações · <strong>54,1%</strong> das positivas analisadas</div>
-        </div>
-        <div class="bar-track"><div class="bar-fill" style="width:54.1%;background:#00AEEF;"></div></div>
-        <div class="elogio-note">Incluindo avaliações que mencionam ambos os aspectos (112) e avaliações focadas exclusivamente no produto (90). Comentários genéricos sem informação útil: 105.</div>
       </div>
     </div>
+
     <div style="background:#FFF7E6;border:1px solid #F5C45D;border-radius:8px;padding:12px 16px;font-size:11px;color:#1D1E46;margin-bottom:20px;line-height:1.6;">
-      <strong style="color:#D4880A;">Leitura importante:</strong> Das 459 avaliações de 5 estrelas, <strong>177 (38,5%)</strong> elogiam exclusivamente o atendimento humano. Isso indica que o <strong>Projeto 5 Estrelas</strong> gera avaliações genuínas de satisfação com colaboradores — mas não comprova melhora da experiência completa do produto. A reputação aparente positiva é sustentada, em parte, por excelência individual, não sistêmica.
+      <strong style="color:#D4880A;">Leitura importante:</strong> Das 459 avaliações de 5 estrelas, <strong>177 (38,5%)</strong> mencionam colaboradores — seja exclusivamente (65) ou junto ao produto (112). Isso indica que o <strong>Projeto 5 Estrelas</strong> gera avaliações genuínas de satisfação com atendimento, mas apenas <strong>19,6% elogiam exclusivamente o produto-resort</strong>. A reputação aparente positiva é sustentada, em parte, por excelência individual, não sistêmica.
     </div>
 
     <!-- ======================================================
@@ -658,6 +701,36 @@
       html += '</tbody>';
       table.innerHTML = html;
     })();
+
+
+    // ===== DONUT ELOGIOS =====
+    new Chart(document.getElementById('elogioDonut'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Só colaborador', 'Só produto', 'Colaborador + produto', 'Sem texto útil'],
+        datasets: [{
+          data: [65, 90, 112, 192],
+          backgroundColor: ['#29948F', '#00AEEF', '#F5A623', '#E0E0E0'],
+          borderWidth: 0,
+          hoverOffset: 6
+        }]
+      },
+      options: {
+        responsive: false,
+        cutout: '68%',
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: function(ctx) {
+                var pct = ((ctx.parsed / 459) * 100).toFixed(1);
+                return ' ' + ctx.label + ': ' + ctx.parsed + ' (' + pct + '%)';
+              }
+            }
+          }
+        }
+      }
+    });
 
   </script>
 </body>
