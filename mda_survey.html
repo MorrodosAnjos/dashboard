@@ -744,7 +744,7 @@ const STAGES=[
       {v:'regiao',t:'Passei pela região',s:'Conheci de perto',emo:'🛣️',g:'g-sun'},
       {v:'outro',t:'Outro',s:'Conte mais abaixo',emo:'✍️',g:'g-navy'}
     ]},
-  {id:'companions',type:'choice',multi:true,eyebrow:'Etapa 05',title:'Quem está com você nesta <em>jornada</em>?',intro:'Marque uma ou mais — a configuração da viagem muda tudo.',
+  {id:'companions',type:'choice',eyebrow:'Etapa 05',title:'Quem está com você nesta <em>jornada</em>?',
     options:[
       {v:'casal',t:'Viagem de casal',s:'Adoro!',emo:'💑',g:'g-coral'},
       {v:'familia',t:'Em família',s:'Amo!',emo:'👨‍👩‍👧',g:'g-blue'},
@@ -793,28 +793,16 @@ const STAGES=[
       {v:'cafe',t:'Café especial',s:'Sem álcool',emo:'☕',g:'g-teal'},
       {v:'sem',t:'Não bebo álcool',s:'Suco e água saborizada',emo:'🥤',g:'g-mint'}
     ]},
-  {id:'breakfast',type:'choice',eyebrow:'Etapa 11',title:'Como prefere <em>o café da manhã</em>?',
+  {id:'day_activities',type:'choice',multi:true,eyebrow:'Etapa 12',title:'O que você quer mais <em>curtir no Morro</em>?',intro:'Marque tudo que te chama.',
     options:[
-      {v:'amanhecer',t:'Cedinho',s:'Logo ao amanhecer',emo:'🌅',g:'g-sun'},
-      {v:'tranquilo',t:'Tranquilo',s:'Das 8h às 10h',emo:'🥐',g:'g-cream'},
-      {v:'tarde',t:'Sem pressa',s:'O mais tarde possível',emo:'🛏️',g:'g-rose'},
-      {v:'no-quarto',t:'No quarto',s:'Sob medida',emo:'🍳',g:'g-gold'}
-    ]},
-  {id:'day_activities',type:'choice',multi:true,eyebrow:'Etapa 12',title:'Como quer <em>preencher</em> seus dias?',intro:'Marque tudo que te chama.',
-    options:[
+      {v:'praia',t:'Praia',s:'Sol e areia',emo:'🏖️',g:'g-ocean'},
       {v:'piscina',t:'Piscina',s:'Área molhada',emo:'🏊',g:'g-blue'},
-      {v:'spa',t:'Spa',s:'Massagens & relax',emo:'💆',g:'g-rose'},
-      {v:'trilha',t:'Trilhas',s:'Natureza pura',emo:'🥾',g:'g-teal'},
-      {v:'cavalgada',t:'Cavalgadas',s:'Pelo campo',emo:'🐴',g:'g-gold'},
-      {v:'pesca',t:'Pesca',s:'Esportiva',emo:'🎣',g:'g-mint'},
-      {v:'leitura',t:'Leitura',s:'No jardim',emo:'📖',g:'g-cream'},
-      {v:'fazenda',t:'Fazenda',s:'Animais & tour',emo:'🐄',g:'g-sun'},
-      {v:'bike',t:'Bike',s:'Pedalada',emo:'🚴',g:'g-coral'},
-      {v:'yoga_med',t:'Yoga & meditação',s:'Centrar-se',emo:'🧘',g:'g-mint'},
-      {v:'outdoor',t:'Esportes ao ar livre',s:'Sentir o corpo',emo:'🤸',g:'g-ocean'},
-      {v:'vinho_sunset',t:'Vinho ao pôr do sol',s:'Brinde no fim do dia',emo:'🍷',g:'g-rose'},
-      {v:'fogueira_noite',t:'Fogueira à noite',s:'Calor e prosa',emo:'🔥',g:'g-coral'},
-      {v:'kids',t:'Programação infantil',s:'Para os pequenos',emo:'🎠',g:'g-navy'}
+      {v:'spa',t:'SPA',s:'Massagens & relax',emo:'💆',g:'g-rose'},
+      {v:'yoga_med',t:'Yoga & Meditação',s:'Centrar-se',emo:'🧘',g:'g-mint'},
+      {v:'esportes',t:'Esportes',s:'Sentir o corpo',emo:'🤸',g:'g-coral'},
+      {v:'recreacao',t:'Recreação',s:'Lazer e diversão',emo:'🎠',g:'g-gold'},
+      {v:'sauna',t:'Sauna',s:'Calor e relaxamento',emo:'🛁',g:'g-teal'},
+      {v:'boliche',t:'Boliche',s:'Strike em família',emo:'🎳',g:'g-navy'}
     ]},
   {id:'sport',type:'choice',multi:true,eyebrow:'Etapa 13',title:'Esportes que <em>te movem</em>?',
     options:[
@@ -840,7 +828,7 @@ const STAGES=[
       {v:'sauna',t:'Sauna',s:'Hidromassagem',emo:'🛁',g:'g-mint'},
       {v:'cedo',t:'Dormir cedo',s:'Manhã preguiçosa',emo:'🌙',g:'g-teal'}
     ]},
-  {id:'music_taste',type:'choice',multi:true,eyebrow:'Etapa 16',title:'Sua <em>trilha sonora</em>?',
+  {id:'music_taste',type:'choice',multi:true,eyebrow:'Etapa 16',title:'Sua trilha sonora <em>favorita</em>?',
     options:[
       {v:'samba',t:'Samba',s:'Aquele de responsa',emo:'🎵',g:'g-coral'},
       {v:'rock',t:'Rock n roll',s:'Na veia',emo:'🎸',g:'g-navy'},
@@ -850,14 +838,6 @@ const STAGES=[
       {v:'gospel',t:'Gospel',s:'Começo o dia ouvindo',emo:'🙌',g:'g-cream'},
       {v:'classica',t:'Clássica',s:'Instrumental',emo:'🎻',g:'g-teal'},
       {v:'pop',t:'Pop',s:'Internacional',emo:'🌟',g:'g-rose'}
-    ]},
-  {id:'channel',type:'choice',multi:true,eyebrow:'Etapa 17',title:'Como prefere <em>conversar</em> com a gente?',
-    options:[
-      {v:'wpp',t:'WhatsApp',s:'Direto e prático',emo:'💬',g:'g-mint'},
-      {v:'email',t:'E-mail',s:'No seu tempo',emo:'✉️',g:'g-blue'},
-      {v:'sms',t:'SMS',s:'Curto e claro',emo:'📱',g:'g-rose'},
-      {v:'tel',t:'Ligação',s:'Voz humana',emo:'📞',g:'g-gold'},
-      {v:'app',t:'App do resort',s:'Tudo num lugar',emo:'🏨',g:'g-navy'}
     ]},
   {id:'dream_attractions',type:'choice',multi:true,eyebrow:'Etapa 18',title:'Quais atrações você gostaria de <em>viver aqui</em>?',intro:'Imagine o Morro dos Anjos dos sonhos — marque tudo que te animaria.',
     options:[
@@ -875,7 +855,10 @@ const STAGES=[
       {v:'observatorio',t:'Observatório noturno',s:'Estrelas guiadas',emo:'🔭',g:'g-night'},
       {v:'quadriciclo',t:'Passeio de quadriciclo',s:'Aventura sobre rodas',emo:'🏞️',g:'g-coral'},
       {v:'pet_friendly',t:'Espaço pet friendly',s:'Pet incluso',emo:'🐾',g:'g-cream'},
-      {v:'skate',t:'Skate park',s:'Manobras urbanas',emo:'🛹',g:'g-navy'}
+      {v:'skate',t:'Skate park',s:'Manobras urbanas',emo:'🛹',g:'g-navy'},
+      {v:'fogueira_noite',t:'Fogueira à noite',s:'Calor e prosa',emo:'🔥',g:'g-coral'},
+      {v:'vinho_sunset',t:'Vinho ao pôr do sol',s:'Brinde no fim do dia',emo:'🍷',g:'g-rose'},
+      {v:'trilhas',t:'Trilhas',s:'Natureza pura',emo:'🥾',g:'g-teal'}
     ]},
   {id:'world_travel',type:'choice',multi:true,eyebrow:'Etapa 19',title:'Você gosta de <em>viajar pelo mundo</em>?',intro:'Marque os destinos que mais te chamam — pode escolher quantos quiser.',
     options:[
@@ -891,13 +874,20 @@ const STAGES=[
       {v:'africa',t:'África',s:'Safári e contrastes',emo:'🦁',g:'g-cream'},
       {v:'pouco',t:'Viajo pouco',s:'Curto a vida em casa',emo:'🌿',g:'g-night'}
     ]},
-  {id:'vacation_club',type:'choice',eyebrow:'Etapa 20',title:'Que tal viajar <em>mais e com mais liberdade</em>?',intro:'Já imaginou aproveitar o Morro dos Anjos quando quiser ou usar suas férias para conhecer destinos turísticos pelo mundo? O Vacation Club do Morro dos Anjos transforma suas viagens em experiências mais flexíveis, com acesso ao resort e a milhares de hotéis e resorts parceiros ao redor do mundo.',
+  {id:'vacation_club',type:'choice',eyebrow:'Etapa 20',title:'Que tal viajar com mais <em>liberdade</em>?',intro:'Já imaginou aproveitar o Morro dos Anjos quando quiser ou usar suas férias para conhecer destinos turísticos pelo mundo? Conheça o Vacation Club e tenha acesso ao Morro e a milhares de hotéis ao redor do mundo.',
     options:[
       {v:'sim',t:'Quero saber mais',s:'Me contem tudo',emo:'✨',g:'g-gold'},
       {v:'depois',t:'Talvez no futuro',s:'Pode me contar depois',emo:'🤔',g:'g-mint'},
       {v:'nao',t:'Sem interesse agora',s:'Foco na estadia',emo:'🌿',g:'g-teal'}
     ]},
-  {id:'__story',type:'story',eyebrow:'Etapa 21 · Tudo opcional',title:'Quer deixar uma <em>mensagem</em> pro Morro dos Anjos?',intro:'Texto, áudio, fotos — fique à vontade. Tudo aqui é opcional, pode pular para finalizar.'},
+  {id:'channel',type:'choice',multi:true,eyebrow:'Etapa 17',title:'Como prefere <em>conversar</em> com a gente?',
+    options:[
+      {v:'wpp',t:'WhatsApp',s:'Direto e prático',emo:'💬',g:'g-mint'},
+      {v:'email',t:'E-mail',s:'No seu tempo',emo:'✉️',g:'g-blue'},
+      {v:'sms',t:'SMS',s:'Curto e claro',emo:'📱',g:'g-rose'},
+      {v:'tel',t:'Ligação',s:'Voz humana',emo:'📞',g:'g-gold'},
+      {v:'app',t:'App do resort',s:'Tudo num lugar',emo:'🏨',g:'g-navy'}
+    ]},
   {id:'__summary',type:'summary',eyebrow:'Pronto!',title:'Parabéns, sua <em>cortesia</em> está pronta 💙'}
 ];
 
