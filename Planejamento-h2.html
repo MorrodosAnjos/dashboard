@@ -1,0 +1,2403 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Planejamento H2 | Morro dos Anjos</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --cyan:#00AEEF; --navy:#1D1E46; --cream:#FFF7E6; --coral:#F27466; --gold:#CB9C66;
+  --green:#29948F; --deepgreen:#124747; --bg:#F0F7FC; --white:#fff; --muted:#64748b;
+  --shadow:0 18px 60px rgba(29,30,70,.10); --line:rgba(29,30,70,.10);
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; scroll-snap-type:y proximity; }
+body { font-family:Montserrat,Arial,sans-serif; background:var(--navy); color:var(--navy); overflow-x:hidden; }
+.progress { position:fixed; inset:0 auto auto 0; height:4px; width:0; background:linear-gradient(90deg,var(--cyan),var(--green),var(--gold)); z-index:2000; }
+.logo-fixed { position:fixed; top:22px; right:34px; z-index:1500; width:104px; opacity:.96; filter:drop-shadow(0 8px 20px rgba(0,0,0,.18)); pointer-events:none; }
+.slide { min-height:100vh; padding:5.2% 7.4%; position:relative; display:flex; flex-direction:column; justify-content:center; overflow:hidden; scroll-snap-align:start; scroll-snap-stop:always; }
+.slide-inner { width:min(1160px,100%); position:relative; z-index:2; }
+.dark { color:white; background:radial-gradient(circle at 82% 82%, rgba(0,174,239,.20), transparent 33%), radial-gradient(circle at 10% 16%, rgba(41,148,143,.16), transparent 28%), linear-gradient(135deg,#111338 0%,#1D1E46 64%,#124747 120%); }
+.white { background:#fff; } .light { background:var(--bg); } .cream { background:linear-gradient(145deg,var(--cream),#fff 75%); }
+.kicker { display:flex; align-items:center; gap:10px; color:var(--cyan); font-size:10px; text-transform:uppercase; letter-spacing:.22em; font-weight:850; margin-bottom:14px; }
+.kicker:before { content:''; width:30px; height:2px; background:currentColor; }
+h1 { font-size:clamp(48px,7.2vw,82px); line-height:.98; letter-spacing:-.045em; font-weight:800; color:white; }
+h2 { font-size:clamp(28px,3.55vw,46px); line-height:1.06; letter-spacing:-.03em; font-weight:800; max-width:1060px; }
+h3 { font-size:17px; line-height:1.22; letter-spacing:-.015em; font-weight:800; }
+p { font-size:13px; line-height:1.62; color:var(--muted); }
+.dark p { color:rgba(255,255,255,.62); }
+.subtitle { margin-top:12px; font-size:14px; max-width:860px; }
+.title-row { display:flex; align-items:flex-start; justify-content:space-between; gap:32px; margin-bottom:24px; }
+.title-row .subtitle { max-width:420px; margin-top:2px; font-size:12px; }
+.grid { display:grid; gap:16px; } .cols2 { grid-template-columns:1fr 1fr; } .cols3 { grid-template-columns:repeat(3,1fr); } .cols4 { grid-template-columns:repeat(4,1fr); } .asym { grid-template-columns:1.15fr .85fr; }
+.card { background:white; border:1px solid var(--line); border-radius:16px; padding:22px; box-shadow:var(--shadow); }
+.dark .card { background:rgba(255,255,255,.065); border-color:rgba(255,255,255,.12); box-shadow:none; color:white; }
+.card.cyan { border-top:4px solid var(--cyan); } .card.coral { border-top:4px solid var(--coral); } .card.green { border-top:4px solid var(--green); } .card.gold { border-top:4px solid var(--gold); }
+.metric-label { font-size:10px; text-transform:uppercase; letter-spacing:.14em; font-weight:850; color:var(--muted); margin-bottom:8px; }
+.dark .metric-label { color:rgba(255,255,255,.45); }
+.metric { font-size:clamp(26px,3.2vw,40px); line-height:.98; font-weight:900; letter-spacing:-.045em; color:var(--navy); }
+.dark .metric { color:white; } .metric.cyan { color:var(--cyan); } .metric.coral { color:var(--coral); } .metric.green { color:var(--green); }
+.note { font-size:11px; line-height:1.45; color:var(--muted); margin-top:8px; } .dark .note { color:rgba(255,255,255,.52); }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+.pill { padding:6px 10px; border-radius:999px; background:rgba(0,174,239,.10); color:var(--navy); font-size:10.5px; font-weight:800; letter-spacing:.03em; }
+.dark .pill { background:rgba(255,255,255,.085); color:rgba(255,255,255,.76); border:1px solid rgba(255,255,255,.08); }
+.source { position:absolute; left:7.4%; right:7.4%; bottom:18px; z-index:4; font-size:9px; letter-spacing:.04em; color:rgba(29,30,70,.36); } .dark .source { color:rgba(255,255,255,.34); }
+/* cover */
+.cover { justify-content:center; padding-left:9.5%; }
+.cover .brand-logo { width:116px; filter:brightness(0) invert(1); opacity:.95; margin-bottom:38px; }
+.cover .watermark { position:absolute; right:-110px; bottom:-130px; width:560px; opacity:.055; filter:brightness(0) invert(1); transform:rotate(-10deg); }
+.cover-title-line { color:var(--cyan); }
+.cover-sub { margin-top:18px; max-width:700px; color:rgba(255,255,255,.66); font-size:16px; line-height:1.55; font-weight:500; }
+.cover-tags { display:flex; flex-wrap:wrap; gap:9px; margin-top:32px; }
+.cover-tag-pill { border:1px solid rgba(255,255,255,.14); color:rgba(255,255,255,.72); background:rgba(255,255,255,.06); border-radius:999px; padding:8px 12px; font-size:11px; font-weight:750; }
+/* slide 2 aquarium/ocean */
+.strategy-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:26px; }
+.strategy-card { border-radius:18px; padding:28px; min-height:360px; display:flex; flex-direction:column; justify-content:space-between; }
+.aquarium { background:#f5f5f5; border:2px solid #e5e7eb; color:#777; }
+.ocean { background:linear-gradient(145deg,var(--navy),#10173d); border:2px solid var(--cyan); color:white; }
+.strategy-head { display:flex; align-items:center; gap:12px; margin-bottom:18px; }
+.icon { width:42px; height:42px; border-radius:10px; display:grid; place-items:center; font-size:22px; }
+.aquarium .icon { background:#e8e8e8; } .ocean .icon { background:rgba(0,174,239,.17); }
+.strategy-card h3 { font-size:17px; text-transform:uppercase; letter-spacing:.12em; } .ocean h3 { color:var(--cyan); }
+.strategy-list { display:grid; grid-template-columns:repeat(2,1fr); gap:9px; list-style:none; margin:12px 0 18px; }
+.strategy-list li { border-radius:8px; padding:10px 12px; font-size:12px; font-weight:750; }
+.aquarium li { background:#e8e8e8; color:#666; } .ocean li { background:rgba(0,174,239,.12); color:var(--cyan); border:1px solid rgba(0,174,239,.28); }
+.strategy-footer { margin-top:22px; padding:16px 20px; border-radius:12px; background:var(--navy); color:var(--cyan); font-weight:850; text-align:center; font-size:15px; letter-spacing:.04em; }
+/* bars */
+.barviz { display:flex; flex-direction:column; gap:10px; } .barline { display:grid; grid-template-columns:70px 1fr; align-items:center; gap:12px; }
+.barlabel { font-size:11px; font-weight:850; text-transform:uppercase; color:var(--muted); } .dark .barlabel { color:rgba(255,255,255,.58); }
+.bartrack { height:34px; background:rgba(29,30,70,.07); border-radius:8px; overflow:hidden; } .dark .bartrack { background:rgba(255,255,255,.07); }
+.barfill { height:100%; border-radius:8px; display:flex; align-items:center; justify-content:flex-end; padding:0 10px; font-size:11px; font-weight:900; white-space:nowrap; min-width:34px; color:var(--navy); }
+.barfill.cyan { background:var(--cyan); } .barfill.coral { background:var(--coral); color:white; } .barfill.green { background:var(--green); color:white; } .barfill.gold { background:var(--gold); } .barfill.navy { background:var(--navy); color:white; }
+.chartnote { margin-top:12px; padding:13px 15px; border-radius:10px; background:rgba(0,174,239,.08); border:1px solid rgba(0,174,239,.18); font-size:12px; line-height:1.55; color:var(--muted); } .dark .chartnote { color:rgba(255,255,255,.66); border-color:rgba(0,174,239,.24); }
+/* layers */
+.layer-card { position:relative; min-height:255px; overflow:hidden; } .layer-card:after { content:attr(data-num); position:absolute; right:18px; top:8px; font-size:76px; font-weight:900; color:rgba(29,30,70,.055); } .dark .layer-card:after { color:rgba(255,255,255,.045); }
+.layer-card h3 { margin:6px 0 12px; font-size:20px; } .layer-card ul { list-style:none; display:flex; flex-direction:column; gap:8px; margin-top:16px; } .layer-card li { font-size:12px; color:var(--muted); padding-bottom:7px; border-bottom:1px solid rgba(29,30,70,.07); } .dark .layer-card li { color:rgba(255,255,255,.62); border-color:rgba(255,255,255,.08); }
+/* calendar */
+.calendar-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:12px; margin-top:24px; }
+.calendar-card { background:#fff; border-radius:15px; padding:16px; box-shadow:0 8px 28px rgba(29,30,70,.08); border:1px solid rgba(29,30,70,.08); border-top:4px solid var(--cyan); }
+.calendar-card.low { border-top-color:var(--green); } .calendar-card.medium { border-top-color:#F5C45D; } .calendar-card.high,.calendar-card.critical { border-top-color:var(--coral); }
+.cal-top { display:flex; justify-content:space-between; gap:6px; align-items:flex-start; } .cal-top h3 { font-size:21px; } .cal-top strong { display:block; margin-top:3px; color:var(--cyan); font-size:13px; } .cal-top span { font-size:11px; font-weight:850; color:var(--muted); }
+.risk-label { margin:10px 0; font-size:9px; text-transform:uppercase; letter-spacing:.11em; font-weight:900; color:var(--muted); } .calendar-card.high .risk-label,.calendar-card.critical .risk-label { color:var(--coral); } .calendar-card.low .risk-label { color:var(--green); }
+.calendar-card h4 { font-size:12px; line-height:1.3; min-height:30px; } .calendar-card p { font-size:10.5px; line-height:1.45; margin-top:8px; }
+/* tables/action */
+.matrix { display:grid; grid-template-columns:1.05fr repeat(4,1fr); gap:1px; background:rgba(29,30,70,.08); border-radius:14px; overflow:hidden; margin-top:20px; } .matrix div { background:#fff; padding:13px; font-size:11.2px; line-height:1.45; } .matrix .h { background:var(--navy); color:#fff; font-weight:850; text-transform:uppercase; letter-spacing:.08em; font-size:9.5px; } .matrix .rowh { font-weight:850; color:var(--navy); }
+.action-list { display:flex; flex-direction:column; gap:10px; } .action { display:grid; grid-template-columns:78px 1fr; gap:12px; padding:12px 14px; border-radius:12px; background:#fff; border-left:4px solid var(--cyan); } .action span { color:var(--cyan); font-size:12px; font-weight:900; text-transform:uppercase; } .action p { font-size:11.5px; line-height:1.42; }
+/* funnel */
+.funnel { display:flex; justify-content:center; align-items:center; margin-top:32px; flex-wrap:wrap; } .fstep { background:var(--navy); color:#fff; font-weight:850; font-size:12px; letter-spacing:.06em; text-transform:uppercase; padding:13px 24px; clip-path:polygon(0 0,calc(100% - 14px) 0,100% 50%,calc(100% - 14px) 100%,0 100%,14px 50%); } .fstep:first-child { clip-path:polygon(0 0,calc(100% - 14px) 0,100% 50%,calc(100% - 14px) 100%,0 100%); } .fstep:last-child { background:var(--green); color:#fff; }
+.navdots { position:fixed; right:18px; top:50%; transform:translateY(-50%); z-index:1600; display:flex; flex-direction:column; gap:8px; } .navdots a { width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.35); border:1px solid rgba(29,30,70,.22); } .navdots a.active { height:24px; background:var(--cyan); }
+@media (max-width: 980px) { .slide { padding:74px 22px; min-height:100vh; } .logo-fixed { width:78px; top:14px; right:16px; } .cols2,.cols3,.cols4,.asym,.strategy-grid,.calendar-grid { grid-template-columns:1fr; } .title-row { display:block; } .navdots { display:none; } .cover .brand-logo { width:96px; } h1 { font-size:46px; } h2 { font-size:30px; } .matrix { grid-template-columns:1fr; } .matrix .h:not(:first-child) { display:none; } }
+@media print { html { scroll-snap-type:none; } .slide { min-height:100vh; page-break-after:always; } .progress,.navdots,.logo-fixed { display:none; } }
+</style>
+<style>
+/* ===== Slides importados do Claude — CSS escopado ===== */
+/* =========================================
+   RESET & BASE
+========================================= */
+.claude-slide *::before, .claude-slide *::after{ box-sizing: border-box; margin: 0; padding: 0; }
+/* =========================================
+   TOKENS
+========================================= */
+:root{
+  --navy: #1D1E46;
+  --blue: #00AEEF;
+  --blue-mid: #0E6F99;
+  --bg-light: #F0F7FC;
+  --bg-ice: #E8F7FD;
+  --white: #FFFFFF;
+  --cream: #FFF7E6;
+  --coral: #F27466;
+  --gold: #F5C45D;
+  --gold-dark: #CB9C66;
+  --green: #00C878;
+  --teal: #29948F;
+  --gray: #64748B;
+  --gray-light: #6B7A99;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 2px 16px rgba(29,30,70,0.08);
+  --shadow-md: 0 4px 28px rgba(29,30,70,0.13);
+}
+/* =========================================
+   SECTIONS
+========================================= */
+section.claude-slide{
+  min-height: 100vh;
+  width: 100%;
+  padding: 44px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+/* =========================================
+   TYPOGRAPHY
+========================================= */
+.claude-slide .label{
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+.claude-slide .section-title{
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.claude-slide .section-sub{
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--gray);
+  margin-bottom: 40px;
+  max-width: 600px;
+}
+.claude-slide .insight{
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray);
+  line-height: 1.6;
+  padding: 12px 16px;
+  background: rgba(0,174,239,0.06);
+  border-left: 3px solid var(--blue);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin-top: 16px;
+}
+.claude-slide .insight.navy{ background: rgba(29,30,70,0.04); border-color: var(--navy); }
+.claude-slide .insight.coral{ background: rgba(242,116,102,0.06); border-color: var(--coral); }
+.claude-slide .insight.green{ background: rgba(0,200,120,0.06); border-color: var(--green); }
+/* =========================================
+   LOGO BADGE (fixed top right)
+========================================= */
+.claude-slide .logo-badge{
+  position: fixed;
+  top: 20px;
+  right: 28px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+.claude-slide .logo-badge img{ height: 36px; filter: drop-shadow(0 1px 4px rgba(0,0,0,0.3)); }
+/* =========================================
+   PROGRESS NAV (left side)
+========================================= */
+.claude-slide .progress-nav{
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.claude-slide .progress-nav a{
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(29,30,70,0.2);
+  display: block;
+  transition: all 0.3s;
+}
+.claude-slide .progress-nav a:hover{ background: var(--blue); transform: scale(1.5); }
+/* =========================================
+   CARDS
+========================================= */
+.claude-slide .card{
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+.claude-slide .card.navy{ background: var(--navy); color: var(--white); }
+.claude-slide .card.blue{ background: var(--blue); color: var(--white); }
+.claude-slide .card.cream{ background: var(--cream); }
+.claude-slide .card.ice{ background: var(--bg-ice); }
+.claude-slide .card.coral{ background: var(--coral); color: var(--white); }
+.claude-slide .card.teal{ background: var(--teal); color: var(--white); }
+.claude-slide .kpi-val{
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1;
+  margin: 8px 0 4px;
+}
+.claude-slide .kpi-label{ font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.7; }
+.claude-slide .kpi-sub{ font-size: 11px; font-weight: 400; opacity: 0.6; margin-top: 4px; }
+/* =========================================
+   GRID UTILITIES
+========================================= */
+.claude-slide .grid-2{ display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.claude-slide .grid-3{ display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+.claude-slide .grid-4{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.claude-slide .grid-5{ display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+.claude-slide .grid-6{ display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
+.claude-slide .grid-65{ display: grid; grid-template-columns: 1.8fr 1fr; gap: 24px; }
+.claude-slide .grid-56{ display: grid; grid-template-columns: 1fr 1.6fr; gap: 24px; }
+/* =========================================
+   PROGRESS BAR
+========================================= */
+.claude-slide .progress-track{
+  height: 10px;
+  background: rgba(29,30,70,0.1);
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+.claude-slide .progress-fill{
+  height: 100%;
+  border-radius: 999px;
+  transition: width 1.2s ease;
+}
+/* =========================================
+   TABLE
+========================================= */
+.claude-slide .exec-table{
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.claude-slide .exec-table th{
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gray);
+  border-bottom: 1px solid rgba(29,30,70,0.08);
+}
+.claude-slide .exec-table td{
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(29,30,70,0.05);
+  font-weight: 500;
+  color: var(--navy);
+}
+.claude-slide .exec-table tr:last-child td{ border-bottom: none; }
+.claude-slide .exec-table tr:hover td{ background: rgba(0,174,239,0.03); }
+/* =========================================
+   RISK BADGE
+========================================= */
+.claude-slide .risk{
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.claude-slide .risk.low{ background: rgba(0,200,120,0.12); color: #00874F; }
+.claude-slide .risk.med{ background: rgba(245,196,93,0.2); color: #9C6B00; }
+.claude-slide .risk.high{ background: rgba(242,116,102,0.15); color: #C0392B; }
+/* =========================================
+   MONTH CARD (calendar)
+========================================= */
+.claude-slide .month-card{
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  border-top: 4px solid var(--blue);
+  position: relative;
+  overflow: hidden;
+}
+.claude-slide .month-card.risk-low{ border-top-color: var(--green); }
+.claude-slide .month-card.risk-med{ border-top-color: var(--gold); }
+.claude-slide .month-card.risk-high{ border-top-color: var(--coral); }
+.claude-slide .month-card .m-name{ font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px; }
+.claude-slide .month-card .m-meta{ font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--gray); margin-bottom: 4px; }
+.claude-slide .month-card .m-val{ font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.claude-slide .month-card .m-gap{ font-size: 11px; font-weight: 600; color: var(--coral); }
+.claude-slide .month-card .m-actions{ margin-top: 12px; }
+.claude-slide .month-card .m-action-item{
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--navy);
+  padding: 3px 0;
+  border-bottom: 1px solid rgba(29,30,70,0.06);
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+.claude-slide .month-card .m-action-item:last-child{ border-bottom: none; }
+.claude-slide .month-card .m-action-item::before{ content: "→"; color: var(--blue); font-weight: 700; flex-shrink: 0; }
+/* =========================================
+   SECTION THEMES
+========================================= */
+.claude-slide.s-dark{ background: var(--navy); color: var(--white); }
+.claude-slide.s-dark .section-title{ color: var(--white); }
+.claude-slide.s-dark .section-sub{ color: rgba(255,255,255,0.55); }
+.claude-slide.s-dark .label{ color: rgba(255,255,255,0.5); }
+.claude-slide.s-dark .kpi-label{ color: rgba(255,255,255,0.6); }
+.claude-slide.s-dark .card{ background: rgba(255,255,255,0.06); color: var(--white); box-shadow: none; border: 1px solid rgba(255,255,255,0.08); }
+.claude-slide.s-dark .progress-track{ background: rgba(255,255,255,0.12); }
+.claude-slide.s-dark .insight{ background: rgba(0,174,239,0.12); color: rgba(255,255,255,0.85); }
+.claude-slide.s-white{ background: var(--white); }
+.claude-slide.s-cream{ background: var(--cream); }
+.claude-slide.s-ice{ background: var(--bg-light); }
+.claude-slide.s-blue{ background: #0A3D5C; color: var(--white); }
+.claude-slide.s-blue .section-title{ color: var(--white); }
+.claude-slide.s-blue .label{ color: rgba(255,255,255,0.5); }
+.claude-slide.s-blue .section-sub{ color: rgba(255,255,255,0.6); }
+/* =========================================
+   COVER SPECIFIC
+========================================= */
+.claude-slide#cover{
+  background: var(--navy);
+  background-image: radial-gradient(ellipse at 70% 40%, rgba(0,174,239,0.15) 0%, transparent 60%),
+                    radial-gradient(ellipse at 20% 80%, rgba(0,174,239,0.08) 0%, transparent 50%);
+  justify-content: flex-end;
+  padding-bottom: 64px;
+}
+.claude-slide.cover-eyebrow{
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 20px;
+}
+.claude-slide.cover-title{
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.05;
+  margin-bottom: 10px;
+}
+.claude-slide.cover-title span{ color: var(--blue); }
+.claude-slide.cover-sub{
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 40px;
+  max-width: 500px;
+}
+.claude-slide.cover-tag{
+  display: inline-block;
+  background: rgba(0,174,239,0.15);
+  border: 1px solid rgba(0,174,239,0.3);
+  color: var(--blue);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+/* cover-logo removed - using inline */
+.claude-slide /* =========================================
+   DIVIDER
+========================================= */
+.divider{
+  width: 40px;
+  height: 3px;
+  background: var(--blue);
+  border-radius: 2px;
+  margin-bottom: 24px;
+}
+.claude-slide .divider.white{ background: rgba(255,255,255,0.3); }
+/* =========================================
+   FUNNEL
+========================================= */
+.claude-slide .funnel-step{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+  transition: transform 0.2s;
+}
+.claude-slide .funnel-step:hover{ transform: translateX(4px); }
+.claude-slide .funnel-num{ font-size: 28px; font-weight: 900; opacity: 0.2; min-width: 40px; }
+.claude-slide .funnel-content{ flex: 1; }
+.claude-slide .funnel-title{ font-size: 14px; font-weight: 700; }
+.claude-slide .funnel-desc{ font-size: 11px; opacity: 0.7; margin-top: 2px; }
+/* =========================================
+   TIMELINE (Gantt-style)
+========================================= */
+.claude-slide .gantt-container{ overflow-x: auto; }
+.claude-slide .gantt-grid{
+  display: grid;
+  grid-template-columns: 180px repeat(6, 1fr);
+  gap: 0;
+  min-width: 700px;
+}
+.claude-slide .gantt-header{
+  padding: 10px 12px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-align: center;
+  background: var(--navy);
+  color: rgba(255,255,255,0.7);
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.claude-slide .gantt-header:first-child{ text-align: left; }
+.claude-slide .gantt-label{
+  padding: 10px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--navy);
+  background: var(--white);
+  border-bottom: 1px solid rgba(29,30,70,0.06);
+  border-right: 1px solid rgba(29,30,70,0.06);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.claude-slide .gantt-cell{
+  padding: 6px 4px;
+  border-bottom: 1px solid rgba(29,30,70,0.06);
+  border-right: 1px solid rgba(29,30,70,0.06);
+  background: rgba(240,247,252,0.5);
+  position: relative;
+}
+.claude-slide .gantt-bar{
+  border-radius: 4px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  font-size: 9px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.claude-slide .gantt-bar.full{ width: 100%; }
+.claude-slide .gantt-bar.half{ width: 60%; }
+.claude-slide .gantt-group{
+  padding: 6px 12px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: var(--navy);
+  color: var(--blue);
+  grid-column: 1 / -1;
+}
+/* =========================================
+   WAR ROOM TABLE
+========================================= */
+.claude-slide .war-room-grid{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+.claude-slide .war-room-col{
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.claude-slide .war-room-header{
+  padding: 12px 16px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.claude-slide .war-room-item{
+  padding: 8px 16px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--navy);
+  border-bottom: 1px solid rgba(29,30,70,0.05);
+  line-height: 1.4;
+}
+.claude-slide .war-room-item:last-child{ border-bottom: none; }
+/* =========================================
+   GEO SECTION
+========================================= */
+.claude-slide .geo-compare{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.claude-slide .geo-col{ padding: 24px; border-radius: var(--radius); }
+.claude-slide .geo-col.seo{ background: rgba(29,30,70,0.04); }
+.claude-slide .geo-col.geo{ background: rgba(0,174,239,0.08); border: 1px solid rgba(0,174,239,0.2); }
+.claude-slide .geo-col h4{ font-size: 16px; font-weight: 800; margin-bottom: 16px; }
+.claude-slide .geo-item{ padding: 8px 0; font-size: 12px; border-bottom: 1px solid rgba(29,30,70,0.06); display: flex; gap: 10px; }
+.claude-slide .geo-item::before{ content: "•"; font-weight: 900; flex-shrink: 0; }
+/* =========================================
+   SLIDE NUMBER
+========================================= */
+.claude-slide .slide-number{
+  position: absolute;
+  bottom: 28px;
+  right: 36px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  opacity: 0.25;
+}
+/* =========================================
+   SCROLLBAR
+========================================= */
+.claude-slide ::-webkit-scrollbar{ width: 4px; height: 4px; }
+.claude-slide ::-webkit-scrollbar-track{ background: transparent; }
+.claude-slide ::-webkit-scrollbar-thumb{ background: var(--blue); border-radius: 2px; }
+/* =========================================
+   ANIMATE ON SCROLL
+========================================= */
+.claude-slide .fade-up{
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.claude-slide .fade-up.visible{
+  opacity: 1;
+  transform: none;
+}
+
+
+/* Ajustes para manter a logo fixa da versão Aya acima dos slides importados */
+.claude-slide{scroll-snap-align:start;scroll-snap-stop:always;}
+.claude-slide .slide-number{right:180px !important;}
+</style><script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+/* Ajuste solicitado — Calendário Estratégico: títulos dos cards em branco */
+#s17 div[style*="overflow:hidden; box-shadow"] > div:first-child p,
+#s17 div[style*="overflow:hidden; box-shadow"] > div:first-child p * {
+  color:#fff !important;
+}
+#s17 div[style*="overflow:hidden; box-shadow"] > div:first-child p:first-child {
+  color:#fff !important;
+  opacity:1 !important;
+}
+#s17 div[style*="overflow:hidden; box-shadow"] > div:first-child p:nth-child(2) {
+  color:rgba(255,255,255,.82) !important;
+  opacity:1 !important;
+}
+
+/* Ajuste solicitado — Brand Performance redesenhado no padrão executivo */
+#s18.brand-performance-v2 {
+  background:linear-gradient(180deg,#ffffff 0%,#F0F7FC 100%);
+  color:var(--navy);
+}
+#s18.brand-performance-v2 .bp-shell {
+  width:min(1160px,100%);
+  position:relative;
+  z-index:2;
+}
+#s18.brand-performance-v2 h2 { color:var(--navy); }
+#s18.brand-performance-v2 .bp-layout {
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:22px;
+  align-items:stretch;
+  margin-top:24px;
+}
+#s18.brand-performance-v2 .bp-funnel {
+  background:#fff;
+  border:1px solid rgba(29,30,70,.08);
+  border-radius:18px;
+  padding:24px;
+  box-shadow:0 10px 36px rgba(29,30,70,.08);
+}
+#s18.brand-performance-v2 .bp-stage {
+  display:grid;
+  grid-template-columns:84px 1fr 132px;
+  gap:14px;
+  align-items:center;
+  padding:15px 0;
+  border-bottom:1px solid rgba(29,30,70,.08);
+}
+#s18.brand-performance-v2 .bp-stage:last-child { border-bottom:0; }
+#s18.brand-performance-v2 .bp-index {
+  width:54px;height:54px;border-radius:14px;
+  display:grid;place-items:center;
+  font-size:22px;font-weight:900;
+  color:#fff;background:var(--navy);
+}
+#s18.brand-performance-v2 .bp-stage:nth-child(2) .bp-index { background:var(--blue-mid); }
+#s18.brand-performance-v2 .bp-stage:nth-child(3) .bp-index { background:var(--teal); }
+#s18.brand-performance-v2 .bp-stage:nth-child(4) .bp-index { background:var(--green); }
+#s18.brand-performance-v2 .bp-stage h3 {
+  font-size:16px;color:var(--navy);margin-bottom:4px;
+}
+#s18.brand-performance-v2 .bp-stage p {
+  font-size:11.5px;line-height:1.45;color:var(--gray);
+}
+#s18.brand-performance-v2 .bp-tags {
+  display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;
+}
+#s18.brand-performance-v2 .bp-tags span {
+  font-size:9.5px;font-weight:800;letter-spacing:.04em;
+  color:var(--blue-mid);background:rgba(0,174,239,.10);
+  border:1px solid rgba(0,174,239,.18);
+  border-radius:999px;padding:5px 8px;white-space:nowrap;
+}
+#s18.brand-performance-v2 .bp-panel {
+  display:flex;flex-direction:column;gap:14px;
+}
+#s18.brand-performance-v2 .bp-card {
+  background:#fff;border:1px solid rgba(29,30,70,.08);
+  border-radius:16px;padding:18px 20px;
+  box-shadow:0 8px 30px rgba(29,30,70,.07);
+}
+#s18.brand-performance-v2 .bp-card.dark {
+  background:var(--navy);color:#fff;border-color:rgba(255,255,255,.12);
+}
+#s18.brand-performance-v2 .bp-card .eyebrow {
+  font-size:9.5px;font-weight:850;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--blue);margin-bottom:8px;
+}
+#s18.brand-performance-v2 .bp-card h3 {font-size:15px;color:inherit;margin-bottom:8px;}
+#s18.brand-performance-v2 .bp-card p {font-size:11.5px;line-height:1.55;color:var(--gray);}
+#s18.brand-performance-v2 .bp-card.dark p {color:rgba(255,255,255,.70);}
+#s18.brand-performance-v2 .bp-mini-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+#s18.brand-performance-v2 .bp-mini {
+  background:rgba(0,174,239,.08);border:1px solid rgba(0,174,239,.16);
+  border-radius:12px;padding:12px;text-align:center;
+}
+#s18.brand-performance-v2 .bp-mini strong {display:block;font-size:18px;color:var(--navy);line-height:1;}
+#s18.brand-performance-v2 .bp-mini span {display:block;font-size:9px;color:var(--gray);font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-top:6px;}
+#s18.brand-performance-v2 .bp-decision {
+  margin-top:16px;background:rgba(0,174,239,.08);border:1px solid rgba(0,174,239,.18);
+  border-left:4px solid var(--blue);border-radius:0 14px 14px 0;
+  padding:14px 18px;font-size:12px;line-height:1.55;color:var(--gray);
+}
+@media(max-width:980px){
+  #s18.brand-performance-v2 .bp-layout{grid-template-columns:1fr;}
+  #s18.brand-performance-v2 .bp-stage{grid-template-columns:64px 1fr;}
+  #s18.brand-performance-v2 .bp-tags{grid-column:1 / -1; justify-content:flex-start;}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<img alt="Morro dos Anjos" class="logo-fixed" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAB4CAYAAADMtn8nAAA2s0lEQVR42u29aXgd13UluvY5VXVHAJxAiiMAcRRnEiTlKLEI2HFbVmRNJCDKUxw7LTtO0nn9knQnTmwAif0S24n7vRf7+Unuttx22yIvJMuSbNmKogCyLdniIFGcJxAAB5EUSGK6Y1Wds/tH1cVMESQvQIKq9X349Im4uLioc9bZw9l7bSBAgAABAgQIECBA4UBD/hsgQIAbEsyEBEs0sYFEQo5IWmbhfZ8lmANSBwhwQxC3rsm45PcG/ncoEixRxyJ4iDeHmxVgoiHBErWkAGBjU2v4TE/8Dsd1N2qtV4P1bM0cA7MGSBAhJ4Q4Q1LuE4J+GTVyv9x7T1nn0PcJEBA4wHhYXYBApFcnjpT2mMWfVUp/AtJcANMCawUoF2AesMoECAmSBqBcsJM9K4VMhHXyGwc3LzgKAKirE2ho0MEDDggcYCzJS8QAsODJ0592Sf4dh6KzdC4F2DkNQPtrSsNWlsEAGADBMKWIxIFcOimJv1bp/urLjbW1CswCRAGJJxCCGGiioK5OgIg3Pt4Urnjq9PfccPy/K61mqd6LLpycBpEAkQEiCSIBDPny/t37vuuw7u10tevEVbioYad870uLf3hwFoi0nwQLEFjgAAV2m/GBfz0bPdajn9Ox4mrVfcElsAQJuob3ZQZcGZ9kwk4fC9u5Dxx+uKINdSzQEFjiwAIHKAR7CY0QDOBot5PQ0eJq1X3eISLjmsjrxcZERKbu7XTZCC/IGebPVvykffLAQyNAQOAA14IEBGpJzd/W+veIT7lb9VxwiIRZ2F0gDE73OBwpXpJM8uNoII3GYG8EBA5wjeRNSNSSWvLU6bXKiv616u10iWCMTTBFpkp2OhyffN+CxImPoJYUEhzEw0EMHOAaYlQBIl32ROu/cqzkA5zsVhBiDEnFmswwwc21zyJa+puauVlvhxAHixFY4ABXan2J9JJEeyWs8Ac43avHlrwAQIJzGU2xkvIOcA2IGE0IrPC7hsCJhAzqbQuE0hoCgIzmjyMUhVdVNR4+GYGVYpfxCQBAM4Js9NV7UDSIExPPhWZCXbNEFYCqKg2A84UIAS7/7GoSjWK7vn0PW+GlbGe0d6c75puOIQ0i7aaKI2r+vvvmnxtYQBLgnfY6CMtAKAWhuV6PR2WbUZBThog3Pt4aPhGV/zeFQm0m9Gsm0YF999E5NMBFw5C4rhkCHWDsr+egfG8E1NUJNJDeHz49W6fdBXBy45evICIoV1MkFsvm0isBvOhnpIN66aH7vhECpSB0gFFLCg0YdMitauqclOrJLVEuV0Lr201L1B25b2ZrIQ9EowALDgCo+mS5/fjWE/eJ6ORbssmLyLhOd1njqcNE/LqA8Zok8Uax6R7dRZQGhrhlCZYobSZ0dDBqavS7/rRfVk9AA+ysqhChiKVz6fGxvvm9CWgYllB2ZiGAFzeWgl5+t5MVINQ3e2vQUKX8Pdp3qNU1sbGts+NWF2qV0nqDZr2+s6N3KYRRSpE44OTATroeAFAP8h7zjUBggMFMDUS6LNF+WKe6p7GdYwhZAiO0AYa5QQGfdTNJdCg+Wd54ei8J7DAgdpim3nvw3tkneGg3TB0LVOWtNNg72d5FpN7fTACgSU2FNLw65nHMKOR/lWaeDgDvOvLW1Qksq/dc4Spovz6cBxqelS/0Tk/1Jpcx1DrN2PDdjtOrmLmCIjEDQoJdB+zkAMfWzL2alHt+cnHsvE9gHuSVXmcCA/XNEoDLmk+TYRqchQvlMiulGWCACUQShjVXm9ZcksbdtnKQy2Yy8xKnjkLQG4J4uyHlruJY6NCuD1A3Gkay0r67UoN3hZV2IeT1zAQS2Hp3uMKNAqWlhI4q3xVu0BjAsPe8ypHOc+cWuFqvUZpvZ+bKru7OJWSGS2BGAa3BTg7s2OBUj0K+aQQQADFJw4B2zr/2oam93q1c4fZuYQhcVQU0AAI4yOR7B0QE5K8g/G3o2pqdHHukhoCQEZjWSjKtlZro93O5NDo6U+fKE6cOkBQ7JNQOk/Hm8k1zjjfSECvNTGhulmgGgCqN+psoQbasigHAZORcvn5/EmlO3dyJpj7rqgZ6H0ufPjXXYbHcBdZrpTe8derUCgDzKBL3svSOZ105l9bIpr0OMAIB5BmqwfsUZFggJ3uMiLjQ/deFIXCH588LId9Qyu0PjIdDDPoWK2Y7zWxntN+/KmGYM7QZmkGGWa21gp1NOa81nmwte/L0bgHaLgV2xsM4sJuoA4Db914N8K6xSmto4ifIGgEAUtIZx7G95zbOthfMYCFOef/ffNMmmjY8f764y7UXuzldqYk2aM1re229kELhKAwTrJTnCrs2ONmt8tYJYOF1gF12bRhCAMy7AQClhQ2GCkPg/fU++3i3k0lmIUQYrPgdiDwwA0aDiO06zK7ju94gCGGSYS2CGVqkhajVdhadSbuzvPHkIYB2SRLbTaI3Zky55djL1ZQdHs80GRPuGqumRgNACYnjWSfXA2kUQ7nsezXjsfMl5zKwiA56B3QHTwiy1oOAZuGv97BEU02C5YH42+V2Vq1ytd7AoHVnk5llEPIWisS9HefYnnXNJPv7q73nLgZb11EvhYDrQEL8ZqCxK3S+ojAPkIjLtrVtZyu2nrNpBSpEFQ/7jejkWWmCgDAEWSGQYQGswelegKiNSOyVRNtJyh1xQ+7b8+Fpp4c9rYmSIPNb+sq2tb/Modh7OZPShXmel4WGYQpy7LOTnK4Fez6xOnVD3gMPsq6NjNraYW5p5bOnp/Uo8zZXu+uYeYMnN8TzKRI3ISRYuWA7B7g2A6Q8NrAA95H2Wj8jwzAJrtNdJMWtB2rnXSz0syxcYXwzJABXgF7QprWesykuzPkwgpVWLnNGaUaK/RNSkjTL2QqVKyE/DNdBZzqdmps4eUQI8YYEvWYYeH0qzMOv3k+9l06QNd4411hVEGiAFoRntGHeyf7pNQ7E0CIUJWj3hT0Pr04hwRJ0nTWz8tc4zc0CzQAaqt2h1vWu5zl0wr4w31a5NYppg9ZqXUdWLyGDpyAUA7T23GAnNzzR5JHV6LNphXvMmqyIENp91SdvwRVPjAJuOA0AIYOfTmdTf9OfwBqLEC2fIKP+JXZtxsAEmZQxMkNr2LDWuMCnnFwap3X2TFni5H4p5Q4SYnvUxJ4Hf29GW8PlEmTXw0pXeZszJPmJdKr77yCNyDi50QKuTSGhv329cmeo45ESTX3XOARg9Y87ZvVqe7nStF5Drz+YOrWSNZdTtIhAAuzaXlY4l2bkMso7/FnkD/xxOnhAQhARPeUbOQEUtjSVCn1SMoDybSd2cCi6lrPp8XL7RnZf8q63H9fBtIjMUJ+4m86lbAK1CEG7haDXDGCXAB889OCcC8Peb2CCbLyusfyM5a1b276uiqb8Z919wYUQxpj9Pq0VxUukSHe/1Lal4nfHRSOr7xqnpj/RNAQbm87Fz/XSIsdx1vrXOGsZvIisSByGL+TnX+OAeWiiia7b/pMGSOue0qhcsOve2efHIhQp7GZohqRqcuc3nnzUNa3HOJMczwKikaw09WdwCXBsZscemCCzYFq3sWndpkg8rOwM2LEvlDWeOiiAXSSN1yT07tWLZrY0Lid7yAoRmpolOqrGjtA10KhjEZ508kvJnu6HYYVn9OlfjcWGMwyQk3MtafyfAAiNjTQ2hPVj1+b6Ydc4zEyLnz1brpReqRTWM/P6tg57OZOYReGY95q8K5xJaSA1MNFEV5loGgsoES0yRLIrseve2efHKhQpuAUGgKWN+2MpHT+sjdBML0Fwo7YtDkmQeddYnpU2TO+CPtOriaiNQHtI0HbDkDtkSOw/9KHpZ4ZZyzzpCklm3wov3Np6tx0p/qnOpl1oJQttWRjsGMXTTNl7/i9bHir/pwLfVxISvoj8kPdc+vMTU1QmtMRx3XUavIEZqzXzAhGOhiANL9HkVTQBIP/asM8VvlE73hhETFJy3KCVB+6fdWCsvJnCP4C6JgMN1e78xhN/7EYnfUP3XHRBZGCigNl3u7k/QWaGANMCCeldM9jZXhJ0UJB4VQp6yYpGXj1w16SLg54BmgvXjZJ/pk8c/wtVPO1rqrfLBbQoiHvDzExwZUmpKbs7vnN8S/mn87+vIAd6fbMc+F6Vz56Odru0Xml+P4Pfq7VeTtKahlDEu1Hwr3Gg9UiJpomyh1xRNNkQyYvfb91S8YmxFM8fg4fiVbvULNtvbNfx1zkUXeZdKdFEbQxnr6qhT1dZQBqCzBDItDyhdDvztiDx76YpG2flOv715drlyT7ruR9cEIXHpiYD1dXurYn2v1Lh4n/QuTTgOtd2OGpWECRE8RSSya7vtNbO/TQnEvKaM/FDiFtXx+KJlWerHNa1ivmDJM1yWOH+emHX8TLKAxNNoInZT+6FIiwI6bjE0v33zz6FetBYqXyOzUNKJCRqa9WiJ9t+Oyciv9KO7YKVnLCLcskEGTTAAoYlRCjqeU52pk0I8cMI7O/sf7CspY/IhXCt80mtROsWJSPfgBWeqpNdAOD6cbEY1WdnaBCIokWCXMeV2vnb4zVzv4I6FtdckjrA2lT+4PS0zoj8qNb8SZZyNQwLOpcBnKx37zoRrevl4ciiKaZMXviTlofKvznWo2vG7sH5H7xiW2s9F5XWuZ4UqombER6hvRPWDEkRjgLZZEoQ/SBE+p8PPTjnyNDNfa3PdfETB8ud8JS/d5X6CIVjQmfTgJPLfw4eISgDQUsYFolwFHBdELsvWrbzN0e2zNvhxWjXcF02IMarfPb0tC4l/kQpPMLh6Ey2s/DKZUn7pYc3p5ST1q4onmqI5MVnW7eU3zcec6fG8OTz1Dioodot39b+lI5PedCTRL1JSTxgGcGsIYQhosWAnU4J4P+LqIv/eKB2+cWCWOMBG2PJU6fX2pB/oLS6m4lupVD0Eo4OA3YOcN0zJMVLlqDvHnnglpcKcrD4MXNNIiF3yd/+YwXxXxGKztKZJNh1XCKI63cdMX7kpViJIez0gamTonfs+tXk3vFosBlb18WvT73r9qPm4XTspzpS/P53CYnhx80KQhgiNgmUS7dZ7P7Vkc1ztg0MM66eNHUCy5ZR/j02NrWGz3XFlznaWaa0LhPgEtZakRCSgZSQ4pSUxoFJpty7/e5pPQPX56rjs7o6gfp6BhEvbjx1R04Y/41DkQ19xAXkTeYeX8oBc0S02CQ3ezyayb7v4MdubR+v6RZj/3D9qXfvSbwaOSfKf6CjxQ/onvN+XbMQ7wYiM0ORGTKEFYJ0ct+PZTv+bO9HV3bmE1PX+PYCjaArsqAJlkAjrukA8a02A7Sg8XS9K+XfsJBSZ1LvGuKCNTNIyaIphrBTb4bTF+87+LFl7dd8ON9QBB5AYgJQ8eRbX1bS+DwD0Nn0u8O96l9tlkWTJXLpI5ZKf/xo7fztaGID1VSYK5t8vTCqRn5NoarI/INn4XcPz3aKiv4nh+Pv1z0Xvfh74t42XOGZDEWmZchwDJRLbZty/q3P7PrMuu7xJO/4EXiIu7ao8dT7bWl8ja3IGrazXmM0iAdUT9FNzGOXQjEDrLMh1/7U0YfmPVEQSzxe8A+chYmWDbYRa2QjNE+nulwiMm7qOQF+opIZINPyxrPa6VMmu188tmnO456hGv+hcOP/xH3X65FHd5r/Nm3WpxTwpzBCyyAEdC4LuAPrWW/Kawbv7xNSinAURi755y21ZV+fECTOk/eHLb9nh+PbGIhxLjOxCnVGTVYakM1nA4YFssLePLlc9pQh8T8mpbu/seujS86DWeA69ZpfH2IMcDMqH91pdpfO/qBi1Cqt3gvW8yhcJCCEf9Fv9/dr9n1mnvikZs0gqWW8RCLd/YW22nlfKpg7PYbkXbC1ZZNjxbZppSRcR018l3loOS1LyAHltAA4mwIBZwi0U5ryyTinn33zgYqugQbpen3660gCpvzkvfy/bGxqDZ/uDt2qHV6lodeBaa0G3wYhZ1Ao6v1UvnpHu9orSJjA1TvMzCSUjE8yRPLC51u3VPzDDUli3ztYsLXlw44V+7F2HYJSPCZNFWP8xIdV1QkpyLS8qjoSgJ0FO3YXER0WhN0g2hGStLs4ZB3ty97niXsDiCsWdsPXNfmu1JX00PpEBjDSSbbh+fPF3ba9yFW8Wmter5nXMLCQDGsSrPCA+lkb0GqADEofoelGJzFIKBErNoz0xUdaHrr12zcUifsKR9ruyIQiL7HrhPy+5IlAXj2gao5AQpJp9de1uw7YTmWI5DEC9giiHVKar8dC4UO77y7uGGGtBOqbBer75Houv7frfJkfAAWpLx9XC3ylUrCDdI2qcKnxFCtfODM9neLbNPMarXk9AyuZeT5ZkQgM0+8P9YviJ0I8zcyQUgvDEmY2+cFjH5n/4vV2zQYmZW578q2yNLBdE02HndU35PXfCE0oMEz09X9rBU4nFQlqI6K9JMVOwdgVjoX2H7hr6kkekXxXOBZoJBG9G94C+03KC54/ElK9oT8XZuSYpXNvTJ86p/XloVbkaqRgh8mpVKmhlp2IcNszF+Zl7exyTbqSNa8DYzmDyygcl336R766IECun564ceJpZg3TIgG6GAVXHtw8q/16ZDWHbsa74keNQ8nIKzoUreRUjxr7CYmj9VpGagO1fJ00BmeTIOa3ABwQgnZJEjsNMvbcOa+09bF15BTW2GCgiF4fapjl/mffrrAVrVFuZpEunffP7dWULWRjfwE2LhNAXJNg+ZpuPysmTZ+me87bALVJojcZ2C4NubMoFNs/oltyNVKwozjpavaxtefY+Qql3ZWK1TqtuBKMpSzETArHPOr2dcO4g7th+Dr1mmqtKFYiRS756/U1c9/b2AhctzjLj3srtrZ9SxdN/azuPj+2aiCXSzIN6gaTggy/G4wIyGXAyrkoIA5B4A0B3imluXvWJBx7uXpGsiB7buC0hkuI6K1+/q3SZBZLldb53uZVUFwhSqZauudC513z357x2Lp1Tp4zN44LnVek3Nr2Sw7HfoszSUFWhMgMAUJ4cid2rksQHYKgXZL0dtOKvj4jPqVQUrCEujq63AO+48cdRW+DF2ilVmvtrgfTGs28GKY5mayId3L39aMOjafHKUmmtStKphmi5/yXWh+u+ELBenOvIu6dv/XE/W40/rRO97ootHrLaONWISQZFvr2kmuDc5kUkTgGQbsNYKchjdeL2Tm8YyQppKtRIR1JRG8INjZx+NzFswscdtcopg0AVzJjCQxrMqxw/7QGO8sIRzXZmR0nHir7rULL6lAhF7xsa3sC0eIanep2QRB9p2ZeCjbfQ8sanEkCQLsA9kLK7RLYEYW1b9+maacKIwU7ggr/CO5o5bOnp/WysVi57lovSYZVDJ5PVjgGw/JiJ8cGu/bgJvOxKzphgLQwLQrBfs+RTfN2jGt1T12dAOqxftXpyecU9rGQ073piGMk49PfPZUfvwMyLV+3TIGzSQdErYJoryDaKUjuilnGgRElg/MhGq7k8L/8PiEAK587Pzvp5pYrReuZ1QZmrABzOUWL0CeiZ49wO8LQIlZicLrn6RNbyh68MScz+GrzAjik+/IbJAZt7fyspGxq4GKVaStURkLe47oOuu10am7jyaOCxOuCaLspzV0lFh3Zfjf1XLkULPFQFf5hJ2t9ldpFdB7AeQCv5Bdr+fPn52SyaqnK9KxjpkoAKwBUUKzYyMfT8FUPwXA9l6hgCTICa7CUws7qR2uY1zc2NuY/2ti70svqCbWkzj/R9jUqmnwL93YWrlBjMGE9kUHDkmSY/Ye6dk9Szj1AJHZKQ+4MhUP7Sount708UlZ+5D3gXj78GiKiN2Sf3PHjjqILjrPYJaxVrDdo5rWd6fQiCkVjCHtJUl9P+jLTGggAawgBAT48kCs3lgX23byKrW2bdLT4SZXqUXT5C34/tuHBsY3pC7YD4Fwa0OoskdgnwTshaHuEjD2bH5je2jBUX+hqZyWNQhWxjtlIPNVRkRPuCrBepzXWaK2XAFRO0SIwa3AuA7iO8p+quGZ3m9kVRVMMo/fin7Y8XP6NcclK56+MGk/dkZXmK9rOKhRCHpihwAxIKSkc9axrLu21NhIdJoE9UogdksSbcaladt07O/2OSaZRj80ZcI1ziURTHbP40U/PlacdtZI1b1CK14OxjKWc2V974IdVSg2d1nB5D4xZiViJNLI9W1pqy7YVOiQqEIG9bOmiZ85UZLPOYQZMn5h0xSc0gcEDpGANi8gacBWQTdkAPClYou0GGTtLisIHd3ygpHBSsIMSFiOT+q4jHGrdf26Ro/Udmvk/aK3vpHBsGgO+JdGjV8m4VCxomBBaXZxu0JIdD8y+6Kfcx84KMwsGuGJr+6s6En8PZ5JXX2nlrb8CkUHhGEga4ExvSpD4tSC8aJH8xZQZcv+rv1PaW5C4dVhyc+Q8yJIfnZqqQbe5GpVa69s1sJo1zxeRmDVERG9A9d+1iOgRCFAxg247uHnu0ULfLBR0tEpdPei7t7XvZiu6gu0CDaUeGicJIfustPArZ1z7IgEHBcmdRLw9bNDueVay5ed3L8oVIEE2qjip8tnT07ps8X5NvEVr/UFEiiI6mwbsnIIAXdWzYHZF8RRD9HZ+pXVL2V+NqRX233vBkyc3OaH4k7q3W0FcBXnzxJWGISJx7zqH6GUJ2hYCnj+4eVb7sMOyqiof0ox+TYYnmtTQEKNmH1u7j5yZryBWs9YbNKt1rPk2Mq2psMZDRI81WREBO3PwdrF9RWNtjS70gIDCEdivHirfeuLrHC/5z7qQsdNI1woDa1cNa4gUbA8TyVYi7CHwDinEDiNq7hsmBTviaU88qlgzfw9Y1SzQ0THotF/2o3PzM1p9zAV/kkKxcm1nwbmMIqIr2xi+QBppTkUNtfjQg2VnUV9PYzJ1sY7Fxqpm0Xau4nUORZdzNnOFovy+gIFhGiISBzLJTinphxbh8UMPzNo1+Hn7z2z04nnDpzWMYMWWPPX2TCX1MqV5nXbd2/0Cn3KKDKytH0cRPU+dUopUzzdaH5r7n8aiwo4KfYIvSpz+nZxp/FLnMnrc+nxHlIK1ADPkl8zZ4Fy2lwSOCKLXJeRrpiFfn27z0ZdrR7onvIpZSXn3rQac14a648cdRW8r5+Mu6M/YiizS2RTg2FdWDOHHwjLd9Y/Ha+f99Zh0Lflx2cLGkw/aofhTOnmF1pdZQQgpYiXgbLJDkvhWsWU+9uaHp53uP+ya5aildkeRl1j5wplYOqMWQcs1SqnbNWMts15MVqQIpnWJarxxntbArEU4JgyVfV/L5rlNY+FBFVzYfWMzZOu59r2wIovZzvB1ata/hBSs1Z8gy6ZAzKdB2CcE7ZBCbJfA3iMPzmrjoUO1B7p5o6nzzr/eJ1rls6ej3Q4esUH/lUKxW3Rvp3+9RqNTkTRMkHYvlsSwcO89ZV2emkkBXbE6FtRAuuyJtl/rSPx2ziRH15jvhzcUK5bk5DKS8E2Lc18/tKn8TN9BOOBAG114Mrx8loiw5LkLZU42vVKB1jPzemYsZ8IcCsf9RJNvXZV7g9TDsyYrTJTLtExbWL501zq4/sfgG5fAvotwa6LtL1VsyldvKFH3obOSyO/xHDQrKZ0VQAsJekMSbQfJnVErfGjvPZM6R7bSzYSqqryF5pHd7H595OXPtMxIO9EvKsLnmCQ4lx7d8/GFwo1095+21M77RkFdsWGZ51F6TlormJYUoQiEm3s2rOzPH6wp2+/tgyZjpIzvIHe4qlmgo2pE67qqqXNSqie3hB21TjNv0MxrNGOBCEfDgxJNruNf411romlM9psriqYYIt35+dbasjHrMiv8aBUCFv3g8NSsET3CQk6C6+AG7t0dUvUj5aDWMq9Er4OAg0Rip5TiNUMYb26cM+34sHpab9Pqka2NP0fJt8iLnz5ZlVPyXzgcW657u9Rl3TpmTeEoUS69b4PYvqaxkCNQfQKXb23/PsdKPqaT3S7onesDmNkVsWKDXPttQ+u/aNk86/uXJS6zQHOzGOr+1zEb257vuNXNqVUu69tZ8zpmvZSkWYpQ1K+Oy+W7zYYW0tyYHVGe18TEuneSNBbt2TSzo+Be05gQeEA8devWtjpVNKV+Yo1WGcWspGyvIohWIegNIcQvpKRfHL53xl7qWxy/PXKka6v8XXV1tbvye7tjyeiMryrL+pzOpj3X7x27fFiLUFRYbubOozVlvyxIPOWX9a186tj0Ltc6yiSK33GEqX/NJ+KThcilfxZR6c8eqJ1/AomExP6a4RMo+vMCfc+CACx6+uwKV/OdmvWdWvMaZq6gSMwrkrkZpjX4twcydfHLx2vL/3Ysy2HHZvpcPeiONedjp3PpA9qwZnuC4xNUuG5Ygkz4VtqrzeV0D0iIPZLkT02pf3T4/lk7Bx1mI/WODiDfgsaTH3OE+SgTRTmbvnSCi9kV8UkGpbv/e9tDZf+xIJvCd+vmJ04+4kaLH33HmwPWGtIQworAcHJ/11Izu67P6g5Nqo0wE2nJ029VZjU9wFrfw6xXUrSY+uqFHRte1ukGGAtagNgXRoiEds9Mg7101/5bx1QfeoxGq/gZ6a0n7s/Fip5WqR6Xxq8YfnwTZEQGWWGQFQZnkhBCvGIIPD6djMSr9/tFCiNZS2ZCMySqyV3c2L4uK0NPsjTLON07MomYGaZF5NrnKmZEFrxcPSN5zYXxflFB+da2Jh0p2sjp3pGTV8wKZkgKQZmQyn3ySE1ZwmtuB4ZZ3QF/68amc/HT3brGdflTmvl3KBKHN6UhCzC7mEjCC6PfHa6IlxhmpqvmWG35kxN/tMrW1sd08bT/qLpvWkH3PKE1AK/qyDBBuXSbkPStImQf69NPGmnEpG8Flz2xd27KmvYsm+HVXjPISCTWWkSLhWn3fvhYTflPrmlz+FK/tz35VllKqcMMDo1YPadZUTgiifl8yMnef2RL+SsjJmQGjGapTLSUdBrRRzTzH7EVrWDlgDMpAHAHlJnedBKWzOzI4qkm9Vx4vO3h8k+NR/nr2Lm1NdBIsFy3vPxPKNn1qoxPMsHs3IQE9qqsiAwQgbMprXo7lQKVKzP6lS4d2b3gybf+qK6uziNvn+yQj2pyUddk7H94xcnoxQvvp1z6NxQrMXwLNfRXaQjJrqb7AAD7m6+eBFX1AgBy2rmLYkUhaO0OIxV75BWsz4ZV6n1HtpS/gkd3msPIW9dkgEgzCPOffuuRCyKyW1nRryqmCtXbpTiT9mJZT3pW3IzkhdaujE8yKd21vewW/hwSCU8za+w33xjCd9FWJ46UdorYvyMUXa6T3Q7eDaNVBoh/i3AMlEv/OqRzf3G4pvzVEUea5CcPPrqzRE+d+W/ajKzjVPfQmFiTGRJwsm1xUbb4QC3ZV90c7rcolm078SxH4h/mVM/gumfWGlZYCFBHxEm+79CWBfuGWd4B0wwXNp683ZHGP7MV+W2dzYCdnEvXVgs+kdbaoViJSXb2QJGdft++j8w/d/OMVvHdxuU/bJmRtKLPcSS2XvVcdAksPZHddweRRSRukHK0wfrLH9v7WH1DQ4Me5mL5pFr5vWPTuyORX7FhLuRsanB2mpnJtCjCzvrDNWU7r6pX2I+dKxMtJR1atrA0p8J1+rPPrBmGxUIamZCdrD6yZf6OYeQdMFpl/pOnvuiS/FtI09CZ5Ltn2oa/trJ4ikGZ5OvhTNc9hz6+9MyIodKEc6H7jgjSYBb7PjL/3ML0uWqZTf5QFk02YFjEzC6GlT3dbA42EREZnEkqbefIjRR94XsrP/PS0kTLPNSSQtMAl7q2ViHBcs8nFrwdcbP3kFadMCwCeOBmUBSOwWGqBgCU1lz5IdjorXsvyXUUik2F6+j+rC8zhKGEYQrTTj48InmbmgzUklrx/SNzKp4686KKFNezY0vOJBX1u8k3NXHB7MIwSRZNNkQuuXVWV3fVeJN3fAicJ3Edixc/sTp1fNOsj8pc76eklGdk0RQD0vCJDOVf1dysRJYgkOq54CozXJU2Yr9e+ETLe1Fd7aKJB5CYFJrYOPTw/COGk3lYGCaB5MCZv8RaQWveCADoaLzyZ+Y3lTtMd8K0AAyI1RhKxIoNaSf/6tiW+c8Ni3mb2EB1tbu4se2Onljxr9kMv1/1XHD9GyB5M7MWDMXMLqRBomiyIYQ4Z2R6Hml9cNbDr/7hbb2oG1/yjh+BAe+6gZnALI5vmvN4PJtaY+SSXxVCnpdFkw2KxCRIktcdz65XgM4jDqueyPkuImFwqsdVjFm5UPzFBYm2zaimwSSuJheP7jRbttz6gswm64SX1FJ5i852Fhq85j2JExHU1iq/tW70aPYIqxl3sHL7QymtlYhPMkSq68fHH7r1K2hiA59Z5wwmL7kLE60PZGTkJWbM0alul0gYE05U/zJs9XoNWfl7UYMkUSQqZdFkQwh5Qdrpf4qkO9e01Mz9NupYgJmuh4LodRqt0h/7LU203pIzwzWuxmbWqpLMcGywtvPAS/4bvITuiraI1pAGCTNElpP6g6O1Fd8d7Kp65ZdUXe3O29b+Mofjd3K6N59oYpISIcbao7Vzdl+R25avvnrhTKyr025hw5wBx/aEFAyLBOuz0yVW7Hjz2179d76xIF/n/kTrR1Q4+gPtOIBy9E0xInaYNtdIAvCZtBDG60LQkxZnE4MaNq6jfvf1Ka6oJZUvsztQS2cB/AuAf1n29IW5WZVbpl27krVax8AKEJVRtF+Lqr+InSd25Q4JAa20tnNsh4seX7CtxT1WTf+rn8TEqGLNAGJEn0459ptsmCGvxJAUheOGynSvBrDbGyk66isLAsDpHrUI0vDJSwAzCzMkjFzyszseLLswaGPmybu1dYsKxX6gnZyGUhNzvvNIAvCmRWSG5CABeOW2QTn7SNBOIcSuSHF03/67pp4cZIS8EtHrKr5//aqjvAoi1VcfXFWl9hOdBHASwM8B4JGdbP7iREeFq7IrdA7rFHQlMZaykLMpEpcg8vWK7OG1s3wDdaa8A4uhXdZ2Vjlm/HsLf9jSebSaftpXJkmk0dRkHKied+zWbcf/DrFp/6h7LihPiYmgGGsBfPeS84BHdJ89sjOrFRQpAae6FbQmUTRJUqrryZYtFc965ZG+J5Bgr1ps6/EPZq3ID7Rja2iFCTFa5dIC8HKQALxWb8FOHxDkCcDLsNi70u5qbaxdbg/zXvy9er2Je/0JPJjI3mYZIp7td/wc8b+eAoCNiXPxtyKYr5z0aq30OjCvBfNissJTEYoYYL6ECNk4ajtfGYcJrkuaATsU27ao8eQdR2rm7um7HqqqUkgkZCXS/21HsvOTFI4u5lzG9WPX5QNj2tHBI7tirPQPO4ZhCuTSyWjU+nP/jlr7G1aASN3W2L4sLaxGrRTduHORLikAT2RaAkSAnQG7zkXY2cPkZN8QZOyQxsgC8IeB4QLwXphyQw2eu8Et1Oi0nZf86NRUJnOxrfUardz1RFilGQvICsc9bWe/aH5kbWdxg+w/RaGoFMppKbLd9XuPzOsG6r0YNF9b3th+Xy5U9GOV6nGFFTbg5NpvF72LPEsxyoIO/2CYt639pxQpululenKyaEqIkhe/3LZlQOeMX2xSuex40XmEdrBpLeRM+up0ssYGoxKAB4ljkvAmiHaYwBslJfFDIwogXq2QXkDgK97o/WJmwIhSoQRgwXMnZrMtl2pgrVa8XoNXgLmCwjGzvyncHjJQ/DrH06y9JvBk5zOtW8rvH9RxxCyISM/b2vobDsdv52xag+EWxYyFB+6dfeJKKn/q6lg8ftuJ/TBDS1i7mrS+WBLjRXt3fKcb9fVe54zfZVS+tb2R45M2696LLkgY12nNRxhcNkAAXitwJuUA3CaE3COk2CmYCiwAf2Ni4nUI9atf6EELMkBDiWtJHf3wvNMATgN4EfAGTR342dvl2Vx2hbKxjsCVmvUyCDHXi6eHip4VQlL0it1pQ/d2uiiect/8bW1/3PJQ+Tf7kkmNnjmwhPH3NomfaGYtQxEra7tzAZzAslEcxn4G+olFh6cwR2bCyUHEJwmRuvjNvfdUdKKpyQCRm4975z9x/BG3aPJmr6d7nMg7VDkFnO/JHiwAr5xTpNV+KbALRDvDYWtvQQXgAwJfh4TYYDMzSNu50Us6tPhfPwY8raqkkvNVNrNKAes067UAL4EVKqVQxACjP0k2fGTGWJFa6nSvcmXoq0ufOfHCgfvQko9FUVcnPlIz52ePb23bQ2Z4BaQBuLkyAK+MqrGh3stAuzJ6CxGKmQQ43dMTC0e+5bnM9Rp1LFADvfKZMxXdjv66zvQWRtx9NEkm6tMuIzIsAUJeMP88OZlDws2+LiB2SjLfLArPOLbrXhqdAHztjZFwClzocYinV/ykfXLWtRYph9do6HUMrGatF5EVLoIZ8uJp15+V1J8kEwOU+gsQ3WlF8RIpUt3/1vZwxQf6rHBfA377I24o/ihAQK73r9try/5xVJpLee3nxvb/YIvQC2RaoEyvJxCQ/x19Ejttz+toyYc42VXIkaI84M5VQMh+ocG+IXjZXiI6SkLsFqCdgsQbkVD48Ii6ZBM0bg0s8NWdVZeelVTfP3pjL1EngNf8LwDA0p+cuyXnqtuQ6610Na0j1ivAupyi8SikKdjJeZbCawEU15ylFUJyqsfl+OTfnZ9of6illrYhwRJVnpcRjaKxu7f3SzSptFRke2eN+n1LPSutNWZSKATOpbVF9G0vAdbYT/CtbZucWMmHONlToJGinPdeDApHicyQgHLA2XSalNMG7e6T4J0GyV3CCB88vGn6mUvGrc0YKACvh83MepfBeDf/8YPi6Yah8XQp5UdLHrhnxlkAZwE0+Z4frfzZhdmZbHa1cnN3as3vgxBrKFpssJMDZ9Pee17LjCSCYDvLjsZXKp89/dyuXciixrOie++hzvJt7c8gFP00A6UAgI7RlJxWeQaeaDpF4kC66/UjD5Xv8GxWjUY96D2JE5EzjK+wnWMQi6t3KvIiBywoFBNkhQSnulm49huk1L9LgZdDVuzNffdPOUUjJZDyEzQGC8B7HkYDAgQEvoJ4eshAcfLi6VP+108IwOKnzizPZZMfZqbNHAqvhRmSOp0EtHIByCuPl0mwnXVF8ZSyztTFP0YDfQ1oMrCsigEmS5zeajvZP2T2Cbx/9DXjzDxNmAYLIRNExGhiA83NQEO1+3ai/TOIT57PVytGmB+tIoQhYkUSjg3S7hsy6z4lw/Tc0fvm7OGhMdzAuDUvgNdQ7QZEDQg8VqQeMFC8mbi62j20aeY+APuI8A8Lnn77TjeX/TSE2IRYcUyne73JhUJcmRoFkdDpXgbEX656uvPbb94/qdtLRBHPnNb6yvFzb3eBMdO3SpcncHOzH0zwdE71kinUcwBQ0wFurK/Si9d0FKWzmf+CTPJqijUYWmsYhhTRYgOZ3jTl0j8KSfE/Dm2a+fIgK9vUZKCjKp9k4ps5yTTWEMEjuMpkTD67mVdkrGOBpiaDGTh6//RftG6e+ftxaaySdvqfSIguUTxFAqC+rqLRro/rKMQmlfY63Y+AiFHVLJBg+XJ1RVYQXiLCdMrH+LhMV9KyKvZd6Jm658Lpw5vKDwNMb5eCQMR2Lv2HIj5pJhxbXdHe8P4mEsVTJAnZLXPpr8csc1Xb5tkfP/zAzGbK3yvXsfee1dWuN5e34SbrNgsIPHHRQLqPzImERILl/gdntBx/cOZfxi1eJezM/0uGaVO0WPptaqPbuERCZ1LsMv1J5bOno6iqUpWduwQACOafA4isfXSn6R8rl0FjnurThJQvEhFXPrrLeLkKamMThxXzn3Euzf0Dqi/vLjOzomiRJMN0pJ36ZgxYdXzTzD8/cN+MY0iwRCIh+0h7HdrtAhc6wJUjL3FTVyeAKnHg3tknAPzZwqdOfsdR2S9zrOT3dC492kFnAnZWUdHkuV2Zrk0g+n4msY8AwGB+RRH1dk6eHAXQfdnPtb+G/QDAAPS/A0D33GIBIj6ZOHU/xUrKRj1W1B+tIsNRKZzsz8OsP3/wwTlv9CWg0KwD1zgg8AS3yg0aaNB5ofOjm+a+CeCehY2nft+Wxlc5VDJdp3pculyyiAisXFYaf0TA9w/sX+YCQPHC8mMXjp1olTDjoyJwPRgNABhdBmEXABxLLnQBQGn3c6wUjyZCZ2ZXxksMOLnzpp36L8c2zXm8j7iekL0bLH7gQt9cSbCGatdXbhBHa+b8z5ibWi/c7E9l0WQDgIbX+nupn5ecSYIN6z1LGk+tQQPpykd3mrvWkQPCGzmHQ6P9HBub2DAltafCZhuYyWuSOLmSDfO3OZN8Z1kc7zNqWTTZEHbu51HOrDu2ac7jYBZeLXa1O1FrigMCBxhdnJzv8a2df6L9wVn3yGzqCyIUEZAmgfU7xYgK4RhllP54n+sLgIhe1+boM8adJ98MEbD3zL2z03hslwEAjsZHKRwXGHp9Npi8GtIkEYoKme2tb90880MHN9/a7tdP6yC+DQj87kG1Z42ZWRzfPOtLITdzv5BGL1kR4bc7jmA9ITiXgWb94F3PHwkd+9BCGwDCRPtKTJEb7a8+hxkwhX4dAPBIpVuT2GdpVps4l8Elk1eaFVkRIaSRMnOpzcc3z2nos7rV1YG7HBD4XWyNH91pHqkpeyaictUC/BZF4nJkEpNgO6spHC07mor8FogYzDTZTB4ocvT5Plf9Mlgy95bclBC9ke9M2k1FtyMUmc9OduS5wForikSlAJ+1VOp9x7aUP4UmDqxukMQKAAD4zDoHTWwcqqZdSxNHN6ZR9K86Eq/gTHKkDLWGGRLayd4PoBnNkK/ef1vvlfw6v92u01fBdB2N+2CGgWxGD7PAWiuKxCVptz2kMh88XDv/8FgNqg4QWOAJ7FKT68XFC48VZbt/l7TbTuGYHBYTe/XRUFp/sMbr2b1ySVnAKw2thqpjFsz6LrZzw91n1prCUUnKPRW3e99/uPbWgLwBgQO8c1zcZOz96OLjoWz2LmJ1HmZYgAdOZSDBdpYhjUV75cnbkJeTuVL45ZhPPPXWIpbmErYzg+c3M2uYISLwxaidvGv/w4taBgndBQgIHGCkuNib0nDkoxWHQtn0AySEDcPgQVVbzIoiRSKndBUAoPkq1rDK+xlXuxspUiQHlXcyM6TBgoQy3fSDBz+ycH9+GkOwQAGBA4zGnX50p3nko/N/FXLTnxHhmBwkYUoEaA3N5BG44ypqif2f0cxV3vCLAUacSIlIXBpu+nPHam99ecRxogFuGFDwCG5QPLrTxGfWORVb276l45M/q3su+kkt1mSGBZxse1wkFx24EkVKz8QSQFz56E7z/KRpB9kI92egtVaieIqkVJen0uF/hmAxAgsc4ErxSKWLBMvFxWX/B9I9+ymST2qRYCfHEHKujfgCAEDdFRzE/mtTpbdUMIlydmwAJMCsKRyTlO45dAvRf0KCJR6pDCxvQOAAV+cbeRb153dTLqT5D4i1AklfvJw1heNCs1jlxbTNV7CO3mtdpVZROC79uVMACSawDpH69G9q52UGfoYAAYEDXA38+cFHtszbIe3s/yPiJRJaez20QoCZ13ovrBr9e1Z5r3UVr4V3zczeVMISKXLpbx6uKX8VTWwEnUQBgQMUAlVVCnUsbgnH6pHuOQ0rLEDErBQ0YYXP39FXRPnzhBm0wp9xxLBCgtM9Z6dMK/mCr/QYkDcgcIDCudLN4tX7S3sFu18U4QgxszdRArRgY76scbQJydpaVZNISAYWsuuAmSHCMTK0U7/rA1O6gWYRuM4BgQMUEg3VCnUs5k0v/x56Ow+IUMRgJ8es9ayz3eenAwDq6kY3mQHAfqwvBXg2OzkWVthAqutIpUg/7rUEVgXWNyBwgAKDUdUsXq4m15Ty/yIzRMysYIUi2snOBQAsW3Z5Ajc2CgDImaHZMKwYa63ICpMl8Q+NtcttLxkWWN+AwAEKj+oqBWZaEM8+iVTncTJMSYYFrXUZAGB/6eUJ7L+Gs7kybyKCKTnV1T5rqt7q1UcH1jcgcICxCoYZzZA/v3tRTgr5/4tQhABAgecB6MsuvyPyryExDyCIUIQk0WMvV1dk0QwZWN+AwAHGEs31GgAsqf8XZ3p7YFoAMPuK/XGBWTAscLo3GTfE97z3RtDbGxA4wJjCH/Z9aFP5GWL+GYWiDIaXxOoYvbC71jSdwlEIwgt7N809hURCBs35AYEDjAdKmwlgCkl6grQiDUwDANSMgsDLOrw7YOJSsAYxPwEwobQ0qImfoAgUOSYaqqoUQDwpe6TpbOfZNEC3eHHtKAhcU6MBgDRu0RfPZSeH+CWAGFUcJK8CCxxgXEDESLDc/vFFPdD6FwDfMsrRKgQiJs8C30LaeeXNByq6kEjIoHAjIHCAcXWjQfAkNJ4HKHZnU5PnSb0jDb1vfrGuToAoLoR4HgChtCZwnwMCBxhXeBljNgX/EkD6bPfyyGV/xif3TyofCYORtQi/AMBXVEcdICBwgALAHyVql+KQIGonxfHR/minI+ICOBnKWAdHHTsHCAgcoKCBMKOORXt1RRbEb6aVCo/2J3UmEwF4755PzEx5w9eC+DcgcIDxxzKv+4hAr2s4ctQEDkspBbzJDMvqg/h3giO4Rpqo8O99wybvDStz1LpVce26wjD3DHyPAAGBA4w/GABKIrQ/1CPtg4CnWHlJr9v73uyS6IVedpJB/BsgQIAAAQIECBAgQIAAAQIECBAgQIBxwf8GbCXAdcy9iE4AAAAASUVORK5CYII="/>
+<nav class="navdots" id="navdots"></nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="slide dark cover" id="s1">
+<img alt="" class="watermark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAAB4CAYAAADMtn8nAAA2s0lEQVR42u29aXgd13UluvY5VXVHAJxAiiMAcRRnEiTlKLEI2HFbVmRNJCDKUxw7LTtO0nn9knQnTmwAif0S24n7vRf7+Unuttx22yIvJMuSbNmKogCyLdniIFGcJxAAB5EUSGK6Y1Wds/tH1cVMESQvQIKq9X349Im4uLioc9bZw9l7bSBAgAABAgQIECBA4UBD/hsgQIAbEsyEBEs0sYFEQo5IWmbhfZ8lmANSBwhwQxC3rsm45PcG/ncoEixRxyJ4iDeHmxVgoiHBErWkAGBjU2v4TE/8Dsd1N2qtV4P1bM0cA7MGSBAhJ4Q4Q1LuE4J+GTVyv9x7T1nn0PcJEBA4wHhYXYBApFcnjpT2mMWfVUp/AtJcANMCawUoF2AesMoECAmSBqBcsJM9K4VMhHXyGwc3LzgKAKirE2ho0MEDDggcYCzJS8QAsODJ0592Sf4dh6KzdC4F2DkNQPtrSsNWlsEAGADBMKWIxIFcOimJv1bp/urLjbW1CswCRAGJJxCCGGiioK5OgIg3Pt4Urnjq9PfccPy/K61mqd6LLpycBpEAkQEiCSIBDPny/t37vuuw7u10tevEVbioYad870uLf3hwFoi0nwQLEFjgAAV2m/GBfz0bPdajn9Ox4mrVfcElsAQJuob3ZQZcGZ9kwk4fC9u5Dxx+uKINdSzQEFjiwAIHKAR7CY0QDOBot5PQ0eJq1X3eISLjmsjrxcZERKbu7XTZCC/IGebPVvykffLAQyNAQOAA14IEBGpJzd/W+veIT7lb9VxwiIRZ2F0gDE73OBwpXpJM8uNoII3GYG8EBA5wjeRNSNSSWvLU6bXKiv616u10iWCMTTBFpkp2OhyffN+CxImPoJYUEhzEw0EMHOAaYlQBIl32ROu/cqzkA5zsVhBiDEnFmswwwc21zyJa+puauVlvhxAHixFY4ABXan2J9JJEeyWs8Ac43avHlrwAQIJzGU2xkvIOcA2IGE0IrPC7hsCJhAzqbQuE0hoCgIzmjyMUhVdVNR4+GYGVYpfxCQBAM4Js9NV7UDSIExPPhWZCXbNEFYCqKg2A84UIAS7/7GoSjWK7vn0PW+GlbGe0d6c75puOIQ0i7aaKI2r+vvvmnxtYQBLgnfY6CMtAKAWhuV6PR2WbUZBThog3Pt4aPhGV/zeFQm0m9Gsm0YF999E5NMBFw5C4rhkCHWDsr+egfG8E1NUJNJDeHz49W6fdBXBy45evICIoV1MkFsvm0isBvOhnpIN66aH7vhECpSB0gFFLCg0YdMitauqclOrJLVEuV0Lr201L1B25b2ZrIQ9EowALDgCo+mS5/fjWE/eJ6ORbssmLyLhOd1njqcNE/LqA8Zok8Uax6R7dRZQGhrhlCZYobSZ0dDBqavS7/rRfVk9AA+ysqhChiKVz6fGxvvm9CWgYllB2ZiGAFzeWgl5+t5MVINQ3e2vQUKX8Pdp3qNU1sbGts+NWF2qV0nqDZr2+s6N3KYRRSpE44OTATroeAFAP8h7zjUBggMFMDUS6LNF+WKe6p7GdYwhZAiO0AYa5QQGfdTNJdCg+Wd54ei8J7DAgdpim3nvw3tkneGg3TB0LVOWtNNg72d5FpN7fTACgSU2FNLw65nHMKOR/lWaeDgDvOvLW1Qksq/dc4Spovz6cBxqelS/0Tk/1Jpcx1DrN2PDdjtOrmLmCIjEDQoJdB+zkAMfWzL2alHt+cnHsvE9gHuSVXmcCA/XNEoDLmk+TYRqchQvlMiulGWCACUQShjVXm9ZcksbdtnKQy2Yy8xKnjkLQG4J4uyHlruJY6NCuD1A3Gkay0r67UoN3hZV2IeT1zAQS2Hp3uMKNAqWlhI4q3xVu0BjAsPe8ypHOc+cWuFqvUZpvZ+bKru7OJWSGS2BGAa3BTg7s2OBUj0K+aQQQADFJw4B2zr/2oam93q1c4fZuYQhcVQU0AAI4yOR7B0QE5K8g/G3o2pqdHHukhoCQEZjWSjKtlZro93O5NDo6U+fKE6cOkBQ7JNQOk/Hm8k1zjjfSECvNTGhulmgGgCqN+psoQbasigHAZORcvn5/EmlO3dyJpj7rqgZ6H0ufPjXXYbHcBdZrpTe8derUCgDzKBL3svSOZ105l9bIpr0OMAIB5BmqwfsUZFggJ3uMiLjQ/deFIXCH588LId9Qyu0PjIdDDPoWK2Y7zWxntN+/KmGYM7QZmkGGWa21gp1NOa81nmwte/L0bgHaLgV2xsM4sJuoA4Db914N8K6xSmto4ifIGgEAUtIZx7G95zbOthfMYCFOef/ffNMmmjY8f764y7UXuzldqYk2aM1re229kELhKAwTrJTnCrs2ONmt8tYJYOF1gF12bRhCAMy7AQClhQ2GCkPg/fU++3i3k0lmIUQYrPgdiDwwA0aDiO06zK7ju94gCGGSYS2CGVqkhajVdhadSbuzvPHkIYB2SRLbTaI3Zky55djL1ZQdHs80GRPuGqumRgNACYnjWSfXA2kUQ7nsezXjsfMl5zKwiA56B3QHTwiy1oOAZuGv97BEU02C5YH42+V2Vq1ytd7AoHVnk5llEPIWisS9HefYnnXNJPv7q73nLgZb11EvhYDrQEL8ZqCxK3S+ojAPkIjLtrVtZyu2nrNpBSpEFQ/7jejkWWmCgDAEWSGQYQGswelegKiNSOyVRNtJyh1xQ+7b8+Fpp4c9rYmSIPNb+sq2tb/Modh7OZPShXmel4WGYQpy7LOTnK4Fez6xOnVD3gMPsq6NjNraYW5p5bOnp/Uo8zZXu+uYeYMnN8TzKRI3ISRYuWA7B7g2A6Q8NrAA95H2Wj8jwzAJrtNdJMWtB2rnXSz0syxcYXwzJABXgF7QprWesykuzPkwgpVWLnNGaUaK/RNSkjTL2QqVKyE/DNdBZzqdmps4eUQI8YYEvWYYeH0qzMOv3k+9l06QNd4411hVEGiAFoRntGHeyf7pNQ7E0CIUJWj3hT0Pr04hwRJ0nTWz8tc4zc0CzQAaqt2h1vWu5zl0wr4w31a5NYppg9ZqXUdWLyGDpyAUA7T23GAnNzzR5JHV6LNphXvMmqyIENp91SdvwRVPjAJuOA0AIYOfTmdTf9OfwBqLEC2fIKP+JXZtxsAEmZQxMkNr2LDWuMCnnFwap3X2TFni5H4p5Q4SYnvUxJ4Hf29GW8PlEmTXw0pXeZszJPmJdKr77yCNyDi50QKuTSGhv329cmeo45ESTX3XOARg9Y87ZvVqe7nStF5Drz+YOrWSNZdTtIhAAuzaXlY4l2bkMso7/FnkD/xxOnhAQhARPeUbOQEUtjSVCn1SMoDybSd2cCi6lrPp8XL7RnZf8q63H9fBtIjMUJ+4m86lbAK1CEG7haDXDGCXAB889OCcC8Peb2CCbLyusfyM5a1b276uiqb8Z919wYUQxpj9Pq0VxUukSHe/1Lal4nfHRSOr7xqnpj/RNAQbm87Fz/XSIsdx1vrXOGsZvIisSByGL+TnX+OAeWiiia7b/pMGSOue0qhcsOve2efHIhQp7GZohqRqcuc3nnzUNa3HOJMczwKikaw09WdwCXBsZscemCCzYFq3sWndpkg8rOwM2LEvlDWeOiiAXSSN1yT07tWLZrY0Lid7yAoRmpolOqrGjtA10KhjEZ508kvJnu6HYYVn9OlfjcWGMwyQk3MtafyfAAiNjTQ2hPVj1+b6Ydc4zEyLnz1brpReqRTWM/P6tg57OZOYReGY95q8K5xJaSA1MNFEV5loGgsoES0yRLIrseve2efHKhQpuAUGgKWN+2MpHT+sjdBML0Fwo7YtDkmQeddYnpU2TO+CPtOriaiNQHtI0HbDkDtkSOw/9KHpZ4ZZyzzpCklm3wov3Np6tx0p/qnOpl1oJQttWRjsGMXTTNl7/i9bHir/pwLfVxISvoj8kPdc+vMTU1QmtMRx3XUavIEZqzXzAhGOhiANL9HkVTQBIP/asM8VvlE73hhETFJy3KCVB+6fdWCsvJnCP4C6JgMN1e78xhN/7EYnfUP3XHRBZGCigNl3u7k/QWaGANMCCeldM9jZXhJ0UJB4VQp6yYpGXj1w16SLg54BmgvXjZJ/pk8c/wtVPO1rqrfLBbQoiHvDzExwZUmpKbs7vnN8S/mn87+vIAd6fbMc+F6Vz56Odru0Xml+P4Pfq7VeTtKahlDEu1Hwr3Gg9UiJpomyh1xRNNkQyYvfb91S8YmxFM8fg4fiVbvULNtvbNfx1zkUXeZdKdFEbQxnr6qhT1dZQBqCzBDItDyhdDvztiDx76YpG2flOv715drlyT7ruR9cEIXHpiYD1dXurYn2v1Lh4n/QuTTgOtd2OGpWECRE8RSSya7vtNbO/TQnEvKaM/FDiFtXx+KJlWerHNa1ivmDJM1yWOH+emHX8TLKAxNNoInZT+6FIiwI6bjE0v33zz6FetBYqXyOzUNKJCRqa9WiJ9t+Oyciv9KO7YKVnLCLcskEGTTAAoYlRCjqeU52pk0I8cMI7O/sf7CspY/IhXCt80mtROsWJSPfgBWeqpNdAOD6cbEY1WdnaBCIokWCXMeV2vnb4zVzv4I6FtdckjrA2lT+4PS0zoj8qNb8SZZyNQwLOpcBnKx37zoRrevl4ciiKaZMXviTlofKvznWo2vG7sH5H7xiW2s9F5XWuZ4UqombER6hvRPWDEkRjgLZZEoQ/SBE+p8PPTjnyNDNfa3PdfETB8ud8JS/d5X6CIVjQmfTgJPLfw4eISgDQUsYFolwFHBdELsvWrbzN0e2zNvhxWjXcF02IMarfPb0tC4l/kQpPMLh6Ey2s/DKZUn7pYc3p5ST1q4onmqI5MVnW7eU3zcec6fG8OTz1Dioodot39b+lI5PedCTRL1JSTxgGcGsIYQhosWAnU4J4P+LqIv/eKB2+cWCWOMBG2PJU6fX2pB/oLS6m4lupVD0Eo4OA3YOcN0zJMVLlqDvHnnglpcKcrD4MXNNIiF3yd/+YwXxXxGKztKZJNh1XCKI63cdMX7kpViJIez0gamTonfs+tXk3vFosBlb18WvT73r9qPm4XTspzpS/P53CYnhx80KQhgiNgmUS7dZ7P7Vkc1ztg0MM66eNHUCy5ZR/j02NrWGz3XFlznaWaa0LhPgEtZakRCSgZSQ4pSUxoFJpty7/e5pPQPX56rjs7o6gfp6BhEvbjx1R04Y/41DkQ19xAXkTeYeX8oBc0S02CQ3ezyayb7v4MdubR+v6RZj/3D9qXfvSbwaOSfKf6CjxQ/onvN+XbMQ7wYiM0ORGTKEFYJ0ct+PZTv+bO9HV3bmE1PX+PYCjaArsqAJlkAjrukA8a02A7Sg8XS9K+XfsJBSZ1LvGuKCNTNIyaIphrBTb4bTF+87+LFl7dd8ON9QBB5AYgJQ8eRbX1bS+DwD0Nn0u8O96l9tlkWTJXLpI5ZKf/xo7fztaGID1VSYK5t8vTCqRn5NoarI/INn4XcPz3aKiv4nh+Pv1z0Xvfh74t42XOGZDEWmZchwDJRLbZty/q3P7PrMuu7xJO/4EXiIu7ao8dT7bWl8ja3IGrazXmM0iAdUT9FNzGOXQjEDrLMh1/7U0YfmPVEQSzxe8A+chYmWDbYRa2QjNE+nulwiMm7qOQF+opIZINPyxrPa6VMmu188tmnO456hGv+hcOP/xH3X65FHd5r/Nm3WpxTwpzBCyyAEdC4LuAPrWW/Kawbv7xNSinAURi755y21ZV+fECTOk/eHLb9nh+PbGIhxLjOxCnVGTVYakM1nA4YFssLePLlc9pQh8T8mpbu/seujS86DWeA69ZpfH2IMcDMqH91pdpfO/qBi1Cqt3gvW8yhcJCCEf9Fv9/dr9n1mnvikZs0gqWW8RCLd/YW22nlfKpg7PYbkXbC1ZZNjxbZppSRcR018l3loOS1LyAHltAA4mwIBZwi0U5ryyTinn33zgYqugQbpen3660gCpvzkvfy/bGxqDZ/uDt2qHV6lodeBaa0G3wYhZ1Ao6v1UvnpHu9orSJjA1TvMzCSUjE8yRPLC51u3VPzDDUli3ztYsLXlw44V+7F2HYJSPCZNFWP8xIdV1QkpyLS8qjoSgJ0FO3YXER0WhN0g2hGStLs4ZB3ty97niXsDiCsWdsPXNfmu1JX00PpEBjDSSbbh+fPF3ba9yFW8Wmter5nXMLCQDGsSrPCA+lkb0GqADEofoelGJzFIKBErNoz0xUdaHrr12zcUifsKR9ruyIQiL7HrhPy+5IlAXj2gao5AQpJp9de1uw7YTmWI5DEC9giiHVKar8dC4UO77y7uGGGtBOqbBer75Houv7frfJkfAAWpLx9XC3ylUrCDdI2qcKnxFCtfODM9neLbNPMarXk9AyuZeT5ZkQgM0+8P9YviJ0I8zcyQUgvDEmY2+cFjH5n/4vV2zQYmZW578q2yNLBdE02HndU35PXfCE0oMEz09X9rBU4nFQlqI6K9JMVOwdgVjoX2H7hr6kkekXxXOBZoJBG9G94C+03KC54/ElK9oT8XZuSYpXNvTJ86p/XloVbkaqRgh8mpVKmhlp2IcNszF+Zl7exyTbqSNa8DYzmDyygcl336R766IECun564ceJpZg3TIgG6GAVXHtw8q/16ZDWHbsa74keNQ8nIKzoUreRUjxr7CYmj9VpGagO1fJ00BmeTIOa3ABwQgnZJEjsNMvbcOa+09bF15BTW2GCgiF4fapjl/mffrrAVrVFuZpEunffP7dWULWRjfwE2LhNAXJNg+ZpuPysmTZ+me87bALVJojcZ2C4NubMoFNs/oltyNVKwozjpavaxtefY+Qql3ZWK1TqtuBKMpSzETArHPOr2dcO4g7th+Dr1mmqtKFYiRS756/U1c9/b2AhctzjLj3srtrZ9SxdN/azuPj+2aiCXSzIN6gaTggy/G4wIyGXAyrkoIA5B4A0B3imluXvWJBx7uXpGsiB7buC0hkuI6K1+/q3SZBZLldb53uZVUFwhSqZauudC513z357x2Lp1Tp4zN44LnVek3Nr2Sw7HfoszSUFWhMgMAUJ4cid2rksQHYKgXZL0dtOKvj4jPqVQUrCEujq63AO+48cdRW+DF2ilVmvtrgfTGs28GKY5mayId3L39aMOjafHKUmmtStKphmi5/yXWh+u+ELBenOvIu6dv/XE/W40/rRO97ootHrLaONWISQZFvr2kmuDc5kUkTgGQbsNYKchjdeL2Tm8YyQppKtRIR1JRG8INjZx+NzFswscdtcopg0AVzJjCQxrMqxw/7QGO8sIRzXZmR0nHir7rULL6lAhF7xsa3sC0eIanep2QRB9p2ZeCjbfQ8sanEkCQLsA9kLK7RLYEYW1b9+maacKIwU7ggr/CO5o5bOnp/WysVi57lovSYZVDJ5PVjgGw/JiJ8cGu/bgJvOxKzphgLQwLQrBfs+RTfN2jGt1T12dAOqxftXpyecU9rGQ073piGMk49PfPZUfvwMyLV+3TIGzSQdErYJoryDaKUjuilnGgRElg/MhGq7k8L/8PiEAK587Pzvp5pYrReuZ1QZmrABzOUWL0CeiZ49wO8LQIlZicLrn6RNbyh68MScz+GrzAjik+/IbJAZt7fyspGxq4GKVaStURkLe47oOuu10am7jyaOCxOuCaLspzV0lFh3Zfjf1XLkULPFQFf5hJ2t9ldpFdB7AeQCv5Bdr+fPn52SyaqnK9KxjpkoAKwBUUKzYyMfT8FUPwXA9l6hgCTICa7CUws7qR2uY1zc2NuY/2ti70svqCbWkzj/R9jUqmnwL93YWrlBjMGE9kUHDkmSY/Ye6dk9Szj1AJHZKQ+4MhUP7Sount708UlZ+5D3gXj78GiKiN2Sf3PHjjqILjrPYJaxVrDdo5rWd6fQiCkVjCHtJUl9P+jLTGggAawgBAT48kCs3lgX23byKrW2bdLT4SZXqUXT5C34/tuHBsY3pC7YD4Fwa0OoskdgnwTshaHuEjD2bH5je2jBUX+hqZyWNQhWxjtlIPNVRkRPuCrBepzXWaK2XAFRO0SIwa3AuA7iO8p+quGZ3m9kVRVMMo/fin7Y8XP6NcclK56+MGk/dkZXmK9rOKhRCHpihwAxIKSkc9axrLu21NhIdJoE9UogdksSbcaladt07O/2OSaZRj80ZcI1ziURTHbP40U/PlacdtZI1b1CK14OxjKWc2V974IdVSg2d1nB5D4xZiViJNLI9W1pqy7YVOiQqEIG9bOmiZ85UZLPOYQZMn5h0xSc0gcEDpGANi8gacBWQTdkAPClYou0GGTtLisIHd3ygpHBSsIMSFiOT+q4jHGrdf26Ro/Udmvk/aK3vpHBsGgO+JdGjV8m4VCxomBBaXZxu0JIdD8y+6Kfcx84KMwsGuGJr+6s6En8PZ5JXX2nlrb8CkUHhGEga4ExvSpD4tSC8aJH8xZQZcv+rv1PaW5C4dVhyc+Q8yJIfnZqqQbe5GpVa69s1sJo1zxeRmDVERG9A9d+1iOgRCFAxg247uHnu0ULfLBR0tEpdPei7t7XvZiu6gu0CDaUeGicJIfustPArZ1z7IgEHBcmdRLw9bNDueVay5ed3L8oVIEE2qjip8tnT07ps8X5NvEVr/UFEiiI6mwbsnIIAXdWzYHZF8RRD9HZ+pXVL2V+NqRX233vBkyc3OaH4k7q3W0FcBXnzxJWGISJx7zqH6GUJ2hYCnj+4eVb7sMOyqiof0ox+TYYnmtTQEKNmH1u7j5yZryBWs9YbNKt1rPk2Mq2psMZDRI81WREBO3PwdrF9RWNtjS70gIDCEdivHirfeuLrHC/5z7qQsdNI1woDa1cNa4gUbA8TyVYi7CHwDinEDiNq7hsmBTviaU88qlgzfw9Y1SzQ0THotF/2o3PzM1p9zAV/kkKxcm1nwbmMIqIr2xi+QBppTkUNtfjQg2VnUV9PYzJ1sY7Fxqpm0Xau4nUORZdzNnOFovy+gIFhGiISBzLJTinphxbh8UMPzNo1+Hn7z2z04nnDpzWMYMWWPPX2TCX1MqV5nXbd2/0Cn3KKDKytH0cRPU+dUopUzzdaH5r7n8aiwo4KfYIvSpz+nZxp/FLnMnrc+nxHlIK1ADPkl8zZ4Fy2lwSOCKLXJeRrpiFfn27z0ZdrR7onvIpZSXn3rQac14a648cdRW8r5+Mu6M/YiizS2RTg2FdWDOHHwjLd9Y/Ha+f99Zh0Lflx2cLGkw/aofhTOnmF1pdZQQgpYiXgbLJDkvhWsWU+9uaHp53uP+ya5aildkeRl1j5wplYOqMWQcs1SqnbNWMts15MVqQIpnWJarxxntbArEU4JgyVfV/L5rlNY+FBFVzYfWMzZOu59r2wIovZzvB1ata/hBSs1Z8gy6ZAzKdB2CcE7ZBCbJfA3iMPzmrjoUO1B7p5o6nzzr/eJ1rls6ej3Q4esUH/lUKxW3Rvp3+9RqNTkTRMkHYvlsSwcO89ZV2emkkBXbE6FtRAuuyJtl/rSPx2ziRH15jvhzcUK5bk5DKS8E2Lc18/tKn8TN9BOOBAG114Mrx8loiw5LkLZU42vVKB1jPzemYsZ8IcCsf9RJNvXZV7g9TDsyYrTJTLtExbWL501zq4/sfgG5fAvotwa6LtL1VsyldvKFH3obOSyO/xHDQrKZ0VQAsJekMSbQfJnVErfGjvPZM6R7bSzYSqqryF5pHd7H595OXPtMxIO9EvKsLnmCQ4lx7d8/GFwo1095+21M77RkFdsWGZ51F6TlormJYUoQiEm3s2rOzPH6wp2+/tgyZjpIzvIHe4qlmgo2pE67qqqXNSqie3hB21TjNv0MxrNGOBCEfDgxJNruNf411romlM9psriqYYIt35+dbasjHrMiv8aBUCFv3g8NSsET3CQk6C6+AG7t0dUvUj5aDWMq9Er4OAg0Rip5TiNUMYb26cM+34sHpab9Pqka2NP0fJt8iLnz5ZlVPyXzgcW657u9Rl3TpmTeEoUS69b4PYvqaxkCNQfQKXb23/PsdKPqaT3S7onesDmNkVsWKDXPttQ+u/aNk86/uXJS6zQHOzGOr+1zEb257vuNXNqVUu69tZ8zpmvZSkWYpQ1K+Oy+W7zYYW0tyYHVGe18TEuneSNBbt2TSzo+Be05gQeEA8devWtjpVNKV+Yo1WGcWspGyvIohWIegNIcQvpKRfHL53xl7qWxy/PXKka6v8XXV1tbvye7tjyeiMryrL+pzOpj3X7x27fFiLUFRYbubOozVlvyxIPOWX9a186tj0Ltc6yiSK33GEqX/NJ+KThcilfxZR6c8eqJ1/AomExP6a4RMo+vMCfc+CACx6+uwKV/OdmvWdWvMaZq6gSMwrkrkZpjX4twcydfHLx2vL/3Ysy2HHZvpcPeiONedjp3PpA9qwZnuC4xNUuG5Ygkz4VtqrzeV0D0iIPZLkT02pf3T4/lk7Bx1mI/WODiDfgsaTH3OE+SgTRTmbvnSCi9kV8UkGpbv/e9tDZf+xIJvCd+vmJ04+4kaLH33HmwPWGtIQworAcHJ/11Izu67P6g5Nqo0wE2nJ029VZjU9wFrfw6xXUrSY+uqFHRte1ukGGAtagNgXRoiEds9Mg7101/5bx1QfeoxGq/gZ6a0n7s/Fip5WqR6Xxq8YfnwTZEQGWWGQFQZnkhBCvGIIPD6djMSr9/tFCiNZS2ZCMySqyV3c2L4uK0NPsjTLON07MomYGaZF5NrnKmZEFrxcPSN5zYXxflFB+da2Jh0p2sjp3pGTV8wKZkgKQZmQyn3ySE1ZwmtuB4ZZ3QF/68amc/HT3brGdflTmvl3KBKHN6UhCzC7mEjCC6PfHa6IlxhmpqvmWG35kxN/tMrW1sd08bT/qLpvWkH3PKE1AK/qyDBBuXSbkPStImQf69NPGmnEpG8Flz2xd27KmvYsm+HVXjPISCTWWkSLhWn3fvhYTflPrmlz+FK/tz35VllKqcMMDo1YPadZUTgiifl8yMnef2RL+SsjJmQGjGapTLSUdBrRRzTzH7EVrWDlgDMpAHAHlJnedBKWzOzI4qkm9Vx4vO3h8k+NR/nr2Lm1NdBIsFy3vPxPKNn1qoxPMsHs3IQE9qqsiAwQgbMprXo7lQKVKzP6lS4d2b3gybf+qK6uziNvn+yQj2pyUddk7H94xcnoxQvvp1z6NxQrMXwLNfRXaQjJrqb7AAD7m6+eBFX1AgBy2rmLYkUhaO0OIxV75BWsz4ZV6n1HtpS/gkd3msPIW9dkgEgzCPOffuuRCyKyW1nRryqmCtXbpTiT9mJZT3pW3IzkhdaujE8yKd21vewW/hwSCU8za+w33xjCd9FWJ46UdorYvyMUXa6T3Q7eDaNVBoh/i3AMlEv/OqRzf3G4pvzVEUea5CcPPrqzRE+d+W/ajKzjVPfQmFiTGRJwsm1xUbb4QC3ZV90c7rcolm078SxH4h/mVM/gumfWGlZYCFBHxEm+79CWBfuGWd4B0wwXNp683ZHGP7MV+W2dzYCdnEvXVgs+kdbaoViJSXb2QJGdft++j8w/d/OMVvHdxuU/bJmRtKLPcSS2XvVcdAksPZHddweRRSRukHK0wfrLH9v7WH1DQ4Me5mL5pFr5vWPTuyORX7FhLuRsanB2mpnJtCjCzvrDNWU7r6pX2I+dKxMtJR1atrA0p8J1+rPPrBmGxUIamZCdrD6yZf6OYeQdMFpl/pOnvuiS/FtI09CZ5Ltn2oa/trJ4ikGZ5OvhTNc9hz6+9MyIodKEc6H7jgjSYBb7PjL/3ML0uWqZTf5QFk02YFjEzC6GlT3dbA42EREZnEkqbefIjRR94XsrP/PS0kTLPNSSQtMAl7q2ViHBcs8nFrwdcbP3kFadMCwCeOBmUBSOwWGqBgCU1lz5IdjorXsvyXUUik2F6+j+rC8zhKGEYQrTTj48InmbmgzUklrx/SNzKp4686KKFNezY0vOJBX1u8k3NXHB7MIwSRZNNkQuuXVWV3fVeJN3fAicJ3Edixc/sTp1fNOsj8pc76eklGdk0RQD0vCJDOVf1dysRJYgkOq54CozXJU2Yr9e+ETLe1Fd7aKJB5CYFJrYOPTw/COGk3lYGCaB5MCZv8RaQWveCADoaLzyZ+Y3lTtMd8K0AAyI1RhKxIoNaSf/6tiW+c8Ni3mb2EB1tbu4se2Onljxr9kMv1/1XHD9GyB5M7MWDMXMLqRBomiyIYQ4Z2R6Hml9cNbDr/7hbb2oG1/yjh+BAe+6gZnALI5vmvN4PJtaY+SSXxVCnpdFkw2KxCRIktcdz65XgM4jDqueyPkuImFwqsdVjFm5UPzFBYm2zaimwSSuJheP7jRbttz6gswm64SX1FJ5i852Fhq85j2JExHU1iq/tW70aPYIqxl3sHL7QymtlYhPMkSq68fHH7r1K2hiA59Z5wwmL7kLE60PZGTkJWbM0alul0gYE05U/zJs9XoNWfl7UYMkUSQqZdFkQwh5Qdrpf4qkO9e01Mz9NupYgJmuh4LodRqt0h/7LU203pIzwzWuxmbWqpLMcGywtvPAS/4bvITuiraI1pAGCTNElpP6g6O1Fd8d7Kp65ZdUXe3O29b+Mofjd3K6N59oYpISIcbao7Vzdl+R25avvnrhTKyr025hw5wBx/aEFAyLBOuz0yVW7Hjz2179d76xIF/n/kTrR1Q4+gPtOIBy9E0xInaYNtdIAvCZtBDG60LQkxZnE4MaNq6jfvf1Ka6oJZUvsztQS2cB/AuAf1n29IW5WZVbpl27krVax8AKEJVRtF+Lqr+InSd25Q4JAa20tnNsh4seX7CtxT1WTf+rn8TEqGLNAGJEn0459ptsmCGvxJAUheOGynSvBrDbGyk66isLAsDpHrUI0vDJSwAzCzMkjFzyszseLLswaGPmybu1dYsKxX6gnZyGUhNzvvNIAvCmRWSG5CABeOW2QTn7SNBOIcSuSHF03/67pp4cZIS8EtHrKr5//aqjvAoi1VcfXFWl9hOdBHASwM8B4JGdbP7iREeFq7IrdA7rFHQlMZaykLMpEpcg8vWK7OG1s3wDdaa8A4uhXdZ2Vjlm/HsLf9jSebSaftpXJkmk0dRkHKied+zWbcf/DrFp/6h7LihPiYmgGGsBfPeS84BHdJ89sjOrFRQpAae6FbQmUTRJUqrryZYtFc965ZG+J5Bgr1ps6/EPZq3ID7Rja2iFCTFa5dIC8HKQALxWb8FOHxDkCcDLsNi70u5qbaxdbg/zXvy9er2Je/0JPJjI3mYZIp7td/wc8b+eAoCNiXPxtyKYr5z0aq30OjCvBfNissJTEYoYYL6ECNk4ajtfGYcJrkuaATsU27ao8eQdR2rm7um7HqqqUkgkZCXS/21HsvOTFI4u5lzG9WPX5QNj2tHBI7tirPQPO4ZhCuTSyWjU+nP/jlr7G1aASN3W2L4sLaxGrRTduHORLikAT2RaAkSAnQG7zkXY2cPkZN8QZOyQxsgC8IeB4QLwXphyQw2eu8Et1Oi0nZf86NRUJnOxrfUardz1RFilGQvICsc9bWe/aH5kbWdxg+w/RaGoFMppKbLd9XuPzOsG6r0YNF9b3th+Xy5U9GOV6nGFFTbg5NpvF72LPEsxyoIO/2CYt639pxQpululenKyaEqIkhe/3LZlQOeMX2xSuex40XmEdrBpLeRM+up0ssYGoxKAB4ljkvAmiHaYwBslJfFDIwogXq2QXkDgK97o/WJmwIhSoQRgwXMnZrMtl2pgrVa8XoNXgLmCwjGzvyncHjJQ/DrH06y9JvBk5zOtW8rvH9RxxCyISM/b2vobDsdv52xag+EWxYyFB+6dfeJKKn/q6lg8ftuJ/TBDS1i7mrS+WBLjRXt3fKcb9fVe54zfZVS+tb2R45M2696LLkgY12nNRxhcNkAAXitwJuUA3CaE3COk2CmYCiwAf2Ni4nUI9atf6EELMkBDiWtJHf3wvNMATgN4EfAGTR342dvl2Vx2hbKxjsCVmvUyCDHXi6eHip4VQlL0it1pQ/d2uiiect/8bW1/3PJQ+Tf7kkmNnjmwhPH3NomfaGYtQxEra7tzAZzAslEcxn4G+olFh6cwR2bCyUHEJwmRuvjNvfdUdKKpyQCRm4975z9x/BG3aPJmr6d7nMg7VDkFnO/JHiwAr5xTpNV+KbALRDvDYWtvQQXgAwJfh4TYYDMzSNu50Us6tPhfPwY8raqkkvNVNrNKAes067UAL4EVKqVQxACjP0k2fGTGWJFa6nSvcmXoq0ufOfHCgfvQko9FUVcnPlIz52ePb23bQ2Z4BaQBuLkyAK+MqrGh3stAuzJ6CxGKmQQ43dMTC0e+5bnM9Rp1LFADvfKZMxXdjv66zvQWRtx9NEkm6tMuIzIsAUJeMP88OZlDws2+LiB2SjLfLArPOLbrXhqdAHztjZFwClzocYinV/ykfXLWtRYph9do6HUMrGatF5EVLoIZ8uJp15+V1J8kEwOU+gsQ3WlF8RIpUt3/1vZwxQf6rHBfA377I24o/ihAQK73r9try/5xVJpLee3nxvb/YIvQC2RaoEyvJxCQ/x19Ejttz+toyYc42VXIkaI84M5VQMh+ocG+IXjZXiI6SkLsFqCdgsQbkVD48Ii6ZBM0bg0s8NWdVZeelVTfP3pjL1EngNf8LwDA0p+cuyXnqtuQ6610Na0j1ivAupyi8SikKdjJeZbCawEU15ylFUJyqsfl+OTfnZ9of6illrYhwRJVnpcRjaKxu7f3SzSptFRke2eN+n1LPSutNWZSKATOpbVF9G0vAdbYT/CtbZucWMmHONlToJGinPdeDApHicyQgHLA2XSalNMG7e6T4J0GyV3CCB88vGn6mUvGrc0YKACvh83MepfBeDf/8YPi6Yah8XQp5UdLHrhnxlkAZwE0+Z4frfzZhdmZbHa1cnN3as3vgxBrKFpssJMDZ9Pee17LjCSCYDvLjsZXKp89/dyuXciixrOie++hzvJt7c8gFP00A6UAgI7RlJxWeQaeaDpF4kC66/UjD5Xv8GxWjUY96D2JE5EzjK+wnWMQi6t3KvIiBywoFBNkhQSnulm49huk1L9LgZdDVuzNffdPOUUjJZDyEzQGC8B7HkYDAgQEvoJ4eshAcfLi6VP+108IwOKnzizPZZMfZqbNHAqvhRmSOp0EtHIByCuPl0mwnXVF8ZSyztTFP0YDfQ1oMrCsigEmS5zeajvZP2T2Cbx/9DXjzDxNmAYLIRNExGhiA83NQEO1+3ai/TOIT57PVytGmB+tIoQhYkUSjg3S7hsy6z4lw/Tc0fvm7OGhMdzAuDUvgNdQ7QZEDQg8VqQeMFC8mbi62j20aeY+APuI8A8Lnn77TjeX/TSE2IRYcUyne73JhUJcmRoFkdDpXgbEX656uvPbb94/qdtLRBHPnNb6yvFzb3eBMdO3SpcncHOzH0zwdE71kinUcwBQ0wFurK/Si9d0FKWzmf+CTPJqijUYWmsYhhTRYgOZ3jTl0j8KSfE/Dm2a+fIgK9vUZKCjKp9k4ps5yTTWEMEjuMpkTD67mVdkrGOBpiaDGTh6//RftG6e+ftxaaySdvqfSIguUTxFAqC+rqLRro/rKMQmlfY63Y+AiFHVLJBg+XJ1RVYQXiLCdMrH+LhMV9KyKvZd6Jm658Lpw5vKDwNMb5eCQMR2Lv2HIj5pJhxbXdHe8P4mEsVTJAnZLXPpr8csc1Xb5tkfP/zAzGbK3yvXsfee1dWuN5e34SbrNgsIPHHRQLqPzImERILl/gdntBx/cOZfxi1eJezM/0uGaVO0WPptaqPbuERCZ1LsMv1J5bOno6iqUpWduwQACOafA4isfXSn6R8rl0FjnurThJQvEhFXPrrLeLkKamMThxXzn3Euzf0Dqi/vLjOzomiRJMN0pJ36ZgxYdXzTzD8/cN+MY0iwRCIh+0h7HdrtAhc6wJUjL3FTVyeAKnHg3tknAPzZwqdOfsdR2S9zrOT3dC492kFnAnZWUdHkuV2Zrk0g+n4msY8AwGB+RRH1dk6eHAXQfdnPtb+G/QDAAPS/A0D33GIBIj6ZOHU/xUrKRj1W1B+tIsNRKZzsz8OsP3/wwTlv9CWg0KwD1zgg8AS3yg0aaNB5ofOjm+a+CeCehY2nft+Wxlc5VDJdp3pculyyiAisXFYaf0TA9w/sX+YCQPHC8mMXjp1olTDjoyJwPRgNABhdBmEXABxLLnQBQGn3c6wUjyZCZ2ZXxksMOLnzpp36L8c2zXm8j7iekL0bLH7gQt9cSbCGatdXbhBHa+b8z5ibWi/c7E9l0WQDgIbX+nupn5ecSYIN6z1LGk+tQQPpykd3mrvWkQPCGzmHQ6P9HBub2DAltafCZhuYyWuSOLmSDfO3OZN8Z1kc7zNqWTTZEHbu51HOrDu2ac7jYBZeLXa1O1FrigMCBxhdnJzv8a2df6L9wVn3yGzqCyIUEZAmgfU7xYgK4RhllP54n+sLgIhe1+boM8adJ98MEbD3zL2z03hslwEAjsZHKRwXGHp9Npi8GtIkEYoKme2tb90880MHN9/a7tdP6yC+DQj87kG1Z42ZWRzfPOtLITdzv5BGL1kR4bc7jmA9ITiXgWb94F3PHwkd+9BCGwDCRPtKTJEb7a8+hxkwhX4dAPBIpVuT2GdpVps4l8Elk1eaFVkRIaSRMnOpzcc3z2nos7rV1YG7HBD4XWyNH91pHqkpeyaictUC/BZF4nJkEpNgO6spHC07mor8FogYzDTZTB4ocvT5Plf9Mlgy95bclBC9ke9M2k1FtyMUmc9OduS5wForikSlAJ+1VOp9x7aUP4UmDqxukMQKAAD4zDoHTWwcqqZdSxNHN6ZR9K86Eq/gTHKkDLWGGRLayd4PoBnNkK/ef1vvlfw6v92u01fBdB2N+2CGgWxGD7PAWiuKxCVptz2kMh88XDv/8FgNqg4QWOAJ7FKT68XFC48VZbt/l7TbTuGYHBYTe/XRUFp/sMbr2b1ySVnAKw2thqpjFsz6LrZzw91n1prCUUnKPRW3e99/uPbWgLwBgQO8c1zcZOz96OLjoWz2LmJ1HmZYgAdOZSDBdpYhjUV75cnbkJeTuVL45ZhPPPXWIpbmErYzg+c3M2uYISLwxaidvGv/w4taBgndBQgIHGCkuNib0nDkoxWHQtn0AySEDcPgQVVbzIoiRSKndBUAoPkq1rDK+xlXuxspUiQHlXcyM6TBgoQy3fSDBz+ycH9+GkOwQAGBA4zGnX50p3nko/N/FXLTnxHhmBwkYUoEaA3N5BG44ypqif2f0cxV3vCLAUacSIlIXBpu+nPHam99ecRxogFuGFDwCG5QPLrTxGfWORVb276l45M/q3su+kkt1mSGBZxse1wkFx24EkVKz8QSQFz56E7z/KRpB9kI92egtVaieIqkVJen0uF/hmAxAgsc4ErxSKWLBMvFxWX/B9I9+ymST2qRYCfHEHKujfgCAEDdFRzE/mtTpbdUMIlydmwAJMCsKRyTlO45dAvRf0KCJR6pDCxvQOAAV+cbeRb153dTLqT5D4i1AklfvJw1heNCs1jlxbTNV7CO3mtdpVZROC79uVMACSawDpH69G9q52UGfoYAAYEDXA38+cFHtszbIe3s/yPiJRJaez20QoCZ13ovrBr9e1Z5r3UVr4V3zczeVMISKXLpbx6uKX8VTWwEnUQBgQMUAlVVCnUsbgnH6pHuOQ0rLEDErBQ0YYXP39FXRPnzhBm0wp9xxLBCgtM9Z6dMK/mCr/QYkDcgcIDCudLN4tX7S3sFu18U4QgxszdRArRgY76scbQJydpaVZNISAYWsuuAmSHCMTK0U7/rA1O6gWYRuM4BgQMUEg3VCnUs5k0v/x56Ow+IUMRgJ8es9ayz3eenAwDq6kY3mQHAfqwvBXg2OzkWVthAqutIpUg/7rUEVgXWNyBwgAKDUdUsXq4m15Ty/yIzRMysYIUi2snOBQAsW3Z5Ajc2CgDImaHZMKwYa63ICpMl8Q+NtcttLxkWWN+AwAEKj+oqBWZaEM8+iVTncTJMSYYFrXUZAGB/6eUJ7L+Gs7kybyKCKTnV1T5rqt7q1UcH1jcgcICxCoYZzZA/v3tRTgr5/4tQhABAgecB6MsuvyPyryExDyCIUIQk0WMvV1dk0QwZWN+AwAHGEs31GgAsqf8XZ3p7YFoAMPuK/XGBWTAscLo3GTfE97z3RtDbGxA4wJjCH/Z9aFP5GWL+GYWiDIaXxOoYvbC71jSdwlEIwgt7N809hURCBs35AYEDjAdKmwlgCkl6grQiDUwDANSMgsDLOrw7YOJSsAYxPwEwobQ0qImfoAgUOSYaqqoUQDwpe6TpbOfZNEC3eHHtKAhcU6MBgDRu0RfPZSeH+CWAGFUcJK8CCxxgXEDESLDc/vFFPdD6FwDfMsrRKgQiJs8C30LaeeXNByq6kEjIoHAjIHCAcXWjQfAkNJ4HKHZnU5PnSb0jDb1vfrGuToAoLoR4HgChtCZwnwMCBxhXeBljNgX/EkD6bPfyyGV/xif3TyofCYORtQi/AMBXVEcdICBwgALAHyVql+KQIGonxfHR/minI+ICOBnKWAdHHTsHCAgcoKCBMKOORXt1RRbEb6aVCo/2J3UmEwF4755PzEx5w9eC+DcgcIDxxzKv+4hAr2s4ctQEDkspBbzJDMvqg/h3giO4Rpqo8O99wybvDStz1LpVce26wjD3DHyPAAGBA4w/GABKIrQ/1CPtg4CnWHlJr9v73uyS6IVedpJB/BsgQIAAAQIECBAgQIAAAQIECBAgQIBxwf8GbCXAdcy9iE4AAAAASUVORK5CYII="/>
+<div class="slide-inner">
+<img alt="Morro dos Anjos" class="brand-logo" src="data:image/png;base64,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"/>
+<div class="kicker">Projeto H2 · Hotelaria</div>
+<h1>Planejamento <span class="cover-title-line">H2</span></h1>
+<p class="cover-sub">Awareness + previsibilidade comercial para transformar marca, dados, mídia e operação em rotina de crescimento.</p>
+<div class="cover-tags"><span class="cover-tag-pill">Julho a dezembro de 2026</span></div>
+</div>
+<div class="source">Morro dos Anjos Resort · Planejamento Estratégico H2</div>
+</section><section class="slide white" id="s2">
+<div class="slide-inner">
+<div class="kicker">Virada estratégica</div>
+<h2>De pescar no aquário para pescar no oceano</h2>
+<p class="subtitle">Para sustentar a hotelaria no H2, o Morro precisa preservar a captura de demanda quente, mas ampliar conhecimento de marca e gerar demanda em novas praças.</p>
+<div class="strategy-grid">
+<article class="strategy-card aquarium"><div><div class="strategy-head"><span class="icon">🪣</span><h3>Aquário</h3></div><p>Base quente e captura de intenção.</p><ul class="strategy-list"><li>Londrina</li><li>Raio próximo</li><li>Remarketing</li><li>WhatsApp</li><li>Coproprietários</li><li>Base impactada</li></ul></div><p>Crescimento limitado quando falamos sempre com os mesmos públicos.</p></article>
+<article class="strategy-card ocean"><div><div class="strategy-head"><span class="icon">🌊</span><h3>Oceano</h3></div><p>Mercado novo e criação de demanda.</p><ul class="strategy-list"><li>Curitiba</li><li>Maringá</li><li>Oeste SP</li><li>Campinas</li><li>Bauru</li><li>São Paulo</li></ul></div><p>Awareness vira pré-venda: apresenta existência, localização e valor antes da busca pelo pacote.</p></article>
+</div>
+<div class="strategy-footer">Awareness agora é pré-venda.</div>
+</div>
+</section><section class="slide white" id="s3">
+<div class="slide-inner">
+<div class="title-row"><div><div class="kicker">Leitura executiva</div><h2>O desafio do H2 em uma página</h2></div><p class="subtitle">A lógica final é: conceito estratégico → evidência real → decisão prática. Isso transforma awareness, previsibilidade, reputação e mídia em gestão comercial.</p></div>
+<div class="grid cols4">
+<div class="card cyan"><div class="metric-label">Hotelaria realizada YTD</div><div class="metric">R$ 19,5M</div><div class="note">Jan–Mai/26 · tabela comercial oficial</div></div>
+<div class="card gold"><div class="metric-label">Meta anual Hotelaria</div><div class="metric">R$ 51,0M</div><div class="note">Ano 2026 · hotelaria</div></div>
+<div class="card coral"><div class="metric-label">Gap pós-maio</div><div class="metric coral">R$ 31,5M</div><div class="note">Quanto falta para a meta anual</div></div>
+<div class="card green"><div class="metric-label">Meta H2 Hotelaria</div><div class="metric green">R$ 28,4M</div><div class="note">Jul–Dez/26 · pressão real</div></div>
+</div>
+<div class="chartnote">Virada do deck: cada tese precisa responder “o que isso muda no plano de julho a dezembro?”.</div>
+</div>
+<div class="source">Fonte: tabela comercial enviada pela equipe · base Hotelaria.</div>
+</section><section class="slide dark" id="s4">
+<div class="slide-inner">
+<div class="title-row"><div><div class="kicker">Meta Comercial H2 2026</div><h2>Meta H2: R$ 28,4M</h2></div><p class="subtitle">A pressão não é linear. Outubro, novembro e dezembro passam de R$ 5M/mês e exigem demanda formada antes do período de conversão.</p></div>
+<div class="grid asym">
+<div class="card"><div class="barviz"><div class="barline"><div class="barlabel">Jul</div><div class="bartrack"><div class="barfill cyan" style="width:84.6%">R$ 4,4M</div></div></div>
+<div class="barline"><div class="barlabel">Ago</div><div class="bartrack"><div class="barfill cyan" style="width:80.8%">R$ 4,2M</div></div></div>
+<div class="barline"><div class="barlabel">Set</div><div class="bartrack"><div class="barfill cyan" style="width:86.5%">R$ 4,5M</div></div></div>
+<div class="barline"><div class="barlabel">Out</div><div class="bartrack"><div class="barfill coral" style="width:98.1%">R$ 5,1M</div></div></div>
+<div class="barline"><div class="barlabel">Nov</div><div class="bartrack"><div class="barfill coral" style="width:100.0%">R$ 5,2M</div></div></div>
+<div class="barline"><div class="barlabel">Dez</div><div class="bartrack"><div class="barfill coral" style="width:98.1%">R$ 5,1M</div></div></div></div><div class="chartnote">H2 não pode depender de campanha de última hora. A régua precisa iniciar com antecedência: awareness, CRM, prova social, oferta e remarketing.</div></div>
+<div class="grid"><div class="card cyan"><div class="metric-label">Média necessária H2</div><div class="metric cyan">R$ 4,74M</div><div class="note">média mensal Jul–Dez</div></div><div class="card coral"><div class="metric-label">Meses de maior pressão</div><div class="metric coral">Out · Nov · Dez</div><div class="note">todos acima de R$ 5M/mês</div></div><div class="card gold"><div class="metric-label">Gap anual após Maio</div><div class="metric">R$ 31,5M</div><div class="note">inclui junho + H2</div></div></div>
+</div>
+</div>
+<div class="source">Fonte: tabela comercial oficial enviada · Hotelaria.</div>
+</section><section class="s-ice slide claude-slide" id="s4">
+<div class="fade-up">
+<p class="label">Metas · H2 2026</p>
+<h2 class="section-title">Gap mensal: onde está a pressão</h2>
+<p class="section-sub">Receita on the books × meta operacional por mês. Julho e dezembro concentram os maiores gaps absolutos.</p>
+<div class="divider"></div>
+<div class="grid-65">
+<div class="card" style="padding:28px">
+<canvas height="155" id="chartGapMensal"></canvas>
+<div class="insight" style="margin-top:16px">
+          Julho e dezembro somam R$ 8,25M de gap absoluto — 41% do total H2. Precisam de ativação imediata e antecipada, respectivamente.
+        </div>
+</div>
+<div style="display:flex; flex-direction:column; gap:12px">
+<div class="card">
+<p class="kpi-label">Gap total H2</p>
+<p class="kpi-val" style="color:var(--coral)">R$ 20,2M</p>
+<p class="kpi-sub">Entre on books e meta comercial R$ 28,4M</p>
+</div>
+<div class="card ice">
+<p class="label" style="margin-bottom:12px">Gap por mês</p>
+<table class="exec-table">
+<thead><tr><th>Mês</th><th>On Books</th><th>Meta</th><th>Gap</th></tr></thead>
+<tbody>
+<tr><td>Jul/25</td><td>R$ 790K</td><td>R$ 4,84M</td><td style="color:var(--coral);font-weight:700">-R$ 4,05M</td></tr>
+<tr><td>Ago/25</td><td>R$ 1,31M</td><td>R$ 3,50M</td><td style="color:var(--coral);font-weight:700">-R$ 2,19M</td></tr>
+<tr><td>Set/25</td><td>R$ 1,38M</td><td>R$ 3,65M</td><td style="color:var(--coral);font-weight:700">-R$ 2,27M</td></tr>
+<tr><td>Out/25</td><td>R$ 1,74M</td><td>R$ 4,06M</td><td style="color:var(--coral);font-weight:700">-R$ 2,32M</td></tr>
+<tr><td>Nov/25</td><td>R$ 1,66M</td><td>R$ 4,01M</td><td style="color:var(--coral);font-weight:700">-R$ 2,34M</td></tr>
+<tr><td>Dez/25</td><td>R$ 1,29M</td><td>R$ 5,49M</td><td style="color:var(--coral);font-weight:700">-R$ 4,20M</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<span class="slide-number">04 / 22</span>
+</section><section class="s-white slide claude-slide" id="s5">
+<div class="fade-up">
+<p class="label">Ocupação · H2 2026</p>
+<h2 class="section-title">Ocupação on the books vs meta por mês</h2>
+<p class="section-sub">O gap não é só de receita — é de pickup, inventário e timing de ativação.</p>
+<div class="divider"></div>
+<div class="grid-65">
+<div class="card" style="padding:28px">
+<canvas height="155" id="chartOcupacao"></canvas>
+<div class="insight" style="margin-top:16px">
+          Julho tem apenas 17,4% de ocupação garantida para uma meta de 79%. É o maior gap relativo do H2 e exige ação imediata — a janela de compra em julho é curta: média de 16 dias.
+        </div>
+</div>
+<div style="display:flex; flex-direction:column; gap:12px">
+<div class="card">
+<p class="kpi-label">Inventário base</p>
+<p class="kpi-val">130 UHs</p>
+<p class="kpi-sub">Unidades habitacionais disponíveis</p>
+</div>
+<div class="card" style="background:var(--bg-light)">
+<p class="label" style="margin-bottom:12px">Ocupação on books vs meta</p>
+<table class="exec-table">
+<thead><tr><th>Mês</th><th>Atual</th><th>Meta</th><th>Δ</th></tr></thead>
+<tbody>
+<tr><td>Jul/25</td><td>17,4%</td><td>79,0%</td><td style="color:var(--coral);font-weight:700">-61,6pp</td></tr>
+<tr><td>Ago/25</td><td>34,8%</td><td>66,0%</td><td style="color:var(--coral);font-weight:700">-31,2pp</td></tr>
+<tr><td>Set/25</td><td>36,9%</td><td>67,0%</td><td style="color:var(--coral);font-weight:700">-30,1pp</td></tr>
+<tr><td>Out/25</td><td>38,5%</td><td>72,0%</td><td style="color:var(--coral);font-weight:700">-33,5pp</td></tr>
+<tr><td>Nov/25</td><td>35,8%</td><td>72,0%</td><td style="color:var(--coral);font-weight:700">-36,3pp</td></tr>
+<tr><td>Dez/25</td><td>25,8%</td><td>77,0%</td><td style="color:var(--coral);font-weight:700">-51,2pp</td></tr>
+</tbody>
+</table>
+</div>
+<div class="card" style="background:var(--navy); color:white; padding:16px">
+<p class="kpi-label" style="color:rgba(255,255,255,0.5)">Média H2 on books</p>
+<p style="font-size:22px; font-weight:800; color:var(--blue)">31,5%</p>
+<p class="kpi-sub" style="color:rgba(255,255,255,0.5)">Meta média H2: 72,2%</p>
+</div>
+</div>
+</div>
+</div>
+<span class="slide-number">05 / 22</span>
+</section><section class="s-white slide claude-slide" id="s3">
+<div class="fade-up">
+<p class="label">Tese Central · H2 2026</p>
+<h2 class="section-title">O H2 precisa sair da reação<br/>e entrar na previsibilidade</h2>
+<div class="divider"></div>
+<div class="grid-3" style="margin-bottom:28px">
+<div style="background: var(--navy); border-radius: var(--radius); padding: 28px; color: white;">
+<p style="font-size:10px; font-weight:700; letter-spacing:2px; color: rgba(255,255,255,0.78); margin-bottom:12px; text-transform:uppercase">Camada Macro</p>
+<p style="font-size:16px; font-weight:800; margin-bottom:14px; color:#FFFFFF">Ambiente externo</p>
+<div style="font-size:11px; line-height:1.7; color:rgba(255,255,255,0.98)">
+<p>↗ Turismo interno em recuperação</p>
+<p>↗ Férias escolares como âncora de demanda</p>
+<p>↘ Chuvas de out–dez como fator de objeção</p>
+<p>↗ IA e GEO como novo canal de visibilidade</p>
+<p>↘ Custo de vida pressionando ticket médio</p>
+<p>↗ Mercado de resort familiar em crescimento</p>
+</div>
+</div>
+<div style="background: var(--bg-light); border-radius: var(--radius); padding: 28px;">
+<p style="font-size:10px; font-weight:700; letter-spacing:2px; color: var(--blue-mid); margin-bottom:12px; text-transform:uppercase">Camada Micro</p>
+<p style="font-size:16px; font-weight:800; margin-bottom:14px; color:var(--navy)">Ambiente interno</p>
+<div style="font-size:11px; line-height:1.7; color:var(--gray)">
+<p>→ 130 UHs de inventário disponível</p>
+<p>→ NPS +50 e Google 4,3 como ativo comercial</p>
+<p>→ AskSuite como termômetro de demanda</p>
+<p>→ Canal direto dominante (Booking Engine + CdR)</p>
+<p>→ Londrina, Maringá e Curitiba como praças-âncora</p>
+<p>→ Janela curta em julho, longa em novembro</p>
+</div>
+</div>
+<div style="background: rgba(0,174,239,0.08); border: 1px solid rgba(0,174,239,0.18); border-radius: var(--radius); padding: 28px;">
+<p style="font-size:10px; font-weight:700; letter-spacing:2px; color: var(--blue); margin-bottom:12px; text-transform:uppercase">Camada Preditiva</p>
+<p style="font-size:16px; font-weight:800; margin-bottom:14px; color:var(--navy)">Dados como decisão</p>
+<div style="font-size:11px; line-height:1.7; color:var(--gray)">
+<p>→ Big Data: 167K visitas em abr/26 — aprendizado</p>
+<p>→ AskSuite: R$ 11,8M de pipeline em mar/26</p>
+<p>→ CPA histórico: R$ 33–92 por reserva</p>
+<p>→ ROAS máximo: 101,9x em jan/26</p>
+<p>→ Janela média H2: 39,9 dias</p>
+<p>→ War Room semanal como motor de ajuste</p>
+</div>
+</div>
+</div>
+<div style="display:grid; grid-template-columns: repeat(3,1fr); gap:14px">
+<div class="insight">
+<strong>Performance</strong> converte intenção. Sem awareness, o funil seca antes de chegar à reserva.
+      </div>
+<div class="insight navy">
+<strong>Reputação</strong> é ativo comercial: confiança reduz CPA e aumenta conversão orgânica.
+      </div>
+<div class="insight coral">
+<strong>Clima</strong> é variável de objeção. Meses de chuva exigem narrativa proativa de segurança e conforto.
+      </div>
+</div>
+</div>
+<span class="slide-number">03 / 22</span>
+</section><section class="s-dark slide claude-slide" id="s6">
+<div class="fade-up">
+<p class="label" style="color:rgba(255,255,255,0.5)">Calendário Estratégico</p>
+<h2 class="section-title">Calendário H2: pressão comercial × clima × janela</h2>
+<p class="section-sub">Cada mês tem um perfil diferente de risco, janela de compra e prioridade tática.</p>
+<div class="divider white"></div>
+<div style="display:grid; grid-template-columns: repeat(6, 1fr); gap:14px; margin-bottom:24px">
+<!-- JULHO -->
+<div class="month-card risk-low">
+<p class="m-name">Julho</p>
+<p class="m-meta">Meta</p>
+<p class="m-val">R$ 4,84M</p>
+<div style="display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap">
+<span class="risk low">Risco baixo</span>
+</div>
+<div style="font-size:10px; color:var(--gray); display:flex; flex-direction:column; gap:4px; margin-bottom:10px">
+<span>🌤 43mm chuva</span>
+<span>⏱ Janela: 16 dias</span>
+<span>👨‍👩‍👧 Férias jul.</span>
+</div>
+<p class="m-gap">Gap: -R$ 4,05M</p>
+<div class="m-actions">
+<div class="m-action-item">Performance + urgência</div>
+<div class="m-action-item">Remarketing base quente</div>
+<div class="m-action-item">CRM last minute</div>
+<div class="m-action-item">Conversor de férias</div>
+</div>
+</div>
+<!-- AGOSTO -->
+<div class="month-card risk-low">
+<p class="m-name">Agosto</p>
+<p class="m-meta">Meta</p>
+<p class="m-val">R$ 3,50M</p>
+<div style="display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap">
+<span class="risk low">Risco baixo</span>
+</div>
+<div style="font-size:10px; color:var(--gray); display:flex; flex-direction:column; gap:4px; margin-bottom:10px">
+<span>🌤 42mm chuva</span>
+<span>⏱ Janela: 27 dias</span>
+<span>👨 Dia dos Pais 10/08</span>
+</div>
+<p class="m-gap">Gap: -R$ 2,19M</p>
+<div class="m-actions">
+<div class="m-action-item">Família + Dia dos Pais</div>
+<div class="m-action-item">Praças próximas</div>
+<div class="m-action-item">CRM base quente</div>
+<div class="m-action-item">Escapadas de fim de semana</div>
+</div>
+</div>
+<!-- SETEMBRO -->
+<div class="month-card risk-med">
+<p class="m-name">Setembro</p>
+<p class="m-meta">Meta</p>
+<p class="m-val">R$ 3,65M</p>
+<div style="display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap">
+<span class="risk med">Risco médio</span>
+</div>
+<div style="font-size:10px; color:var(--gray); display:flex; flex-direction:column; gap:4px; margin-bottom:10px">
+<span>🌦 90mm chuva ↑</span>
+<span>⏱ Janela: 34 dias</span>
+<span>🌿 Semana da Pátria</span>
+</div>
+<p class="m-gap">Gap: -R$ 2,27M</p>
+<div class="m-actions">
+<div class="m-action-item">Abrir Curitiba e Maringá</div>
+<div class="m-action-item">Awareness SP e Oeste</div>
+<div class="m-action-item">Testes de mensagem</div>
+<div class="m-action-item">Preparar out/nov antec.</div>
+</div>
+</div>
+<!-- OUTUBRO -->
+<div class="month-card risk-high">
+<p class="m-name">Outubro</p>
+<p class="m-meta">Meta</p>
+<p class="m-val">R$ 4,06M</p>
+<div style="display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap">
+<span class="risk high">Risco alto</span>
+</div>
+<div style="font-size:10px; color:var(--gray); display:flex; flex-direction:column; gap:4px; margin-bottom:10px">
+<span>🌧 119mm chuva ↑↑</span>
+<span>⏱ Janela: 45 dias</span>
+<span>🎈 Dia das Crianças 12/10</span>
+<span>🗳 Eleições municipais</span>
+</div>
+<p class="m-gap">Gap: -R$ 2,32M</p>
+<div class="m-actions">
+<div class="m-action-item">Camp. antecipada crianças</div>
+<div class="m-action-item">Prova social familiar</div>
+<div class="m-action-item">Objeção de clima</div>
+<div class="m-action-item">Cuidado com tom em eleição</div>
+</div>
+</div>
+<!-- NOVEMBRO -->
+<div class="month-card risk-high">
+<p class="m-name">Novembro</p>
+<p class="m-meta">Meta</p>
+<p class="m-val">R$ 4,01M</p>
+<div style="display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap">
+<span class="risk high">Risco alto</span>
+</div>
+<div style="font-size:10px; color:var(--gray); display:flex; flex-direction:column; gap:4px; margin-bottom:10px">
+<span>⛈ 140mm chuva ↑↑↑</span>
+<span>⏱ Janela: 70 dias!</span>
+<span>🛍 Black November</span>
+</div>
+<p class="m-gap">Gap: -R$ 2,34M</p>
+<div class="m-actions">
+<div class="m-action-item">Oferta planejada (≠ desconto)</div>
+<div class="m-action-item">CRM + recuperação leads</div>
+<div class="m-action-item">Campanha desde set.</div>
+<div class="m-action-item">Narrativa de conforto</div>
+</div>
+</div>
+<!-- DEZEMBRO -->
+<div class="month-card risk-high">
+<p class="m-name">Dezembro</p>
+<p class="m-meta">Meta</p>
+<p class="m-val">R$ 5,49M</p>
+<div style="display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap">
+<span class="risk high">Crítico</span>
+</div>
+<div style="font-size:10px; color:var(--gray); display:flex; flex-direction:column; gap:4px; margin-bottom:10px">
+<span>⛈ 166mm chuva MAX</span>
+<span>⏱ Janela: 33 dias</span>
+<span>🎄 Natal + Réveillon</span>
+</div>
+<p class="m-gap" style="color:#C0392B; font-weight:800">Gap: -R$ 4,20M ⚠</p>
+<div class="m-actions">
+<div class="m-action-item">Valor percebido + progr.</div>
+<div class="m-action-item">Confiança operacional</div>
+<div class="m-action-item">Ativar desde out./nov.</div>
+<div class="m-action-item">Plano B chuva ativo</div>
+</div>
+</div>
+</div>
+<div style="display:flex; gap:16px; flex-wrap:wrap">
+<span style="font-size:11px; color:rgba(255,255,255,0.6)"><span style="color:var(--green)">■</span> Risco baixo: Jul, Ago</span>
+<span style="font-size:11px; color:rgba(255,255,255,0.6)"><span style="color:var(--gold)">■</span> Risco médio: Set, Out</span>
+<span style="font-size:11px; color:rgba(255,255,255,0.6)"><span style="color:var(--coral)">■</span> Risco alto / Crítico: Nov, Dez</span>
+</div>
+</div>
+<span class="slide-number" style="color:rgba(255,255,255,0.2)">06 / 22</span>
+</section><section class="s-white slide claude-slide" id="s7">
+<div class="fade-up">
+<p class="label">Variável Climática · Bandeirantes–PR</p>
+<h2 class="section-title">Clima como fator de objeção comercial</h2>
+<p class="section-sub">Julho e agosto são janela de oportunidade. Outubro a dezembro exigem narrativa de segurança e plano de contingência.</p>
+<div class="divider"></div>
+<div class="grid-65">
+<div class="card" style="padding:28px">
+<canvas height="160" id="chartClima"></canvas>
+<div class="insight coral" style="margin-top:16px">
+          Dezembro combina: maior meta do H2 (R$ 5,49M) + maior precipitação (166mm) + maior janela de expectativa. Exige a campanha mais robusta do semestre, ativada desde outubro.
+        </div>
+</div>
+<div style="display:flex; flex-direction:column; gap:12px">
+<div class="card" style="background:rgba(0,200,120,0.08); border:1px solid rgba(0,200,120,0.2)">
+<p class="label" style="color:var(--teal); margin-bottom:10px">Janela favorável</p>
+<p style="font-size:22px; font-weight:800; color:var(--teal)">Jul + Ago</p>
+<p style="font-size:11px; color:var(--gray); margin-top:6px">Clima seco, chuvas abaixo de 43mm. Conversão direta, sem objeção climática.</p>
+</div>
+<div class="card" style="background:rgba(245,196,93,0.1); border:1px solid rgba(245,196,93,0.3)">
+<p class="label" style="color:#9C6B00; margin-bottom:10px">Atenção crescente</p>
+<p style="font-size:22px; font-weight:800; color:#9C6B00">Set + Out</p>
+<p style="font-size:11px; color:var(--gray); margin-top:6px">Chuva subindo (90–119mm). Narrativa de segurança e cobertura das atividades começa aqui.</p>
+</div>
+<div class="card" style="background:rgba(242,116,102,0.08); border:1px solid rgba(242,116,102,0.2)">
+<p class="label" style="color:var(--coral); margin-bottom:10px">Gestão de objeção</p>
+<p style="font-size:22px; font-weight:800; color:var(--coral)">Nov + Dez</p>
+<p style="font-size:11px; color:var(--gray); margin-top:6px">140–166mm. Plano B ativo: atividades cobertas, piscinas aquecidas, programação indoor como argumento.</p>
+</div>
+<div class="card">
+<p class="label" style="margin-bottom:8px">Ações antíchuva por mês</p>
+<div style="font-size:11px; color:var(--gray); line-height:1.8">
+<p><strong style="color:var(--navy)">Out:</strong> Reforçar ativ. cobertas no conteúdo</p>
+<p><strong style="color:var(--navy)">Nov:</strong> "Chuva não para o resort" na copy</p>
+<p><strong style="color:var(--navy)">Dez:</strong> FAQ de clima no site + stories de prova</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class="slide-number">07 / 22</span>
+</section><section class="s-dark slide claude-slide" id="s8">
+<div class="fade-up">
+<p class="label" style="color:rgba(255,255,255,0.5)">Big Data · Tráfego do Site</p>
+<h2 class="section-title">Histórico de visitantes: picos não são acaso</h2>
+<p class="section-sub">Fev/25 a Jun/26 — pico em abr/26 (167K). Retração em mai/26 (24,6K). A estratégia H2 precisa criar demanda com antecedência, não reagir a picos.</p>
+<div class="divider white"></div>
+<div class="grid-65">
+<div class="card fade-up" style="padding:28px">
+<canvas height="170" id="chartTrafico"></canvas>
+<div class="insight" style="margin-top:16px">
+          O pico de abr/26 (167K) foi resultado de ativação antecipada. Maio/26 retrocedeu para 24,6K. O H2/25 precisa manter curva ascendente de set a dez, sem colapso pós-campanha.
+        </div>
+</div>
+<div style="display:flex; flex-direction:column; gap:12px">
+<div class="card" style="background:rgba(255,255,255,0.08); color:white; border:1px solid rgba(255,255,255,0.1)">
+<p class="kpi-label" style="color:rgba(255,255,255,0.5)">Pico máximo registrado</p>
+<p class="kpi-val" style="color:var(--blue)">167.955</p>
+<p class="kpi-sub" style="color:rgba(255,255,255,0.4)">Abr/26 — aprendizado de antecipação</p>
+</div>
+<div class="card" style="background:rgba(255,255,255,0.08); color:white; border:1px solid rgba(255,255,255,0.1)">
+<p class="kpi-label" style="color:rgba(255,255,255,0.5)">Meses H2/25 projetados</p>
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px">
+<div><p style="font-size:10px;color:rgba(255,255,255,0.4)">Set/25</p><p style="font-weight:700">46.738</p></div>
+<div><p style="font-size:10px;color:rgba(255,255,255,0.4)">Out/25</p><p style="font-weight:700">46.607</p></div>
+<div><p style="font-size:10px;color:rgba(255,255,255,0.4)">Nov/25</p><p style="font-weight:700; color:var(--gold)">55.701</p></div>
+<div><p style="font-size:10px;color:rgba(255,255,255,0.4)">Dez/25</p><p style="font-weight:700; color:var(--blue)">50.472</p></div>
+</div>
+</div>
+<div style="background:rgba(0,174,239,0.12); border:1px solid rgba(0,174,239,0.2); border-radius:var(--radius); padding:18px">
+<p class="label" style="color:var(--blue); margin-bottom:10px">Oportunidade H2</p>
+<p style="font-size:11px; color:rgba(255,255,255,0.7); line-height:1.7">
+            Histórico mostra que <strong style="color:white">set–dez</strong> concentra os maiores volumes de tráfego. 
+            Se a conversão (taxa add carrinho ~6%) se mantiver, 46K visitas = ~2.700 add ao carrinho por mês.
+          </p>
+</div>
+<div class="card" style="background:rgba(255,255,255,0.06); color:white">
+<p class="label" style="color:rgba(255,255,255,0.5); margin-bottom:6px">Taxa add carrinho histórica</p>
+<div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; font-size:11px">
+<span>Set/25: 4,89%</span><span>Out/25: 4,04%</span>
+<span style="color:var(--gold); font-weight:700">Nov/25: 6,25%</span><span style="color:var(--blue)">Jan/26: 8,44%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<span class="slide-number" style="color:rgba(255,255,255,0.2)">08 / 22</span>
+</section><section class="slide white" id="s9">
+<div class="slide-inner">
+<div class="kicker">Fundamento estratégico</div><h2>Fundo de funil não escala sozinho</h2><p class="subtitle">Awareness amplia o mercado disponível para vender. Sem demanda nova, a performance fica presa aos mesmos públicos e canais de captura.</p>
+<div class="grid cols4" style="margin-top:28px"><div class="card cyan"><div class="metric">01</div><h3>Mais gente conhecendo</h3><p>Aumenta o universo de potenciais hóspedes disponíveis.</p></div><div class="card green"><div class="metric">02</div><h3>Mais busca pela marca</h3><p>Cresce branded search e tráfego direto.</p></div><div class="card gold"><div class="metric">03</div><h3>Mais intenção futura</h3><p>Cria reserva mental antes da data de compra.</p></div><div class="card coral"><div class="metric">04</div><h3>Mais eficiência no fundo</h3><p>Marca conhecida tende a converter com menos fricção.</p></div></div>
+<div class="funnel"><div class="fstep">Marca</div><div class="fstep">Consideração</div><div class="fstep">Intenção</div><div class="fstep">Reserva</div></div>
+</div>
+</section><section class="slide white" id="s11">
+<div class="slide-inner">
+<div class="title-row"><div><div class="kicker">Janela de compra</div><h2>A maior parte da demanda não nasce no dia da oferta</h2></div><p class="subtitle">A janela de compra define quando awareness, CRM e remarketing precisam começar.</p></div>
+<div class="grid asym">
+<div class="card"><div class="barviz"><div class="barline"><div class="barlabel">0–7</div><div class="bartrack"><div class="barfill cyan" style="width:81.7%">19,6%</div></div></div>
+<div class="barline"><div class="barlabel">8–15</div><div class="bartrack"><div class="barfill cyan" style="width:50.4%">12,1%</div></div></div>
+<div class="barline"><div class="barlabel">16–30</div><div class="bartrack"><div class="barfill cyan" style="width:82.1%">19,7%</div></div></div>
+<div class="barline"><div class="barlabel">31–60</div><div class="bartrack"><div class="barfill green" style="width:100.0%">24,0%</div></div></div>
+<div class="barline"><div class="barlabel">61–90</div><div class="bartrack"><div class="barfill gold" style="width:50.8%">12,2%</div></div></div>
+<div class="barline"><div class="barlabel">90+</div><div class="bartrack"><div class="barfill gold" style="width:51.3%">12,3%</div></div></div></div><div class="chartnote">Mediana geral: 29 dias · média: 43 dias · P90: 100 dias — ou seja, 90% das reservas acontecem até 100 dias antes do check-in. Para vender outubro, a campanha precisa existir antes de outubro.</div></div>
+<div class="grid"><div class="card cyan"><div class="metric-label">Até 30 dias</div><div class="metric cyan">51,5%</div><div class="note">reservas concentradas em curto prazo</div></div><div class="card green"><div class="metric-label">31 a 60 dias</div><div class="metric green">24,0%</div><div class="note">maior faixa isolada de compra</div></div><div class="card coral"><div class="metric-label">Maio/26: last minute</div><div class="metric coral">65,1%</div><div class="note">65,1% reservaram até 7 dias antes do check-in</div></div></div>
+</div>
+</div>
+<div class="source">Fonte: arquivos NewReservations enviados · cálculo por Data da Reserva x Check-in.</div>
+</section><section class="s-white slide claude-slide" id="s10">
+<div class="fade-up">
+<p class="label">Inteligência de Praças</p>
+<h2 class="section-title">Nem toda praça pede a mesma estratégia</h2>
+<p class="section-sub">Separar praças por potencial: conversão imediata vs awareness vs validação.</p>
+<div class="divider"></div>
+<div class="grid-65">
+<div class="card" style="padding:28px">
+<canvas height="155" id="chartPracas"></canvas>
+<div class="insight" style="margin-top:16px">
+          Londrina domina em volume e conversão. Curitiba tem alto tráfego mas conversão proporcional menor — oportunidade de mid-funnel. São Paulo e Campinas são praças de escala a ativar.
+        </div>
+</div>
+<div style="display:flex; flex-direction:column; gap:12px">
+<div class="card" style="background:rgba(0,200,120,0.08); border:1px solid rgba(0,200,120,0.2)">
+<p class="label" style="color:var(--teal); margin-bottom:10px">Conversão imediata</p>
+<div style="font-size:11px; color:var(--navy); line-height:1.9; font-weight:500">
+<p>🎯 Londrina · Maringá · Arapongas</p>
+<p>🎯 Apucarana · Cambé · Sarandi</p>
+</div>
+<p style="font-size:10px; color:var(--gray); margin-top:8px">Alta intenção, curta distância. Performance e ofertas diretas.</p>
+</div>
+<div class="card" style="background:rgba(0,174,239,0.07); border:1px solid rgba(0,174,239,0.15)">
+<p class="label" style="color:var(--blue-mid); margin-bottom:10px">Awareness + escala</p>
+<div style="font-size:11px; color:var(--navy); line-height:1.9; font-weight:500">
+<p>📡 Curitiba · São Paulo</p>
+<p>📡 Campinas · Bauru · Oeste SP</p>
+</div>
+<p style="font-size:10px; color:var(--gray); margin-top:8px">Mercado disponível grande. Exige branding + conteúdo + presença.</p>
+</div>
+<div class="card" style="background:rgba(245,196,93,0.1); border:1px solid rgba(245,196,93,0.25)">
+<p class="label" style="color:#9C6B00; margin-bottom:10px">Validação / teste</p>
+<div style="font-size:11px; color:var(--navy); line-height:1.9; font-weight:500">
+<p>🔍 Cornélio Procópio · Ourinhos</p>
+<p>🔍 Paranavaí · Pres. Prudente</p>
+</div>
+<p style="font-size:10px; color:var(--gray); margin-top:8px">Tráfego relevante, conversão em desenvolvimento. Testar CPM e mensagem.</p>
+</div>
+<div class="card">
+<p class="label" style="margin-bottom:10px">Top ranking por reservas</p>
+<table class="exec-table" style="font-size:11px">
+<tr><td>1. Londrina</td><td style="font-weight:700; color:var(--navy)">411 res.</td></tr>
+<tr><td>2. Curitiba</td><td style="font-weight:700">199 res.</td></tr>
+<tr><td>3. Maringá</td><td style="font-weight:700">135 res.</td></tr>
+<tr><td>4. Arapongas</td><td>58 res.</td></tr>
+<tr><td>5. Apucarana</td><td>54 res.</td></tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<span class="slide-number">10 / 22</span>
+</section><section class="slide dark" id="s13">
+<div class="slide-inner">
+<div class="title-row"><div><div class="kicker">Camada microambiental</div><h2>Ocupação e inventário mostram o tamanho do pickup necessário</h2></div><p class="subtitle">O inventário base de 130 UHs permite transformar meta em ocupação, ADR, RevPAR e pressão semanal.</p></div>
+<div class="grid asym">
+<div class="card"><div class="barviz"><div class="barline"><div class="barlabel">Jul</div><div class="bartrack"><div class="barfill coral" style="width:17.0%">17%</div></div></div>
+<div class="barline"><div class="barlabel">Ago</div><div class="bartrack"><div class="barfill cyan" style="width:35.0%">35%</div></div></div>
+<div class="barline"><div class="barlabel">Set</div><div class="bartrack"><div class="barfill cyan" style="width:37.0%">37%</div></div></div>
+<div class="barline"><div class="barlabel">Out</div><div class="bartrack"><div class="barfill green" style="width:39.0%">39%</div></div></div>
+<div class="barline"><div class="barlabel">Nov</div><div class="bartrack"><div class="barfill cyan" style="width:36.0%">36%</div></div></div>
+<div class="barline"><div class="barlabel">Dez</div><div class="bartrack"><div class="barfill gold" style="width:26.0%">26%</div></div></div></div><div class="chartnote">O H2 registrado no relatório aparece baixo em alguns meses futuros. Isso não é diagnóstico final: é sinal de pickup necessário e timing de campanha.</div></div>
+<div class="grid"><div class="card cyan"><div class="metric-label">Inventário base</div><div class="metric cyan">130 UHs</div><div class="note">capacidade registrada no histórico</div></div><div class="card coral"><div class="metric-label">Ocupação média Jul–Dez</div><div class="metric coral">31,5%</div><div class="note">posição de relatório atual</div></div><div class="card green"><div class="metric-label">RevPAR médio H2</div><div class="metric green">R$ 423</div><div class="note">referência operacional</div></div></div>
+</div>
+</div>
+<div class="source">Fonte: Relatório de comparação anual / Histórico de Ocupação.</div>
+</section><section class="slide white" id="s14">
+<div class="slide-inner">
+<div class="title-row"><div><div class="kicker">Mídia + canal direto</div><h2>Performance precisa ser lida junto com canal de venda</h2></div><p class="subtitle">A mídia gera demanda, mas o canal direto precisa capturar, nutrir e converter sem deixar intenção vazar.</p></div>
+<div class="grid asym">
+<div class="card"><h3>Investimento em mídia</h3><div class="barviz" style="margin-top:16px"><div class="barline"><div class="barlabel">Set/25</div><div class="bartrack"><div class="barfill cyan" style="width:23.1%">R$ 25K</div></div></div>
+<div class="barline"><div class="barlabel">Out/25</div><div class="bartrack"><div class="barfill cyan" style="width:23.1%">R$ 25K</div></div></div>
+<div class="barline"><div class="barlabel">Nov/25</div><div class="bartrack"><div class="barfill cyan" style="width:28.7%">R$ 31K</div></div></div>
+<div class="barline"><div class="barlabel">Dez/25</div><div class="bartrack"><div class="barfill cyan" style="width:32.4%">R$ 35K</div></div></div>
+<div class="barline"><div class="barlabel">Jan/26</div><div class="bartrack"><div class="barfill cyan" style="width:25.9%">R$ 28K</div></div></div>
+<div class="barline"><div class="barlabel">Fev/26</div><div class="bartrack"><div class="barfill cyan" style="width:25.0%">R$ 27K</div></div></div>
+<div class="barline"><div class="barlabel">Mar/26</div><div class="bartrack"><div class="barfill cyan" style="width:25.9%">R$ 28K</div></div></div>
+<div class="barline"><div class="barlabel">Abr/26</div><div class="bartrack"><div class="barfill green" style="width:100.0%">R$ 108K</div></div></div>
+<div class="barline"><div class="barlabel">Mai/26</div><div class="bartrack"><div class="barfill gold" style="width:40.7%">R$ 44K</div></div></div></div><div class="chartnote">Abril concentrou o maior investimento em mídia e também o maior pico de receita e acessos.</div></div>
+<div class="grid"><div class="card green"><div class="metric-label">Central em maio</div><div class="metric green">R$ 784K</div><div class="note">liderou o mix de canais</div></div><div class="card cyan"><div class="metric-label">Booking Engine (Site)</div><div class="metric cyan">R$ 408K</div><div class="note">canal relevante de captura</div></div><div class="card gold"><div class="metric-label">OTAs</div><div class="metric">R$ 137K</div><div class="note">complemento de distribuição</div></div></div>
+</div>
+</div>
+</section><section class="s-ice slide claude-slide" id="s12">
+<div class="fade-up">
+<p class="label">AskSuite · Termômetro de Demanda</p>
+<h2 class="section-title">Atendimento sinaliza demanda antes da reserva</h2>
+<p class="section-sub">O volume de contatos e o pipeline de oportunidade são leading indicators. Precisam alimentar decisões semanais no War Room.</p>
+<div class="divider"></div>
+<div class="grid-65">
+<div class="card" style="padding:28px">
+<canvas height="170" id="chartAsksuite"></canvas>
+<div class="insight" style="margin-top:16px">
+          Março/26 atingiu pico de 13.839 atendimentos e R$ 11,8M de pipeline — 3x acima de setembro. Isso é sinal preditivo: atendimento alto hoje = reservas altas em 20–40 dias.
+        </div>
+</div>
+<div style="display:flex; flex-direction:column; gap:12px">
+<div class="grid-2">
+<div class="card" style="text-align:center; padding:20px">
+<p class="kpi-label">Pico de pipeline</p>
+<p class="kpi-val" style="color:var(--blue); font-size:26px">R$ 11,8M</p>
+<p class="kpi-sub">Mar/26 — 13.839 contatos</p>
+</div>
+<div class="card" style="text-align:center; padding:20px">
+<p class="kpi-label">Pipeline mai/26</p>
+<p class="kpi-val" style="color:var(--coral); font-size:26px">R$ 2,0M</p>
+<p class="kpi-sub">4.607 contatos — queda pós-pico</p>
+</div>
+</div>
+<div class="card">
+<p class="label" style="margin-bottom:12px">Evolução pipeline AskSuite</p>
+<table class="exec-table">
+<thead><tr><th>Mês</th><th>Atend.</th><th>Pipeline</th></tr></thead>
+<tbody>
+<tr><td>Set/25</td><td>4.395</td><td>R$ 1,8M</td></tr>
+<tr><td>Out/25</td><td>4.655</td><td>R$ 3,6M</td></tr>
+<tr><td>Nov/25</td><td>5.484</td><td>R$ 5,5M</td></tr>
+<tr><td>Dez/25</td><td>6.498</td><td>R$ 7,0M</td></tr>
+<tr><td>Jan/26</td><td style="color:var(--blue); font-weight:700">8.400</td><td style="color:var(--blue); font-weight:700">R$ 9,5M</td></tr>
+<tr><td>Mar/26</td><td style="color:var(--gold); font-weight:700">13.839</td><td style="color:var(--gold); font-weight:700">R$ 11,8M</td></tr>
+<tr><td>Mai/26</td><td style="color:var(--coral)">4.607</td><td style="color:var(--coral)">R$ 2,0M</td></tr>
+</tbody>
+</table>
+</div>
+<div style="background: var(--navy); border-radius:var(--radius); padding:18px; color:white">
+<p class="label" style="color:rgba(255,255,255,0.5); margin-bottom:10px">Ação recomendada</p>
+<p style="font-size:11px; line-height:1.7; color:rgba(255,255,255,0.8)">
+            Integrar AskSuite ao War Room semanal como KPI de demanda antecipada. Queda no pipeline = acionar mídia. Alta no pipeline sem conversão = revisar atendimento e CRM.
+          </p>
+</div>
+</div>
+</div>
+</div>
+<span class="slide-number">12 / 22</span>
+</section><section class="s-white slide claude-slide" id="s13">
+<div class="fade-up">
+<p class="label">Big Data · Performance de Mídia</p>
+<h2 class="section-title">CPA, ROAS e eficiência de canal direto</h2>
+<p class="section-sub">Canal direto domina a receita. Performance de mídia mostra CPA entre R$ 33–92 e ROAS de até 101,9x.</p>
+<div class="divider"></div>
+<div class="grid-2" style="margin-bottom:20px">
+<div class="card" style="padding:28px">
+<canvas height="155" id="chartReceita"></canvas>
+<div class="insight" style="margin-top:16px">
+          Abril/26 atingiu R$ 3,02M de receita — maior mês do período. Canal direto (Booking Engine + Central) representa em média 80%+ da receita total.
+        </div>
+</div>
+<div class="card" style="padding:28px">
+<canvas height="155" id="chartCPA"></canvas>
+<div class="insight coral" style="margin-top:16px">
+          Abril/26 teve CPA de R$ 117 (anomalia de investimento) com ROAS de 27,8x. O padrão saudável é CPA R$ 33–48 e ROAS 60–100x. Eficiência se perde com escala sem otimização.
+        </div>
+</div>
+</div>
+<div class="grid-4">
+<div class="card" style="text-align:center; padding:20px">
+<p class="kpi-label">ROAS máximo</p>
+<p class="kpi-val" style="color:var(--green)">101,9x</p>
+<p class="kpi-sub">Jan/26 — R$ 27K ads</p>
+</div>
+<div class="card" style="text-align:center; padding:20px">
+<p class="kpi-label">CPA mínimo</p>
+<p class="kpi-val" style="color:var(--teal)">R$ 33</p>
+<p class="kpi-sub">Jan/26 — eficiência máxima</p>
+</div>
+<div class="card" style="text-align:center; padding:20px">
+<p class="kpi-label">ARPU médio</p>
+<p class="kpi-val">R$ 3.065</p>
+<p class="kpi-sub">Por reserva — média H2</p>
+</div>
+<div class="card" style="background:var(--navy); color:white; text-align:center; padding:20px">
+<p class="kpi-label" style="color:rgba(255,255,255,0.5)">Receita Abr/26</p>
+<p class="kpi-val" style="color:var(--blue)">R$ 3,02M</p>
+<p class="kpi-sub" style="color:rgba(255,255,255,0.5)">Melhor mês do período</p>
+</div>
+</div>
+</div>
+<span class="slide-number">13 / 22</span>
+</section><section class="slide white" id="s16">
+<div class="slide-inner">
+<div class="title-row"><div><div class="kicker">Reputação como variável de conversão</div><h2>Reputação não é pós-venda: é confiança pré-compra</h2></div><p class="subtitle">O diagnóstico mostra nota aparente positiva, mas com recorrência crítica operacional. Isso precisa entrar na matriz de risco do H2.</p></div>
+<div class="grid cols4"><div class="card green"><div class="metric-label">NPS médio</div><div class="metric green">+50</div><div class="note">zona de qualidade · 409 respostas</div></div><div class="card cyan"><div class="metric-label">Google Reviews</div><div class="metric cyan">4,3★</div><div class="note">903 avaliações totais</div></div><div class="card gold"><div class="metric-label">5 estrelas</div><div class="metric">68,8%</div><div class="note">mix positivo no Google</div></div><div class="card coral"><div class="metric-label">Reclame Aqui</div><div class="metric coral">6,9</div><div class="note">regular · precisa evoluir resolução</div></div></div>
+<div class="chartnote">Leitura crítica: a reputação ajuda a vender, mas problemas estruturais recorrentes podem aumentar objeção, custo de aquisição e dependência de atendimento individual.</div>
+</div>
+<div class="source">Fonte: Dashboard de Reputação atualizado até 08/06/2026.</div>
+</section><section class="s-white slide claude-slide" id="s15">
+<div class="fade-up">
+<p class="label">GEO · Inteligência Artificial</p>
+<h2 class="section-title">Ser encontrado não basta.<br/>O Morro precisa ser recomendado.</h2>
+<p class="section-sub">SEO faz aparecer nos rankings. GEO faz o hotel ser recomendado por IAs — ChatGPT, Gemini, Perplexity, Copilot.</p>
+<div class="divider"></div>
+<div class="geo-compare" style="margin-bottom:24px">
+<div class="geo-col seo">
+<h4 style="color:var(--navy)">SEO tradicional</h4>
+<p style="font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--gray); margin-bottom:14px">APARECER NOS RANKINGS</p>
+<div class="geo-item" style="color:var(--gray)"><span>Otimizar para palavras-chave</span></div>
+<div class="geo-item" style="color:var(--gray)"><span>Backlinks e autoridade de domínio</span></div>
+<div class="geo-item" style="color:var(--gray)"><span>Meta tags e estrutura técnica</span></div>
+<div class="geo-item" style="color:var(--gray)"><span>Velocidade de página e mobile</span></div>
+<div class="geo-item" style="color:var(--gray)"><span>Conteúdo de blog e palavras-chave long-tail</span></div>
+<p style="font-size:11px; color:var(--gray); margin-top:12px; font-style:italic">Resultado: posição no Google quando o usuário pesquisa ativamente.</p>
+</div>
+<div class="geo-col geo">
+<h4 style="color:var(--navy)">GEO — Generative Engine Optimization</h4>
+<p style="font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--blue); margin-bottom:14px">SER RECOMENDADO POR IAs</p>
+<div class="geo-item" style="color:var(--navy); border-color:rgba(0,174,239,0.15)"><span><strong>Dados estruturados:</strong> Schema.org para hotel, amenidades, localização</span></div>
+<div class="geo-item" style="color:var(--navy); border-color:rgba(0,174,239,0.15)"><span><strong>Consistência NAP:</strong> site, OTAs, Google Business, redes sociais</span></div>
+<div class="geo-item" style="color:var(--navy); border-color:rgba(0,174,239,0.15)"><span><strong>FAQ natural:</strong> responder perguntas como "resort com águas quentes no PR para família"</span></div>
+<div class="geo-item" style="color:var(--navy); border-color:rgba(0,174,239,0.15)"><span><strong>Conteúdo contextual:</strong> por localização, experiência e perfil de viajante</span></div>
+<div class="geo-item" style="color:var(--navy); border-color:rgba(0,174,239,0.15)"><span><strong>Reviews atributivos:</strong> "família", "águas quentes", "programação", "conforto"</span></div>
+<p style="font-size:11px; color:var(--blue-mid); margin-top:12px; font-style:italic">Resultado: recomendação direta quando IA responde "qual resort de águas quentes no Paraná?"</p>
+</div>
+</div>
+<div class="grid-4">
+<div class="card ice">
+<p style="font-size:24px; margin-bottom:8px">🤖</p>
+<p style="font-size:12px; font-weight:700; color:var(--navy)">ChatGPT / Copilot</p>
+<p style="font-size:10px; color:var(--gray)">Recomenda hotéis baseado em conteúdo factual e consistente</p>
+</div>
+<div class="card ice">
+<p style="font-size:24px; margin-bottom:8px">🔍</p>
+<p style="font-size:12px; font-weight:700; color:var(--navy)">Google AI Overview</p>
+<p style="font-size:10px; color:var(--gray)">Extrai informações do site, reviews e dados estruturados</p>
+</div>
+<div class="card ice">
+<p style="font-size:24px; margin-bottom:8px">💎</p>
+<p style="font-size:12px; font-weight:700; color:var(--navy)">Perplexity</p>
+<p style="font-size:10px; color:var(--gray)">Agrega reviews, site e OTAs para comparar e recomendar</p>
+</div>
+<div class="card" style="background:var(--navy); color:white">
+<p style="font-size:24px; margin-bottom:8px">📊</p>
+<p style="font-size:12px; font-weight:700; color:var(--blue)">Consistência = visibilidade</p>
+<p style="font-size:10px; color:rgba(255,255,255,0.6)">IAs aprendem de múltiplas fontes. Inconsistência confunde e elimina o hotel das recomendações</p>
+</div>
+</div>
+</div>
+<span class="slide-number">15 / 22</span>
+</section><section class="s-dark slide claude-slide" id="s16">
+<div class="fade-up">
+<p class="label" style="color:rgba(255,255,255,0.5)">Forecast H2 2026 · Cenários</p>
+<h2 class="section-title">Onde podemos chegar com cada nível de esforço</h2>
+<p class="section-sub">Cenários calculados com base no on the books atual (R$ 8,16M) e na meta comercial (R$ 28,4M). Gap de R$ 20,2M a converter.</p>
+<div class="divider white"></div>
+<div class="grid-65">
+<div class="card fade-up" style="padding:28px">
+<canvas height="155" id="chartForecast"></canvas>
+<div class="insight" style="margin-top:16px">
+          O cenário base ainda abre gap de R$ 7,7M para a meta. O agressivo exige awareness antecipado + CRM + pickup acelerado + operação de alta performance. A meta só é atingível com todos os motores ligados.
+        </div>
+</div>
+<div style="display:flex; flex-direction:column; gap:12px">
+<div class="card" style="background:rgba(242,116,102,0.15); border:1px solid rgba(242,116,102,0.25); color:white; padding:20px">
+<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px">
+<p class="kpi-label" style="color:rgba(255,255,255,0.5)">Cenário Pessimista</p>
+<span class="risk high" style="font-size:9px">+40% do gap</span>
+</div>
+<p style="font-size:28px; font-weight:800; color:var(--coral)">R$ 16,3M</p>
+<p style="font-size:10px; color:rgba(255,255,255,0.55); margin-top:4px">Sem ativação sistêmica. Apenas conversão orgânica e base atual. Baixo investimento e sem antecipação.</p>
+</div>
+<div class="card" style="background:rgba(245,196,93,0.12); border:1px solid rgba(245,196,93,0.25); color:white; padding:20px">
+<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px">
+<p class="kpi-label" style="color:rgba(255,255,255,0.5)">Cenário Base</p>
+<span class="risk med" style="font-size:9px">+62% do gap</span>
+</div>
+<p style="font-size:28px; font-weight:800; color:var(--gold)">R$ 20,7M</p>
+<p style="font-size:10px; color:rgba(255,255,255,0.55); margin-top:4px">Performance ativa, CRM básico e continuidade das ações atuais sem escalada significativa.</p>
+</div>
+<div class="card" style="background:rgba(0,174,239,0.12); border:1px solid rgba(0,174,239,0.25); color:white; padding:20px">
+<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px">
+<p class="kpi-label" style="color:rgba(255,255,255,0.5)">Cenário Agressivo</p>
+<span class="risk low" style="font-size:9px">+83% do gap</span>
+</div>
+<p style="font-size:28px; font-weight:800; color:var(--blue)">R$ 25,0M</p>
+<p style="font-size:10px; color:rgba(255,255,255,0.55); margin-top:4px">Awareness ativo, CRM segmentado, War Room semanal, pickup acelerado e gestão de objeção climática.</p>
+</div>
+<div class="card" style="background:rgba(0,200,120,0.15); border:2px solid rgba(0,200,120,0.35); color:white; padding:20px">
+<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px">
+<p class="kpi-label" style="color:rgba(255,255,255,0.5)">Meta Comercial H2</p>
+<span style="font-size:9px; font-weight:800; background:rgba(0,200,120,0.2); color:var(--green); padding:3px 8px; border-radius:999px; letter-spacing:1px">OBJETIVO</span>
+</div>
+<p style="font-size:28px; font-weight:900; color:var(--green)">R$ 28,4M</p>
+<p style="font-size:10px; color:rgba(255,255,255,0.55); margin-top:4px">Todos os motores: awareness + performance + CRM + reputação + operação + pickup + antecipação.</p>
+</div>
+</div>
+</div>
+</div>
+<span class="slide-number" style="color:rgba(255,255,255,0.2)">16 / 22</span>
+</section><section class="s-ice slide claude-slide" id="s17">
+<div class="fade-up">
+<p class="label">Calendário Estratégico · Varejo + Micro + Macro</p>
+<h2 class="section-title">Calendário H2: datas, sazonalidades e gatilhos</h2>
+<p class="section-sub">Integração entre datas de varejo, janelas de compra, clima e ações comerciais. Cada mês tem sua razão de compra.</p>
+<div class="divider"></div>
+<div style="display:grid; grid-template-columns: repeat(6, 1fr); gap:14px">
+<!-- JULHO -->
+<div style="background:white; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow)">
+<div style="background:var(--teal); color:white; padding:12px 14px">
+<p style="font-size:14px; font-weight:800">Julho</p>
+<p style="font-size:9px; opacity:0.8; letter-spacing:1px">FÉRIAS ESCOLARES</p>
+</div>
+<div style="padding:12px 14px">
+<div style="margin-bottom:10px">
+<p style="font-size:9px; font-weight:700; color:var(--blue); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px">Datas-chave</p>
+<div style="font-size:10px; color:var(--navy); line-height:1.8">
+<p>🎒 Férias escolares jul.</p>
+<p>☀️ Clima seco favorável</p>
+<p>🇧🇷 07/07 Dia Municipal</p>
+</div>
+</div>
+<div style="margin-bottom:10px">
+<p style="font-size:9px; font-weight:700; color:var(--gray); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px">Macro</p>
+<p style="font-size:10px; color:var(--gray); line-height:1.6">Alta demanda familiar. Melhor clima do H2. Janela curta (16d).</p>
+</div>
+<div>
+<p style="font-size:9px; font-weight:700; color:var(--coral); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px">Ação</p>
+<p style="font-size:10px; color:var(--navy); line-height:1.6">Performance urgência. Remarketing férias. CRM last minute.</p>
+</div>
+</div>
+</div>
+<!-- AGOSTO -->
+<div style="background:white; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow)">
+<div style="background:var(--blue-mid); color:white; padding:12px 14px">
+<p style="font-size:14px; font-weight:800">Agosto</p>
+<p style="font-size:9px; opacity:0.8; letter-spacing:1px">DIA DOS PAIS</p>
+</div>
+<div style="padding:12px 14px">
+<div style="margin-bottom:10px">
+<p style="font-size:9px; font-weight:700; color:var(--blue); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px">Datas-chave</p>
+<div style="font-size:10px; color:var(--navy); line-height:1.8">
+<p>👨 10/08 Dia dos Pais</p>
+<p>🎓 Volta às aulas</p>
+<p>☀️ Último mês seco</p>
+</div>
+</div>
+<div style="margin-bottom:10px">
+<p style="font-size:9px; font-weight:700; color:var(--gray); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px">Macro</p>
+<p style="font-size:10px; color:var(--gray); line-height:1.6">Último mês de clima favorável. Demanda família + casais. Janela 27d.</p>
+</div>
+<div>
+<p style="font-size:9px; font-weight:700; color:var(--coral); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px">Ação</p>
+<p style="font-size:10px; color:var(--navy); line-height:1.6">Campanha Dia dos Pais. Praças próximas. Pacotes família.</p>
+</div>
+</div>
+</div>
+<!-- SETEMBRO -->
+<div style="background:white; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow)">
+<div style="background:#5B6C8A; color:white; padding:12px 14px">
+<p style="font-size:14px; font-weight:800">Setembro</p>
+<p style="font-size:9px; opacity:0.8; letter-spacing:1px">SEMANA DA PÁTRIA</p>
+</div>
+<div style="padding:12px 14px">
+<div style="margin-bottom:10px">
+<p style="font-size:9px; font-weight:700; color:var(--blue); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px">Datas-chave</p>
+<div style="font-size:10px; color:var(--navy); line-height:1.8">
+<p>🇧🇷 07/09 Feriado</p>
+<p>🌿 Primavera 22/09</p>
+<p>🌦 Chuva sobe (90mm)</p>
+</div>
+</div>
+<div style="margin-bottom:10px">
+<p style="font-size:9px; font-weight:700; color:var(--gray); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px">Macro</p>
+<p style="font-size:10px; color:var(--gray); line-height:1.6">Feriado prolongado cria oportunidade. Primavera como narrativa.</p>
+</div>
+<div>
+<p style="font-size:9px; font-weight:700; color:var(--coral); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px">Ação</p>
+<p style="font-size:10px; color:var(--navy); line-height:1.6">Awareness Curitiba/SP. Ativar out/nov com antecedência.</p>
+</div>
+</div>
+</div>
+<!-- OUTUBRO -->
+<div style="background:white; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow)">
+<div style="background:#D4824A; color:white; padding:12px 14px">
+<p style="font-size:14px; font-weight:800">Outubro</p>
+<p style="font-size:9px; opacity:0.8; letter-spacing:1px">DIA DAS CRIANÇAS</p>
+</div>
+<div style="padding:12px 14px">
+<div style="margin-bottom:10px">
+<p style="font-size:9px; font-weight:700; color:var(--blue); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px">Datas-chave</p>
+<div style="font-size:10px; color:var(--navy); line-height:1.8">
+<p>🎈 12/10 Dia Crianças</p>
+<p>👩‍💼 15/10 Dia Professor</p>
+<p>🌧 Chuva: 119mm</p>
+</div>
+</div>
+<div style="margin-bottom:10px">
+<p style="font-size:9px; font-weight:700; color:var(--gray); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px">Macro</p>
+<p style="font-size:10px; color:var(--gray); line-height:1.6">Feriado família + chuva = objeção. Janela de 45d exige antecipação.</p>
+</div>
+<div>
+<p style="font-size:9px; font-weight:700; color:var(--coral); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px">Ação</p>
+<p style="font-size:10px; color:var(--navy); line-height:1.6">Campanha familiar antecipada. Atividades cobertas no conteúdo.</p>
+</div>
+</div>
+</div>
+<!-- NOVEMBRO -->
+<div style="background:white; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow)">
+<div style="background:var(--navy); color:white; padding:12px 14px">
+<p style="font-size:14px; font-weight:800">Novembro</p>
+<p style="font-size:9px; opacity:0.8; letter-spacing:1px">BLACK NOVEMBER</p>
+</div>
+<div style="padding:12px 14px">
+<div style="margin-bottom:10px">
+<p style="font-size:9px; font-weight:700; color:var(--blue); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px">Datas-chave</p>
+<div style="font-size:10px; color:var(--navy); line-height:1.8">
+<p>🛍 Black Friday 28/11</p>
+<p>🏛 02/11 Finados (feriado)</p>
+<p>⛈ Chuva: 140mm</p>
+</div>
+</div>
+<div style="margin-bottom:10px">
+<p style="font-size:9px; font-weight:700; color:var(--gray); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px">Macro</p>
+<p style="font-size:10px; color:var(--gray); line-height:1.6">Maior janela (70d) + Black Friday. Planejado desde setembro. Risco climático alto.</p>
+</div>
+<div>
+<p style="font-size:9px; font-weight:700; color:var(--coral); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px">Ação</p>
+<p style="font-size:10px; color:var(--navy); line-height:1.6">Oferta Black planejada. CRM e recuperação. Antecipação total.</p>
+</div>
+</div>
+</div>
+<!-- DEZEMBRO -->
+<div style="background:white; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); border:2px solid var(--coral)">
+<div style="background:var(--coral); color:white; padding:12px 14px">
+<p style="font-size:14px; font-weight:800">Dezembro ⚠</p>
+<p style="font-size:9px; opacity:0.8; letter-spacing:1px">NATAL + RÉVEILLON</p>
+</div>
+<div style="padding:12px 14px">
+<div style="margin-bottom:10px">
+<p style="font-size:9px; font-weight:700; color:var(--blue); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px">Datas-chave</p>
+<div style="font-size:10px; color:var(--navy); line-height:1.8">
+<p>🎄 25/12 Natal</p>
+<p>🎆 31/12 Réveillon</p>
+<p>⛈ Chuva: 166mm MAX</p>
+</div>
+</div>
+<div style="margin-bottom:10px">
+<p style="font-size:9px; font-weight:700; color:var(--gray); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px">Macro</p>
+<p style="font-size:10px; color:var(--gray); line-height:1.6">Maior meta (R$ 5,49M) + maior risco climático. Plano B obrigatório.</p>
+</div>
+<div>
+<p style="font-size:9px; font-weight:700; color:var(--coral); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px">Ação</p>
+<p style="font-size:10px; color:var(--navy); line-height:1.6">Valor + experiência + confiança. Ativar desde out/nov.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="insight" style="margin-top:20px">
+<strong>Atenção:</strong> Para novembro (janela 70 dias) e outubro (janela 45 dias), as campanhas precisam estar rodando em agosto e setembro, respectivamente. Não existe "abrir em outubro para outubro".
+    </div>
+</div>
+<span class="slide-number">17 / 22</span>
+</section><section class="slide brand-performance-v2" id="s18">
+  <div class="bp-shell">
+    <div class="kicker">Brand Performance</div>
+    <h2>Marca e venda precisam ser lidas juntas</h2>
+    <p class="subtitle">Awareness só vira crescimento quando é cruzado com consideração, intenção, conversão e reputação.</p>
+
+    <div class="bp-layout">
+      <div class="bp-funnel">
+        <div class="bp-stage">
+          <div class="bp-index">01</div>
+          <div>
+            <h3>Criar demanda</h3>
+            <p>Ampliar conhecimento de marca nas praças que ainda não têm repertório sobre o Morro.</p>
+          </div>
+          <div class="bp-tags"><span>Alcance</span><span>Frequência</span><span>Vídeo</span></div>
+        </div>
+        <div class="bp-stage">
+          <div class="bp-index">02</div>
+          <div>
+            <h3>Capturar intenção</h3>
+            <p>Transformar curiosidade em tráfego qualificado, cotação, WhatsApp e AskSuite.</p>
+          </div>
+          <div class="bp-tags"><span>Site</span><span>Pacotes</span><span>Busca</span></div>
+        </div>
+        <div class="bp-stage">
+          <div class="bp-index">03</div>
+          <div>
+            <h3>Converter receita</h3>
+            <p>Conectar mídia, CRM, atendimento e booking engine para acelerar pickup semanal.</p>
+          </div>
+          <div class="bp-tags"><span>Reservas</span><span>CPA</span><span>ROAS</span></div>
+        </div>
+        <div class="bp-stage">
+          <div class="bp-index">04</div>
+          <div>
+            <h3>Retroalimentar confiança</h3>
+            <p>Usar NPS, Google Reviews e provas sociais como argumento comercial para reduzir objeção.</p>
+          </div>
+          <div class="bp-tags"><span>NPS</span><span>Reviews</span><span>Recompra</span></div>
+        </div>
+
+        <div class="bp-decision">
+          <strong style="color:var(--navy)">Leitura prática:</strong> se Curitiba cresce em tráfego e cotação, mas não converte, o problema está na oferta/objeção. Se Maringá cresce em awareness e já converte, é praça para escalar verba.
+        </div>
+      </div>
+
+      <div class="bp-panel">
+        <div class="bp-card dark">
+          <div class="eyebrow">Matriz de decisão</div>
+          <h3>O que olhar no War Room</h3>
+          <p>Marca não é só topo de funil. Ela precisa aparecer como indicador semanal: quando a busca de marca, o tráfego e o pipeline sobem juntos, a mídia está criando mercado — não apenas comprando demanda existente.</p>
+        </div>
+        <div class="bp-card">
+          <div class="eyebrow">Sinais por etapa</div>
+          <div class="bp-mini-grid">
+            <div class="bp-mini"><strong>Topo</strong><span>Alcance + busca</span></div>
+            <div class="bp-mini"><strong>Meio</strong><span>Site + cotação</span></div>
+            <div class="bp-mini"><strong>Fundo</strong><span>Reserva + ROAS</span></div>
+          </div>
+        </div>
+        <div class="bp-card">
+          <div class="eyebrow">Aplicação H2</div>
+          <h3>Praça define a tática</h3>
+          <p><strong style="color:var(--navy)">Londrina/Maringá:</strong> conversão e CRM. <strong style="color:var(--navy)">Curitiba/SP:</strong> awareness, conteúdo e GEO. <strong style="color:var(--navy)">Oeste SP:</strong> teste de mensagem, raio e prova social.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><section class="s-white slide claude-slide" id="s18">
+<div class="fade-up">
+<p class="label">War Room Semanal</p>
+<h2 class="section-title">Decisão semanal, não feeling mensal</h2>
+<p class="section-sub">Cinco áreas de monitoramento contínuo. Resultado não é revisado mensalmente — é gerenciado toda semana.</p>
+<div class="divider"></div>
+<div class="war-room-grid">
+<div class="war-room-col">
+<div class="war-room-header" style="background:var(--navy); color:var(--blue)">📊 Comercial</div>
+<div class="war-room-item">Meta × Realizado</div>
+<div class="war-room-item">Pickup semanal</div>
+<div class="war-room-item">Ocupação on books</div>
+<div class="war-room-item">ADR médio</div>
+<div class="war-room-item">RevPAR</div>
+<div class="war-room-item">Gap para meta do mês</div>
+</div>
+<div class="war-room-col">
+<div class="war-room-header" style="background:#0A3D5C; color:var(--blue)">📢 Mídia</div>
+<div class="war-room-item">CPA por canal</div>
+<div class="war-room-item">ROAS por campanha</div>
+<div class="war-room-item">Alcance e frequência</div>
+<div class="war-room-item">Branded search vol.</div>
+<div class="war-room-item">Taxa add carrinho</div>
+<div class="war-room-item">Tráfego site</div>
+</div>
+<div class="war-room-col">
+<div class="war-room-header" style="background:var(--teal); color:white">💬 Atendimento</div>
+<div class="war-room-item">Contatos AskSuite</div>
+<div class="war-room-item">Volume WhatsApp</div>
+<div class="war-room-item">Pipeline R$</div>
+<div class="war-room-item">Cotações abertas</div>
+<div class="war-room-item">Motivos de perda</div>
+<div class="war-room-item">Tempo de resposta</div>
+</div>
+<div class="war-room-col">
+<div class="war-room-header" style="background:var(--gold-dark); color:white">⭐ Operação</div>
+<div class="war-room-item">NPS do período</div>
+<div class="war-room-item">Reviews Google</div>
+<div class="war-room-item">Reclame Aqui</div>
+<div class="war-room-item">Cancelamentos</div>
+<div class="war-room-item">Ocorrências op.</div>
+<div class="war-room-item">Check-ins previstos</div>
+</div>
+<div class="war-room-col">
+<div class="war-room-header" style="background:var(--blue-mid); color:white">🌧 Clima + Risco</div>
+<div class="war-room-item">Previsão 10 dias</div>
+<div class="war-room-item">Gatilho de chuva</div>
+<div class="war-room-item">Plano B ativo?</div>
+<div class="war-room-item">Objeções climáticas</div>
+<div class="war-room-item">Narrativa de resposta</div>
+<div class="war-room-item">Feriados próximos</div>
+</div>
+</div>
+<div class="grid-3" style="margin-top:24px">
+<div class="insight">
+<strong>Sinal de alerta:</strong> Pipeline AskSuite cai &gt;30% semana a semana → acionar mídia de demanda imediata.
+      </div>
+<div class="insight navy">
+<strong>Sinal de alerta:</strong> CPA acima de R$ 90 → revisar segmentação e criativo antes de escalar budget.
+      </div>
+<div class="insight coral">
+<strong>Sinal de alerta:</strong> Pickup H2 abaixo de 15% da meta no mês → acionar reunião de crise comercial.
+      </div>
+</div>
+</div>
+<span class="slide-number">18 / 22</span>
+</section><section class="s-ice slide claude-slide" id="s20">
+<div class="fade-up">
+<p class="label">Plano de Ação · Mês a Mês</p>
+<h2 class="section-title">O que precisa ser feito, mês a mês</h2>
+<p class="section-sub">Prioridades táticas por mês, com foco comercial, canal, praça e narrativa.</p>
+<div class="divider"></div>
+<div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; margin-bottom:18px">
+<!-- JULHO -->
+<div class="card">
+<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px">
+<div>
+<p style="font-size:18px; font-weight:800; color:var(--navy)">Julho</p>
+<p style="font-size:10px; color:var(--gray)">Meta: R$ 4,84M · Gap: -R$ 4,05M</p>
+</div>
+<span class="risk low">Janela: 16d</span>
+</div>
+<div style="background:rgba(0,200,120,0.07); border-radius:8px; padding:12px; margin-bottom:12px">
+<p style="font-size:10px; font-weight:700; color:var(--teal); margin-bottom:6px; letter-spacing:1px; text-transform:uppercase">Oportunidade</p>
+<p style="font-size:11px; color:var(--navy)">Férias escolares + clima seco. Melhor combinação do H2 para conversão imediata.</p>
+</div>
+<div style="font-size:11px; color:var(--navy); line-height:2">
+<p>→ <strong>Performance urgência</strong> — Londrina, Maringá, Arapongas</p>
+<p>→ <strong>Remarketing</strong> da base que não converteu em jun.</p>
+<p>→ <strong>CRM last minute</strong> — ofertas 7–14 dias</p>
+<p>→ <strong>Conversão de férias</strong> — WhatsApp ativo</p>
+<p>→ <strong>Conteúdo</strong> — piscinas aquecidas + férias família</p>
+</div>
+</div>
+<!-- AGOSTO -->
+<div class="card">
+<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px">
+<div>
+<p style="font-size:18px; font-weight:800; color:var(--navy)">Agosto</p>
+<p style="font-size:10px; color:var(--gray)">Meta: R$ 3,50M · Gap: -R$ 2,19M</p>
+</div>
+<span class="risk low">Janela: 27d</span>
+</div>
+<div style="background:rgba(0,174,239,0.07); border-radius:8px; padding:12px; margin-bottom:12px">
+<p style="font-size:10px; font-weight:700; color:var(--blue-mid); margin-bottom:6px; letter-spacing:1px; text-transform:uppercase">Âncora</p>
+<p style="font-size:11px; color:var(--navy)">Dia dos Pais (10/08) é gatilho de decisão familiar. Último mês de clima seco.</p>
+</div>
+<div style="font-size:11px; color:var(--navy); line-height:2">
+<p>→ <strong>Campanha Dia dos Pais</strong> — família como proposta</p>
+<p>→ <strong>Praças próximas</strong> — Londrina, Maringá, Cambé</p>
+<p>→ <strong>Pacotes família</strong> — acomodação + experiência</p>
+<p>→ <strong>CRM base quente</strong> de jul. que não converteu</p>
+<p>→ <strong>Iniciar awareness</strong> de set/out em Curitiba</p>
+</div>
+</div>
+<!-- SETEMBRO -->
+<div class="card">
+<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px">
+<div>
+<p style="font-size:18px; font-weight:800; color:var(--navy)">Setembro</p>
+<p style="font-size:10px; color:var(--gray)">Meta: R$ 3,65M · Gap: -R$ 2,27M</p>
+</div>
+<span class="risk med">Janela: 34d</span>
+</div>
+<div style="background:rgba(245,196,93,0.1); border-radius:8px; padding:12px; margin-bottom:12px">
+<p style="font-size:10px; font-weight:700; color:#9C6B00; margin-bottom:6px; letter-spacing:1px; text-transform:uppercase">Estratégia</p>
+<p style="font-size:11px; color:var(--navy)">Abrir mercado. Feriado de 07/09 como gancho. Ativar out/nov com antecedência.</p>
+</div>
+<div style="font-size:11px; color:var(--navy); line-height:2">
+<p>→ <strong>Awareness Curitiba e Maringá</strong> — branding</p>
+<p>→ <strong>Teste mensagem</strong> em SP e Oeste SP</p>
+<p>→ <strong>Conteúdo feriado</strong> 07/09 — primavera</p>
+<p>→ <strong>Iniciar campanha out.</strong> com janela 45d</p>
+<p>→ <strong>Narrativa clima</strong> — "mesmo com chuva, resort funciona"</p>
+</div>
+</div>
+</div>
+<div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:18px">
+<!-- OUTUBRO -->
+<div class="card">
+<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px">
+<div>
+<p style="font-size:18px; font-weight:800; color:var(--navy)">Outubro</p>
+<p style="font-size:10px; color:var(--gray)">Meta: R$ 4,06M · Gap: -R$ 2,32M</p>
+</div>
+<span class="risk med">Janela: 45d</span>
+</div>
+<div style="background:rgba(245,196,93,0.1); border-radius:8px; padding:12px; margin-bottom:12px">
+<p style="font-size:10px; font-weight:700; color:#9C6B00; margin-bottom:6px; letter-spacing:1px; text-transform:uppercase">Âncora</p>
+<p style="font-size:11px; color:var(--navy)">Dia das Crianças (12/10). Maior feriado familiar do H2. Campanha devia estar rodando desde agosto.</p>
+</div>
+<div style="font-size:11px; color:var(--navy); line-height:2">
+<p>→ <strong>Campanha Dia das Crianças</strong> antecipada</p>
+<p>→ <strong>Prova social familiar</strong> — reviews + UGC</p>
+<p>→ <strong>Objeção de clima</strong> no conteúdo</p>
+<p>→ <strong>Ativar nov.</strong> com janela 70d urgente</p>
+<p>→ <strong>SEO/GEO</strong> — resort família Paraná</p>
+</div>
+</div>
+<!-- NOVEMBRO -->
+<div class="card" style="border:1px solid rgba(29,30,70,0.15)">
+<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px">
+<div>
+<p style="font-size:18px; font-weight:800; color:var(--navy)">Novembro</p>
+<p style="font-size:10px; color:var(--gray)">Meta: R$ 4,01M · Gap: -R$ 2,34M</p>
+</div>
+<span class="risk high">Janela: 70d</span>
+</div>
+<div style="background:rgba(242,116,102,0.07); border-radius:8px; padding:12px; margin-bottom:12px">
+<p style="font-size:10px; font-weight:700; color:var(--coral); margin-bottom:6px; letter-spacing:1px; text-transform:uppercase">Atenção</p>
+<p style="font-size:11px; color:var(--navy)">Black November é chance de oferta planejada, não desconto reativo. A campanha precisa ter começado em setembro.</p>
+</div>
+<div style="font-size:11px; color:var(--navy); line-height:2">
+<p>→ <strong>Oferta Black planejada</strong> com valor percebido</p>
+<p>→ <strong>CRM recuperação</strong> — indecisos de ago/set/out</p>
+<p>→ <strong>Campanha Finados</strong> (feriado 02/11)</p>
+<p>→ <strong>Narrativa conforto</strong> em chuva alta (140mm)</p>
+<p>→ <strong>Ativar dez.</strong> com pacotes Natal/Réveillon</p>
+</div>
+</div>
+<!-- DEZEMBRO -->
+<div class="card" style="border:2px solid var(--coral)">
+<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px">
+<div>
+<p style="font-size:18px; font-weight:800; color:var(--coral)">Dezembro ⚠</p>
+<p style="font-size:10px; color:var(--gray)">Meta: R$ 5,49M · Gap: -R$ 4,20M</p>
+</div>
+<span class="risk high">Janela: 33d</span>
+</div>
+<div style="background:rgba(242,116,102,0.08); border-radius:8px; padding:12px; margin-bottom:12px">
+<p style="font-size:10px; font-weight:700; color:var(--coral); margin-bottom:6px; letter-spacing:1px; text-transform:uppercase">Crítico</p>
+<p style="font-size:11px; color:var(--navy)">Maior meta + maior chuva + Natal/Réveillon. Não há como ativar "em dezembro para dezembro".</p>
+</div>
+<div style="font-size:11px; color:var(--navy); line-height:2">
+<p>→ <strong>Valor percebido</strong> — programação Natal completa</p>
+<p>→ <strong>Confiança operacional</strong> — comunicar estrutura</p>
+<p>→ <strong>Campanha Réveillon</strong> — diferencial de experiência</p>
+<p>→ <strong>Plano B chuva ativo</strong> — indoor + piscinas cobertas</p>
+<p>→ <strong>CRM VIP</strong> — hóspedes recorrentes prioridade</p>
+</div>
+</div>
+</div>
+</div>
+<span class="slide-number">20 / 22</span>
+</section><section class="s-dark slide claude-slide" id="s21">
+<div class="fade-up">
+<p class="label" style="color:rgba(255,255,255,0.5)">Decisões · Diretoria</p>
+<h2 class="section-title">O que precisa ser decidido agora</h2>
+<p class="section-sub">Cinco decisões que determinam se o H2 será gerenciado com sistema ou reagido com campanha.</p>
+<div class="divider white"></div>
+<div style="display:flex; flex-direction:column; gap:14px; max-width:900px">
+<div style="display:flex; align-items:flex-start; gap:20px; background:rgba(255,255,255,0.05); border-radius:var(--radius); padding:22px; border:1px solid rgba(255,255,255,0.08)">
+<span style="font-size:32px; font-weight:900; color:var(--blue); min-width:44px; line-height:1">01</span>
+<div>
+<p style="font-size:14px; font-weight:700; color:white; margin-bottom:6px">Validar a meta H2 como régua de gestão semanal</p>
+<p style="font-size:11px; color:rgba(255,255,255,0.6); line-height:1.7">R$ 28,4M precisa ser destrinchado por mês, semana e canal. Sem isso, o gap só aparece no final do período.</p>
+</div>
+</div>
+<div style="display:flex; align-items:flex-start; gap:20px; background:rgba(255,255,255,0.05); border-radius:var(--radius); padding:22px; border:1px solid rgba(255,255,255,0.08)">
+<span style="font-size:32px; font-weight:900; color:var(--blue); min-width:44px; line-height:1">02</span>
+<div>
+<p style="font-size:14px; font-weight:700; color:white; margin-bottom:6px">Aprovar calendário integrado de mídia, CRM, conteúdo e operação</p>
+<p style="font-size:11px; color:rgba(255,255,255,0.6); line-height:1.7">Cada mês tem uma narrativa e um foco. Sem calendário aprovado, as ações ficam desconexas e o budget vai para última hora.</p>
+</div>
+</div>
+<div style="display:flex; align-items:flex-start; gap:20px; background:rgba(255,255,255,0.05); border-radius:var(--radius); padding:22px; border:1px solid rgba(255,255,255,0.08)">
+<span style="font-size:32px; font-weight:900; color:var(--blue); min-width:44px; line-height:1">03</span>
+<div>
+<p style="font-size:14px; font-weight:700; color:white; margin-bottom:6px">Priorizar praças por potencial: conversão × awareness × validação</p>
+<p style="font-size:11px; color:rgba(255,255,255,0.6); line-height:1.7">Curitiba e SP não precisam das mesmas mensagens e canais que Londrina. A segmentação de praças define a eficiência do budget.</p>
+</div>
+</div>
+<div style="display:flex; align-items:flex-start; gap:20px; background:rgba(rgba(0,174,239,0.1)); border-radius:var(--radius); padding:22px; border:1px solid rgba(0,174,239,0.2)">
+<span style="font-size:32px; font-weight:900; color:var(--blue); min-width:44px; line-height:1">04</span>
+<div>
+<p style="font-size:14px; font-weight:700; color:var(--blue); margin-bottom:6px">Implantar War Room semanal com KPIs comerciais, de mídia e de atendimento</p>
+<p style="font-size:11px; color:rgba(255,255,255,0.6); line-height:1.7">AskSuite, CPA, pickup, NPS e clima precisam ser revisados semanalmente — não mensalmente. Essa é a diferença entre ajuste e surpresa.</p>
+</div>
+</div>
+<div style="display:flex; align-items:flex-start; gap:20px; background:rgba(255,255,255,0.05); border-radius:var(--radius); padding:22px; border:1px solid rgba(255,255,255,0.08)">
+<span style="font-size:32px; font-weight:900; color:var(--blue); min-width:44px; line-height:1">05</span>
+<div>
+<p style="font-size:14px; font-weight:700; color:white; margin-bottom:6px">Integrar reputação e operação ao plano comercial</p>
+<p style="font-size:11px; color:rgba(255,255,255,0.6); line-height:1.7">NPS, Google Reviews e Reclame Aqui afetam CPA e conversão diretamente. Operação e marketing precisam falar a mesma língua, na mesma reunião.</p>
+</div>
+</div>
+</div>
+</div>
+<span class="slide-number" style="color:rgba(255,255,255,0.2)">21 / 22</span>
+</section><section class="s-dark slide claude-slide" id="s22" style="justify-content:center; align-items:center; text-align:center; background: var(--navy); background-image: radial-gradient(ellipse at 50% 50%, rgba(0,174,239,0.12) 0%, transparent 65%);">
+<div class="fade-up" style="max-width:700px">
+<img alt="Morro dos Anjos" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABiAAAAMQCAYAAACuXa2HAAAZxElEQVR4nO3ZwQkAIBDAMHX/nc8lCoIkE/TfPTMLAAAAAACgdF4HAAAAAAAA/zEgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQM6AAAAAAAAAcgYEAAAAAACQMyAAAAAAAICcAQEAAAAAAOQMCAAAAAAAIGdAAAAAAAAAOQMCAAAAAADIGRAAAAAAAEDOgAAAAAAAAHIGBAAAAAAAkDMgAAAAAACAnAEBAAAAAADkDAgAAAAAACBnQAAAAAAAADkDAgAAAAAAyBkQAAAAAABAzoAAAAAAAAByBgQAAAAAAJAzIAAAAAAAgJwBAQAAAAAA5AwIAAAAAAAgZ0AAAAAAAAA5AwIAAAAAAMgZEAAAAAAAQO4Cld8JHX0YFWQAAAAASUVORK5CYII=" style="height:52px; margin-bottom:40px; opacity:0.9"/>
+<p style="font-size:10px; font-weight:700; letter-spacing:3px; color:var(--blue); margin-bottom:20px; text-transform:uppercase">Encerramento</p>
+<h2 style="font-size:clamp(32px, 4vw, 48px); font-weight:900; color:white; line-height:1.1; margin-bottom:16px">Do aquário<br/>ao <span style="color:var(--blue)">oceano</span>.</h2>
+<p style="font-size:16px; font-weight:300; color:rgba(255,255,255,0.6); margin-bottom:40px; line-height:1.7">
+      A meta de Hotelaria no H2 não será atingida apenas com mídia de conversão.<br/>
+      Será atingida criando demanda nova, medindo consciência de marca<br/>e conectando awareness com venda, operação e reputação.
+    </p>
+<div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:48px">
+<div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:999px; padding:8px 20px; font-size:11px; font-weight:600; color:rgba(255,255,255,0.8)">R$ 28,4M · Meta H2</div>
+<div style="background:rgba(0,174,239,0.15); border:1px solid rgba(0,174,239,0.3); border-radius:999px; padding:8px 20px; font-size:11px; font-weight:600; color:var(--blue)">War Room Semanal</div>
+<div style="background:rgba(0,200,120,0.12); border:1px solid rgba(0,200,120,0.25); border-radius:999px; padding:8px 20px; font-size:11px; font-weight:600; color:var(--green)">Dados + Marca + Operação</div>
+</div>
+<p style="font-size:10px; color:rgba(255,255,255,0.25); letter-spacing:1px">Planejamento Estratégico H2 2026 · Morro dos Anjos Águas Quentes Hotel Resort · Hotelaria</p>
+</div>
+<span class="slide-number" style="color:rgba(255,255,255,0.2)">23 / 23</span>
+</section><div style="display:none;width:1px;height:1px;overflow:hidden;"><canvas id="chartBuckets"></canvas><canvas id="chartJanela"></canvas></div><script>if (window.Chart) {
+
+// =========================================
+// CHART.JS GLOBALS
+// =========================================
+Chart.defaults.font.family = "'Montserrat', sans-serif";
+Chart.defaults.color = '#64748B';
+Chart.defaults.plugins.legend.labels.usePointStyle = true;
+Chart.defaults.plugins.legend.labels.pointStyleWidth = 8;
+
+const navy = '#1D1E46';
+const blue = '#00AEEF';
+const blueMid = '#0E6F99';
+const coral = '#F27466';
+const gold = '#F5C45D';
+const green = '#00C878';
+const teal = '#29948F';
+const gray = '#64748B';
+
+// =========================================
+// CHART 1: Gap Mensal (barras horizontais)
+// =========================================
+new Chart(document.getElementById('chartGapMensal'), {
+  type: 'bar',
+  data: {
+    labels: ['Jul/25', 'Ago/25', 'Set/25', 'Out/25', 'Nov/25', 'Dez/25'],
+    datasets: [
+      {
+        label: 'On Books (R$)',
+        data: [790162, 1305547, 1376595, 1737373, 1663086, 1290529],
+        backgroundColor: blue + 'CC',
+        borderRadius: 6,
+      },
+      {
+        label: 'Meta (R$)',
+        data: [4840204, 3497923, 3646944, 4061794, 4007750, 5491055],
+        backgroundColor: navy + '22',
+        borderColor: navy + '44',
+        borderWidth: 1,
+        borderRadius: 6,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => ` R$ ${(ctx.raw/1000000).toFixed(2)}M`
+        }
+      }
+    },
+    scales: {
+      y: {
+        grid: { color: 'rgba(29,30,70,0.06)' },
+        ticks: { callback: (v) => `R$ ${(v/1000000).toFixed(1)}M` }
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// =========================================
+// CHART 2: Ocupação barras duplas
+// =========================================
+new Chart(document.getElementById('chartOcupacao'), {
+  type: 'bar',
+  data: {
+    labels: ['Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+    datasets: [
+      {
+        label: 'Ocupação on books (%)',
+        data: [17.39, 34.75, 36.86, 38.53, 35.75, 25.78],
+        backgroundColor: blue + 'CC',
+        borderRadius: 6,
+      },
+      {
+        label: 'Meta de ocupação (%)',
+        data: [78.99, 65.99, 66.98, 71.98, 72.00, 76.99],
+        backgroundColor: navy + '18',
+        borderColor: navy + '55',
+        borderWidth: 1.5,
+        borderRadius: 6,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: { callbacks: { label: (ctx) => ` ${ctx.raw}%` } }
+    },
+    scales: {
+      y: {
+        max: 100,
+        grid: { color: 'rgba(29,30,70,0.06)' },
+        ticks: { callback: (v) => `${v}%` }
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// =========================================
+// CHART 3: Precipitação
+// =========================================
+new Chart(document.getElementById('chartClima'), {
+  type: 'bar',
+  data: {
+    labels: ['Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+    datasets: [{
+      label: 'Precipitação média (mm)',
+      data: [43, 42, 90, 119, 140, 166],
+      backgroundColor: [green+'BB', green+'BB', gold+'BB', coral+'88', coral+'BB', coral+'EE'],
+      borderRadius: 6,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: (ctx) => ` ${ctx.raw}mm` } },
+      annotation: {}
+    },
+    scales: {
+      y: {
+        grid: { color: 'rgba(29,30,70,0.06)' },
+        ticks: { callback: (v) => `${v}mm` }
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// =========================================
+// CHART 4: Tráfego mensal
+// =========================================
+new Chart(document.getElementById('chartTrafico'), {
+  type: 'line',
+  data: {
+    labels: ['fev/25','mar/25','abr/25','mai/25','jun/25','jul/25','ago/25','set/25','out/25','nov/25','dez/25','jan/26','fev/26','mar/26','abr/26','mai/26','jun/26'],
+    datasets: [{
+      label: 'Visitantes únicos',
+      data: [17701,28063,12314,10920,7942,16440,21196,46738,46607,55701,50472,64238,42573,62426,167955,24598,5461],
+      borderColor: blue,
+      backgroundColor: blue + '15',
+      fill: true,
+      tension: 0.4,
+      pointBackgroundColor: blue,
+      pointRadius: 3,
+      pointHoverRadius: 6,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: (ctx) => ` ${ctx.raw.toLocaleString('pt-BR')} visitantes` } }
+    },
+    scales: {
+      y: {
+        grid: { color: 'rgba(0,0,0,0.04)' },
+        ticks: { callback: (v) => v >= 1000 ? `${(v/1000).toFixed(0)}K` : v }
+      },
+      x: { grid: { display: false }, ticks: { maxRotation: 45, font: { size: 9 } } }
+    }
+  }
+});
+
+// =========================================
+// CHART 5: Scatter praças (tráfego x reservas)
+// =========================================
+new Chart(document.getElementById('chartPracas'), {
+  type: 'bubble',
+  data: {
+    datasets: [
+      {
+        label: 'Praças',
+        data: [
+          { x: 125150, y: 411, r: 16, name: 'Londrina' },
+          { x: 89858, y: 199, r: 12, name: 'Curitiba' },
+          { x: 52447, y: 135, r: 10, name: 'Maringá' },
+          { x: 20820, y: 38, r: 7, name: 'São Paulo' },
+          { x: 19889, y: 58, r: 7, name: 'Arapongas' },
+          { x: 15258, y: 54, r: 6, name: 'Apucarana' },
+          { x: 14589, y: 28, r: 5, name: 'Cambé' },
+          { x: 13863, y: 24, r: 5, name: 'Cornélio P.' },
+          { x: 12911, y: 24, r: 5, name: 'Ourinhos' },
+          { x: 10847, y: 29, r: 5, name: 'Sarandi' },
+        ],
+        backgroundColor: [
+          blue+'CC', navy+'CC', teal+'CC', gold+'CC', green+'CC',
+          blue+'99', navy+'88', gray+'88', gray+'88', teal+'88'
+        ],
+        borderColor: 'white',
+        borderWidth: 2,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => {
+            const d = ctx.raw;
+            return ` ${d.name}: ${d.x.toLocaleString('pt-BR')} acessos · ${d.y} reservas`;
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        title: { display: true, text: 'Acessos ao site', font: { size: 10 } },
+        grid: { color: 'rgba(29,30,70,0.06)' },
+        ticks: { callback: (v) => `${(v/1000).toFixed(0)}K` }
+      },
+      y: {
+        title: { display: true, text: 'Reservas', font: { size: 10 } },
+        grid: { color: 'rgba(29,30,70,0.06)' }
+      }
+    }
+  }
+});
+
+// =========================================
+// CHART 6: Janela de compra por mês
+// =========================================
+new Chart(document.getElementById('chartJanela'), {
+  type: 'bar',
+  data: {
+    labels: ['Jul/25', 'Ago/25', 'Set/25', 'Out/25', 'Nov/25', 'Dez/25'],
+    datasets: [{
+      label: 'Janela média (dias)',
+      data: [16.3, 27.2, 33.6, 45.0, 69.8, 32.5],
+      backgroundColor: [green+'CC', green+'99', gold+'99', gold+'CC', coral+'CC', blue+'99'],
+      borderRadius: 6,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: (ctx) => ` ${ctx.raw} dias de antecedência` } }
+    },
+    scales: {
+      y: { grid: { display: false }, ticks: { callback: (v) => `${v}d` } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// =========================================
+// CHART 7: Buckets janela de compra
+// =========================================
+new Chart(document.getElementById('chartBuckets'), {
+  type: 'doughnut',
+  data: {
+    labels: ['0–7 dias', '8–15 dias', '16–30 dias', '31–60 dias', '61–90 dias', '91+ dias'],
+    datasets: [{
+      data: [13.6, 12.0, 19.6, 31.8, 15.7, 7.3],
+      backgroundColor: [blue, teal, green, gold, coral, navy],
+      borderWidth: 2,
+      borderColor: '#F0F7FC',
+    }]
+  },
+  options: {
+    responsive: true,
+    cutout: '65%',
+    plugins: {
+      legend: { position: 'right', labels: { font: { size: 10 } } },
+      tooltip: { callbacks: { label: (ctx) => ` ${ctx.raw}% das reservas` } }
+    }
+  }
+});
+
+// =========================================
+// CHART 8: AskSuite duplo eixo
+// =========================================
+new Chart(document.getElementById('chartAsksuite'), {
+  type: 'bar',
+  data: {
+    labels: ['Set/25','Out/25','Nov/25','Dez/25','Jan/26','Fev/26','Mar/26','Abr/26','Mai/26'],
+    datasets: [
+      {
+        label: 'Atendimentos',
+        data: [4395, 4655, 5484, 6498, 8400, 6476, 13839, 9353, 4607],
+        backgroundColor: blue + 'AA',
+        borderRadius: 4,
+        yAxisID: 'y',
+      },
+      {
+        label: 'Pipeline (R$)',
+        data: [1800000, 3600000, 5500000, 7000000, 9500000, 5400000, 11800000, 7000000, 2000000],
+        type: 'line',
+        borderColor: gold,
+        backgroundColor: gold + '20',
+        fill: true,
+        tension: 0.4,
+        pointBackgroundColor: gold,
+        pointRadius: 4,
+        yAxisID: 'y2',
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => {
+            if (ctx.dataset.label === 'Pipeline (R$)') return ` R$ ${(ctx.raw/1000000).toFixed(1)}M`;
+            return ` ${ctx.raw.toLocaleString('pt-BR')} atend.`;
+          }
+        }
+      }
+    },
+    scales: {
+      y: { grid: { color: 'rgba(29,30,70,0.06)' }, ticks: { callback: (v) => v >= 1000 ? `${(v/1000).toFixed(0)}K` : v } },
+      y2: { position: 'right', grid: { display: false }, ticks: { callback: (v) => `R$ ${(v/1000000).toFixed(0)}M` } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// =========================================
+// CHART 9: Receita total por mês
+// =========================================
+new Chart(document.getElementById('chartReceita'), {
+  type: 'bar',
+  data: {
+    labels: ['Set/25','Out/25','Nov/25','Dez/25','Jan/26','Fev/26','Mar/26','Abr/26','Mai/26'],
+    datasets: [
+      {
+        label: 'Booking Engine',
+        data: [342192, 194011, 870497, 566705, 807475, 348444, 670930, 1453785, 408404],
+        backgroundColor: blue + 'CC',
+        borderRadius: 4,
+        stack: 'total',
+      },
+      {
+        label: 'Central de Reservas',
+        data: [352936, 253740, 1553532, 904353, 1614987, 938861, 1501236, 1318956, 784134],
+        backgroundColor: teal + 'CC',
+        borderRadius: 4,
+        stack: 'total',
+      },
+      {
+        label: 'OTAs/Agências',
+        data: [847509, 509074, 140528, 204163, 403093, 381513, 284857, 247238, 137312],
+        backgroundColor: gray + '88',
+        borderRadius: 4,
+        stack: 'total',
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: { callbacks: { label: (ctx) => ` R$ ${(ctx.raw/1000).toFixed(0)}K` } }
+    },
+    scales: {
+      y: { stacked: true, grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { callback: (v) => `R$ ${(v/1000000).toFixed(1)}M` } },
+      x: { stacked: true, grid: { display: false }, ticks: { font: { size: 9 } } }
+    }
+  }
+});
+
+// =========================================
+// CHART 10: CPA e ROAS
+// =========================================
+new Chart(document.getElementById('chartCPA'), {
+  type: 'bar',
+  data: {
+    labels: ['Set/25','Out/25','Nov/25','Dez/25','Jan/26','Fev/26','Mar/26','Abr/26','Mai/26'],
+    datasets: [
+      {
+        label: 'CPA (R$)',
+        data: [38, 74, 35, 84, 33, 48, 34, 117, 92],
+        backgroundColor: [teal+'CC', gold+'CC', green+'CC', gold+'CC', green+'CC', teal+'CC', green+'CC', coral+'CC', gold+'CC'],
+        borderRadius: 4,
+        yAxisID: 'y',
+      },
+      {
+        label: 'ROAS (x)',
+        data: [61.9, 38.6, 82.1, 48.4, 101.9, 61.7, 88.3, 27.8, 30.0],
+        type: 'line',
+        borderColor: blue,
+        backgroundColor: blue + '15',
+        fill: false,
+        tension: 0.4,
+        pointBackgroundColor: blue,
+        pointRadius: 4,
+        yAxisID: 'y2',
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => {
+            if (ctx.dataset.label === 'ROAS (x)') return ` ROAS ${ctx.raw}x`;
+            return ` CPA R$ ${ctx.raw}`;
+          }
+        }
+      }
+    },
+    scales: {
+      y: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { callback: (v) => `R$ ${v}` } },
+      y2: { position: 'right', grid: { display: false }, ticks: { callback: (v) => `${v}x` } },
+      x: { grid: { display: false }, ticks: { font: { size: 9 } } }
+    }
+  }
+});
+
+// =========================================
+// CHART 11: Forecast por cenário
+// =========================================
+new Chart(document.getElementById('chartForecast'), {
+  type: 'bar',
+  data: {
+    labels: ['On Books\natual', 'Pessimista\n(+40% gap)', 'Base\n(+62% gap)', 'Agressivo\n(+83% gap)', 'Meta\nComercial'],
+    datasets: [{
+      label: 'Receita H2 (R$)',
+      data: [8163291, 16257974, 20710050, 24959759, 28400000],
+      backgroundColor: [navy + 'AA', coral + 'BB', gold + 'CC', blue + 'CC', green + 'CC'],
+      borderRadius: 8,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: (ctx) => ` R$ ${(ctx.raw/1000000).toFixed(1)}M` } }
+    },
+    scales: {
+      y: {
+        grid: { color: 'rgba(255,255,255,0.08)' },
+        ticks: { color: '#aaa', callback: (v) => `R$ ${(v/1000000).toFixed(0)}M` }
+      },
+      x: { grid: { display: false }, ticks: { color: '#aaa', font: { size: 9 } } }
+    }
+  }
+});
+
+// =========================================
+// FADE IN ON SCROLL
+// =========================================
+const fadeEls = document.querySelectorAll('.fade-up');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(el => {
+    if (el.isIntersecting) el.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+fadeEls.forEach(el => observer.observe(el));
+
+
+}
+</script><script>
+const slides=[...document.querySelectorAll('.slide')];
+const nav=document.getElementById('navdots');
+if(nav){
+  nav.innerHTML='';
+  slides.forEach((s,i)=>{ if(!s.id) s.id='slide-'+(i+1); const a=document.createElement('a'); a.href='#'+s.id; a.setAttribute('aria-label','Ir para slide '+(i+1)); nav.appendChild(a); });
+}
+const dots=nav ? [...nav.querySelectorAll('a')] : [];
+function update(){
+  const scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+  const height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+  const progress=document.getElementById('progress');
+  if(progress) progress.style.width=(height?scrollTop/height*100:0)+'%';
+  let active=0; slides.forEach((s,i)=>{ if(s.getBoundingClientRect().top < innerHeight*.45) active=i; });
+  dots.forEach((d,i)=>d.classList.toggle('active',i===active));
+}
+addEventListener('scroll',update,{passive:true}); addEventListener('resize',update); update();
+</script></body>
+</html>
