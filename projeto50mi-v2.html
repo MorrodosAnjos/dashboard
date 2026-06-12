@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projeto 50M</title>
+<style>
+:root {
+  --azul:#1D1E46; --azul-claro:#00AEEF; --creme:#FFF7E6; --dourado:#CB9C66; --verde:#124747; --verde-medio:#29948F; --coral:#F27466; --branco:#FFFFFF; --cinza:#E8EBF0; --cinza2:#F4F6F9; --texto:#1D1E46; --suave:#5A6080; --r:18px; --max:430px;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { font-family: Montserrat, Arial, sans-serif; background:var(--cinza); color:var(--texto); -webkit-font-smoothing:antialiased; }
+.deck { max-width:var(--max); margin:0 auto; background:var(--cinza); }
+.slide { padding:48px 24px; min-height:760px; border-top:1px solid rgba(29,30,70,.08); page-break-after:always; break-after:page; }
+.cover { background:linear-gradient(160deg,var(--azul) 0%,#0e1035 58%,var(--verde) 100%); min-height:760px; display:flex; flex-direction:column; justify-content:center; border-top:none; }
+.cover-logo { width:156px; margin-bottom:38px; display:block; filter:drop-shadow(0 10px 26px rgba(0,0,0,.20)); }
+.cover h1 { color:#fff; font-size:42px; line-height:1.08; font-weight:800; }
+.cover h1 span { color:var(--azul-claro); }
+.cover p { color:rgba(255,255,255,.74); font-size:15px; line-height:1.55; margin-top:14px; }
+.cover-line, .divider { width:42px; height:3px; border-radius:2px; background:var(--dourado); margin:18px 0; }
+.eyebrow { display:block; color:var(--azul-claro); font-size:10px; letter-spacing:.13em; text-transform:uppercase; font-weight:800; margin-bottom:8px; }
+.eyebrow.gold { color:var(--dourado); } .eyebrow.green { color:var(--verde-medio); } .eyebrow.coral { color:var(--coral); }
+h2 { font-size:28px; line-height:1.15; font-weight:800; color:var(--azul); }
+h3 { font-size:18px; line-height:1.25; font-weight:750; color:var(--azul); }
+h4 { font-size:14px; line-height:1.25; font-weight:750; color:var(--azul); }
+p { font-size:13.5px; line-height:1.65; color:var(--suave); }
+.small { font-size:11.5px; line-height:1.45; color:var(--suave); }
+.note { background:rgba(255,255,255,.72); border-left:3px solid var(--dourado); padding:13px 14px; border-radius:12px; margin-top:14px; }
+.card { background:var(--branco); border-radius:var(--r); padding:20px; box-shadow:0 2px 16px rgba(29,30,70,.07); margin-top:12px; }
+.card.gray { background:var(--cinza2); box-shadow:none; border:1px solid rgba(29,30,70,.06); }
+.grid2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px; }
+.metric { background:var(--branco); border-radius:16px; padding:17px 15px; box-shadow:0 2px 12px rgba(29,30,70,.06); }
+.metric .val { font-size:26px; line-height:1; font-weight:800; color:var(--azul); }
+.metric .key { font-size:11px; color:var(--suave); margin-top:5px; font-weight:600; }
+.row { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; padding:12px 0; border-bottom:1px solid rgba(29,30,70,.08); }
+.row:last-child { border-bottom:none; }
+.label { font-size:12px; color:var(--suave); font-weight:600; }
+.value { font-size:14px; color:var(--azul); font-weight:800; text-align:right; }
+.income-card .row { align-items:flex-start; }
+.income-left { text-align:left; flex:1; min-width:0; }
+.income-title { font-size:20px; margin-bottom:4px; text-align:left !important; color:var(--azul); font-weight:800; }
+.income-desc { text-align:left !important; color:var(--suave); }
+.income-count { text-align:right; flex-shrink:0; padding-top:2px; }
+
+.bar-row { margin:18px 0; }
+.bar-label { display:flex; justify-content:space-between; font-size:13px; font-weight:750; margin-bottom:7px; color:var(--azul); }
+.bar-track { height:10px; background:#DDE2EA; border-radius:999px; overflow:hidden; }
+.bar { height:100%; border-radius:999px; }
+.b1 { background:var(--azul-claro); } .b2 { background:var(--dourado); } .b3 { background:var(--verde-medio); }
+.table-wrap { margin-top:18px; overflow:hidden; border-radius:14px; background:#fff; box-shadow:0 2px 12px rgba(29,30,70,.06); }
+table { width:100%; border-collapse:collapse; font-size:10.5px; }
+th { text-align:left; background:var(--azul); color:#fff; padding:9px 7px; font-weight:750; }
+td { padding:9px 7px; border-bottom:1px solid rgba(29,30,70,.08); color:var(--azul); font-weight:550; }
+tr:last-child td { border-bottom:none; }
+.dark { background:var(--azul); color:#fff; margin:0 -24px; padding:42px 24px; }
+.dark h2,.dark h3,.dark h4 { color:#fff; } .dark p { color:rgba(255,255,255,.7); }
+.kpi-list { margin-top:18px; }
+.kpi { padding:12px 0; border-bottom:1px solid rgba(29,30,70,.08); display:flex; gap:12px; }
+.kpi:before { content:''; width:9px; height:9px; border-radius:50%; background:var(--azul-claro); flex:0 0 auto; margin-top:5px; }
+.kpi div { font-size:13px; color:var(--suave); line-height:1.45; }
+.phase { display:flex; gap:14px; padding:14px 0; border-bottom:1px solid rgba(29,30,70,.08); }
+.phase .num { width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:var(--azul); color:#fff; font-weight:800; font-size:11px; flex:0 0 auto; }
+.phase ul { list-style:none; margin-top:6px; }
+.phase li { font-size:12.5px; color:var(--suave); padding:2px 0; }
+.phase li:before { content:'- '; color:var(--azul-claro); font-weight:800; }
+.pillrow { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+.pill { padding:7px 11px; border-radius:999px; background:rgba(29,30,70,.07); color:var(--azul); font-size:11px; font-weight:700; }
+.badge { display:inline-block; border-radius:999px; padding:6px 12px; color:#fff; border:1px solid rgba(255,255,255,.3); background:rgba(255,255,255,.14); font-size:11px; font-weight:700; margin:4px 5px 0 0; }
+.footer { padding:28px 24px; text-align:center; color:var(--suave); font-size:11px; letter-spacing:.06em; font-weight:600; }
+.fab { position:fixed; right:24px; bottom:24px; width:44px; height:44px; border-radius:50%; border:none; background:var(--azul); color:#fff; font-size:18px; }
+@media (min-width:500px) { .deck { margin:32px auto; border-radius:32px; overflow:hidden; box-shadow:0 24px 80px rgba(0,0,0,.18); } .slide,.cover { min-height:760px; } }
+@media print { @page { size: 430px 932px; margin:0; } body { background:#E8EBF0; } .deck { max-width:430px; margin:0; } .slide { min-height:932px; padding:48px 24px; } .cover { min-height:932px; } .fab { display:none; } }
+</style>
+</head>
+<body>
+<div class="deck">
+<section class="slide cover">
+  <img class="cover-logo" src="data:image/png;base64,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" alt="Morro dos Anjos">
+  <div class="cover-line"></div>
+  <h1>Projeto <span>50M</span></h1>
+  <p>Análise técnica de viabilidade comercial, territorial e operacional para geração de contratos em até 180 dias.</p>
+  
+</section>
+
+<section class="slide">
+  <span class="eyebrow">Objetivo do estudo</span><h2>Base técnica para deliberação</h2><div class="divider"></div>
+  <p>Este material avalia três frentes de geração de contratos, considerando produto, ticket, público, praças, base de contratos já existentes, riscos operacionais e capacidade de implantação em 180 dias.</p>
+  <div class="grid2">
+    <div class="metric"><div class="val">R$50M</div><div class="key">meta em contratos possíveis</div></div>
+    <div class="metric"><div class="val">180</div><div class="key">dias de horizonte de implantação</div></div>
+    <div class="metric"><div class="val">3</div><div class="key">frentes avaliadas</div></div>
+    <div class="metric"><div class="val">R$123M</div><div class="key">potencial consolidado estimado</div></div>
+  </div>
+  <div class="note"><p class="small"><b>Nota técnica:</b> contratos possíveis e VGV contratado não equivalem a caixa imediato. O caixa depende do cronograma de recebimento, adimplência e eventuais entradas/antecipações.</p></div>
+</section>
+
+<section class="slide">
+  <span class="eyebrow gold">Metodologia</span><h2>Premissas utilizadas</h2><div class="divider"></div>
+  <div class="card">
+    <div class="row"><div class="label">Base territorial</div><div class="value">cidades prioritárias</div></div>
+    <div class="row"><div class="label">Cenários de penetração</div><div class="value">0,5% e 1,0%</div></div>
+    <div class="row"><div class="label">Ticket Produto 01 e 02</div><div class="value">R$36 mil</div></div>
+    <div class="row"><div class="label">Ticket Produto 03</div><div class="value">R$100 mil</div></div>
+    <div class="row"><div class="label">Estimativa de famílias</div><div class="value">população / 2,7</div></div>
+    <div class="row"><div class="label">Classes de renda</div><div class="value">distribuição proporcional</div></div>
+    <div class="row"><div class="label">Riscos avaliados</div><div class="value">operação, jurídico e marca</div></div>
+  </div>
+</section>
+
+<section class="slide">
+  <span class="eyebrow">Visão geral técnica</span><h2>Frentes analisadas</h2><div class="divider"></div>
+  <div class="card">
+    <span class="eyebrow">Produto 01</span><h3>Clube Morro dos Anjos</h3>
+    <div class="grid2"><div><h4>33 m²</h4><p class="small">Apto superior</p></div><div><h4>1 semana</h4><p class="small">cota anual</p></div><div><h4>36x R$1.000</h4><p class="small">sem entrada</p></div><div><h4>R$75M</h4><p class="small">potencial</p></div></div>
+  </div>
+  <div class="card">
+    <span class="eyebrow gold">Produto 02</span><h3>Associado Vendedor</h3>
+    <div class="grid2"><div><h4>2.432</h4><p class="small">contratos atuais</p></div><div><h4>20%</h4><p class="small">premissa sobre contratos</p></div><div><h4>500 cotas</h4><p class="small">meta inicial</p></div><div><h4>R$18M</h4><p class="small">potencial</p></div></div>
+  </div>
+  <div class="card">
+    <span class="eyebrow green">Produto 03</span><h3>Londrina</h3>
+    <div class="grid2"><div><h4>67 m²</h4><p class="small">unidade</p></div><div><h4>4 semanas</h4><p class="small">cota anual</p></div><div><h4>300 cotas</h4><p class="small">meta</p></div><div><h4>R$30M</h4><p class="small">potencial</p></div></div>
+  </div>
+</section>
+
+<section class="slide">
+  <span class="eyebrow gold">Consolidação e decisão financeira</span><h2>R$123M de potencial consolidado</h2><div class="divider"></div>
+  <div class="bar-row"><div class="bar-label"><span>Clube Morro dos Anjos</span><span>R$75M</span></div><div class="bar-track"><div class="bar b1" style="width:61%"></div></div></div>
+  <div class="bar-row"><div class="bar-label"><span>Associado Vendedor</span><span>R$18M</span></div><div class="bar-track"><div class="bar b2" style="width:15%"></div></div></div>
+  <div class="bar-row"><div class="bar-label"><span>Londrina</span><span>R$30M</span></div><div class="bar-track"><div class="bar b3" style="width:24%"></div></div></div>
+  <div class="card" style="margin-top:26px;background:var(--azul);color:#fff">
+    <div class="row" style="border-color:rgba(255,255,255,.16)"><div class="label" style="color:rgba(255,255,255,.7)">Meta 180 dias</div><div class="value" style="color:#fff">R$50M</div></div>
+    <div class="row" style="border-color:rgba(255,255,255,.16)"><div class="label" style="color:rgba(255,255,255,.7)">Potencial consolidado</div><div class="value" style="color:#fff">R$123M</div></div>
+    <div class="row"><div class="label" style="color:rgba(255,255,255,.7)">Conversão necessária</div><div class="value" style="color:var(--dourado)">~41%</div></div>
+  </div>
+  <div class="note"><p class="small">O modelo reduz dependência de uma única origem de receita ao distribuir o potencial em três frentes: território regional, base instalada e praça Londrina.</p></div>
+</section>
+
+<section class="slide">
+  <span class="eyebrow">Produto 01 - parâmetros técnicos</span><h2>Clube Morro dos Anjos</h2><div class="divider"></div>
+  <p>Modelo de associação com direito de uso imediato via day use e futura propriedade fracionada após o cumprimento das condições contratuais.</p>
+  <div class="grid2">
+    <div class="metric"><div class="val">2+2</div><div class="key">2 adultos + 2 crianças</div></div>
+    <div class="metric"><div class="val">33m²</div><div class="key">apartamento superior</div></div>
+    <div class="metric"><div class="val">até 36m</div><div class="key">entrega após assinatura</div></div>
+    <div class="metric"><div class="val">Day use</div><div class="key">desde o contrato</div></div>
+  </div>
+  <div class="card">
+    <div class="row"><div class="label">Condição comercial</div><div class="value">36x R$1.000</div></div>
+    <div class="row"><div class="label">Condomínio</div><div class="value">R$150/mês</div></div>
+    <div class="row"><div class="label">Consumação mínima</div><div class="value">R$100 adulto / R$50 criança</div></div>
+    <div class="row"><div class="label">Taxa para transferência contratual</div><div class="value">R$5 mil</div></div>
+  </div>
+</section>
+
+<section class="slide">
+  <span class="eyebrow coral">Clube - governança operacional</span><h2>Parâmetros de controle operacional</h2><div class="divider"></div>
+  <div class="card">
+    <div class="row"><div class="label">Experiência e capacidade</div><div class="small" style="max-width:52%;text-align:right">Agenda obrigatória, limite diário de acesso, bloqueio em feriados críticos e capacidade máxima por área.</div></div>
+    <div class="row"><div class="label">Receita operacional mínima</div><div class="small" style="max-width:52%;text-align:right">Consumação mínima no day use e ativação das estruturas já existentes do resort.</div></div>
+    <div class="row"><div class="label">Inadimplência</div><div class="small" style="max-width:52%;text-align:right">Suspensão do uso em caso de atraso e retomada contratual conforme regra definida.</div></div>
+    <div class="row"><div class="label">Mercado paralelo / revenda rápida</div><div class="small" style="max-width:52%;text-align:right">Cláusula de carência de 5 anos para revenda. Protege o produto de virar ativo especulativo.</div></div>
+    <div class="row" style="border-bottom:none;padding-bottom:0"><div class="label">Propriedade e transferência contratual</div><div class="small" style="max-width:52%;text-align:right">Após 36 meses, o comprador passa a ser proprietário da fração pelo resto da vida. Em caso de venda ou transferência, será cobrada taxa de R$ 5 mil.</div></div>
+  </div>
+</section>
+
+<section class="slide">
+  <span class="eyebrow gold">Clube - potencial territorial</span><h2>Potencial regional mensurável</h2><div class="divider"></div>
+  <p>Resumo das principais cidades analisadas, considerando base atual, penetração observada e cenários técnicos de 0,5% e 1,0% da população.</p>
+  <div class="table-wrap">
+    <table><thead><tr><th>Cidade</th><th>Pop.</th><th>Sócios</th><th>% atual</th><th>0,5%</th><th>1%</th></tr></thead><tbody>
+      <tr>
+        <td>Bandeirantes</td><td>31.273</td><td>488</td><td>1,56%</td><td>156</td><td>313</td>
+      </tr>
+      <tr>
+        <td>Ourinhos</td><td>115.139</td><td>118</td><td>0,10%</td><td>576</td><td>1.151</td>
+      </tr>
+      <tr>
+        <td>Cornélio Procópio</td><td>45.830</td><td>144</td><td>0,31%</td><td>229</td><td>458</td>
+      </tr>
+      <tr>
+        <td>Jacarezinho</td><td>41.400</td><td>70</td><td>0,17%</td><td>207</td><td>414</td>
+      </tr>
+      <tr>
+        <td>Santo Antônio da Platina</td><td>44.369</td><td>46</td><td>0,10%</td><td>222</td><td>444</td>
+      </tr>
+      <tr>
+        <td>Cambará</td><td>23.212</td><td>75</td><td>0,32%</td><td>116</td><td>232</td>
+      </tr>
+      <tr>
+        <td>Uraí</td><td>11.273</td><td>24</td><td>0,21%</td><td>56</td><td>113</td>
+      </tr>
+      <tr>
+        <td>Assaí</td><td>14.954</td><td>17</td><td>0,11%</td><td>75</td><td>150</td>
+      </tr>
+      <tr>
+        <td>Andirá</td><td>20.044</td><td>103</td><td>0,51%</td><td>100</td><td>200</td>
+      </tr>
+      <tr>
+        <td>Ribeirão do Pinhal</td><td>12.948</td><td>21</td><td>0,16%</td><td>65</td><td>129</td>
+      </tr></tbody></table>
+  </div>
+  <div class="grid2">
+    <div class="metric"><div class="val">414.240</div><div class="key">habitantes nas cidades</div></div>
+    <div class="metric"><div class="val">0,32%</div><div class="key">penetração média atual</div></div>
+    <div class="metric"><div class="val">2.071</div><div class="key">cotas em cenário 0,5%</div></div>
+    <div class="metric"><div class="val">4.142</div><div class="key">cotas em cenário 1%</div></div>
+  </div>
+</section>
+
+<section class="slide">
+  <span class="eyebrow gold">Perfil socioeconômico estimado</span><h2>Recorte socioeconômico estimado</h2><div class="divider"></div>
+  <div class="card income-card">
+    <span class="eyebrow gold" style="display:block;margin-bottom:14px">Classes de renda — cidades da tabela</span>
+    <div class="row"><div class="income-left"><div class="income-title" style="font-size:22px">Famílias estimadas</div><div class="small income-desc">base: 414,2 mil habitantes mapeados</div></div><div class="value income-count">~152,5k</div></div>
+    <div class="row"><div class="income-left"><div class="income-title">Classe A</div><div class="small income-desc">acima de R$32,4k (&gt;20 SM)</div></div><div class="value income-count">~4,4k famílias</div></div>
+    <div class="row"><div class="income-left"><div class="income-title">Classe B</div><div class="small income-desc">R$16,2k a R$32,4k/mês</div></div><div class="value income-count">~33,2k famílias</div></div>
+    <div class="row" style="border-bottom:none;padding-bottom:0"><div class="income-left"><div class="income-title">Classe C</div><div class="small income-desc">R$6,5k a R$16,2k/mês</div></div><div class="value income-count">~72,3k famílias</div></div>
+  </div>
+  <div class="note"><p>A R$1.000/mês, o produto passa a endereçar o núcleo B+C, desde que a operação seja controlada, regulada e escalável.</p></div>
+</section>
+
+
+
+<section class="slide">
+  <span class="eyebrow gold">Produto 02 - base instalada</span><h2>Canal de aquisição por relacionamento</h2><div class="divider"></div>
+  <p>A base atual de coproprietários representa um canal potencial de aquisição com menor custo relativo, maior confiança e maior propensão à conversão por relacionamento.</p>
+  <div class="grid2">
+    <div class="metric"><div class="val">2.432</div><div class="key">contratos atuais</div></div>
+    <div class="metric"><div class="val">9.728</div><div class="key">associados + dependentes</div></div>
+    <div class="metric"><div class="val">20%</div><div class="key">premissa sobre contratos</div></div>
+    <div class="metric"><div class="val">500</div><div class="key">meta de cotas</div></div>
+  </div>
+  <div class="card">
+    <div class="row"><div class="label">Homens na base</div><div class="value">1.845</div></div>
+    <div class="row"><div class="label">Mulheres na base</div><div class="value">582</div></div>
+    <div class="row"><div class="label">Ticket por cota</div><div class="value">R$36 mil</div></div>
+    <div class="row"><div class="label">Potencial contratado</div><div class="value">R$18M</div></div>
+  </div>
+</section>
+
+<section class="slide">
+  <span class="eyebrow gold">Produto 02 - modelo operacional</span><h2>Modelo de indicação controlada</h2><div class="divider"></div>
+  <p>A mecânica transforma o coproprietário em origem de lead qualificado, mantendo a condução comercial sob responsabilidade da equipe de vendas.</p>
+  <div class="kpi-list">
+    <div class="kpi"><div><b>Origem:</b> coproprietário indica contato qualificado.</div></div>
+    <div class="kpi"><div><b>Tratamento:</b> equipe comercial conduz apresentação, proposta, negociação e contrato.</div></div>
+    <div class="kpi"><div><b>Incentivo:</b> prêmio ou benefício substitui comissão financeira tradicional.</div></div>
+    <div class="kpi"><div><b>Controle:</b> rastreio por origem, conversão, ticket, CAC estimado e qualidade da carteira indicada.</div></div>
+  </div>
+  <div class="card gray"><p class="small">Indicadores recomendados: leads indicados, taxa de contato, taxa de proposta, taxa de fechamento, custo por contrato, tempo de conversão e qualidade da carteira.</p></div>
+</section>
+
+<section class="slide">
+  <span class="eyebrow green">Produto 03 - Londrina</span><h2>Produto dedicado à praça Londrina</h2><div class="divider"></div>
+  <p>Produto orientado a uma praça com densidade populacional, renda e proximidade regional, com proposta de 4 semanas anuais em unidade de 67 m².</p>
+  <div class="grid2">
+    <div class="metric"><div class="val">67m²</div><div class="key">unidade</div></div>
+    <div class="metric"><div class="val">4 sem.</div><div class="key">cota anual</div></div>
+    <div class="metric"><div class="val">300</div><div class="key">meta de cotas</div></div>
+    <div class="metric"><div class="val">R$100k</div><div class="key">ticket por cota</div></div>
+  </div>
+  <div class="card" style="background:var(--verde);color:#fff">
+    <span class="eyebrow green">Potencial contratado</span>
+    <div style="font-size:36px;font-weight:800;color:#fff">R$30M</div>
+    <p style="color:rgba(255,255,255,.7)">300 cotas x R$100.000</p>
+  </div>
+  <div class="note"><p class="small">A validação deve combinar ativação presencial, CRM, mídia e acompanhamento de conversão por praça.</p></div>
+</section>
+
+<section class="slide">
+  <span class="eyebrow">Simulação estratégica</span><h2>Composição indicativa para R$50M</h2><div class="divider"></div>
+  <p>Composição indicativa da meta, ajustável conforme resposta de mercado, capacidade comercial e capacidade operacional.</p>
+  <div class="card" style="margin-top:22px;background:var(--azul);color:#fff;border-radius:24px;padding:26px 24px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px">
+      <div><span class="eyebrow" style="color:var(--azul-claro);margin-bottom:10px">Potencial total</span><div style="font-size:42px;font-weight:800;line-height:1;color:#fff">R$123M</div></div>
+      <div style="text-align:right"><span class="eyebrow" style="color:var(--dourado);margin-bottom:10px">Meta</span><div style="font-size:42px;font-weight:800;line-height:1;color:var(--dourado)">R$50M</div></div>
+    </div>
+    <div style="height:14px;background:rgba(255,255,255,.18);border-radius:99px;overflow:hidden;margin:28px 0 14px">
+      <div style="width:41%;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--azul-claro),var(--dourado))"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;color:rgba(255,255,255,.62);font-size:13px;font-weight:700">
+      <span>0</span><span style="color:var(--dourado);font-size:15px">41% do potencial</span><span>R$123M</span>
+    </div>
+  </div>
+  <div class="card" style="margin-top:18px">
+    <div class="row"><div class="label">Clube Morro dos Anjos</div><div class="value">R$25M</div></div>
+    <div class="row"><div class="label">Associado Vendedor</div><div class="value">R$10M</div></div>
+    <div class="row"><div class="label">Londrina</div><div class="value">R$15M</div></div>
+    <div class="row" style="border-bottom:none;padding-bottom:0"><div class="label">Total simulado</div><div class="value">R$50M</div></div>
+  </div>
+  <div class="note"><p class="small">A meta não depende de um único produto. A simulação combina volume regional, indicação da base atual e ativação qualificada em Londrina.</p></div>
+</section>
+
+<section class="slide">
+  <span class="eyebrow coral">Matriz de riscos</span><h2>Riscos críticos e mitigadores</h2><div class="divider"></div>
+  <div class="card">
+    <div class="row"><div class="label">Jurídico/contratual</div><div class="value">validação prévia do modelo</div></div>
+    <div class="row"><div class="label">Operação e capacidade</div><div class="value">limites por dia e por área</div></div>
+    <div class="row"><div class="label">Adimplência</div><div class="value">régua de cobrança + suspensão</div></div>
+    <div class="row"><div class="label">Canibalização</div><div class="value">posicionamento separado</div></div>
+    <div class="row"><div class="label">Marca/experiência</div><div class="value">controle de acesso + NPS</div></div>
+    <div class="row"><div class="label">Comercial</div><div class="value">war room semanal</div></div>
+  </div>
+  <div class="note"><p class="small">Recomendação: iniciar com piloto controlado e critérios objetivos para escala, revisão ou interrupção da frente.</p></div>
+</section>
+
+<section class="slide">
+  <span class="eyebrow">Plano de implantação</span><h2>Horizonte 30 · 60 · 90 · 180 dias</h2><div class="divider"></div>
+  <div class="phase"><div class="num">30</div><div><h4>Estruturação técnica</h4><ul><li>Validação jurídica e contratual</li><li>Premissas comerciais finais</li><li>Materiais técnicos e comerciais</li><li>Parametrização de CRM e controle</li></ul></div></div>
+  <div class="phase"><div class="num">60</div><div><h4>Lançamento controlado</h4><ul><li>Início das frentes Clube e Associado Vendedor</li><li>Ativação Londrina</li><li>Treinamento comercial</li><li>Monitoramento semanal de indicadores</li></ul></div></div>
+  <div class="phase"><div class="num">90</div><div><h4>Otimização e ajustes</h4><ul><li>Ajuste por praça e canal</li><li>Análise de conversão e inadimplência</li><li>Controle de uso e experiência</li></ul></div></div>
+  <div class="phase"><div class="num">180</div><div><h4>Consolidação e decisão</h4><ul><li>Comparativo meta x realizado</li><li>Revisão de riscos e operação</li><li>Decisão de expansão</li></ul></div></div>
+</section>
+
+<section class="slide">
+  <span class="eyebrow green">Indicadores de controle</span><h2>Rotina de governança recomendada</h2><div class="divider"></div>
+  <div class="pillrow">
+    <span class="pill">Contratos assinados</span><span class="pill">VGV contratado</span><span class="pill">Caixa recebido</span><span class="pill">Inadimplência</span><span class="pill">Uso day use</span><span class="pill">Ocupação por área</span><span class="pill">Ticket A&B</span><span class="pill">CAC por canal</span><span class="pill">Conversão por praça</span><span class="pill">NPS/Reclamações</span>
+  </div>
+  <div class="card" style="margin-top:24px">
+    <div class="row"><div class="label">Ritual de gestão</div><div class="value">war room semanal</div></div>
+    <div class="row"><div class="label">Comitê</div><div class="value">comercial + financeiro + jurídico + operação</div></div>
+    <div class="row"><div class="label">Decisão de escala</div><div class="value">baseada em indicadores</div></div>
+  </div>
+  <div class="note"><p class="small">A escala deve ser condicionada a dados: contratos, caixa, uso real das áreas, satisfação, inadimplência e capacidade operacional.</p></div>
+</section>
+
+<section class="slide">
+  <span class="eyebrow coral">Decisões necessárias</span><h2>Encaminhamentos para aprovação</h2><div class="divider"></div>
+  <div class="card">
+    <div class="row"><div class="label">1. Modelagem jurídica</div><div class="value">aprovar estrutura</div></div>
+    <div class="row"><div class="label">2. Condições comerciais</div><div class="value">validar tickets e regras</div></div>
+    <div class="row"><div class="label">3. Capacidade operacional</div><div class="value">definir limites</div></div>
+    <div class="row"><div class="label">4. Plano de canais</div><div class="value">praças e mídia</div></div>
+    <div class="row"><div class="label">5. Governança</div><div class="value">war room e KPIs</div></div>
+  </div>
+  <div class="note"><p class="small">Recomendação técnica: aprovar um piloto com parâmetros de controle, metas por frente e pontos formais de revisão antes da escala total.</p></div>
+</section>
+
+<footer class="footer">Morro dos Anjos · Projeto 50M · Confidencial</footer>
+</div>
+<button class="fab" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+</body>
+</html>
