@@ -44,7 +44,8 @@
     .fonte-metric .val { font-size: 14px; font-weight: 700; color: #1D1E46; }
     .chart-container { background: white; border-radius: 12px; padding: 16px; border: 1px solid #eee; margin-bottom: 16px; }
     .chart-title { font-size: 12px; font-weight: 600; color: #1D1E46; margin-bottom: 12px; }
-    .chart-wrapper { position: relative; height: 220px; }
+    .chart-wrapper { position: relative; height: 220px; min-width:0; overflow:hidden; }
+    .chart-wrapper canvas { max-width:100% !important; }
     .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; font-size: 11px; }
     .legend-item { display: flex; align-items: center; gap: 4px; }
     .legend-dot { width: 10px; height: 10px; border-radius: 2px; }
@@ -170,14 +171,14 @@
         <h1>Dashboard de Reputação</h1>
         <p>Morro dos Anjos · Águas Quentes Hotel Resort</p>
       </div>
-      <div style="margin-left: auto;"><span class="periodo-badge">Atualizado até 08/06/2026</span></div>
+      <div style="margin-left: auto;"><span class="periodo-badge">Atualizado até 15/06/2026</span></div>
     </div>
 
     <div class="kpi-grid">
-      <div class="kpi-card accent"><div class="kpi-label">NPS Médio</div><div class="kpi-value">+50</div><div class="kpi-sub">Zona de Qualidade</div></div>
-      <div class="kpi-card"><div class="kpi-label">Google Reviews</div><div class="kpi-value">4,3★</div><div class="kpi-sub">903 avaliações totais</div></div>
-      <div class="kpi-card aperfeicoamento"><div class="kpi-label">Reclame Aqui</div><div class="kpi-value">6,9</div><div class="kpi-sub">Reputação: Regular</div></div>
-      <div class="kpi-card"><div class="kpi-label">Aval. 5 Estrelas</div><div class="kpi-value">68,8%</div><div class="kpi-sub">5 estrelas Google</div></div>
+      <div class="kpi-card accent"><div class="kpi-label">NPS Médio</div><div class="kpi-value">+52</div><div class="kpi-sub">Zona de Qualidade</div></div>
+      <div class="kpi-card"><div class="kpi-label">Google Reviews</div><div class="kpi-value">4,3★</div><div class="kpi-sub">926 avaliações totais</div></div>
+      <div class="kpi-card accent"><div class="kpi-label">Reclame Aqui</div><div class="kpi-value">7,0</div><div class="kpi-sub">Reputação: Bom</div></div>
+      <div class="kpi-card"><div class="kpi-label">Aval. 5 Estrelas</div><div class="kpi-value">69,3%</div><div class="kpi-sub">5 estrelas Google</div></div>
     </div>
 
     <div class="section-title"><span class="icon" style="background:#00AEEF;">📊</span>Visão por Fonte de Reputação</div>
@@ -195,32 +196,32 @@
             <circle cx="80" cy="80" r="8" fill="#1D1E46"/><circle cx="80" cy="80" r="4" fill="white"/>
             <text x="12" y="88" font-size="9" fill="#999" font-family="Montserrat">-100</text><text x="136" y="88" font-size="9" fill="#999" font-family="Montserrat">+100</text>
           </svg>
-          <div class="gauge-value">+50</div><div class="gauge-label">pontos</div>
+          <div class="gauge-value">+52</div><div class="gauge-label">pontos</div>
         </div>
         <div class="fonte-metrics">
-          <div class="fonte-metric"><div class="label">Promotores</div><div class="val">67%</div></div>
-          <div class="fonte-metric"><div class="label">Detratores</div><div class="val">15%</div></div>
-          <div class="fonte-metric"><div class="label">Respostas</div><div class="val">409</div></div>
-          <div class="fonte-metric"><div class="label">Período</div><div class="val">Fev-26/08 Jun</div></div>
+          <div class="fonte-metric"><div class="label">Promotores</div><div class="val">66%</div></div>
+          <div class="fonte-metric"><div class="label">Detratores</div><div class="val">14%</div></div>
+          <div class="fonte-metric"><div class="label">Respostas</div><div class="val">444</div></div>
+          <div class="fonte-metric"><div class="label">Período</div><div class="val">Fev-26/15 Jun</div></div>
         </div>
       </div>
       <div class="fonte-card google">
         <div class="fonte-header"><span class="fonte-name">Google Reviews</span><span class="fonte-badge bom">Bom</span></div>
         <div class="fonte-main"><span class="value">4.3</span><span class="unit">estrelas</span></div>
         <div class="fonte-metrics">
-          <div class="fonte-metric"><div class="label">Total Aval.</div><div class="val">903</div></div>
-          <div class="fonte-metric"><div class="label">5 Estrelas</div><div class="val">68,8%</div></div>
+          <div class="fonte-metric"><div class="label">Total Aval.</div><div class="val">926</div></div>
+          <div class="fonte-metric"><div class="label">5 Estrelas</div><div class="val">69,3%</div></div>
           <div class="fonte-metric"><div class="label">Negativas</div><div class="val">14%</div></div>
-          <div class="fonte-metric"><div class="label">Média 2026</div><div class="val">4,36★</div></div>
+          <div class="fonte-metric"><div class="label">Média 2026</div><div class="val">4,34★</div></div>
         </div>
       </div>
       <div class="fonte-card reclame">
-        <div class="fonte-header"><span class="fonte-name">Reclame Aqui</span><span class="fonte-badge aperfeicoamento">Regular</span></div>
-        <div class="fonte-main"><span class="value">6,9</span><span class="unit">/ 10</span></div>
+        <div class="fonte-header"><span class="fonte-name">Reclame Aqui</span><span class="fonte-badge bom">Bom</span></div>
+        <div class="fonte-main"><span class="value">7,0</span><span class="unit">/ 10</span></div>
         <div class="fonte-metrics">
           <div class="fonte-metric"><div class="label">Respondidas</div><div class="val">94,4%</div></div>
-          <div class="fonte-metric"><div class="label">Resolvidas</div><div class="val">64%</div></div>
-          <div class="fonte-metric"><div class="label">Voltariam</div><div class="val">64%</div></div>
+          <div class="fonte-metric"><div class="label">Resolvidas</div><div class="val">65,4%</div></div>
+          <div class="fonte-metric"><div class="label">Voltariam</div><div class="val">65,4%</div></div>
           <div class="fonte-metric"><div class="label">Reclamações</div><div class="val">54</div></div>
         </div>
       </div>
@@ -261,24 +262,24 @@
         <div><div style="font-size:24px;font-weight:700;color:#29948F;">+58</div><div style="font-size:10px;color:#666;">Mar/26 · 112 resp.</div></div>
         <div><div style="font-size:24px;font-weight:700;color:#1D1E46;">+49</div><div style="font-size:10px;color:#666;">Abr/26 · 69 resp.</div></div>
         <div><div style="font-size:24px;font-weight:700;color:#F5C45D;">+45</div><div style="font-size:10px;color:#666;">Mai/26 · 110 resp.</div></div>
-        <div><div style="font-size:24px;font-weight:700;color:#29948F;">+76</div><div style="font-size:10px;color:#666;">Jun/26 · 25 resp.</div></div>
+        <div><div style="font-size:24px;font-weight:700;color:#29948F;">+63</div><div style="font-size:10px;color:#666;">Jun/26 · 60 resp.</div></div>
       </div>
     </div>
 
     <div class="section-title"><span class="icon" style="background:#F27466;">⭐</span>Distribuição de Notas Google (período completo)</div>
     <div class="chart-container">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-        <div><div class="chart-title">Por estrelas (699 avaliações analisadas)</div><div class="chart-wrapper" style="height:180px;"><canvas id="distChart"></canvas></div></div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;overflow:hidden;">
+        <div><div class="chart-title">Por estrelas (719 avaliações analisadas)</div><div class="chart-wrapper" style="height:180px;"><canvas id="distChart"></canvas></div></div>
         <div><div class="chart-title">Comparativo 2025 vs 2026</div><div class="chart-wrapper" style="height:180px;"><canvas id="yearChart"></canvas></div></div>
       </div>
     </div>
 
     <div class="section-title"><span class="icon" style="background:#00AEEF;">💡</span>Insights e Alertas</div>
     <div class="insights-grid">
-      <div class="insight-card success"><div class="insight-title">✓ NPS permanece na zona de qualidade</div><div class="insight-text">O NPS médio segue em +50, agora com 409 respostas entre fevereiro e 08/jun/26. A leitura geral permanece positiva, sustentada por 67% de promotores e 15% de detratores.</div></div>
-      <div class="insight-card success"><div class="insight-title">✓ Junho começa com leitura positiva no NPS</div><div class="insight-text">No recorte parcial de junho, o NPS aparece em +76, com 25 respostas. O dado é positivo, mas ainda deve ser acompanhado por se tratar de um mês em andamento.</div></div>
-      <div class="insight-card success"><div class="insight-title">✓ Google Reviews ganha volume e melhora mix</div><div class="insight-text">A nota geral segue em 4,3, agora com 903 avaliações totais. A participação de avaliações 5 estrelas chegou a 68,8%, enquanto as negativas representam 14%.</div></div>
-      <div class="insight-card alert"><div class="insight-title">→ Reclame Aqui segue Regular, mas evolui</div><div class="insight-text">A nota atual subiu para 6,9, com 94,4% das reclamações respondidas, 64% resolvidas e 64% de clientes que voltariam. O foco segue em elevar resolução e intenção de retorno.</div></div>
+      <div class="insight-card success"><div class="insight-title">✓ NPS permanece na zona de qualidade</div><div class="insight-text">O NPS médio avançou para +52, agora com 444 respostas entre fevereiro e 15/jun/26. A leitura geral permanece positiva, sustentada por 66% de promotores e 14% de detratores.</div></div>
+      <div class="insight-card success"><div class="insight-title">✓ Junho segue positivo no NPS</div><div class="insight-text">No recorte parcial de junho, o NPS aparece em +63, com 60 respostas. O dado é positivo, mas ainda deve ser acompanhado por se tratar de um mês em andamento.</div></div>
+      <div class="insight-card success"><div class="insight-title">✓ Google Reviews ganha volume e melhora mix</div><div class="insight-text">A nota geral segue em 4,3, agora com 926 avaliações totais. A participação de avaliações 5 estrelas chegou a 69,3%, enquanto as negativas representam 14%.</div></div>
+      <div class="insight-card alert"><div class="insight-title">→ Reclame Aqui melhora para Bom</div><div class="insight-text">A nota atual subiu para 7,0, com 94,4% das reclamações respondidas, 65,4% resolvidas e 65,4% de clientes que voltariam. O foco segue em elevar resolução e intenção de retorno.</div></div>
     </div>
 
 
@@ -291,9 +292,9 @@
     <div class="diag-grid">
       <div class="diag-card red">
         <div class="diag-label">Reclamações Críticas</div>
-        <div class="diag-num">145</div>
+        <div class="diag-num">148</div>
         <div class="diag-sub">avaliações 1–3 estrelas no período analisado</div>
-        <span class="diag-badge red">21,6% do total</span>
+        <span class="diag-badge red">20,6% da base analisada</span>
       </div>
       <div class="diag-card orange">
         <div class="diag-label">Temas Críticos Recorrentes</div>
@@ -309,20 +310,20 @@
       </div>
       <div class="diag-card yellow">
         <div class="diag-label">Efeito Projeto 5 Estrelas</div>
-        <div class="diag-num">38,5%</div>
-        <div class="diag-sub">das aval. 5★ mencionam colaboradores (177 de 459 — sem dupla contagem)</div>
+        <div class="diag-num">44,4%</div>
+        <div class="diag-sub">das aval. 5★ mencionam colaboradores (222 de 500 — sem dupla contagem)</div>
         <span class="diag-badge yellow">Viés de reputação induzida</span>
       </div>
     </div>
 
     <div class="diag-alert-box">
-      <strong>Atenção executiva:</strong> O crescimento das avaliações positivas deve ser lido junto ao conteúdo textual. Parte relevante dos elogios está associada à atuação individual de colaboradores, enquanto reclamações operacionais seguem recorrentes. A nota média não reflete, isoladamente, a evolução da experiência entregue.
+      <strong>Atenção executiva:</strong> O crescimento das avaliações positivas deve ser lido junto ao conteúdo textual. Parte relevante dos elogios segue associada à atuação individual de colaboradores, enquanto reclamações operacionais continuam recorrentes. A nota média não reflete, isoladamente, a evolução da experiência entregue.
     </div>
 
     <!-- ======================================================
          KPI: ÍNDICE DE RECORRÊNCIA CRÍTICA
     ======================================================= -->
-    <div class="section-title"><span class="icon" style="background:#F27466;">📌</span>Índice de Recorrência Crítica — Maio/2026</div>
+    <div class="section-title"><span class="icon" style="background:#F27466;">📌</span>Índice de Recorrência Crítica — Junho/2026 parcial</div>
     <div class="irc-banner">
       <div>
         <div class="irc-num">80%</div>
@@ -330,9 +331,9 @@
       <div>
         <div class="irc-label">Índice de Recorrência Crítica</div>
         <div class="irc-sub">
-          Maio/2026: <strong style="color:#F5C45D;">4 das 5 principais dores</strong> já haviam aparecido em meses anteriores.<br>
-          Fórmula: Temas críticos recorrentes no mês atual ÷ Total de temas críticos do mês atual.<br>
-          Este índice é o indicador mais relevante de evolução operacional real — mais do que a nota média.
+          Junho/2026 parcial: <strong style="color:#F5C45D;">8 dos 10 temas críticos monitorados</strong> já aparecem nas avaliações até 15/06.<br>
+          Fórmula: Temas críticos recorrentes no mês atual ÷ Total de temas críticos monitorados.<br>
+          O dado ainda é parcial, mas reforça que a leitura operacional precisa acompanhar recorrência, não apenas nota média.
         </div>
         <span class="irc-tag">⚠ Baixa evolução operacional detectada</span>
       </div>
@@ -444,47 +445,47 @@
     <!-- ======================================================
          TOP 5 DORES — MAIO/2026
     ======================================================= -->
-    <div class="section-title"><span class="icon" style="background:#F27466;">🩺</span>Top 5 Dores Críticas — Maio/2026</div>
+    <div class="section-title"><span class="icon" style="background:#F27466;">🩺</span>Top 5 Dores Críticas — 2026 até 15/06</div>
     <div class="top5-grid">
       <div class="top5-card">
         <div class="top5-rank">#1</div>
-        <div class="top5-theme">Pós-venda / Cancelamento</div>
-        <div class="top5-count">5</div><div class="top5-label">menções</div>
-        <div><span class="top5-sector">Comercial / Pós-venda</span></div>
+        <div class="top5-theme">Alimentação / Restaurante</div>
+        <div class="top5-count">51</div><div class="top5-label">menções</div>
+        <div><span class="top5-sector">Alimentos e Bebidas</span></div>
         <div class="top5-gravity alta">● Alta gravidade</div>
-        <div class="top5-desc">Hóspedes relatam meses sem resposta a solicitações simples, cobranças de 100% em cancelamentos e incapacidade dos gestores de resolver.</div>
+        <div class="top5-desc">Queixas sobre comida fria, repetição, baixa variedade e sobremesas abaixo da expectativa. O tema segue aparecendo em avaliações recentes.</div>
       </div>
       <div class="top5-card">
         <div class="top5-rank">#2</div>
-        <div class="top5-theme">Alimentação / Restaurante</div>
-        <div class="top5-count">5</div><div class="top5-label">menções</div>
-        <div><span class="top5-sector">Alimentos e Bebidas</span></div>
+        <div class="top5-theme">Quarto / Manutenção / Limpeza</div>
+        <div class="top5-count">47</div><div class="top5-label">menções</div>
+        <div><span class="top5-sector">Governança / Manutenção</span></div>
         <div class="top5-gravity alta">● Alta gravidade</div>
-        <div class="top5-desc">Comida repetitiva, falta de variedade, modesta. Registro de relato de intoxicação alimentar em grupo de aproximadamente 30 hóspedes.</div>
+        <div class="top5-desc">Relatos de quarto sujo, banheiro com sujeira, itens ausentes, problemas de acústica, chuveiro e manutenção sem resolução percebida.</div>
       </div>
       <div class="top5-card">
         <div class="top5-rank">#3</div>
-        <div class="top5-theme">Quarto / Manutenção / Limpeza</div>
-        <div class="top5-count">4</div><div class="top5-label">menções</div>
-        <div><span class="top5-sector">Governança / Manutenção</span></div>
-        <div class="top5-gravity alta">● Alta gravidade</div>
-        <div class="top5-desc">Quarto sem tapete, sem secador de cabelo, sem amenities, chuveiro sem pressão. Problemas não resolvidos mesmo com chamado à manutenção.</div>
+        <div class="top5-theme">Atendimento</div>
+        <div class="top5-count">43</div><div class="top5-label">menções</div>
+        <div><span class="top5-sector">Atendimento</span></div>
+        <div class="top5-gravity media">● Média gravidade</div>
+        <div class="top5-desc">Apesar dos elogios ao time em avaliações positivas, avaliações críticas ainda citam falhas de atendimento, retorno e condução de conflitos.</div>
       </div>
       <div class="top5-card">
         <div class="top5-rank">#4</div>
-        <div class="top5-theme">Atendimento</div>
-        <div class="top5-count">4</div><div class="top5-label">menções</div>
-        <div><span class="top5-sector">Atendimento</span></div>
+        <div class="top5-theme">Estrutura / Obras / Barro</div>
+        <div class="top5-count">34</div><div class="top5-label">menções</div>
+        <div><span class="top5-sector">Infraestrutura</span></div>
         <div class="top5-gravity media">● Média gravidade</div>
-        <div class="top5-desc">Funcionários desatentos, pouco simpáticos. Atendimento na recepção com comportamento inadequado. Gestores sem habilidade para resolver conflitos.</div>
+        <div class="top5-desc">A percepção de produto ainda em consolidação aparece em comentários sobre acesso, obras, sinalização, acabamento e áreas em desenvolvimento.</div>
       </div>
       <div class="top5-card">
         <div class="top5-rank">#5</div>
         <div class="top5-theme">Águas / Temperatura</div>
-        <div class="top5-count">3</div><div class="top5-label">menções</div>
+        <div class="top5-count">33</div><div class="top5-label">menções</div>
         <div><span class="top5-sector">Infraestrutura</span></div>
         <div class="top5-gravity media">● Média gravidade</div>
-        <div class="top5-desc">Piscina fria, ofurô frio, chuveiro sem água quente. Reclamações registradas mais de três vezes e não resolvidas durante a estadia.</div>
+        <div class="top5-desc">Piscina, ofurô e chuveiro com temperatura abaixo do esperado continuam sendo pontos sensíveis no histórico de avaliações.</div>
       </div>
     </div>
 
@@ -495,6 +496,16 @@
     <div style="font-size:10px;color:#888;margin:-8px 0 12px;">Trechos representativos de avaliações críticas (identidades omitidas). Priorizados por recorrência e representatividade.</div>
     <div class="vozes-grid">
       <div class="voz-card">
+        <div class="voz-stars">★★★ 3 estrelas · Jun/26</div>
+        <div class="voz-quote">O local é legal, mas tem alguns pontos que deixam a desejar. O quarto estava sujo, a alimentação poderia ser melhor, eventos foram cancelados sem aviso e a acústica é péssima.</div>
+        <span class="voz-tag">Múltiplas dores</span>
+      </div>
+      <div class="voz-card">
+        <div class="voz-stars">★★★ 3 estrelas · Jun/26</div>
+        <div class="voz-quote">A estrutura é moderna, a piscina aquecida é muito boa. O acesso é horrível. A comida fria, os piores risotos que já comi.</div>
+        <span class="voz-tag">Acesso / Alimentação</span>
+      </div>
+      <div class="voz-card">
         <div class="voz-stars">★★ 2 estrelas · Mai/26</div>
         <div class="voz-quote">Estou há meses tentando resolver uma simples situação e não conseguem — inclusive já passei até por gestores do hotel e não têm habilidade para resolver.</div>
         <span class="voz-tag">Pós-venda / Cancelamento</span>
@@ -503,16 +514,6 @@
         <div class="voz-stars">★★ 2 estrelas · Mai/26</div>
         <div class="voz-quote">Falta muita coisa para ser feita ainda. A piscina não estava muito quente, o ofurô estava frio. A comida era repetida, não tinha variedade. O atendimento foi ruim.</div>
         <span class="voz-tag">Múltiplas dores</span>
-      </div>
-      <div class="voz-card">
-        <div class="voz-stars">★ 1 estrela · Mai/26</div>
-        <div class="voz-quote">Minha esposa e meu filho pegaram intoxicação alimentar junto com mais uns 30 hóspedes. Informei à administração no dia seguinte e não recebemos nada.</div>
-        <span class="voz-tag">Alimentação / Segurança</span>
-      </div>
-      <div class="voz-card">
-        <div class="voz-stars">★★ 2 estrelas · Mai/26</div>
-        <div class="voz-quote">Três reclamações de que a água não estava esquentando e mesmo assim não resolveram.</div>
-        <span class="voz-tag">Águas / Temperatura</span>
       </div>
       <div class="voz-card">
         <div class="voz-stars">★★ 2 estrelas · Mai/26</div>
@@ -534,11 +535,11 @@
       As avaliações positivas reforçam o valor do atendimento humano, mas nem sempre comprovam evolução estrutural da experiência. Por isso, o elogio ao colaborador deve ser analisado separadamente do elogio ao produto-resort.
     </div>
 
-    <!-- 459 avaliações 5★ divididas em 4 categorias sem dupla contagem:
-         Só colaborador: 65 (14,2%)
-         Só produto: 90 (19,6%)
-         Ambos: 112 (24,4%)
-         Genérico/sem texto: 192 (41,8%)  [105 sem info útil + 87 sem texto = 192]
+    <!-- 500 avaliações 5★ divididas em 4 categorias sem dupla contagem:
+         Só colaborador: 84 (16,8%)
+         Só produto: 83 (16,6%)
+         Ambos: 138 (27,6%)
+         Sem texto útil: 195 (39,0%)
     -->
     <div class="chart-container" style="margin-bottom:20px;">
       <div style="display:grid;grid-template-columns:220px 1fr;gap:24px;align-items:center;">
@@ -546,13 +547,13 @@
         <div style="position:relative;display:flex;align-items:center;justify-content:center;">
           <canvas id="elogioDonut" width="200" height="200"></canvas>
           <div style="position:absolute;text-align:center;pointer-events:none;">
-            <div style="font-size:28px;font-weight:700;color:#1D1E46;line-height:1;">459</div>
+            <div style="font-size:28px;font-weight:700;color:#1D1E46;line-height:1;">500</div>
             <div style="font-size:10px;color:#888;">aval. 5★</div>
           </div>
         </div>
         <!-- Legenda detalhada -->
         <div>
-          <div style="font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;">Distribuição das 459 avaliações 5★ — sem dupla contagem</div>
+          <div style="font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;">Distribuição das 500 avaliações 5★ — sem dupla contagem</div>
 
           <!-- Só colaborador -->
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
@@ -560,9 +561,9 @@
             <div style="flex:1;">
               <div style="display:flex;justify-content:space-between;align-items:baseline;">
                 <span style="font-size:12px;font-weight:700;color:#1D1E46;">🤝 Só colaborador / atendimento</span>
-                <span style="font-size:13px;font-weight:700;color:#29948F;">65 &nbsp;<span style="font-size:10px;color:#888;font-weight:400;">14,2%</span></span>
+                <span style="font-size:13px;font-weight:700;color:#29948F;">84 &nbsp;<span style="font-size:10px;color:#888;font-weight:400;">16,8%</span></span>
               </div>
-              <div style="background:#eee;border-radius:6px;height:6px;margin-top:4px;"><div style="width:14.2%;background:#29948F;height:6px;border-radius:6px;"></div></div>
+              <div style="background:#eee;border-radius:6px;height:6px;margin-top:4px;"><div style="width:16.8%;background:#29948F;height:6px;border-radius:6px;"></div></div>
               <div style="font-size:10px;color:#888;margin-top:3px;">Elogia exclusivamente pessoas — nome, simpatia, prestatividade</div>
             </div>
           </div>
@@ -573,9 +574,9 @@
             <div style="flex:1;">
               <div style="display:flex;justify-content:space-between;align-items:baseline;">
                 <span style="font-size:12px;font-weight:700;color:#1D1E46;">🏊 Só produto / resort</span>
-                <span style="font-size:13px;font-weight:700;color:#00AEEF;">90 &nbsp;<span style="font-size:10px;color:#888;font-weight:400;">19,6%</span></span>
+                <span style="font-size:13px;font-weight:700;color:#00AEEF;">83 &nbsp;<span style="font-size:10px;color:#888;font-weight:400;">16,6%</span></span>
               </div>
-              <div style="background:#eee;border-radius:6px;height:6px;margin-top:4px;"><div style="width:19.6%;background:#00AEEF;height:6px;border-radius:6px;"></div></div>
+              <div style="background:#eee;border-radius:6px;height:6px;margin-top:4px;"><div style="width:16.6%;background:#00AEEF;height:6px;border-radius:6px;"></div></div>
               <div style="font-size:10px;color:#888;margin-top:3px;">Elogia águas, estrutura, quarto, lazer, alimentação</div>
             </div>
           </div>
@@ -586,9 +587,9 @@
             <div style="flex:1;">
               <div style="display:flex;justify-content:space-between;align-items:baseline;">
                 <span style="font-size:12px;font-weight:700;color:#1D1E46;">✨ Colaborador + produto</span>
-                <span style="font-size:13px;font-weight:700;color:#F5A623;">112 &nbsp;<span style="font-size:10px;color:#888;font-weight:400;">24,4%</span></span>
+                <span style="font-size:13px;font-weight:700;color:#F5A623;">138 &nbsp;<span style="font-size:10px;color:#888;font-weight:400;">27,6%</span></span>
               </div>
-              <div style="background:#eee;border-radius:6px;height:6px;margin-top:4px;"><div style="width:24.4%;background:#F5A623;height:6px;border-radius:6px;"></div></div>
+              <div style="background:#eee;border-radius:6px;height:6px;margin-top:4px;"><div style="width:27.6%;background:#F5A623;height:6px;border-radius:6px;"></div></div>
               <div style="font-size:10px;color:#888;margin-top:3px;">Menciona ambos — o mais completo em termos de experiência</div>
             </div>
           </div>
@@ -599,10 +600,10 @@
             <div style="flex:1;">
               <div style="display:flex;justify-content:space-between;align-items:baseline;">
                 <span style="font-size:12px;font-weight:700;color:#1D1E46;">💬 Sem texto útil / nota apenas</span>
-                <span style="font-size:13px;font-weight:700;color:#999;">192 &nbsp;<span style="font-size:10px;color:#888;font-weight:400;">41,8%</span></span>
+                <span style="font-size:13px;font-weight:700;color:#999;">195 &nbsp;<span style="font-size:10px;color:#888;font-weight:400;">39,0%</span></span>
               </div>
-              <div style="background:#eee;border-radius:6px;height:6px;margin-top:4px;"><div style="width:41.8%;background:#ddd;height:6px;border-radius:6px;"></div></div>
-              <div style="font-size:10px;color:#888;margin-top:3px;">105 genéricos ("ótimo!", sem detalhe) + 87 só com nota, sem comentário</div>
+              <div style="background:#eee;border-radius:6px;height:6px;margin-top:4px;"><div style="width:39.0%;background:#ddd;height:6px;border-radius:6px;"></div></div>
+              <div style="font-size:10px;color:#888;margin-top:3px;">Comentários genéricos, sem detalhe operacional, ou avaliações apenas com nota</div>
             </div>
           </div>
         </div>
@@ -610,7 +611,7 @@
     </div>
 
     <div style="background:#FFF7E6;border:1px solid #F5C45D;border-radius:8px;padding:12px 16px;font-size:11px;color:#1D1E46;margin-bottom:20px;line-height:1.6;">
-      <strong style="color:#D4880A;">Leitura importante:</strong> Das 459 avaliações de 5 estrelas, <strong>177 (38,5%)</strong> mencionam colaboradores — seja exclusivamente (65) ou junto ao produto (112). Isso indica que o <strong>Projeto 5 Estrelas</strong> gera avaliações genuínas de satisfação com atendimento, mas apenas <strong>19,6% elogiam exclusivamente o produto-resort</strong>. A reputação aparente positiva é sustentada, em parte, por excelência individual, não sistêmica.
+      <strong style="color:#D4880A;">Leitura importante:</strong> Das 500 avaliações de 5 estrelas analisadas, <strong>222 (44,4%)</strong> mencionam colaboradores — seja exclusivamente (84) ou junto ao produto (138). Isso indica que o <strong>Projeto 5 Estrelas</strong> segue gerando avaliações genuínas de satisfação com atendimento, mas apenas <strong>16,6% elogiam exclusivamente o produto-resort</strong>. A reputação aparente positiva é sustentada, em parte, por excelência individual, não sistêmica.
     </div>
 
     <!-- ======================================================
@@ -618,13 +619,13 @@
     ======================================================= -->
     <div class="section-title"><span class="icon" style="background:#00AEEF;">📋</span>Leitura Executiva</div>
     <div class="exec-box">
-      <h3>Análise Consolidada · Até 31 de Maio de 2026</h3>
+      <h3>Análise Consolidada · Até 15 de Junho de 2026</h3>
       <p>Apesar da melhora na nota média do Google, as avaliações críticas indicam <strong>permanência de problemas estruturais e operacionais desde a abertura do resort</strong>. A evolução da reputação está sendo sustentada, em parte, por avaliações positivas ligadas ao atendimento individual de colaboradores, enquanto dores relacionadas a <strong>alimentação, estrutura, manutenção, temperatura da água, acessibilidade e pós-venda</strong> seguem aparecendo.</p>
-      <p>Todos os 10 temas críticos identificados na abertura, em <strong>abril de 2025</strong>, continuam presentes em <strong>maio de 2026</strong> — mais de um ano depois. O Índice de Recorrência Crítica de <strong>80%</strong> em maio/26 confirma que a maioria das dores atuais não é nova: são os mesmos problemas antigos.</p>
-      <p>Portanto, o <strong>indicador principal de evolução não deve ser apenas a nota média</strong>, mas a redução mensal da recorrência dos temas críticos. Enquanto as mesmas reclamações seguirem aparecendo mês a mês, a melhora observada na nota Google reflete principalmente o efeito do Projeto 5 Estrelas — que é positivo para reputação aparente, mas não substitui a melhoria operacional real.</p>
+      <p>Todos os 10 temas críticos identificados na abertura, em <strong>abril de 2025</strong>, seguem presentes no histórico de 2026 — mais de um ano depois. O Índice de Recorrência Crítica de <strong>80%</strong> no parcial de junho/26 indica que a maioria das dores monitoradas continua aparecendo, ainda que em menor volume neste início de mês.</p>
+      <p>Portanto, o <strong>indicador principal de evolução não deve ser apenas a nota média</strong>, mas a redução mensal da recorrência dos temas críticos. Enquanto as mesmas reclamações seguirem aparecendo mês a mês, a melhora observada na nota Google deve ser lida junto ao efeito do Projeto 5 Estrelas — positivo para reputação aparente, mas insuficiente como evidência isolada de melhoria operacional real.</p>
     </div>
 
-    <div class="footer"><div class="footer-text">Dados atualizados até 08/06/2026 · Dashboard semanal de reputação</div><div class="footer-text" style="color:#00AEEF;font-weight:600;">Morro dos Anjos Resort</div></div>
+    <div class="footer"><div class="footer-text">Dados atualizados até 15/06/2026 · Dashboard semanal de reputação</div><div class="footer-text" style="color:#00AEEF;font-weight:600;">Morro dos Anjos Resort</div></div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
@@ -633,23 +634,23 @@
     const gridColor = 'rgba(0,0,0,0.05)';
     const googleData = {
       labels: ["Jan/25", "Fev/25", "Mar/25", "Abr/25", "Mai/25", "Jun/25", "Jul/25", "Ago/25", "Set/25", "Out/25", "Nov/25", "Dez/25", "Jan/26", "Fev/26", "Mar/26", "Abr/26", "Mai/26", "Jun/26"],
-      volumes: [6, 5, 9, 8, 25, 20, 35, 23, 17, 22, 57, 40, 46, 52, 49, 155, 104, 26],
-      notas: [4.17, 3.8, 4.67, 2.63, 3.88, 4.05, 3.94, 3.87, 3.82, 4.05, 4.21, 4.28, 4.17, 3.79, 4.31, 4.41, 4.58, 4.88]
+      volumes: [6, 5, 9, 8, 25, 20, 35, 23, 17, 22, 57, 40, 46, 52, 49, 152, 104, 49],
+      notas: [4.17, 3.8, 4.67, 2.62, 3.88, 4.05, 3.94, 3.87, 3.82, 4.05, 4.21, 4.28, 4.17, 3.79, 4.31, 4.49, 4.58, 4.8]
     };
     new Chart(document.getElementById('googleChart'), {
       type: 'bar', data: { labels: googleData.labels, datasets: [{ type:'bar', label:'Avaliações', data: googleData.volumes, backgroundColor:'#00AEEF', borderRadius:4, yAxisID:'y' }, { type:'line', label:'Nota média', data: googleData.notas, borderColor:'#F27466', backgroundColor:'transparent', borderWidth:3, pointBackgroundColor:'#F27466', pointRadius:4, tension:0.3, yAxisID:'y1' }] },
       options: { responsive:true, maintainAspectRatio:false, interaction:{ intersect:false, mode:'index' }, plugins:{ legend:{ display:false } }, scales:{ x:{ grid:{ display:false }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' }, maxRotation:45 } }, y:{ position:'left', grid:{ color:gridColor }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' } }, title:{ display:true, text:'Qtd. avaliações', color:textColor, font:{ size:10, family:'Montserrat' } } }, y1:{ position:'right', min:1, max:5, grid:{ display:false }, ticks:{ color:'#F27466', font:{ size:10, family:'Montserrat' }, callback:v=>v.toFixed(1)+'★' }, title:{ display:true, text:'Nota média', color:'#F27466', font:{ size:10, family:'Montserrat' } } } } }
     });
     new Chart(document.getElementById('npsEvolutionChart'), {
-      type:'bar', data:{ labels:["Fevereiro 2026", "Março 2026", "Abril 2026", "Maio 2026", "Junho 2026"], datasets:[{ label:'Detratores', data:[17.2, 8.9, 15.9, 20.0, 4.0], backgroundColor:'#F27466', borderRadius:0 },{ label:'Neutros', data:[17.2, 24.1, 18.8, 15.5, 16.0], backgroundColor:'#F5C45D', borderRadius:0 },{ label:'Promotores', data:[65.6, 67.0, 65.2, 64.5, 80.0], backgroundColor:'#29948F', borderRadius:{ topLeft:4, topRight:4 } }] },
+      type:'bar', data:{ labels:["Fevereiro 2026", "Março 2026", "Abril 2026", "Maio 2026", "Junho 2026"], datasets:[{ label:'Detratores', data:[17.2, 8.9, 15.9, 20.0, 8.3], backgroundColor:'#F27466', borderRadius:0 },{ label:'Neutros', data:[17.2, 24.1, 18.8, 15.5, 20.0], backgroundColor:'#F5C45D', borderRadius:0 },{ label:'Promotores', data:[65.6, 67.0, 65.2, 64.5, 71.7], backgroundColor:'#29948F', borderRadius:{ topLeft:4, topRight:4 } }] },
       options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ x:{ stacked:true, grid:{ display:false }, ticks:{ color:textColor, font:{ size:11, family:'Montserrat' } } }, y:{ stacked:true, max:100, grid:{ color:gridColor }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' }, callback:v=>v+'%' } } } }
     });
     new Chart(document.getElementById('distChart'), {
-      type:'doughnut', data:{ labels:['5 estrelas','4 estrelas','3 estrelas','2 estrelas','1 estrela'], datasets:[{ data:[481, 70, 44, 45, 56], backgroundColor:['#29948F','#00AEEF','#F5C45D','#F27466','#1D1E46'], borderWidth:0 }] },
+      type:'doughnut', data:{ labels:['5 estrelas','4 estrelas','3 estrelas','2 estrelas','1 estrela'], datasets:[{ data:[500, 71, 47, 45, 56], backgroundColor:['#29948F','#00AEEF','#F5C45D','#F27466','#1D1E46'], borderWidth:0 }] },
       options:{ responsive:true, maintainAspectRatio:false, cutout:'60%', plugins:{ legend:{ position:'right', labels:{ color:textColor, font:{ size:10, family:'Montserrat' }, boxWidth:12, padding:8 } } } }
     });
     new Chart(document.getElementById('yearChart'), {
-      type:'bar', data:{ labels:['5★','4★','3★','2★','1★'], datasets:[{ label:'2025', data:[170, 24, 18, 22, 33], backgroundColor:'#1D1E46', borderRadius:4 },{ label:'2026', data:[311, 46, 26, 23, 23], backgroundColor:'#00AEEF', borderRadius:4 }] },
+      type:'bar', data:{ labels:['5★','4★','3★','2★','1★'], datasets:[{ label:'2025', data:[170, 24, 18, 22, 33], backgroundColor:'#1D1E46', borderRadius:4 },{ label:'2026', data:[330, 47, 29, 23, 23], backgroundColor:'#00AEEF', borderRadius:4 }] },
       options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'top', labels:{ color:textColor, font:{ size:10, family:'Montserrat' }, boxWidth:12 } } }, scales:{ x:{ grid:{ display:false }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' } } }, y:{ grid:{ color:gridColor }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' } } } } }
     });
   
@@ -667,18 +668,18 @@
         'Preço / Custo-benefício',
         'Expectativa Frustrada',
       ];
-      const months = ['Abr/25','Mai/25','Jun/25','Jul/25','Ago/25','Set/25','Out/25','Nov/25','Dez/25','Jan/26','Fev/26','Mar/26','Abr/26','Mai/26'];
+      const months = ['Abr/25','Mai/25','Jun/25','Jul/25','Ago/25','Set/25','Out/25','Nov/25','Dez/25','Jan/26','Fev/26','Mar/26','Abr/26','Mai/26','Jun/26'];
       const data = [
-        [5, 7, 4, 7, 6, 4, 4,10, 6, 7, 8,10,16, 5],
-        [5, 5, 4, 7, 4, 3, 2, 9, 4, 8, 6, 4, 9, 4],
-        [5, 7, 3, 7, 4, 4, 6,11, 5, 9,10,10,15, 4],
-        [3, 5, 3, 6, 5, 4, 4,10, 4, 7,11, 9,14, 3],
-        [5, 2, 1, 2, 2, 1, 1, 5, 3, 4, 5, 3, 5, 1],
-        [2, 2, 2, 2, 1, 1, 2, 4, 2, 4, 4, 1, 4, 5],
-        [5, 3, 2, 4, 3, 2, 4, 6, 2, 3, 5, 5, 8, 2],
-        [4, 8, 2, 9, 5, 3, 7, 9, 5, 8, 8, 9,13, 4],
-        [3, 4, 2, 3, 2, 0, 1, 2, 1, 7, 3, 1, 7, 1],
-        [1, 1, 0, 2, 0, 1, 0, 1, 1, 1, 2, 1, 1, 1],
+        [5, 7, 4, 7, 6, 4, 4,10, 6, 7, 8,10,16, 5, 2],
+        [5, 5, 4, 7, 4, 3, 2, 9, 4, 8, 6, 4, 9, 4, 1],
+        [5, 7, 3, 7, 4, 4, 6,11, 5, 9,10,10,15, 4, 1],
+        [3, 5, 3, 6, 5, 4, 4,10, 4, 7,11, 9,14, 3, 1],
+        [5, 2, 1, 2, 2, 1, 1, 5, 3, 4, 5, 3, 5, 1, 2],
+        [2, 2, 2, 2, 1, 1, 2, 4, 2, 4, 4, 1, 4, 5, 0],
+        [5, 3, 2, 4, 3, 2, 4, 6, 2, 3, 5, 5, 8, 2, 1],
+        [4, 8, 2, 9, 5, 3, 7, 9, 5, 8, 8, 9,13, 4, 0],
+        [3, 4, 2, 3, 2, 0, 1, 2, 1, 7, 3, 1, 7, 1, 1],
+        [1, 1, 0, 2, 0, 1, 0, 1, 1, 1, 2, 1, 1, 1, 1],
       ];
       function hmClass(v) {
         if (v === 0) return 'hm-0';
@@ -710,7 +711,7 @@
       data: {
         labels: ['Só colaborador', 'Só produto', 'Colaborador + produto', 'Sem texto útil'],
         datasets: [{
-          data: [65, 90, 112, 192],
+          data: [84, 83, 138, 195],
           backgroundColor: ['#29948F', '#00AEEF', '#F5A623', '#E0E0E0'],
           borderWidth: 0,
           hoverOffset: 6
@@ -724,7 +725,7 @@
           tooltip: {
             callbacks: {
               label: function(ctx) {
-                var pct = ((ctx.parsed / 459) * 100).toFixed(1);
+                var pct = ((ctx.parsed / 500) * 100).toFixed(1);
                 return ' ' + ctx.label + ': ' + ctx.parsed + ' (' + pct + '%)';
               }
             }
