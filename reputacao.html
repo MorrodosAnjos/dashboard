@@ -44,7 +44,10 @@
     .fonte-metric .val { font-size: 14px; font-weight: 700; color: #1D1E46; }
     .chart-container { background: white; border-radius: 12px; padding: 16px; border: 1px solid #eee; margin-bottom: 16px; }
     .chart-title { font-size: 12px; font-weight: 600; color: #1D1E46; margin-bottom: 12px; }
-    .chart-wrapper { position: relative; height: 220px; }
+    .chart-wrapper { position: relative; height: 220px; width: 100%; min-width: 0; overflow: hidden; }
+    .chart-wrapper canvas { width: 100% !important; max-width: 100% !important; height: 100% !important; }
+    .google-distribution-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 16px; align-items: stretch; }
+    .google-distribution-grid > div { min-width: 0; overflow: hidden; }
     .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; font-size: 11px; }
     .legend-item { display: flex; align-items: center; gap: 4px; }
     .legend-dot { width: 10px; height: 10px; border-radius: 2px; }
@@ -66,7 +69,7 @@
     .insight-text { font-size: 10px; color: #666; line-height: 1.4; }
     .footer { margin-top: 24px; padding-top: 16px; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
     .footer-text { font-size: 10px; color: #999; }
-    @media (max-width: 900px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } .fonte-row { grid-template-columns: 1fr; } .insights-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } .fonte-row { grid-template-columns: 1fr; } .insights-grid { grid-template-columns: 1fr; } .google-distribution-grid { grid-template-columns: 1fr; } }
     @media print { body { background: white; padding: 0; } .dashboard { box-shadow: none; } }
   </style>
 </head>
@@ -78,14 +81,14 @@
         <h1>Dashboard de Reputação</h1>
         <p>Morro dos Anjos · Águas Quentes Hotel Resort</p>
       </div>
-      <div style="margin-left: auto;"><span class="periodo-badge">Atualização semanal · Fev a 08/Jun/26</span></div>
+      <div style="margin-left: auto;"><span class="periodo-badge">Atualização semanal · Fev a 15/Jun/26</span></div>
     </div>
 
     <div class="kpi-grid">
-      <div class="kpi-card accent"><div class="kpi-label">NPS Médio</div><div class="kpi-value">+50</div><div class="kpi-sub">Zona de Qualidade</div></div>
-      <div class="kpi-card"><div class="kpi-label">Google Reviews</div><div class="kpi-value">4,3★</div><div class="kpi-sub">903 avaliações totais</div></div>
-      <div class="kpi-card aperfeicoamento"><div class="kpi-label">Reclame Aqui</div><div class="kpi-value">6,9</div><div class="kpi-sub">Reputação: Regular</div></div>
-      <div class="kpi-card"><div class="kpi-label">Aval. 5 Estrelas</div><div class="kpi-value">68,8%</div><div class="kpi-sub">share geral Google</div></div>
+      <div class="kpi-card accent"><div class="kpi-label">NPS Médio</div><div class="kpi-value">+52</div><div class="kpi-sub">Zona de Qualidade</div></div>
+      <div class="kpi-card"><div class="kpi-label">Google Reviews</div><div class="kpi-value">4,3★</div><div class="kpi-sub">926 avaliações totais</div></div>
+      <div class="kpi-card accent"><div class="kpi-label">Reclame Aqui</div><div class="kpi-value">7,0</div><div class="kpi-sub">Reputação: Bom</div></div>
+      <div class="kpi-card"><div class="kpi-label">Aval. 5 Estrelas</div><div class="kpi-value">69,3%</div><div class="kpi-sub">share geral Google</div></div>
     </div>
 
     <div class="section-title"><span class="icon" style="background:#00AEEF;">📊</span>Visão por Fonte de Reputação</div>
@@ -99,36 +102,36 @@
             <path d="M 80 20 A 60 60 0 0 1 125 35" fill="none" stroke="#F5C45D" stroke-width="12"/>
             <path d="M 125 35 A 60 60 0 0 1 138 55" fill="none" stroke="#00AEEF" stroke-width="12"/>
             <path d="M 138 55 A 60 60 0 0 1 140 80" fill="none" stroke="#29948F" stroke-width="12" stroke-linecap="round"/>
-            <line x1="80" y1="80" x2="80" y2="30" stroke="#1D1E46" stroke-width="3" stroke-linecap="round" transform="rotate(46,80,80)"/>
+            <line x1="80" y1="80" x2="80" y2="30" stroke="#1D1E46" stroke-width="3" stroke-linecap="round" transform="rotate(47,80,80)"/>
             <circle cx="80" cy="80" r="8" fill="#1D1E46"/><circle cx="80" cy="80" r="4" fill="white"/>
             <text x="12" y="88" font-size="9" fill="#999" font-family="Montserrat">-100</text><text x="136" y="88" font-size="9" fill="#999" font-family="Montserrat">+100</text>
           </svg>
-          <div class="gauge-value">+50</div><div class="gauge-label">pontos</div>
+          <div class="gauge-value">+52</div><div class="gauge-label">pontos</div>
         </div>
         <div class="fonte-metrics">
-          <div class="fonte-metric"><div class="label">Promotores</div><div class="val">67%</div></div>
-          <div class="fonte-metric"><div class="label">Detratores</div><div class="val">15%</div></div>
-          <div class="fonte-metric"><div class="label">Respostas</div><div class="val">409</div></div>
-          <div class="fonte-metric"><div class="label">Período</div><div class="val">Fev-26/08 Jun</div></div>
+          <div class="fonte-metric"><div class="label">Promotores</div><div class="val">66%</div></div>
+          <div class="fonte-metric"><div class="label">Detratores</div><div class="val">14%</div></div>
+          <div class="fonte-metric"><div class="label">Respostas</div><div class="val">444</div></div>
+          <div class="fonte-metric"><div class="label">Período</div><div class="val">Fev-26/15 Jun</div></div>
         </div>
       </div>
       <div class="fonte-card google">
         <div class="fonte-header"><span class="fonte-name">Google Reviews</span><span class="fonte-badge bom">Bom</span></div>
         <div class="fonte-main"><span class="value">4.3</span><span class="unit">estrelas</span></div>
         <div class="fonte-metrics">
-          <div class="fonte-metric"><div class="label">Total Aval.</div><div class="val">903</div></div>
-          <div class="fonte-metric"><div class="label">5 Estrelas</div><div class="val">68,8%</div></div>
+          <div class="fonte-metric"><div class="label">Total Aval.</div><div class="val">926</div></div>
+          <div class="fonte-metric"><div class="label">5 Estrelas</div><div class="val">69,3%</div></div>
           <div class="fonte-metric"><div class="label">Negativas</div><div class="val">14%</div></div>
-          <div class="fonte-metric"><div class="label">Média 2026</div><div class="val">4,36★</div></div>
+          <div class="fonte-metric"><div class="label">Média 2026</div><div class="val">4,34★</div></div>
         </div>
       </div>
       <div class="fonte-card reclame">
-        <div class="fonte-header"><span class="fonte-name">Reclame Aqui</span><span class="fonte-badge aperfeicoamento">Regular</span></div>
-        <div class="fonte-main"><span class="value">6,9</span><span class="unit">/ 10</span></div>
+        <div class="fonte-header"><span class="fonte-name">Reclame Aqui</span><span class="fonte-badge bom">Regular</span></div>
+        <div class="fonte-main"><span class="value">7,0</span><span class="unit">/ 10</span></div>
         <div class="fonte-metrics">
           <div class="fonte-metric"><div class="label">Respondidas</div><div class="val">94,4%</div></div>
-          <div class="fonte-metric"><div class="label">Resolvidas</div><div class="val">64%</div></div>
-          <div class="fonte-metric"><div class="label">Voltariam</div><div class="val">64%</div></div>
+          <div class="fonte-metric"><div class="label">Resolvidas</div><div class="val">65,4%</div></div>
+          <div class="fonte-metric"><div class="label">Voltariam</div><div class="val">65,4%</div></div>
           <div class="fonte-metric"><div class="label">Reclamações</div><div class="val">54</div></div>
         </div>
       </div>
@@ -169,27 +172,27 @@
         <div><div style="font-size:24px;font-weight:700;color:#29948F;">+58</div><div style="font-size:10px;color:#666;">Mar/26 · 112 resp.</div></div>
         <div><div style="font-size:24px;font-weight:700;color:#1D1E46;">+49</div><div style="font-size:10px;color:#666;">Abr/26 · 69 resp.</div></div>
         <div><div style="font-size:24px;font-weight:700;color:#F5C45D;">+45</div><div style="font-size:10px;color:#666;">Mai/26 · 110 resp.</div></div>
-        <div><div style="font-size:24px;font-weight:700;color:#29948F;">+76</div><div style="font-size:10px;color:#666;">Jun/26 · 25 resp.</div></div>
+        <div><div style="font-size:24px;font-weight:700;color:#29948F;">+63</div><div style="font-size:10px;color:#666;">Jun/26 · 60 resp.</div></div>
       </div></div>
     </div>
 
     <div class="section-title"><span class="icon" style="background:#F27466;">⭐</span>Distribuição de Notas Google (período completo)</div>
     <div class="chart-container">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-        <div><div class="chart-title">Por estrelas (699 avaliações analisadas)</div><div class="chart-wrapper" style="height:180px;"><canvas id="distChart"></canvas></div></div>
-        <div><div class="chart-title">Comparativo 2025 vs 2026</div><div class="chart-wrapper" style="height:180px;"><canvas id="yearChart"></canvas></div></div>
+      <div class="google-distribution-grid">
+        <div><div class="chart-title">Por estrelas (719 avaliações analisadas)</div><div class="chart-wrapper" style="height:200px;"><canvas id="distChart"></canvas></div></div>
+        <div><div class="chart-title">Comparativo 2025 vs 2026</div><div class="chart-wrapper" style="height:200px;"><canvas id="yearChart"></canvas></div></div>
       </div>
     </div>
 
     <div class="section-title"><span class="icon" style="background:#00AEEF;">💡</span>Insights e Alertas</div>
     <div class="insights-grid">
-      <div class="insight-card success"><div class="insight-title">✓ NPS permanece na zona de qualidade</div><div class="insight-text">O NPS médio fechou em +50, com 384 respostas entre fevereiro e 31/mai/26. A leitura geral segue positiva, sustentada por 66% de promotores e 15% de detratores.</div></div>
+      <div class="insight-card success"><div class="insight-title">✓ NPS permanece na zona de qualidade</div><div class="insight-text">O NPS médio fechou em +52, com 444 respostas entre fevereiro e 15/jun/26. A leitura geral segue positiva, sustentada por 66% de promotores e 14% de detratores.</div></div>
       <div class="insight-card alert"><div class="insight-title">→ Maio ainda pede acompanhamento</div><div class="insight-text">No recorte de maio, o NPS ficou em +45, com 110 respostas. Apesar do bom volume de respostas, o mês ainda fica abaixo da média consolidada e merece leitura dos detratores e temas recorrentes.</div></div>
-      <div class="insight-card success"><div class="insight-title">✓ Google Reviews ganha volume e melhora mix</div><div class="insight-text">A nota geral segue em 4,3, agora com 903 avaliações totais. Na base analisada dos gráficos, 68,4% das avaliações são 5 estrelas e 15,1% são negativas.</div></div>
-      <div class="insight-card alert"><div class="insight-title">→ Reclame Aqui segue Regular</div><div class="insight-text">A nota atual é 6,5, com 94% das reclamações respondidas, 59,1% resolvidas e 59,1% de clientes que voltariam. O foco agora é elevar resolução e intenção de retorno.</div></div>
+      <div class="insight-card success"><div class="insight-title">✓ Google Reviews ganha volume e melhora mix</div><div class="insight-text">A nota geral segue em 4,3, agora com 926 avaliações totais. Na base analisada dos gráficos, 69,3% das avaliações são 5 estrelas e 14% são negativas.</div></div>
+      <div class="insight-card success"><div class="insight-title">✓ Reclame Aqui avança para 7,0</div><div class="insight-text">A nota atual é 7,0, com 94,4% das reclamações respondidas, 65,4% resolvidas e 65,4% de clientes que voltariam. O indicador melhora, mas ainda pede foco em resolução e recuperação da experiência.</div></div>
     </div>
 
-    <div class="footer"><div class="footer-text">Dados atualizados até 08/06/2026 · Dashboard semanal de reputação</div><div class="footer-text" style="color:#00AEEF;font-weight:600;">Morro dos Anjos Resort</div></div>
+    <div class="footer"><div class="footer-text">Dados atualizados até 15/06/2026 · Dashboard semanal de reputação</div><div class="footer-text" style="color:#00AEEF;font-weight:600;">Morro dos Anjos Resort</div></div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
@@ -198,24 +201,24 @@
     const gridColor = 'rgba(0,0,0,0.05)';
     const googleData = {
       labels: ["Jan/25", "Fev/25", "Mar/25", "Abr/25", "Mai/25", "Jun/25", "Jul/25", "Ago/25", "Set/25", "Out/25", "Nov/25", "Dez/25", "Jan/26", "Fev/26", "Mar/26", "Abr/26", "Mai/26", "Jun/26"],
-      volumes: [6, 5, 9, 8, 25, 20, 35, 23, 17, 22, 57, 40, 46, 52, 49, 155, 104, 26],
-      notas: [4.17, 3.8, 4.67, 2.63, 3.88, 4.05, 3.94, 3.87, 3.82, 4.05, 4.21, 4.28, 4.17, 3.79, 4.31, 4.41, 4.58, 4.88]
+      volumes: [6, 5, 9, 8, 25, 20, 35, 23, 17, 22, 57, 40, 46, 52, 49, 155, 104, 49],
+      notas: [4.17, 3.8, 4.67, 2.63, 3.88, 4.05, 3.94, 3.87, 3.82, 4.05, 4.21, 4.28, 4.17, 3.79, 4.31, 4.41, 4.58, 4.80]
     };
     new Chart(document.getElementById('googleChart'), {
       type: 'bar', data: { labels: googleData.labels, datasets: [{ type:'bar', label:'Avaliações', data: googleData.volumes, backgroundColor:'#00AEEF', borderRadius:4, yAxisID:'y' }, { type:'line', label:'Nota média', data: googleData.notas, borderColor:'#F27466', backgroundColor:'transparent', borderWidth:3, pointBackgroundColor:'#F27466', pointRadius:4, tension:0.3, yAxisID:'y1' }] },
       options: { responsive:true, maintainAspectRatio:false, interaction:{ intersect:false, mode:'index' }, plugins:{ legend:{ display:false } }, scales:{ x:{ grid:{ display:false }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' }, maxRotation:45 } }, y:{ position:'left', grid:{ color:gridColor }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' } }, title:{ display:true, text:'Qtd. avaliações', color:textColor, font:{ size:10, family:'Montserrat' } } }, y1:{ position:'right', min:1, max:5, grid:{ display:false }, ticks:{ color:'#F27466', font:{ size:10, family:'Montserrat' }, callback:v=>v.toFixed(1)+'★' }, title:{ display:true, text:'Nota média', color:'#F27466', font:{ size:10, family:'Montserrat' } } } } }
     });
     new Chart(document.getElementById('npsEvolutionChart'), {
-      type:'bar', data:{ labels:["Fevereiro 2026", "Março 2026", "Abril 2026", "Maio 2026", "Junho 2026"], datasets:[{ label:'Detratores', data:[17.2, 8.9, 15.9, 20.0, 4.0], backgroundColor:'#F27466', borderRadius:0 },{ label:'Neutros', data:[17.2, 24.1, 18.8, 15.5, 16.0], backgroundColor:'#F5C45D', borderRadius:0 },{ label:'Promotores', data:[65.6, 67.0, 65.2, 64.5, 80.0], backgroundColor:'#29948F', borderRadius:{ topLeft:4, topRight:4 } }] },
+      type:'bar', data:{ labels:["Fevereiro 2026", "Março 2026", "Abril 2026", "Maio 2026", "Junho 2026"], datasets:[{ label:'Detratores', data:[17.2, 8.9, 15.9, 20.0, 8.3], backgroundColor:'#F27466', borderRadius:0 },{ label:'Neutros', data:[17.2, 24.1, 18.8, 15.5, 20.0], backgroundColor:'#F5C45D', borderRadius:0 },{ label:'Promotores', data:[65.6, 67.0, 65.2, 64.5, 71.7], backgroundColor:'#29948F', borderRadius:{ topLeft:4, topRight:4 } }] },
       options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ x:{ stacked:true, grid:{ display:false }, ticks:{ color:textColor, font:{ size:11, family:'Montserrat' } } }, y:{ stacked:true, max:100, grid:{ color:gridColor }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' }, callback:v=>v+'%' } } } }
     });
     new Chart(document.getElementById('distChart'), {
-      type:'doughnut', data:{ labels:['5 estrelas','4 estrelas','3 estrelas','2 estrelas','1 estrela'], datasets:[{ data:[481, 70, 44, 45, 56], backgroundColor:['#29948F','#00AEEF','#F5C45D','#F27466','#1D1E46'], borderWidth:0 }] },
-      options:{ responsive:true, maintainAspectRatio:false, cutout:'60%', plugins:{ legend:{ position:'right', labels:{ color:textColor, font:{ size:10, family:'Montserrat' }, boxWidth:12, padding:8 } } } }
+      type:'doughnut', data:{ labels:['5 estrelas','4 estrelas','3 estrelas','2 estrelas','1 estrela'], datasets:[{ data:[500, 71, 47, 45, 56], backgroundColor:['#29948F','#00AEEF','#F5C45D','#F27466','#1D1E46'], borderWidth:0 }] },
+      options:{ responsive:true, maintainAspectRatio:false, cutout:'62%', layout:{ padding:{ left:8, right:8, top:4, bottom:4 } }, plugins:{ legend:{ position:'right', labels:{ color:textColor, font:{ size:10, family:'Montserrat' }, boxWidth:10, padding:8 } } } }
     });
     new Chart(document.getElementById('yearChart'), {
-      type:'bar', data:{ labels:['5★','4★','3★','2★','1★'], datasets:[{ label:'2025', data:[170, 24, 18, 22, 33], backgroundColor:'#1D1E46', borderRadius:4 },{ label:'2026', data:[311, 46, 26, 23, 23], backgroundColor:'#00AEEF', borderRadius:4 }] },
-      options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'top', labels:{ color:textColor, font:{ size:10, family:'Montserrat' }, boxWidth:12 } } }, scales:{ x:{ grid:{ display:false }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' } } }, y:{ grid:{ color:gridColor }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' } } } } }
+      type:'bar', data:{ labels:['5★','4★','3★','2★','1★'], datasets:[{ label:'2025', data:[170, 24, 18, 22, 33], backgroundColor:'#1D1E46', borderRadius:4 },{ label:'2026', data:[330, 47, 29, 23, 23], backgroundColor:'#00AEEF', borderRadius:4 }] },
+      options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'top', labels:{ color:textColor, font:{ size:10, family:'Montserrat' }, boxWidth:12 } } }, scales:{ x:{ grid:{ display:false }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' } } }, y:{ beginAtZero:true, suggestedMax:350, grid:{ color:gridColor }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' } } } } }
     });
   </script>
 </body>
