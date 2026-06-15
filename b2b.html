@@ -1,0 +1,436 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Captação de Eventos B2B — Morro dos Anjos</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --navy-900:#0d1228;--navy-800:#161b3d;--navy-700:#1e2547;
+    --gold:#c89b5a;--gold-soft:#d8b078;--cyan:#4db8e8;--cyan-deep:#2a8fc4;
+    --ink:#1a1f3a;--slate:#5a6178;--slate-light:#8b91a6;
+    --paper:#eef0f4;--card:#ffffff;--line:#e4e7ef;--teal-glow:#1f6b6b;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:480px;margin:0 auto;background:var(--paper);min-height:100vh}
+
+  .hero{background:linear-gradient(165deg,#161b3d 0%,#0d1228 45%,#10243a 75%,#16403f 100%);border-radius:0 0 26px 26px;padding:46px 28px 54px;color:#fff;position:relative;overflow:hidden}
+  .logo{width:88px;height:auto;margin-bottom:42px;opacity:.96}
+  .tick{width:46px;height:3px;background:var(--gold);border-radius:2px;margin-bottom:22px}
+  .hero h1{font-size:40px;font-weight:800;letter-spacing:-1.4px;line-height:1.05}
+  .hero h1 .accent{color:var(--cyan)}
+  .hero .sub{margin-top:14px;font-size:15.5px;color:#c4cadb;font-weight:400;max-width:340px}
+  .chips{display:flex;gap:9px;margin-top:26px;flex-wrap:wrap}
+  .chip{border:1px solid rgba(255,255,255,.22);border-radius:22px;padding:8px 15px;font-size:12.5px;font-weight:600;color:#e8ebf4;background:rgba(255,255,255,.05)}
+
+  section{padding:38px 24px}
+  .eyebrow{color:var(--cyan);font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;margin-bottom:12px}
+  h2{font-size:27px;font-weight:800;letter-spacing:-.7px;line-height:1.13;color:var(--ink)}
+  h2 .gold{color:var(--gold)}
+  .lead{margin-top:16px;color:var(--slate);font-size:15px;line-height:1.62}
+  .divider-gold{width:46px;height:3px;background:var(--gold);border-radius:2px;margin:14px 0 0}
+  .pad-top-0{padding-top:0}
+
+  .band{background:linear-gradient(160deg,#161b3d,#0d1228);color:#fff;padding:40px 24px}
+  .band .eyebrow{color:var(--gold-soft)}
+  .band .huge{font-size:44px;font-weight:800;letter-spacing:-2px;line-height:1;margin-top:6px}
+  .band .huge .cyan{color:var(--cyan)}
+  .band .note{margin-top:16px;color:#aeb5cc;font-size:13.5px}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+  .mcard{background:var(--card);border-radius:16px;padding:18px 16px;box-shadow:0 1px 3px rgba(13,18,40,.06);border:1px solid var(--line)}
+  .mcard .num{font-size:28px;font-weight:800;letter-spacing:-1px;color:var(--ink)}
+  .mcard .num.cy{color:var(--cyan-deep)}
+  .mcard .num.gd{color:var(--gold)}
+  .mcard .lbl{font-size:12.5px;color:var(--slate);margin-top:4px;font-weight:500}
+
+  /* MAP */
+  .map-card{background:linear-gradient(160deg,#13183a,#0c1024);border-radius:18px;padding:18px 14px 14px;margin-top:22px;box-shadow:0 4px 18px rgba(13,18,40,.18)}
+  .map-card .ct{font-size:15px;font-weight:700;color:#fff;margin:2px 4px 2px}
+  .map-card .cs{font-size:12px;color:#9aa1bd;margin:0 4px 10px}
+  .map-svg{width:100%;height:auto;display:block}
+  .map-legend{display:flex;gap:16px;flex-wrap:wrap;margin:10px 4px 2px;font-size:11px;color:#b6bcd4}
+  .map-legend span{display:flex;align-items:center;gap:6px}
+  .lg-dot{width:10px;height:10px;border-radius:50%;background:var(--cyan)}
+  .lg-sede{width:11px;height:11px;border-radius:50%;background:var(--gold)}
+  .lg-ring{width:14px;height:9px;border:1px dashed #6b7398;border-radius:50%}
+
+  .chart-card{background:var(--card);border-radius:18px;padding:22px 18px 18px;box-shadow:0 2px 10px rgba(13,18,40,.07);border:1px solid var(--line);margin-top:22px}
+  .chart-card .ct{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:3px}
+  .chart-card .cs{font-size:12.5px;color:var(--slate-light);margin-bottom:16px}
+  .chart-box{position:relative;height:240px}
+  .chart-box.tall{height:300px}
+
+  .rank{margin-top:8px}
+  .rank-row{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+  .rank-row:last-child{border-bottom:none}
+  .rank-pos{width:26px;height:26px;border-radius:8px;flex-shrink:0;background:var(--navy-800);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .rank-pos.top{background:var(--gold)}
+  .rank-info{flex:1;min-width:0}
+  .rank-name{font-size:14.5px;font-weight:700;color:var(--ink)}
+  .rank-meta{font-size:12px;color:var(--slate-light);margin-top:1px}
+  .rank-val{text-align:right;flex-shrink:0;max-width:120px}
+  .rank-val .v{font-size:12.5px;font-weight:700;color:var(--cyan-deep);line-height:1.25}
+
+  .anel{background:var(--card);border-radius:16px;padding:18px;margin-top:12px;border:1px solid var(--line);box-shadow:0 1px 3px rgba(13,18,40,.05);border-left:4px solid var(--cyan)}
+  .anel.a2{border-left-color:var(--gold)}
+  .anel.a3{border-left-color:var(--teal-glow)}
+  .anel .atag{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--cyan-deep)}
+  .anel.a2 .atag{color:var(--gold)}
+  .anel.a3 .atag{color:var(--teal-glow)}
+  .anel .ah{font-size:17px;font-weight:800;color:var(--ink);margin:4px 0 6px}
+  .anel .ad{font-size:13.5px;color:var(--slate);line-height:1.55}
+  .anel .atypes{font-size:12.5px;color:var(--ink);margin-top:10px;font-weight:600;background:#f4f6fa;border-radius:8px;padding:8px 10px;line-height:1.5}
+  .anel .acities{font-size:12px;color:var(--slate-light);margin-top:8px;font-weight:600}
+
+  .etypes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+  .etype{background:var(--card);border-radius:14px;padding:16px;border:1px solid var(--line);box-shadow:0 1px 3px rgba(13,18,40,.05)}
+  .etype .ei{font-size:22px;margin-bottom:8px;display:block}
+  .etype .en{font-size:14px;font-weight:800;color:var(--ink);line-height:1.2}
+  .etype .ep{font-size:11.5px;color:var(--slate-light);margin-top:5px;line-height:1.4}
+
+  .b2b{background:linear-gradient(155deg,#16403f,#0d1228);border-radius:18px;padding:24px;color:#fff;margin-top:22px}
+  .b2b .eyebrow{color:var(--gold-soft)}
+  .b2b .bh{font-size:21px;font-weight:800;letter-spacing:-.5px;margin-top:4px}
+  .b2b .bstats{display:flex;gap:18px;margin-top:18px;flex-wrap:wrap}
+  .b2b .bs .bn{font-size:25px;font-weight:800;color:var(--cyan)}
+  .b2b .bs .bl{font-size:11.5px;color:#aeb5cc;margin-top:2px}
+  .b2b .btext{margin-top:16px;font-size:13px;color:#c4cadb;line-height:1.55}
+
+  .feira{background:var(--card);border-radius:14px;padding:16px 18px;margin-top:12px;border:1px solid var(--line);box-shadow:0 1px 3px rgba(13,18,40,.05);display:flex;align-items:center;gap:14px}
+  .feira .fmonth{flex-shrink:0;width:52px;text-align:center}
+  .feira .fmonth .fm{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.5px}
+  .feira .fmonth .fd{font-size:11px;color:var(--slate-light)}
+  .feira .finfo{flex:1;border-left:1px solid var(--line);padding-left:14px}
+  .feira .fn{font-size:14.5px;font-weight:800;color:var(--ink)}
+  .feira .fc{font-size:12.5px;color:var(--slate);margin-top:2px;line-height:1.45}
+
+  .insight{background:var(--card);border-radius:16px;padding:18px;margin-top:12px;border:1px solid var(--line);box-shadow:0 1px 3px rgba(13,18,40,.05)}
+  .insight .ih{font-size:15px;font-weight:800;color:var(--ink);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+  .insight .ic{font-size:13.5px;color:var(--slate);line-height:1.58}
+  .insight .ic b{color:var(--ink)}
+
+  .warn{background:#fbf4ee;border-left:4px solid var(--gold);border-radius:10px;padding:14px 16px;margin-top:20px;font-size:13px;color:#7a5a30;line-height:1.5}
+
+  footer{background:var(--navy-900);color:#7b8199;text-align:center;padding:28px 24px;font-size:12px;letter-spacing:.5px}
+  footer .src{margin-top:8px;font-size:11px;color:#565d78;line-height:1.6}
+</style>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <svg class="logo" viewBox="0 0 200 120" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="32" r="15"/>
+      <path d="M100 50 C70 52 40 60 12 86 C44 84 70 76 100 70 C130 76 156 84 188 86 C160 60 130 52 100 50 Z"/>
+      <path d="M100 64 C78 66 56 74 36 96 C60 92 80 86 100 82 C120 86 140 92 164 96 C144 74 122 66 100 64 Z" opacity="0.85"/>
+    </svg>
+    <div class="tick"></div>
+    <h1>Captação de<br>Eventos <span class="accent">B2B</span></h1>
+    <p class="sub">Onde prospectar convenções, incentivo e eventos corporativos no eixo Bandeirantes → Maringá.</p>
+    <div class="chips">
+      <span class="chip">9 cidades</span>
+      <span class="chip">~67 mil empresas</span>
+      <span class="chip">~195 km de raio</span>
+    </div>
+  </header>
+
+  <!-- CONTEXTO -->
+  <section>
+    <div class="eyebrow">Contexto Executivo</div>
+    <h2>Transformar o resort em <span class="gold">destino de eventos</span></h2>
+    <div class="divider-gold"></div>
+    <p class="lead">O Morro dos Anjos tem estrutura, acomodações e experiências para sediar eventos corporativos. O objetivo deste estudo é mapear onde está a <b>demanda B2B</b> no eixo Bandeirantes → Maringá — empresas, polos industriais e feiras que geram convenções, viagens de incentivo, treinamentos e confraternizações.</p>
+  </section>
+
+  <!-- BIG NUMBER BAND -->
+  <div class="band">
+    <div class="eyebrow">Base Corporativa do Eixo</div>
+    <div class="huge">~67<span class="cyan">mil</span> empresas</div>
+    <div class="grid2">
+      <div class="mcard"><div class="num cy">34,1k</div><div class="lbl">organizações ativas · Londrina</div></div>
+      <div class="mcard"><div class="num gd">32,9k</div><div class="lbl">organizações ativas · Maringá</div></div>
+      <div class="mcard"><div class="num">370+</div><div class="lbl">indústrias moveleiras · Arapongas</div></div>
+      <div class="mcard"><div class="num">322 mil</div><div class="lbl">pessoas ocupadas (Ldna+Mga)</div></div>
+    </div>
+    <p class="note">Apenas Londrina e Maringá concentram a maior base corporativa do interior do PR. Fonte: IBGE / CEMPRE.</p>
+  </div>
+
+  <!-- MAPA DE INFLUÊNCIA -->
+  <section>
+    <div class="eyebrow">Raio de Influência</div>
+    <h2>O corredor de <span class="gold">eventos</span></h2>
+    <div class="divider-gold"></div>
+    <p class="lead">Anéis de distância a partir da sede. Quanto mais perto, mais fácil a logística e a recorrência; quanto mais longe, maior o ticket e a experiência completa.</p>
+
+    <div class="map-card">
+      <div class="ct">Bandeirantes → Maringá · grau de influência</div>
+      <div class="cs">Tamanho do ponto = nº de habitantes · anéis = distância da sede</div>
+      <svg class="map-svg" viewBox="0 0 430 290" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#c89b5a" stop-opacity="0.28"/>
+            <stop offset="60%" stop-color="#c89b5a" stop-opacity="0.06"/>
+            <stop offset="100%" stop-color="#c89b5a" stop-opacity="0"/>
+          </radialGradient>
+          <clipPath id="frame"><rect x="0" y="0" width="430" height="290" rx="10"/></clipPath>
+        </defs>
+        <g clip-path="url(#frame)">
+          <!-- glow at sede -->
+          <circle cx="385" cy="118" r="200" fill="url(#glow)"/>
+          <!-- influence rings (distance) -->
+          <circle cx="385" cy="118" r="100" fill="none" stroke="#5a6388" stroke-width="1" stroke-dasharray="4 4" opacity="0.55"/>
+          <circle cx="385" cy="118" r="260" fill="none" stroke="#5a6388" stroke-width="1" stroke-dasharray="4 4" opacity="0.45"/>
+          <circle cx="385" cy="118" r="390" fill="none" stroke="#5a6388" stroke-width="1" stroke-dasharray="4 4" opacity="0.35"/>
+          <!-- ring labels -->
+          <text x="300" y="112" fill="#7b84a8" font-size="9" font-family="Inter" font-weight="600">50 km</text>
+          <text x="148" y="112" fill="#7b84a8" font-size="9" font-family="Inter" font-weight="600">130 km</text>
+          <text x="20" y="112" fill="#7b84a8" font-size="9" font-family="Inter" font-weight="600">195 km</text>
+
+          <!-- corridor spine -->
+          <polyline points="385,118 328,135 222,165 165,183 119,211 65,187"
+            fill="none" stroke="#4db8e8" stroke-width="2.4" stroke-opacity="0.5" stroke-linejoin="round"/>
+
+          <!-- city dots: r ~ population -->
+          <!-- Maringá -->
+          <circle cx="65" cy="187" r="13" fill="#4db8e8" fill-opacity="0.9"/>
+          <text x="65" y="213" fill="#e8ebf4" font-size="10" font-family="Inter" font-weight="700" text-anchor="middle">Maringá</text>
+          <text x="65" y="224" fill="#8b93b5" font-size="8" font-family="Inter" text-anchor="middle">195 km · 430k</text>
+          <!-- Mandaguari -->
+          <circle cx="119" cy="211" r="6.5" fill="#4db8e8" fill-opacity="0.85"/>
+          <text x="119" y="250" fill="#c3c9e0" font-size="8.5" font-family="Inter" font-weight="600" text-anchor="middle">Mandaguari</text>
+          <text x="119" y="260" fill="#8b93b5" font-size="7.5" font-family="Inter" text-anchor="middle">160 km</text>
+          <!-- Apucarana -->
+          <circle cx="161" cy="216" r="9" fill="#4db8e8" fill-opacity="0.85"/>
+          <text x="178" y="232" fill="#c3c9e0" font-size="8.5" font-family="Inter" font-weight="600" text-anchor="middle">Apucarana</text>
+          <!-- Arapongas (B2B star) -->
+          <circle cx="165" cy="183" r="9" fill="#c89b5a"/>
+          <text x="165" y="170" fill="#f0d9b8" font-size="9.5" font-family="Inter" font-weight="700" text-anchor="middle">★ Arapongas</text>
+          <text x="165" y="160" fill="#b59868" font-size="7.5" font-family="Inter" text-anchor="middle">polo moveleiro</text>
+          <!-- Londrina (star) -->
+          <circle cx="222" cy="165" r="15" fill="#4db8e8"/>
+          <text x="222" y="148" fill="#e8ebf4" font-size="10.5" font-family="Inter" font-weight="700" text-anchor="middle">Londrina</text>
+          <text x="222" y="137" fill="#8b93b5" font-size="8" font-family="Inter" text-anchor="middle">75 km · 581k</text>
+          <!-- Cornélio -->
+          <circle cx="328" cy="135" r="7" fill="#4db8e8" fill-opacity="0.85"/>
+          <text x="328" y="124" fill="#c3c9e0" font-size="8.5" font-family="Inter" font-weight="600" text-anchor="middle">Cornélio</text>
+          <!-- Santa Mariana -->
+          <circle cx="354" cy="127" r="5" fill="#4db8e8" fill-opacity="0.8"/>
+          <!-- SEDE Bandeirantes -->
+          <circle cx="385" cy="118" r="9" fill="none" stroke="#c89b5a" stroke-width="2"/>
+          <circle cx="385" cy="118" r="4.5" fill="#c89b5a"/>
+          <text x="385" y="100" fill="#f0d9b8" font-size="10" font-family="Inter" font-weight="800" text-anchor="end">SEDE</text>
+          <text x="385" y="138" fill="#c3c9e0" font-size="8" font-family="Inter" text-anchor="middle">Bandeirantes</text>
+        </g>
+      </svg>
+      <div class="map-legend">
+        <span><span class="lg-sede"></span> Sede (resort)</span>
+        <span><span class="lg-dot"></span> Cidade-alvo</span>
+        <span><span style="width:12px;height:12px;border-radius:50%;background:#c89b5a;display:inline-block"></span> ★ Polo B2B</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- POP / PIB CHARTS -->
+  <section class="pad-top-0">
+    <div class="chart-card">
+      <div class="ct">Tamanho de mercado — população (mil hab, 2025)</div>
+      <div class="cs">Volume de público disponível para captação em cada praça</div>
+      <div class="chart-box tall"><canvas id="popChart"></canvas></div>
+    </div>
+  </section>
+
+  <section class="pad-top-0">
+    <div class="chart-card">
+      <div class="ct">Poder de compra — PIB per capita (R$ mil, 2023)</div>
+      <div class="cs">Indica capacidade de pagar eventos premium e incentivo</div>
+      <div class="chart-box tall"><canvas id="pibChart"></canvas></div>
+    </div>
+  </section>
+
+  <section class="pad-top-0">
+    <div class="chart-card">
+      <div class="ct">Onde mirar primeiro</div>
+      <div class="cs">Canto superior direito = mais empresas/público + maior renda</div>
+      <div class="chart-box tall"><canvas id="bubbleChart"></canvas></div>
+    </div>
+  </section>
+
+  <!-- 3 ANÉIS B2B -->
+  <section>
+    <div class="eyebrow">Estratégia de Captação</div>
+    <h2>3 anéis de <span class="gold">eventos B2B</span></h2>
+    <div class="divider-gold"></div>
+    <p class="lead">Cada anel pede um tipo de evento e uma abordagem comercial diferente.</p>
+
+    <div class="anel">
+      <div class="atag">Anel 1 · até 50 km · recorrência</div>
+      <div class="ah">Eventos de proximidade</div>
+      <div class="ad">Logística simples, ida e volta no dia. Ideal para ocupar dias de semana e gerar recorrência com empresas da região imediata.</div>
+      <div class="atypes">🎯 Reuniões corporativas · treinamentos · team building · confraternizações de equipe</div>
+      <div class="acities">Santa Mariana · Cornélio Procópio</div>
+    </div>
+
+    <div class="anel a2">
+      <div class="atag">Anel 2 · 75–130 km · núcleo B2B</div>
+      <div class="ah">Convenções & eventos setoriais</div>
+      <div class="ad">A maior base de empresas e indústrias do eixo. Aqui está o volume: convenções de vendas, congressos, lançamentos e eventos de associações e sindicatos.</div>
+      <div class="atypes">🎯 Convenções · congressos · lançamentos de produto · eventos do polo moveleiro · jantares executivos</div>
+      <div class="acities">Londrina · Arapongas · Apucarana</div>
+    </div>
+
+    <div class="anel a3">
+      <div class="atag">Anel 3 · 150–195 km · premium</div>
+      <div class="ah">Incentivo & eventos executivos</div>
+      <div class="ad">Maior renda per capita do eixo. A distância se justifica pela experiência completa: pernoite, praia de ondas e termas como cenário de eventos de alto valor.</div>
+      <div class="atypes">🎯 Viagens de incentivo · retiros de liderança · eventos de investidores · convenções premium</div>
+      <div class="acities">Mandaguari · Maringá</div>
+    </div>
+  </section>
+
+  <!-- TIPOS DE EVENTO -->
+  <section>
+    <div class="eyebrow">Portfólio de Eventos</div>
+    <h2>O que o resort pode <span class="gold">captar</span></h2>
+    <div class="divider-gold"></div>
+    <div class="etypes">
+      <div class="etype"><span class="ei">🏢</span><div class="en">Convenções de vendas</div><div class="ep">Empresas com força comercial em Londrina e Maringá</div></div>
+      <div class="etype"><span class="ei">✈️</span><div class="en">Viagens de incentivo</div><div class="ep">Premiação de equipes e canais — alto ticket</div></div>
+      <div class="etype"><span class="ei">🤝</span><div class="en">Eventos setoriais</div><div class="ep">Polo moveleiro, têxtil, agro e sindicatos</div></div>
+      <div class="etype"><span class="ei">🎓</span><div class="en">Treinamentos & retiros</div><div class="ep">Imersões de liderança longe da rotina</div></div>
+      <div class="etype"><span class="ei">🚀</span><div class="en">Lançamentos de produto</div><div class="ep">Cenário diferenciado para ativações de marca</div></div>
+      <div class="etype"><span class="ei">🥂</span><div class="en">Sociais premium</div><div class="ep">Casamentos e confraternizações de alto padrão</div></div>
+    </div>
+  </section>
+
+  <!-- ARAPONGAS B2B -->
+  <section class="pad-top-0">
+    <div class="b2b">
+      <div class="eyebrow">Âncora B2B Nº 1</div>
+      <div class="bh">Arapongas: Capital Moveleira Nacional</div>
+      <div class="bstats">
+        <div class="bs"><div class="bn">370</div><div class="bl">indústrias de móveis</div></div>
+        <div class="bs"><div class="bn">12 mil</div><div class="bl">empregos diretos</div></div>
+        <div class="bs"><div class="bn">17 mil</div><div class="bl">visitantes na Movelpar</div></div>
+      </div>
+      <p class="btext">A Movelpar movimentou cerca de <b style="color:#fff">R$ 650 milhões</b> na última edição. Esse fluxo de lojistas, arquitetos e importadores é alvo direto para hospedagem premium, eventos de incentivo do setor e jantares de relacionamento — a apenas 110 km da sede.</p>
+    </div>
+  </section>
+
+  <!-- CALENDÁRIO DE FEIRAS-ÂNCORA -->
+  <section>
+    <div class="eyebrow">Ganchos de Calendário</div>
+    <h2>Feiras que <span class="gold">geram demanda</span></h2>
+    <div class="divider-gold"></div>
+    <p class="lead">Eventos regionais consolidados que atraem milhares de visitantes corporativos — oportunidade de hospedagem e eventos paralelos.</p>
+
+    <div class="feira">
+      <div class="fmonth"><div class="fm">Mai</div><div class="fd">anual</div></div>
+      <div class="finfo"><div class="fn">Expoingá · Maringá</div><div class="fc">Uma das maiores feiras agro do Sul. Público de produtores, investidores e empresas.</div></div>
+    </div>
+    <div class="feira">
+      <div class="fmonth"><div class="fm">Jul</div><div class="fd">anual</div></div>
+      <div class="finfo"><div class="fn">Movelpar · Arapongas</div><div class="fc">Feira moveleira nacional desde 1997. 160 expositores, 17 mil visitantes B2B.</div></div>
+    </div>
+    <div class="feira">
+      <div class="fmonth"><div class="fm">Set</div><div class="fd">anual</div></div>
+      <div class="finfo"><div class="fn">Festas de São Miguel Arcanjo</div><div class="fc">Turismo religioso na baixa temporada. Excursões e grupos de toda a região.</div></div>
+    </div>
+  </section>
+
+  <!-- RANKING B2B -->
+  <section>
+    <div class="eyebrow">Priorização Comercial</div>
+    <h2>Ranking de <span class="gold">prospecção</span></h2>
+    <div class="divider-gold"></div>
+    <p class="lead">Ordem de ataque do time comercial, com o tipo de evento mais provável por praça.</p>
+    <div class="chart-card">
+      <div class="rank">
+        <div class="rank-row"><div class="rank-pos top">1</div><div class="rank-info"><div class="rank-name">Londrina</div><div class="rank-meta">34,1k empresas · maior base do eixo</div></div><div class="rank-val"><div class="v">Convenções & congressos</div></div></div>
+        <div class="rank-row"><div class="rank-pos top">2</div><div class="rank-info"><div class="rank-name">Maringá</div><div class="rank-meta">32,9k empresas · alta renda</div></div><div class="rank-val"><div class="v">Incentivo & premium</div></div></div>
+        <div class="rank-row"><div class="rank-pos top">3</div><div class="rank-info"><div class="rank-name">Arapongas</div><div class="rank-meta">370 indústrias · Movelpar</div></div><div class="rank-val"><div class="v">Eventos setoriais B2B</div></div></div>
+        <div class="rank-row"><div class="rank-pos">4</div><div class="rank-info"><div class="rank-name">Apucarana</div><div class="rank-meta">Polo têxtil · 135k hab</div></div><div class="rank-val"><div class="v">Convenções industriais</div></div></div>
+        <div class="rank-row"><div class="rank-pos">5</div><div class="rank-info"><div class="rank-name">Cornélio Procópio</div><div class="rank-meta">Polo universitário · 30 km</div></div><div class="rank-val"><div class="v">Eventos acadêmicos</div></div></div>
+        <div class="rank-row"><div class="rank-pos">6</div><div class="rank-info"><div class="rank-name">Mandaguari</div><div class="rank-meta">Maior PIB/cap · R$ 79k</div></div><div class="rank-val"><div class="v">Incentivo premium</div></div></div>
+        <div class="rank-row"><div class="rank-pos">7</div><div class="rank-info"><div class="rank-name">Santa Mariana</div><div class="rank-meta">Vizinha · 16 km</div></div><div class="rank-val"><div class="v">Eventos de proximidade</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPORTUNIDADES -->
+  <section>
+    <div class="eyebrow">Diferenciais Competitivos</div>
+    <h2>Por que fechar <span class="gold">aqui</span></h2>
+    <div class="divider-gold"></div>
+
+    <div class="insight">
+      <div class="ih">🌊 Cenário único na região</div>
+      <div class="ic">Nenhum espaço de eventos do eixo oferece <b>praia de ondas + águas termais</b>. Isso transforma uma convenção comum em experiência memorável — argumento decisivo na captação.</div>
+    </div>
+    <div class="insight">
+      <div class="ih">📅 Ocupação na baixa temporada</div>
+      <div class="ic">Eventos corporativos acontecem em dias de semana e fora de feriados — exatamente quando o resort tem mais capacidade ociosa. <b>Receita complementar</b> ao lazer de fim de semana.</div>
+    </div>
+    <div class="insight">
+      <div class="ih">💰 Ticket alto e consumo interno</div>
+      <div class="ic">Um evento B2B soma hospedagem, A&B, salas, experiências e day use num só contrato. <b>Maior receita por hóspede</b> e porta de entrada para multipropriedade entre os participantes.</div>
+    </div>
+  </section>
+
+  <!-- DONUT -->
+  <section class="pad-top-0">
+    <div class="chart-card">
+      <div class="ct">Concentração da base corporativa</div>
+      <div class="cs">Londrina + Maringá reúnem ~67 mil empresas — o foco do esforço comercial</div>
+      <div class="chart-box"><canvas id="donutChart"></canvas></div>
+    </div>
+  </section>
+
+  <div class="warn">
+    ⚠️ Distâncias aproximadas por rodovia a partir de Bandeirantes. Nº de organizações ativas conforme IBGE/CEMPRE (referência 2021–2023); bases comerciais de CNPJ apontam volumes maiores ao incluir MEIs.
+  </div>
+
+  <footer>
+    MORRO DOS ANJOS · CAPTAÇÃO DE EVENTOS B2B · CONFIDENCIAL
+    <div class="src">Fontes: IBGE Cidades & CEMPRE, SIMA/Abimóvel, Sec. Turismo PR. Estudo de inteligência comercial.</div>
+  </footer>
+
+</div>
+
+<script>
+const navy='#161b3d',gold='#c89b5a',cyan='#4db8e8',cyanDeep='#2a8fc4',slate='#8b91a6',line='#e4e7ef';
+Chart.defaults.font.family="'Inter','Segoe UI',sans-serif";
+Chart.defaults.font.size=11;Chart.defaults.color=slate;
+
+const cities=['Londrina','Maringá','Apucarana','Arapongas','Cornélio P.','Mandaguari','Bandeirantes','Jandaia Sul','Sta. Mariana'];
+const pop=[581,430,135,125,45,38,31,22,11];
+const pib=[50.4,67.9,37.1,34.1,52.7,79.4,33.3,45.0,45.0];
+const stars=['Londrina','Maringá','Arapongas'];
+
+new Chart(document.getElementById('popChart'),{type:'bar',
+  data:{labels:cities,datasets:[{data:pop,backgroundColor:(c)=>stars.includes(cities[c.dataIndex])?gold:cyanDeep,borderRadius:6,barThickness:16}]},
+  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>c.parsed.x+' mil habitantes'}}},
+    scales:{x:{grid:{color:line},ticks:{callback:(v)=>v+'k'}},y:{grid:{display:false},ticks:{font:{size:11,weight:'600'}}}}}});
+
+new Chart(document.getElementById('pibChart'),{type:'bar',
+  data:{labels:cities,datasets:[{data:pib,backgroundColor:(c)=>pib[c.dataIndex]>=60?gold:(pib[c.dataIndex]>=45?cyanDeep:cyan),borderRadius:6,barThickness:16}]},
+  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>'R$ '+c.parsed.x+' mil / hab'}}},
+    scales:{x:{grid:{color:line},ticks:{callback:(v)=>'R$'+v+'k'}},y:{grid:{display:false},ticks:{font:{size:11,weight:'600'}}}}}});
+
+const bubbleData=cities.map((c,i)=>({x:pib[i],y:pop[i],r:Math.max(6,Math.sqrt(pop[i])*1.4),city:c}));
+new Chart(document.getElementById('bubbleChart'),{type:'bubble',
+  data:{datasets:[{data:bubbleData,backgroundColor:bubbleData.map(d=>stars.includes(d.city)?'rgba(200,155,90,.75)':'rgba(77,184,232,.6)'),
+    borderColor:bubbleData.map(d=>stars.includes(d.city)?gold:cyanDeep),borderWidth:1.5}]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>{const d=c.raw;return d.city+': '+d.y+'k hab · R$'+d.x+'k'}}}},
+    scales:{x:{title:{display:true,text:'PIB per capita (R$ mil)',color:slate,font:{size:11}},grid:{color:line},min:25,max:85},
+      y:{title:{display:true,text:'População (mil)',color:slate,font:{size:11}},grid:{color:line},min:0,max:650}}}});
+
+new Chart(document.getElementById('donutChart'),{type:'doughnut',
+  data:{labels:['Londrina (34,1k)','Maringá (32,9k)','Demais cidades'],
+    datasets:[{data:[34.1,32.9,18],backgroundColor:[cyanDeep,gold,'#c2c7d6'],borderColor:'#fff',borderWidth:2}]},
+  options:{responsive:true,maintainAspectRatio:false,cutout:'58%',
+    plugins:{legend:{position:'bottom',labels:{padding:12,font:{size:11},boxWidth:12,usePointStyle:true,pointStyle:'circle'}},
+    tooltip:{callbacks:{label:(c)=>c.label+': '+c.parsed+' mil empresas'}}}}});
+</script>
