@@ -44,6 +44,8 @@
     .kpi-card.accent { background: linear-gradient(135deg, #00AEEF 0%, #0095cc 100%); }
     .kpi-card.success { background: linear-gradient(135deg, #29948F 0%, #1f7570 100%); }
     .kpi-card.warning { background: linear-gradient(135deg, #F27466 0%, #d85a4d 100%); }
+    .kpi-card.yellow { background: linear-gradient(135deg, #F5C45D 0%, #D4A000 100%); color:#1D1E46; }
+    .fonte-badge.regular { background:#F5C45D; color:#1D1E46; }
     .kpi-label { font-size: 11px; text-transform: uppercase; opacity: 0.85; letter-spacing: 0.5px; }
     .kpi-value { font-size: 28px; font-weight: 700; margin: 4px 0; }
     .kpi-sub { font-size: 11px; opacity: 0.75; }
@@ -104,6 +106,11 @@
     .chart-title { font-size: 12px; font-weight: 600; color: #1D1E46; margin-bottom: 12px; }
     .chart-wrapper { position: relative; height: 220px; min-width:0; overflow:hidden; }
     .chart-wrapper canvas { max-width:100% !important; }
+    .ota-charts-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+    .ota-chart-box { background:white; border-radius:12px; padding:16px; border:1px solid #eee; }
+    .ota-chart-title { font-size:12px; font-weight:700; color:#1D1E46; margin-bottom:10px; }
+    .ota-chart-wrapper { position:relative; height:300px; min-width:0; overflow:hidden; }
+    .ota-chart-wrapper.small { height:240px; }
     .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; font-size: 11px; }
     .legend-item { display: flex; align-items: center; gap: 4px; }
     .legend-dot { width: 10px; height: 10px; border-radius: 2px; }
@@ -265,6 +272,7 @@
       .ota-grid { grid-template-columns:1fr; }
       .ota-metrics { grid-template-columns:repeat(2,1fr); }
       .ota-reading { grid-template-columns:1fr; }
+      .ota-charts-grid { grid-template-columns:1fr; }
       .irc-banner { flex-direction: column; }
       .benchmark-kpi-grid { grid-template-columns:repeat(2,1fr); }
       .ranking-bars { grid-template-columns:1fr; }
@@ -301,22 +309,18 @@
         <h1>Dashboard de Reputação</h1>
         <p>Morro dos Anjos · Águas Quentes Hotel Resort</p>
       </div>
-      <div style="margin-left: auto;"><span class="periodo-badge">Atualizado até 18/06/2026</span></div>
+      <div style="margin-left: auto;"><span class="periodo-badge">Atualizado até 22/jun/2026</span></div>
     </div>
 
     <!-- BLOCO 1: PANORAMA EXECUTIVO -->
     <div class="block-divider b1"><span class="block-num">①</span> Panorama Executivo</div>
 
     <div class="kpi-grid">
-      <div class="kpi-card accent"><div class="kpi-label">NPS Médio</div><div class="kpi-value">+52</div><div class="kpi-sub">Zona de Qualidade</div></div>
-      <div class="kpi-card"><div class="kpi-label">Google Reviews</div><div class="kpi-value">4,3★</div><div class="kpi-sub">926 avaliações totais</div></div>
-      <div class="kpi-card accent"><div class="kpi-label">Reclame Aqui</div><div class="kpi-value">7,0</div><div class="kpi-sub">Reputação: Bom</div></div>
-      <div class="kpi-card"><div class="kpi-label">Aval. 5 Estrelas</div><div class="kpi-value">69,3%</div><div class="kpi-sub">5 estrelas Google</div></div>
-      <div class="kpi-card warning">
-        <div class="kpi-label" style="white-space:nowrap; font-size:10px;">IRC (Índice de Recorrência Crítica)</div>
-        <div class="kpi-value">80%</div>
-        <div class="kpi-sub">8 de 10 temas críticos ainda ativos em jun/26</div>
-      </div>
+      <div class="kpi-card accent"><div class="kpi-label">NPS Médio</div><div class="kpi-value">+53</div><div class="kpi-sub">Zona de Qualidade</div></div>
+      <div class="kpi-card"><div class="kpi-label">Google Reviews</div><div class="kpi-value">4,4★</div><div class="kpi-sub">935 avaliações totais</div></div>
+      <div class="kpi-card yellow"><div class="kpi-label">Reclame Aqui</div><div class="kpi-value">6,9</div><div class="kpi-sub">Reputação: Regular</div></div>
+      <div class="kpi-card"><div class="kpi-label">Aval. 5 Estrelas</div><div class="kpi-value">69,7%</div><div class="kpi-sub">5 estrelas Google</div></div>
+      <div class="kpi-card warning"><div class="kpi-label">IRC (Índice de Recorrência Crítica)</div><div class="kpi-value">100%</div><div class="kpi-sub">8 de 8 temas críticos recorrentes em jun/26</div></div>
     </div>
 
     <!-- BLOCO 2: SAÚDE POR FONTE -->
@@ -339,13 +343,13 @@
             <circle cx="80" cy="80" r="8" fill="#1D1E46"/><circle cx="80" cy="80" r="4" fill="white"/>
             <text x="12" y="88" font-size="9" fill="#999" font-family="Montserrat">-100</text><text x="136" y="88" font-size="9" fill="#999" font-family="Montserrat">+100</text>
           </svg>
-          <div class="gauge-value">+52</div><div class="gauge-label">pontos</div>
+          <div class="gauge-value">+53</div><div class="gauge-label">pontos</div>
         </div>
         <div class="fonte-metrics">
           <div class="fonte-metric"><div class="label">Promotores</div><div class="val">66%</div></div>
           <div class="fonte-metric"><div class="label">Detratores</div><div class="val">14%</div></div>
-          <div class="fonte-metric"><div class="label">Respostas</div><div class="val">444</div></div>
-          <div class="fonte-metric"><div class="label">Período</div><div class="val">Fev-26/15 Jun</div></div>
+          <div class="fonte-metric"><div class="label">Respostas</div><div class="val">485</div></div>
+          <div class="fonte-metric"><div class="label">Período</div><div class="val">Fev-26/22 Jun</div></div>
         </div>
       </div>
       <div>
@@ -378,7 +382,7 @@
         <div><div style="font-size:24px;font-weight:700;color:#29948F;">+58</div><div style="font-size:10px;color:#666;">Mar/26 · 112 resp.</div></div>
         <div><div style="font-size:24px;font-weight:700;color:#1D1E46;">+49</div><div style="font-size:10px;color:#666;">Abr/26 · 69 resp.</div></div>
         <div><div style="font-size:24px;font-weight:700;color:#F5C45D;">+45</div><div style="font-size:10px;color:#666;">Mai/26 · 110 resp.</div></div>
-        <div><div style="font-size:24px;font-weight:700;color:#29948F;">+63</div><div style="font-size:10px;color:#666;">Jun/26 · 60 resp.</div></div>
+        <div><div style="font-size:24px;font-weight:700;color:#29948F;">+61</div><div style="font-size:10px;color:#666;">Jun/26 · 101 resp.</div></div>
       </div>
     </div>
 
@@ -387,10 +391,10 @@
     <div class="fonte-card google" style="margin-bottom:16px;">
       <div class="fonte-header"><span class="fonte-name">Google Reviews</span><span class="fonte-badge bom">Bom</span></div>
       <div style="display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;">
-        <div><div class="fonte-main"><span class="value">4,3</span><span class="unit">estrelas</span></div></div>
+        <div><div class="fonte-main"><span class="value">4,4</span><span class="unit">estrelas</span></div></div>
         <div class="fonte-metrics">
-          <div class="fonte-metric"><div class="label">Total Aval.</div><div class="val">926</div></div>
-          <div class="fonte-metric"><div class="label">5 Estrelas</div><div class="val">69,3%</div></div>
+          <div class="fonte-metric"><div class="label">Total Aval.</div><div class="val">935</div></div>
+          <div class="fonte-metric"><div class="label">5 Estrelas</div><div class="val">69,7%</div></div>
           <div class="fonte-metric"><div class="label">Negativas</div><div class="val">14%</div></div>
           <div class="fonte-metric"><div class="label">Média 2026</div><div class="val">4,34★</div></div>
         </div>
@@ -403,15 +407,15 @@
     </div>
     <div class="chart-container">
       <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;overflow:hidden;">
-        <div><div class="chart-title">Distribuição por estrelas (719 avaliações analisadas)</div><div class="chart-wrapper" style="height:180px;"><canvas id="distChart"></canvas></div></div>
+        <div><div class="chart-title">Distribuição por estrelas (740 avaliações classificadas)</div><div class="chart-wrapper" style="height:180px;"><canvas id="distChart"></canvas></div></div>
         <div><div class="chart-title">Comparativo 2025 vs 2026</div><div class="chart-wrapper" style="height:180px;"><canvas id="yearChart"></canvas></div></div>
       </div>
     </div>
     <div class="insights-grid" style="margin-bottom:20px;">
-      <div class="insight-card success"><div class="insight-title">NPS permanece na zona de qualidade</div><div class="insight-text">O NPS médio avançou para +52, com 444 respostas entre fevereiro e 15/jun/26. A leitura geral permanece positiva, sustentada por 66% de promotores e 14% de detratores.</div></div>
-      <div class="insight-card success"><div class="insight-title">Junho segue positivo no NPS</div><div class="insight-text">No recorte parcial de junho, o NPS aparece em +63, com 60 respostas. O dado é positivo, mas ainda deve ser acompanhado por se tratar de um mês em andamento.</div></div>
-      <div class="insight-card success"><div class="insight-title">Google Reviews ganha volume e melhora mix</div><div class="insight-text">A nota geral segue em 4,3, com 926 avaliações totais. A participação de avaliações 5 estrelas chegou a 69,3%, enquanto as negativas representam 14%.</div></div>
-      <div class="insight-card alert"><div class="insight-title">Reclame Aqui melhora para Bom</div><div class="insight-text">A nota atual subiu para 7,0, com 94,4% das reclamações respondidas, 65,4% resolvidas e 65,4% de clientes que voltariam. O foco segue em elevar resolução e intenção de retorno.</div></div>
+      <div class="insight-card success"><div class="insight-title">NPS permanece saudável</div><div class="insight-text">O NPS médio fechou em +53, com 485 respostas entre fevereiro e 22/jun/26. A leitura segue em zona de qualidade, com 66% de promotores e 14% de detratores.</div></div>
+      <div class="insight-card success"><div class="insight-title">Junho melhorou no NPS</div><div class="insight-text">No recorte de junho, o NPS aparece em +61, com 101 respostas. O mês avança em relação a maio (+45), mas ainda convive com críticas operacionais recorrentes.</div></div>
+      <div class="insight-card success"><div class="insight-title">Google sobe em volume e mix positivo</div><div class="insight-text">A nota geral indicada para o topo é 4,4, com 935 avaliações totais. Nas 740 avaliações classificadas, 69,7% são 5 estrelas e 13,8% são negativas até 2 estrelas.</div></div>
+      <div class="insight-card alert"><div class="insight-title">Reclame Aqui recua para Regular</div><div class="insight-text">A nota atual é 6,9, com 55 reclamações, 92,7% respondidas, 66,7% resolvidas e 63% de clientes que voltariam. O canal perdeu o status Bom e pede foco em resolução.</div></div>
     </div>
 
     <!-- OTAs -->
@@ -424,57 +428,31 @@
         <div class="ota-card-header"><span class="ota-card-title">Booking.com</span><span class="ota-card-badge" style="background:#E8F1FF;color:#003B95;">Experiência OTA</span></div>
         <div class="ota-score-row"><span class="ota-score">7,7</span><span class="ota-unit">/ 10</span></div>
         <div class="ota-metrics">
-          <div class="ota-metric"><div class="label">Avaliações</div><div class="val">60</div></div>
-          <div class="ota-metric good"><div class="label">Promotores</div><div class="val">40,0%</div></div>
-          <div class="ota-metric"><div class="label">Neutros</div><div class="val">36,7%</div></div>
-          <div class="ota-metric alert"><div class="label">Críticos</div><div class="val">20,0%</div></div>
+          <div class="ota-metric"><div class="label">Avaliações</div><div class="val">61</div></div>
+          <div class="ota-metric good"><div class="label">Promotores</div><div class="val">39,3%</div></div>
+          <div class="ota-metric"><div class="label">Neutros</div><div class="val">36,1%</div></div>
+          <div class="ota-metric alert"><div class="label">Críticos</div><div class="val">24,6%</div></div>
         </div>
       </div>
       <div class="ota-card trip">
         <div class="ota-card-header"><span class="ota-card-title">Tripadvisor</span><span class="ota-card-badge">Reputação Turística</span></div>
-        <div class="ota-score-row"><span class="ota-score">3,5</span><span class="ota-unit">/ 5, equivalente a 7,0/10</span></div>
+        <div class="ota-score-row"><span class="ota-score">3,4</span><span class="ota-unit">/ 5, equivalente a 6,8/10</span></div>
         <div class="ota-metrics">
-          <div class="ota-metric"><div class="label">Avaliações</div><div class="val">26</div></div>
-          <div class="ota-metric good"><div class="label">Positivas 4 a 5 estrelas</div><div class="val">50,0%</div></div>
-          <div class="ota-metric"><div class="label">Neutras 3 estrelas</div><div class="val">23,1%</div></div>
-          <div class="ota-metric alert"><div class="label">Críticas 1 a 2 estrelas</div><div class="val">26,9%</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="chart-container">
-      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;overflow:hidden;">
-        <div>
-          <div class="chart-title">Booking: nota média e volume mensal</div>
-          <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#003B95;"></span>Volume</span><span class="legend-item"><span class="legend-dot" style="background:#F27466;"></span>Nota média</span></div>
-          <div class="chart-wrapper" style="height:210px;"><canvas id="bookingChart"></canvas></div>
-        </div>
-        <div>
-          <div class="chart-title">Tripadvisor: nota média e volume mensal</div>
-          <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#29948F;"></span>Volume</span><span class="legend-item"><span class="legend-dot" style="background:#F27466;"></span>Nota média</span></div>
-          <div class="chart-wrapper" style="height:210px;"><canvas id="tripChart"></canvas></div>
-        </div>
-      </div>
-    </div>
-    <div class="chart-container">
-      <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;overflow:hidden;">
-        <div>
-          <div class="chart-title">Booking: distribuição por faixa de nota</div>
-          <div class="chart-wrapper" style="height:190px;"><canvas id="bookingDistChart"></canvas></div>
-        </div>
-        <div>
-          <div class="chart-title">Tripadvisor: distribuição por estrelas</div>
-          <div class="chart-wrapper" style="height:190px;"><canvas id="tripDistChart"></canvas></div>
+          <div class="ota-metric"><div class="label">Avaliações</div><div class="val">27</div></div>
+          <div class="ota-metric good"><div class="label">Positivas 4 a 5 estrelas</div><div class="val">48,1%</div></div>
+          <div class="ota-metric"><div class="label">Neutras 3 estrelas</div><div class="val">22,2%</div></div>
+          <div class="ota-metric alert"><div class="label">Críticas 1 a 2 estrelas</div><div class="val">29,6%</div></div>
         </div>
       </div>
     </div>
     <div class="ota-reading">
       <div class="ota-reading-card alert">
         <div class="ota-reading-title">Alerta de consistência operacional</div>
-        <div class="ota-reading-text">Booking fecha em 7,7/10, mas junho caiu para 7,2. O dado reforça que a reputação de OTA ainda oscila e precisa ser acompanhada por recorrência de dores, não apenas por nota média.</div>
+        <div class="ota-reading-text">Booking fecha em 7,7/10, mas junho permanece em 7,2 com 11 avaliações. O dado reforça que a reputação de OTA ainda oscila e precisa ser acompanhada por recorrência de dores, não apenas por nota média.</div>
       </div>
       <div class="ota-reading-card alert">
         <div class="ota-reading-title">Tripadvisor como termômetro de risco</div>
-        <div class="ota-reading-text">No Tripadvisor, 26,9% das avaliações são críticas. A plataforma deve ter rotina própria de resposta pública, especialmente para avaliações de 1 e 2 estrelas.</div>
+        <div class="ota-reading-text">No Tripadvisor, 29,6% das avaliações são críticas até 2 estrelas. A plataforma deve ter rotina própria de resposta pública, especialmente para avaliações de 1 e 2 estrelas.</div>
       </div>
       <div class="ota-reading-card">
         <div class="ota-reading-title">Como ler as fontes</div>
@@ -483,6 +461,28 @@
       <div class="ota-reading-card">
         <div class="ota-reading-title">Ritual mensal sugerido</div>
         <div class="ota-reading-text">Atualizar até o dia 5, comparar nota e volume por fonte, listar Top 5 dores, separar avaliações sem resposta e encaminhar plano de ação por área responsável.</div>
+      </div>
+    </div>
+
+    <div class="ota-charts-grid">
+      <div class="ota-chart-box">
+        <div class="ota-chart-title">Booking: nota média e volume mensal</div>
+        <div class="ota-chart-wrapper"><canvas id="bookingChart"></canvas></div>
+      </div>
+      <div class="ota-chart-box">
+        <div class="ota-chart-title">Tripadvisor: nota média e volume mensal</div>
+        <div class="ota-chart-wrapper"><canvas id="tripChart"></canvas></div>
+      </div>
+    </div>
+
+    <div class="ota-charts-grid">
+      <div class="ota-chart-box">
+        <div class="ota-chart-title">Booking: distribuição por faixa de nota</div>
+        <div class="ota-chart-wrapper small"><canvas id="bookingDistChart"></canvas></div>
+      </div>
+      <div class="ota-chart-box">
+        <div class="ota-chart-title">Tripadvisor: distribuição por estrelas</div>
+        <div class="ota-chart-wrapper small"><canvas id="tripDistChart"></canvas></div>
       </div>
     </div>
 
@@ -577,57 +577,58 @@
 
     <!-- TOP 5 -->
     <div id="b3-top5" class="section-title"><span class="icon" style="background:#F27466;">🩺</span>Top 5 Dores Críticas</div>
+    <div style="font-size:11px;color:#888;margin:-8px 0 12px;line-height:1.5;">Critério revisado: menções em avaliações críticas, por fonte, sem misturar com o total histórico do heatmap. Google = notas 1 a 3; Booking = notas até 6; Tripadvisor = notas 1 a 3.</div>
     <div class="top5-grid">
       <div class="top5-card">
         <div class="top5-rank">#1</div>
-        <div class="top5-theme">Alimentação / Restaurante</div>
-        <div class="top5-count">51</div><div class="top5-label">menções</div>
-        <div><span class="top5-sector">Alimentos e Bebidas</span></div>
+        <div class="top5-theme">Quarto / Manutenção / Limpeza</div>
+        <div class="top5-count">115</div><div class="top5-label">menções críticas</div>
+        <div class="top5-sector">Governança / Manutenção</div>
         <div class="top5-gravity alta">Alta gravidade</div>
-        <div class="source-chips"><span class="source-chip hot">Google 51</span><span class="source-chip medium">Booking 8</span><span class="source-chip hot">Tripadvisor 21</span></div>
-        <div class="top5-desc">Dor transversal e crítica: aparece com força no Google e Tripadvisor e também contamina a experiência de hóspedes via Booking.</div>
+        <div class="source-chips"><span class="source-chip hot">Google 104</span><span class="source-chip medium">Booking 8</span><span class="source-chip hot">Tripadvisor 3</span></div>
+        <div class="top5-desc">Quarto, banheiro, limpeza, cheiro, manutenção, telefone/WhatsApp e chuveiro aparecem como pontos de desconforto básico.<br><strong>Leitura operacional:</strong> Ação imediata: checklist de entrada, itens mínimos de quarto e rotina preventiva por unidade.</div>
       </div>
       <div class="top5-card">
         <div class="top5-rank">#2</div>
-        <div class="top5-theme">Quarto / Manutenção / Limpeza</div>
-        <div class="top5-count">47</div><div class="top5-label">menções</div>
-        <div><span class="top5-sector">Governança / Manutenção</span></div>
+        <div class="top5-theme">Alimentação / Restaurante</div>
+        <div class="top5-count">108</div><div class="top5-label">menções críticas</div>
+        <div class="top5-sector">Alimentos e Bebidas</div>
         <div class="top5-gravity alta">Alta gravidade</div>
-        <div class="source-chips"><span class="source-chip hot">Google 47</span><span class="source-chip hot">Booking 15</span><span class="source-chip hot">Tripadvisor 16</span></div>
-        <div class="top5-desc">Uma das dores mais perigosas por aparecer em todas as fontes. Afeta percepção de cuidado, conforto e padrão de resort.</div>
+        <div class="source-chips"><span class="source-chip hot">Google 99</span><span class="source-chip medium">Booking 6</span><span class="source-chip hot">Tripadvisor 3</span></div>
+        <div class="top5-desc">Cardápio, qualidade, jantar temático, reposição e organização do salão seguem contaminando a percepção de valor.<br><strong>Leitura operacional:</strong> Prioridade: liderança de salão, buffet/jantar, reposição e aderência para crianças.</div>
       </div>
       <div class="top5-card">
         <div class="top5-rank">#3</div>
         <div class="top5-theme">Atendimento</div>
-        <div class="top5-count">43</div><div class="top5-label">menções</div>
-        <div><span class="top5-sector">Atendimento</span></div>
+        <div class="top5-count">104</div><div class="top5-label">menções críticas</div>
+        <div class="top5-sector">Atendimento / Governança</div>
         <div class="top5-gravity media">Média gravidade</div>
-        <div class="source-chips"><span class="source-chip hot">Google 43</span><span class="source-chip medium">Booking 8</span><span class="source-chip medium">Tripadvisor 13</span></div>
-        <div class="top5-desc">O atendimento aparece como elogio e dor. O desafio é reduzir oscilação de processo, especialmente em recepção, conflitos e retornos.</div>
+        <div class="source-chips"><span class="source-chip hot">Google 98</span><span class="source-chip medium">Booking 4</span><span class="source-chip hot">Tripadvisor 2</span></div>
+        <div class="top5-desc">Recepção, WhatsApp, lentidão, equipe perdida e falta de autonomia aparecem junto a elogios individuais.<br><strong>Leitura operacional:</strong> Treinar resposta rápida e escalonamento; o problema não é simpatia individual, é processo.</div>
       </div>
       <div class="top5-card">
         <div class="top5-rank">#4</div>
         <div class="top5-theme">Estrutura / Obras / Barro</div>
-        <div class="top5-count">34</div><div class="top5-label">menções</div>
-        <div><span class="top5-sector">Infraestrutura</span></div>
+        <div class="top5-count">91</div><div class="top5-label">menções críticas</div>
+        <div class="top5-sector">Infraestrutura</div>
         <div class="top5-gravity media">Média gravidade</div>
-        <div class="source-chips"><span class="source-chip medium">Google 34</span><span class="source-chip hot">Booking 13</span><span class="source-chip hot">Tripadvisor 12</span></div>
-        <div class="top5-desc">Booking e Tripadvisor reforçam a dor de acesso/barro/obra. É uma quebra de primeira impressão e alimenta a narrativa de produto incompleto.</div>
+        <div class="source-chips"><span class="source-chip hot">Google 85</span><span class="source-chip medium">Booking 5</span><span class="source-chip hot">Tripadvisor 1</span></div>
+        <div class="top5-desc">Sinalização, chegada, acesso, lama/barro, obras e aparência de produto incompleto seguem como quebra de primeira impressão.<br><strong>Leitura operacional:</strong> Prioridade prática: acesso, sinalização e contenção de barro/poeira antes de ações de volume comercial.</div>
       </div>
       <div class="top5-card">
         <div class="top5-rank">#5</div>
         <div class="top5-theme">Águas / Temperatura</div>
-        <div class="top5-count">33</div><div class="top5-label">menções</div>
-        <div><span class="top5-sector">Infraestrutura</span></div>
-        <div class="top5-gravity media">Média gravidade</div>
-        <div class="source-chips"><span class="source-chip medium">Google 33</span><span class="source-chip medium">Booking 7</span><span class="source-chip hot">Tripadvisor 16</span></div>
-        <div class="top5-desc">Como "águas quentes" é promessa central, qualquer relato de água fria ou temperatura instável pesa mais do que uma reclamação comum.</div>
+        <div class="top5-count">19</div><div class="top5-label">menções críticas</div>
+        <div class="top5-sector">Infraestrutura / Operações</div>
+        <div class="top5-gravity alta">Alta gravidade</div>
+        <div class="source-chips"><span class="source-chip hot">Google 17</span><span class="source-chip medium">Booking 1</span><span class="source-chip hot">Tripadvisor 1</span></div>
+        <div class="top5-desc">Apesar do menor volume, a dor entra no Top 5 por tocar diretamente a promessa central de águas quentes.<br><strong>Leitura operacional:</strong> Implantar medição diária de temperatura, rotina de registro e protocolo visível de correção.</div>
       </div>
     </div>
 
     <!-- HEATMAP -->
     <div id="b3-heatmap" class="section-title"><span class="icon" style="background:#F5A623;">🌡️</span>Recorrência Mensal de Reclamações</div>
-    <div style="font-size:11px;color:#888;margin:-8px 0 12px;">Intensidade de menções por tema e mês. Quanto mais escuro, maior a frequência de reclamações naquele período.</div>
+    <div style="font-size:11px;color:#888;margin:-8px 0 12px;">Intensidade de menções críticas por tema e mês. Quanto mais escuro, maior a frequência de reclamações naquele período.</div>
     <div class="chart-container">
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px;font-size:11px;">
         <span style="display:flex;align-items:center;gap:5px;"><span style="width:14px;height:14px;background:#f5f5f5;border:1px solid #eee;border-radius:3px;display:inline-block;"></span>Sem registro</span>
@@ -653,26 +654,26 @@
     <div class="diag-grid">
       <div class="diag-card red">
         <div class="diag-label">Reclamações Críticas</div>
-        <div class="diag-num">148</div>
-        <div class="diag-sub">avaliações de 1 a 3 estrelas no período analisado</div>
-        <span class="diag-badge red">20,6% da base analisada</span>
+        <div class="diag-num">177</div>
+        <div class="diag-sub">Google 1–3 estrelas + Booking até 6 + Tripadvisor 1–3</div>
+        <span class="diag-badge red">21,5% da base multicanal</span>
       </div>
       <div class="diag-card orange">
         <div class="diag-label">Temas Críticos Recorrentes</div>
-        <div class="diag-num">10</div>
-        <div class="diag-sub">temas negativos presentes em mais de um mês consecutivo</div>
+        <div class="diag-num">8</div>
+        <div class="diag-sub">temas negativos ativos em junho e presentes no histórico</div>
         <span class="diag-badge orange">100% recorrentes</span>
       </div>
       <div class="diag-card red">
         <div class="diag-label">Persistência desde Abertura</div>
-        <div class="diag-num">10/10</div>
-        <div class="diag-sub">temas de abr/25 ainda registrados em mai/26</div>
+        <div class="diag-num">8/10</div>
+        <div class="diag-sub">temas de abr/25 ainda registrados em jun/26</div>
         <span class="diag-badge red">Sem resolução plena</span>
       </div>
       <div class="diag-card yellow">
         <div class="diag-label">Efeito Projeto 5 Estrelas</div>
-        <div class="diag-num">44,4%</div>
-        <div class="diag-sub">das aval. 5 estrelas mencionam colaboradores (222 de 500, sem dupla contagem)</div>
+        <div class="diag-num">37,6%</div>
+        <div class="diag-sub">das aval. 5 estrelas mencionam colaboradores (194 de 516, sem dupla contagem)</div>
         <span class="diag-badge yellow">Viés de reputação induzida</span>
       </div>
     </div>
@@ -685,26 +686,26 @@
     <div class="section-title"><span class="icon" style="background:#F27466;">📌</span>Índice de Recorrência Crítica (IRC)</div>
     <div class="irc-banner">
       <div>
-        <div class="irc-num">80%</div>
+        <div class="irc-num">100%</div>
       </div>
       <div>
-        <div class="irc-label">Índice de Recorrência Crítica, Junho/2026 parcial</div>
+        <div class="irc-label">Índice de Recorrência Crítica, Junho/2026</div>
         <div class="irc-definition">
-          <strong>Resumo:</strong> 8 de 10 temas críticos monitorados continuam ativos nas avaliações de junho/26. O IRC mede quantos temas críticos voltaram a aparecer no mês, dividido pelo total monitorado. Quanto maior o IRC, menor a evolução operacional real, independente da nota média.
+          <strong>Resumo:</strong> 8 de 8 temas críticos que apareceram em junho/26 já tinham histórico anterior. O IRC mede quantos temas críticos voltaram a aparecer no mês, dividido pelo total monitorado. Quanto maior o IRC, menor a evolução operacional real, independente da nota média.
         </div>
-        <span class="irc-tag">Baixa evolução operacional detectada</span>
+        <span class="irc-tag">Recorrência crítica alta no mês</span>
       </div>
     </div>
 
     <div class="exec-box" style="background: linear-gradient(135deg, #1D1E46 0%, #2a2b5a 100%);">
-      <h3>Análise Consolidada · Até 18 de Junho de 2026</h3>
-      <p>Apesar da melhora na nota média do Google, as avaliações críticas indicam <strong>permanência de problemas estruturais e operacionais desde a abertura do resort</strong>. A entrada de Booking, Tripadvisor e benchmark competitivo confirma a leitura: a reputação é positiva, mas ainda instável, com <strong>Booking em 7,7/10</strong>, <strong>Tripadvisor em 3,5/5</strong> e gaps relevantes frente aos melhores concorrentes da categoria. A evolução da reputação está sendo sustentada, em parte, por avaliações positivas ligadas ao atendimento individual de colaboradores, enquanto dores relacionadas a <strong>alimentação, estrutura, manutenção, temperatura da água, acessibilidade e pós-venda</strong> seguem aparecendo.</p>
-      <p>Todos os 10 temas críticos identificados na abertura, em <strong>abril de 2025</strong>, seguem presentes no histórico de 2026, mais de um ano depois. O Índice de Recorrência Crítica de <strong>80%</strong> no parcial de junho/26 indica que a maioria das dores monitoradas continua aparecendo, ainda que em menor volume neste início de mês.</p>
-      <p>O <strong>indicador principal de evolução não deve ser apenas a nota média</strong>, mas a redução mensal da recorrência dos temas críticos. Enquanto as mesmas reclamações seguirem aparecendo mês a mês, a melhora observada na nota Google deve ser lida junto ao efeito do Projeto 5 Estrelas: positivo para reputação aparente, mas insuficiente como evidência isolada de melhoria operacional real.</p>
+      <h3>Análise Consolidada · Até 22 de Junho de 2026</h3>
+      <p>A reputação <strong>melhorou no topo</strong> — NPS médio +53 e Google 4,4 — mas a leitura operacional segue sensível. O ganho de Google vem acompanhado de aumento do volume de 5 estrelas, enquanto Booking fecha em <strong>7,7/10</strong> e Tripadvisor em <strong>3,4/5</strong>, canais que mostram uma experiência mais instável para hóspedes em decisão de compra.</p>
+      <p>O Reclame Aqui <strong>não evoluiu</strong>: a nota atual é <strong>6,9</strong> e a reputação voltou para <strong>Regular</strong>. Mesmo com 92,7% das reclamações respondidas, o ponto crítico está em resolver melhor: 66,7% de resolução e 63% de clientes que voltariam ainda deixam margem clara de recuperação.</p>
+      <p>O alerta central é recorrência. Em junho, <strong>8 temas críticos</strong> seguem ativos e todos já tinham aparecido antes: alimentação, águas/temperatura, quarto/manutenção/limpeza, atendimento, estrutura/obras/barro, lazer, preço e comunicação/expectativa. Pós-venda e acessibilidade não aparecem em junho na leitura textual crítica, mas seguem monitorados no histórico. A prioridade da próxima semana deve ser operacional: quartos, comida/salão, atendimento, acesso/sinalização e temperatura das águas.</p>
     </div>
 
     <!-- ABERTURA vs MAIO -->
-    <div class="section-title"><span class="icon" style="background:#1D1E46;">⚖️</span>Abertura x Maio/2026: o que ainda não foi resolvido</div>
+    <div class="section-title"><span class="icon" style="background:#1D1E46;">⚖️</span>Abertura x Junho/2026: o que ainda não foi resolvido</div>
     <div style="font-size:11px;color:#555;margin:-8px 0 16px;line-height:1.6;">
       As avaliações indicam que parte das dores relatadas na abertura do resort continua presente mais de um ano depois. A evolução da reputação não deve ser analisada apenas pela nota média, mas pela redução real da recorrência dos problemas.
     </div>
@@ -714,18 +715,18 @@
           <tr>
             <th>Tema Crítico</th>
             <th style="text-align:center;">Na Abertura (Abr/25)</th>
-            <th style="text-align:center;">Em Maio/2026</th>
+            <th style="text-align:center;">Em Junho/2026</th>
             <th style="text-align:center;">Status</th>
           </tr>
         </thead>
         <tbody>
           <tr><td><strong>Alimentação / Restaurante</strong></td><td style="text-align:center;">Sim</td><td style="text-align:center;">Sim</td><td style="text-align:center;"><span class="status-badge status-s1">Sem avanço percebido</span></td></tr>
           <tr><td><strong>Águas / Temperatura</strong></td><td style="text-align:center;">Sim</td><td style="text-align:center;">Sim</td><td style="text-align:center;"><span class="status-badge status-s1">Sem avanço percebido</span></td></tr>
-          <tr><td><strong>Pós-venda / Cancelamento</strong></td><td style="text-align:center;">Sim</td><td style="text-align:center;">Sim</td><td style="text-align:center;"><span class="status-badge status-s1">Sem avanço percebido</span></td></tr>
+          <tr><td><strong>Pós-venda / Cancelamento</strong></td><td style="text-align:center;">Sim</td><td style="text-align:center;">Não</td><td style="text-align:center;"><span class="status-badge status-s4">Sem registro em jun/26</span></td></tr>
           <tr><td><strong>Quarto / Manutenção / Limpeza</strong></td><td style="text-align:center;">Sim</td><td style="text-align:center;">Sim</td><td style="text-align:center;"><span class="status-badge status-s2">Ainda sensível</span></td></tr>
           <tr><td><strong>Atendimento</strong></td><td style="text-align:center;">Sim</td><td style="text-align:center;">Sim</td><td style="text-align:center;"><span class="status-badge status-s2">Ainda sensível</span></td></tr>
           <tr><td><strong>Estrutura / Obras / Barro</strong></td><td style="text-align:center;">Sim</td><td style="text-align:center;">Sim</td><td style="text-align:center;"><span class="status-badge status-s2">Ainda sensível</span></td></tr>
-          <tr><td><strong>Acessibilidade / Deslocamento</strong></td><td style="text-align:center;">Sim</td><td style="text-align:center;">Sim</td><td style="text-align:center;"><span class="status-badge status-s2">Ainda sensível</span></td></tr>
+          <tr><td><strong>Acessibilidade / Deslocamento</strong></td><td style="text-align:center;">Sim</td><td style="text-align:center;">Não</td><td style="text-align:center;"><span class="status-badge status-s4">Sem registro em jun/26</span></td></tr>
           <tr><td><strong>Lazer / Recreação / Programação</strong></td><td style="text-align:center;">Sim</td><td style="text-align:center;">Sim</td><td style="text-align:center;"><span class="status-badge status-s4">Reduzido</span></td></tr>
           <tr><td><strong>Preço / Custo-benefício</strong></td><td style="text-align:center;">Sim</td><td style="text-align:center;">Sim</td><td style="text-align:center;"><span class="status-badge status-s4">Reduzido</span></td></tr>
           <tr><td><strong>Comunicação / Expectativa Frustrada</strong></td><td style="text-align:center;">Sim</td><td style="text-align:center;">Sim</td><td style="text-align:center;"><span class="status-badge status-s4">Reduzido</span></td></tr>
@@ -738,34 +739,34 @@
     <div style="font-size:11px;color:#888;margin:-8px 0 12px;">Trechos representativos de avaliações críticas, com identidades omitidas. Priorizados por recorrência e representatividade.</div>
     <div class="vozes-grid">
       <div class="voz-card">
-        <div class="voz-stars">3 estrelas · Jun/26</div>
-        <div class="voz-quote">O local é legal, mas tem alguns pontos que deixam a desejar. O quarto estava sujo, a alimentação poderia ser melhor, eventos foram cancelados sem aviso e a acústica é péssima.</div>
-        <span class="voz-tag">Múltiplas dores</span>
+        <div class="voz-stars">2 estrelas · Jun/26 · Google/Tripadvisor</div>
+        <div class="voz-quote">As sinalizações para chegar até o hotel estão péssimas. As piscinas eram boas, porém apenas duas estavam mornas; nenhuma realmente aquecida.</div>
+        <span class="voz-tag">Acesso e Águas</span>
       </div>
       <div class="voz-card">
-        <div class="voz-stars">3 estrelas · Jun/26</div>
-        <div class="voz-quote">A estrutura é moderna, a piscina aquecida é muito boa. O acesso é horrível. A comida fria, os piores risotos que já comi.</div>
-        <span class="voz-tag">Acesso e Alimentação</span>
+        <div class="voz-stars">2 estrelas · Jun/26 · Google/Tripadvisor</div>
+        <div class="voz-quote">Os quartos são aconchegantes, porém faltam itens básicos. As portas saem para ruas de terra; se chover, complica.</div>
+        <span class="voz-tag">Quarto e Estrutura</span>
       </div>
       <div class="voz-card">
-        <div class="voz-stars">2 estrelas · Mai/26</div>
-        <div class="voz-quote">Estou há meses tentando resolver uma simples situação e não conseguem. Já passei até por gestores do hotel e não têm habilidade para resolver.</div>
-        <span class="voz-tag">Pós-venda e Cancelamento</span>
+        <div class="voz-stars">2 estrelas · Jun/26 · Google/Tripadvisor</div>
+        <div class="voz-quote">Os quartos não têm telefones e a recepção demora a responder no WhatsApp. A sensação é que falta alguém organizando tudo.</div>
+        <span class="voz-tag">Atendimento e Processo</span>
       </div>
       <div class="voz-card">
-        <div class="voz-stars">2 estrelas · Mai/26</div>
-        <div class="voz-quote">Falta muita coisa para ser feita ainda. A piscina não estava muito quente, o ofurô estava frio. A comida era repetida, não tinha variedade. O atendimento foi ruim.</div>
-        <span class="voz-tag">Múltiplas dores</span>
+        <div class="voz-stars">3 estrelas · Jun/26 · Google</div>
+        <div class="voz-quote">O quarto estava sujo na chegada, com sujeira no banheiro. A comida é boa, mas as sobremesas deixaram a desejar.</div>
+        <span class="voz-tag">Limpeza e Alimentação</span>
       </div>
       <div class="voz-card">
-        <div class="voz-stars">2 estrelas · Mai/26</div>
-        <div class="voz-quote">A sensação final foi a de um empreendimento ainda em fase de testes, porém já cobrando como produto consolidado. Muitas áreas em obras, pouca arborização, estética ainda crua.</div>
-        <span class="voz-tag">Estrutura e Expectativa</span>
+        <div class="voz-stars">3 estrelas · Jun/26 · Google</div>
+        <div class="voz-quote">A estrutura é moderna e a piscina aquecida é boa. O acesso é horrível. A comida fria foi um ponto negativo.</div>
+        <span class="voz-tag">Acesso e Restaurante</span>
       </div>
       <div class="voz-card">
-        <div class="voz-stars">1 estrela · Mai/26</div>
-        <div class="voz-quote">Precisei cancelar minha reserva 40 dias antes e querem cobrar 100% do valor. Fiquem espertos.</div>
-        <span class="voz-tag">Pós-venda e Cancelamento</span>
+        <div class="voz-stars">2 estrelas · Mai/26 · Google</div>
+        <div class="voz-quote">Estou há meses tentando resolver uma situação simples e não conseguem. Já passei por gestores e não houve solução.</div>
+        <span class="voz-tag">Pós-venda</span>
       </div>
     </div>
 
@@ -779,32 +780,32 @@
         <div style="position:relative;display:flex;align-items:center;justify-content:center;">
           <canvas id="elogioDonut" width="200" height="200"></canvas>
           <div style="position:absolute;text-align:center;pointer-events:none;">
-            <div style="font-size:28px;font-weight:700;color:#1D1E46;line-height:1;">500</div>
+            <div style="font-size:28px;font-weight:700;color:#1D1E46;line-height:1;">516</div>
             <div style="font-size:10px;color:#888;">aval. 5 estrelas</div>
           </div>
         </div>
         <div>
-          <div style="font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;">Distribuição das 500 avaliações 5 estrelas, sem dupla contagem</div>
+          <div style="font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;">Distribuição das 516 avaliações 5 estrelas, sem dupla contagem</div>
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
             <div style="width:12px;height:12px;border-radius:3px;background:#29948F;flex-shrink:0;"></div>
             <div style="flex:1;">
               <div style="display:flex;justify-content:space-between;align-items:baseline;">
-                <span style="font-size:12px;font-weight:700;color:#1D1E46;">Só colaborador / atendimento</span>
-                <span style="font-size:13px;font-weight:700;color:#29948F;">84 <span style="font-size:10px;color:#888;font-weight:400;">16,8%</span></span>
+                <span style="font-size:12px;font-weight:700;color:#1D1E46;">Só colaborador</span>
+                <span style="font-size:13px;font-weight:700;color:#29948F;">99 <span style="font-size:10px;color:#888;font-weight:400;">19,2%</span></span>
               </div>
-              <div style="background:#eee;border-radius:6px;height:6px;margin-top:4px;"><div style="width:16.8%;background:#29948F;height:6px;border-radius:6px;"></div></div>
-              <div style="font-size:11px;color:#888;margin-top:3px;">Elogia exclusivamente pessoas: nome, simpatia, prestatividade</div>
+              <div style="background:#eee;border-radius:6px;height:6px;margin-top:4px;"><div style="width:19.2%;background:#29948F;height:6px;border-radius:6px;"></div></div>
+              <div style="font-size:11px;color:#888;margin-top:3px;">Elogia exclusivamente pessoas: atendimento, simpatia, prestatividade ou nomes de colaboradores</div>
             </div>
           </div>
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
             <div style="width:12px;height:12px;border-radius:3px;background:#00AEEF;flex-shrink:0;"></div>
             <div style="flex:1;">
               <div style="display:flex;justify-content:space-between;align-items:baseline;">
-                <span style="font-size:12px;font-weight:700;color:#1D1E46;">Só produto / resort</span>
-                <span style="font-size:13px;font-weight:700;color:#00AEEF;">83 <span style="font-size:10px;color:#888;font-weight:400;">16,6%</span></span>
+                <span style="font-size:12px;font-weight:700;color:#1D1E46;">Só produto</span>
+                <span style="font-size:13px;font-weight:700;color:#00AEEF;">76 <span style="font-size:10px;color:#888;font-weight:400;">14,7%</span></span>
               </div>
-              <div style="background:#eee;border-radius:6px;height:6px;margin-top:4px;"><div style="width:16.6%;background:#00AEEF;height:6px;border-radius:6px;"></div></div>
-              <div style="font-size:11px;color:#888;margin-top:3px;">Elogia águas, estrutura, quarto, lazer, alimentação</div>
+              <div style="background:#eee;border-radius:6px;height:6px;margin-top:4px;"><div style="width:14.7%;background:#00AEEF;height:6px;border-radius:6px;"></div></div>
+              <div style="font-size:11px;color:#888;margin-top:3px;">Elogia águas, estrutura, quarto, lazer, alimentação ou ambiente</div>
             </div>
           </div>
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
@@ -812,28 +813,28 @@
             <div style="flex:1;">
               <div style="display:flex;justify-content:space-between;align-items:baseline;">
                 <span style="font-size:12px;font-weight:700;color:#1D1E46;">Colaborador e produto</span>
-                <span style="font-size:13px;font-weight:700;color:#F5A623;">138 <span style="font-size:10px;color:#888;font-weight:400;">27,6%</span></span>
+                <span style="font-size:13px;font-weight:700;color:#F5A623;">95 <span style="font-size:10px;color:#888;font-weight:400;">18,4%</span></span>
               </div>
-              <div style="background:#eee;border-radius:6px;height:6px;margin-top:4px;"><div style="width:27.6%;background:#F5A623;height:6px;border-radius:6px;"></div></div>
-              <div style="font-size:11px;color:#888;margin-top:3px;">Menciona ambos, o mais completo em termos de experiência</div>
+              <div style="background:#eee;border-radius:6px;height:6px;margin-top:4px;"><div style="width:18.4%;background:#F5A623;height:6px;border-radius:6px;"></div></div>
+              <div style="font-size:11px;color:#888;margin-top:3px;">Menciona ambos; é o sinal mais completo de experiência entregue</div>
             </div>
           </div>
-          <div style="display:flex;align-items:center;gap:10px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
             <div style="width:12px;height:12px;border-radius:3px;background:#ddd;flex-shrink:0;"></div>
             <div style="flex:1;">
               <div style="display:flex;justify-content:space-between;align-items:baseline;">
-                <span style="font-size:12px;font-weight:700;color:#1D1E46;">Sem texto útil ou apenas nota</span>
-                <span style="font-size:13px;font-weight:700;color:#999;">195 <span style="font-size:10px;color:#888;font-weight:400;">39,0%</span></span>
+                <span style="font-size:12px;font-weight:700;color:#1D1E46;">Sem texto útil</span>
+                <span style="font-size:13px;font-weight:700;color:#999;">246 <span style="font-size:10px;color:#888;font-weight:400;">47,7%</span></span>
               </div>
-              <div style="background:#eee;border-radius:6px;height:6px;margin-top:4px;"><div style="width:39.0%;background:#ddd;height:6px;border-radius:6px;"></div></div>
-              <div style="font-size:11px;color:#888;margin-top:3px;">Comentários genéricos, sem detalhe operacional</div>
+              <div style="background:#eee;border-radius:6px;height:6px;margin-top:4px;"><div style="width:47.7%;background:#ddd;height:6px;border-radius:6px;"></div></div>
+              <div style="font-size:11px;color:#888;margin-top:3px;">Comentários genéricos, sem detalhe operacional ou apenas nota</div>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div style="background:#FFF7E6;border:1px solid #F5C45D;border-radius:8px;padding:12px 16px;font-size:11px;color:#1D1E46;margin-bottom:20px;line-height:1.6;">
-      <strong style="color:#D4880A;">Leitura importante:</strong> Das 500 avaliações de 5 estrelas analisadas, <strong>222 (44,4%)</strong> mencionam colaboradores, seja exclusivamente (84) ou junto ao produto (138). O <strong>Projeto 5 Estrelas</strong> segue gerando avaliações genuínas de satisfação com atendimento, mas apenas <strong>16,6% elogiam exclusivamente o produto resort</strong>. A reputação positiva é sustentada, em parte, por excelência individual, não sistêmica.
+      <strong style="color:#D4880A;">Leitura importante:</strong> Das 516 avaliações de 5 estrelas classificadas, <strong>194 (37,6%)</strong> mencionam colaboradores, seja exclusivamente (99) ou junto ao produto (95). O <strong>Projeto 5 Estrelas</strong> sustenta reputação positiva, mas <strong>apenas 14,7%</strong> elogiam exclusivamente o produto resort. A reputação melhora, mas ainda depende muito de excelência individual.
     </div>
 
     <!-- BLOCO 5: BENCHMARK -->
@@ -845,9 +846,9 @@
     </div>
     <div class="benchmark-kpi-grid">
       <div class="benchmark-kpi alert"><div class="benchmark-label">Booking</div><div class="benchmark-main"><span class="num">7,7</span><span class="unit">/10</span></div><div class="benchmark-gap">Gap vs melhor: 1,5 ponto</div></div>
-      <div class="benchmark-kpi"><div class="benchmark-label">Google Review</div><div class="benchmark-main"><span class="num">4,3</span><span class="unit">/5</span></div><div class="benchmark-gap">Gap vs melhor: 0,5 estrela</div></div>
-      <div class="benchmark-kpi alert"><div class="benchmark-label">Tripadvisor</div><div class="benchmark-main"><span class="num">3,5</span><span class="unit">/5</span></div><div class="benchmark-gap">Gap vs melhor: 1,2 estrela</div></div>
-      <div class="benchmark-kpi"><div class="benchmark-label">Reclame Aqui</div><div class="benchmark-main"><span class="num">7,0</span><span class="unit">/10</span></div><div class="benchmark-gap">Gap vs melhor: 0,7 ponto</div></div>
+      <div class="benchmark-kpi"><div class="benchmark-label">Google Review</div><div class="benchmark-main"><span class="num">4,4</span><span class="unit">/5</span></div><div class="benchmark-gap">Gap vs melhor: 0,4 estrela</div></div>
+      <div class="benchmark-kpi alert"><div class="benchmark-label">Tripadvisor</div><div class="benchmark-main"><span class="num">3,4</span><span class="unit">/5</span></div><div class="benchmark-gap">Gap vs melhor: 1,3 estrela</div></div>
+      <div class="benchmark-kpi"><div class="benchmark-label">Reclame Aqui</div><div class="benchmark-main"><span class="num">6,9</span><span class="unit">/10</span></div><div class="benchmark-gap">Gap vs melhor: 0,8 ponto</div></div>
     </div>
     <div class="chart-container">
       <div style="display:grid;grid-template-columns:1fr;gap:16px;overflow:hidden;">
@@ -861,14 +862,14 @@
               <div class="rank-line"><span>Blue Tree Lins</span><span class="rank-track"><span class="rank-fill" style="width:94%;"></span></span><span>4,7</span></div>
               <div class="rank-line"><span>Hot Beach</span><span class="rank-track"><span class="rank-fill" style="width:92%;"></span></span><span>4,6</span></div>
               <div class="rank-line"><span>Enjoy Olímpia</span><span class="rank-track"><span class="rank-fill" style="width:88%;"></span></span><span>4,4</span></div>
-              <div class="rank-line morro"><span>Morro dos Anjos</span><span class="rank-track"><span class="rank-fill" style="width:86%;"></span></span><span>4,3</span></div>
+              <div class="rank-line morro"><span>Morro dos Anjos</span><span class="rank-track"><span class="rank-fill" style="width:88%;"></span></span><span>4,4</span></div>
               <div class="rank-line"><span>Thermas Olímpia</span><span class="rank-track"><span class="rank-fill" style="width:80%;"></span></span><span>4,0</span></div>
             </div>
             <div class="ranking-card">
               <div class="ranking-title">Ranking Reclame Aqui</div>
               <div class="rank-line"><span>Blue Tree Lins</span><span class="rank-track"><span class="rank-fill" style="width:77%;"></span></span><span>7,7</span></div>
               <div class="rank-line"><span>Enjoy Olímpia</span><span class="rank-track"><span class="rank-fill" style="width:76%;"></span></span><span>7,6</span></div>
-              <div class="rank-line morro"><span>Morro dos Anjos</span><span class="rank-track"><span class="rank-fill" style="width:70%;"></span></span><span>7,0</span></div>
+              <div class="rank-line morro"><span>Morro dos Anjos</span><span class="rank-track"><span class="rank-fill" style="width:69%;"></span></span><span>6,9</span></div>
               <div class="rank-line"><span>Jurema</span><span class="rank-track"><span class="rank-fill" style="width:68%;"></span></span><span>6,8</span></div>
               <div class="rank-line"><span>Hot Beach</span><span class="rank-track"><span class="rank-fill" style="width:65%;"></span></span><span>6,5</span></div>
               <div class="rank-line"><span style="opacity:.5;">Jardins de Jurema</span><span class="rank-track"><span class="rank-fill" style="width:0%;background:#ccc;"></span></span><span style="opacity:.5;">s/d</span></div>
@@ -896,18 +897,18 @@
           <div class="rank-line"><span>Jurema</span><span class="rank-track"><span class="rank-fill" style="width:90%;"></span></span><span>4,5</span></div>
           <div class="rank-line"><span>Jardins de Jurema</span><span class="rank-track"><span class="rank-fill" style="width:86%;"></span></span><span>4,3</span></div>
           <div class="rank-line"><span>Thermas Olímpia</span><span class="rank-track"><span class="rank-fill" style="width:82%;"></span></span><span>4,1</span></div>
-          <div class="rank-line morro"><span>Morro dos Anjos</span><span class="rank-track"><span class="rank-fill" style="width:70%;"></span></span><span>3,5</span></div>
+          <div class="rank-line morro"><span>Morro dos Anjos</span><span class="rank-track"><span class="rank-fill" style="width:68%;"></span></span><span>3,4</span></div>
         </div>
       </div>
       <div class="pain-summary-grid">
-        <div class="pain-summary-card alert"><div class="pain-summary-title">Leitura crua</div><div class="pain-summary-text">O Morro está competitivo em Google e Reclame Aqui, mas ainda distante dos líderes em Booking e Tripadvisor.</div></div>
-        <div class="pain-summary-card"><div class="pain-summary-title">Onde está o maior gap</div><div class="pain-summary-text">Booking tem diferença de 1,5 ponto para o melhor benchmark; Tripadvisor tem diferença de 1,2 estrela para o melhor concorrente.</div></div>
+        <div class="pain-summary-card alert"><div class="pain-summary-title">Leitura crua</div><div class="pain-summary-text">O Morro segue competitivo em Google e está no meio do ranking de Reclame Aqui, mas ainda distante dos líderes em Booking e Tripadvisor.</div></div>
+        <div class="pain-summary-card"><div class="pain-summary-title">Onde está o maior gap</div><div class="pain-summary-text">Booking tem diferença de 1,5 ponto para o melhor benchmark; Tripadvisor tem diferença de 1,3 estrela para o melhor concorrente.</div></div>
         <div class="pain-summary-card alert"><div class="pain-summary-title">Implicação operacional</div><div class="pain-summary-text">Os canais de hospedagem e turismo confirmam que a prioridade deve ser reduzir dores recorrentes, não apenas ampliar volume de avaliações positivas.</div></div>
       </div>
     </div>
 
     <div class="footer">
-      <div class="footer-text">Dados atualizados até 15/06/2026 · Dashboard de Reputação</div>
+      <div class="footer-text">Dados atualizados até 22/jun/2026 · Dashboard de Reputação</div>
       <div class="footer-text" style="color:#00AEEF;font-weight:600;">Morro dos Anjos Resort</div>
     </div>
   </div>
@@ -918,36 +919,37 @@
     const gridColor = 'rgba(0,0,0,0.05)';
 
     // BOOKING
-    const bookingOtaData = { labels: ['Nov/25','Dez/25','Jan/26','Fev/26','Mar/26','Abr/26','Mai/26','Jun/26'], volumes: [1,2,6,13,11,10,7,10], notas: [7.0,8.5,7.3,8.1,7.2,8.7,7.7,7.2] };
-    new Chart(document.getElementById('bookingChart'), { type:'bar', data:{ labels: bookingOtaData.labels, datasets:[{ type:'bar', label:'Avaliações', data:bookingOtaData.volumes, backgroundColor:'#003B95', borderRadius:4, yAxisID:'y' },{ type:'line', label:'Nota média', data:bookingOtaData.notas, borderColor:'#F27466', backgroundColor:'transparent', borderWidth:3, pointBackgroundColor:'#F27466', pointRadius:4, tension:.3, yAxisID:'y1' }]}, options:{ responsive:true, maintainAspectRatio:false, interaction:{intersect:false,mode:'index'}, plugins:{legend:{display:false}}, scales:{ x:{grid:{display:false}, ticks:{color:textColor,font:{size:10,family:'Montserrat'}}}, y:{position:'left', beginAtZero:true, grid:{color:gridColor}, ticks:{color:textColor,font:{size:10,family:'Montserrat'}}}, y1:{position:'right', min:0, max:10, grid:{display:false}, ticks:{color:'#F27466',font:{size:10,family:'Montserrat'}, callback:v=>v.toFixed(0)}}}}});
+    const bookingOtaData = { labels: ["Nov/25","Dez/25","Jan/26","Fev/26","Mar/26","Abr/26","Mai/26","Jun/26"], volumes: [1,2,6,13,11,10,7,11], notas: [7.0,8.5,7.3,8.1,7.2,8.7,7.7,7.2] };
+    if (document.getElementById('bookingChart')) new Chart(document.getElementById('bookingChart'), { type:'bar', data:{ labels: bookingOtaData.labels, datasets:[{ type:'bar', label:'Avaliações', data:bookingOtaData.volumes, backgroundColor:'#003B95', borderRadius:4, yAxisID:'y' },{ type:'line', label:'Nota média', data:bookingOtaData.notas, borderColor:'#F27466', backgroundColor:'transparent', borderWidth:3, pointBackgroundColor:'#F27466', pointRadius:4, tension:.3, yAxisID:'y1' }]}, options:{ responsive:true, maintainAspectRatio:false, interaction:{intersect:false,mode:'index'}, plugins:{legend:{display:true, position:'top', align:'start', labels:{color:textColor, font:{size:10,family:'Montserrat'}, boxWidth:12, usePointStyle:true, pointStyle:'rectRounded'}}}, scales:{ x:{grid:{display:false}, ticks:{color:textColor,font:{size:10,family:'Montserrat'}}}, y:{position:'left', beginAtZero:true, grid:{color:gridColor}, ticks:{color:textColor,font:{size:10,family:'Montserrat'}}}, y1:{position:'right', min:0, max:10, grid:{display:false}, ticks:{color:'#F27466',font:{size:10,family:'Montserrat'}, callback:v=>v.toFixed(0)}}}}});
 
     // TRIPADVISOR
-    const tripOtaData = { labels: ['Set/25','Out/25','Nov/25','Dez/25','Jan/26','Fev/26','Mar/26','Abr/26','Mai/26','Jun/26'], volumes: [1,3,3,5,2,2,0,5,5,0], notas: [1.0,2.7,4.0,4.4,4.0,4.0,null,3.6,2.8,null] };
-    new Chart(document.getElementById('tripChart'), { type:'bar', data:{ labels: tripOtaData.labels, datasets:[{ type:'bar', label:'Avaliações', data:tripOtaData.volumes, backgroundColor:'#29948F', borderRadius:4, yAxisID:'y' },{ type:'line', label:'Nota média', data:tripOtaData.notas, borderColor:'#F27466', backgroundColor:'transparent', borderWidth:3, pointBackgroundColor:'#F27466', pointRadius:4, tension:.3, yAxisID:'y1', spanGaps:false }]}, options:{ responsive:true, maintainAspectRatio:false, interaction:{intersect:false,mode:'index'}, plugins:{legend:{display:false}}, scales:{ x:{grid:{display:false}, ticks:{color:textColor,font:{size:10,family:'Montserrat'}, maxRotation:45}}, y:{position:'left', beginAtZero:true, grid:{color:gridColor}, ticks:{color:textColor,font:{size:10,family:'Montserrat'}}}, y1:{position:'right', min:0, max:5, grid:{display:false}, ticks:{color:'#F27466',font:{size:10,family:'Montserrat'}, callback:v=>v.toFixed(0)+'★'}}}}});
+    const tripOtaData = { labels: ["Set/25","Out/25","Nov/25","Dez/25","Jan/26","Fev/26","Mar/26","Abr/26","Mai/26","Jun/26"], volumes: [1,3,3,5,2,2,0,5,5,1], notas: [1.0,2.7,4.0,4.4,4.0,4.0,null,3.6,2.8,null] };
+    if (document.getElementById('tripChart')) new Chart(document.getElementById('tripChart'), { type:'bar', data:{ labels: tripOtaData.labels, datasets:[{ type:'bar', label:'Avaliações', data:tripOtaData.volumes, backgroundColor:'#29948F', borderRadius:4, yAxisID:'y' },{ type:'line', label:'Nota média', data:tripOtaData.notas, borderColor:'#F27466', backgroundColor:'transparent', borderWidth:3, pointBackgroundColor:'#F27466', pointRadius:4, tension:.3, yAxisID:'y1', spanGaps:false }]}, options:{ responsive:true, maintainAspectRatio:false, interaction:{intersect:false,mode:'index'}, plugins:{legend:{display:true, position:'top', align:'start', labels:{color:textColor, font:{size:10,family:'Montserrat'}, boxWidth:12, usePointStyle:true, pointStyle:'rectRounded'}}}, scales:{ x:{grid:{display:false}, ticks:{color:textColor,font:{size:10,family:'Montserrat'}, maxRotation:45}}, y:{position:'left', beginAtZero:true, grid:{color:gridColor}, ticks:{color:textColor,font:{size:10,family:'Montserrat'}}}, y1:{position:'right', min:0, max:5, grid:{display:false}, ticks:{color:'#F27466',font:{size:10,family:'Montserrat'}, callback:v=>v.toFixed(0)+'★'}}}}});
 
-    new Chart(document.getElementById('bookingDistChart'), { type:'doughnut', data:{ labels:['Críticos até 6','Nota 7','Nota 8','Nota 9','Nota 10'], datasets:[{ data:[14,7,14,10,15], backgroundColor:['#F27466','#F5C45D','#00AEEF','#29948F','#1D1E46'], borderWidth:0 }]}, options:{ responsive:true, maintainAspectRatio:false, cutout:'58%', plugins:{ legend:{ position:'right', labels:{ color:textColor, font:{ size:10, family:'Montserrat' }, boxWidth:12, padding:8 }}}}});
-    new Chart(document.getElementById('tripDistChart'), { type:'doughnut', data:{ labels:['1 estrela','2 estrelas','3 estrelas','4 estrelas','5 estrelas'], datasets:[{ data:[4,3,6,2,11], backgroundColor:['#1D1E46','#F27466','#F5C45D','#00AEEF','#29948F'], borderWidth:0 }]}, options:{ responsive:true, maintainAspectRatio:false, cutout:'58%', plugins:{ legend:{ position:'right', labels:{ color:textColor, font:{ size:10, family:'Montserrat' }, boxWidth:12, padding:8 }}}}});
+    if (document.getElementById('bookingDistChart')) new Chart(document.getElementById('bookingDistChart'), { type:'doughnut', data:{ labels:['Críticos até 6','Nota 7','Nota 8','Nota 9','Nota 10'], datasets:[{ data:[15,8,14,10,14], backgroundColor:['#F27466','#F5C45D','#00AEEF','#29948F','#1D1E46'], borderWidth:0 }]}, options:{ responsive:true, maintainAspectRatio:false, cutout:'58%', plugins:{ legend:{ position:'right', labels:{ color:textColor, font:{ size:10, family:'Montserrat' }, boxWidth:12, padding:8 }}}}});
+    if (document.getElementById('tripDistChart')) new Chart(document.getElementById('tripDistChart'), { type:'doughnut', data:{ labels:['1 estrela','2 estrelas','3 estrelas','4 estrelas','5 estrelas'], datasets:[{ data:[4,4,6,2,11], backgroundColor:['#1D1E46','#F27466','#F5C45D','#00AEEF','#29948F'], borderWidth:0 }]}, options:{ responsive:true, maintainAspectRatio:false, cutout:'58%', plugins:{ legend:{ position:'right', labels:{ color:textColor, font:{ size:10, family:'Montserrat' }, boxWidth:12, padding:8 }}}}});
 
     // Radar chart removed; replaced by ranking bars
 
     // GOOGLE
-    const googleData = { labels: ["Jan/25","Fev/25","Mar/25","Abr/25","Mai/25","Jun/25","Jul/25","Ago/25","Set/25","Out/25","Nov/25","Dez/25","Jan/26","Fev/26","Mar/26","Abr/26","Mai/26","Jun/26"], volumes: [6,5,9,8,25,20,35,23,17,22,57,40,46,52,49,152,104,49], notas: [4.17,3.8,4.67,2.62,3.88,4.05,3.94,3.87,3.82,4.05,4.21,4.28,4.17,3.79,4.31,4.49,4.58,4.8] };
-    new Chart(document.getElementById('googleChart'), { type:'bar', data:{ labels: googleData.labels, datasets:[{ type:'bar', label:'Avaliações', data: googleData.volumes, backgroundColor:'#00AEEF', borderRadius:4, yAxisID:'y' },{ type:'line', label:'Nota média', data: googleData.notas, borderColor:'#F27466', backgroundColor:'transparent', borderWidth:3, pointBackgroundColor:'#F27466', pointRadius:4, tension:0.3, yAxisID:'y1' }]}, options:{ responsive:true, maintainAspectRatio:false, interaction:{ intersect:false, mode:'index' }, plugins:{ legend:{ display:false }}, scales:{ x:{ grid:{ display:false }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' }, maxRotation:45 }}, y:{ position:'left', grid:{ color:gridColor }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' }}, title:{ display:true, text:'Qtd. avaliações', color:textColor, font:{ size:10, family:'Montserrat' }}}, y1:{ position:'right', min:1, max:5, grid:{ display:false }, ticks:{ color:'#F27466', font:{ size:10, family:'Montserrat' }, callback:v=>v.toFixed(1)+'★' }, title:{ display:true, text:'Nota média', color:'#F27466', font:{ size:10, family:'Montserrat' }}}}}});
+    const googleData = { labels: ["Jan/25","Fev/25","Mar/25","Abr/25","Mai/25","Jun/25","Jul/25","Ago/25","Set/25","Out/25","Nov/25","Dez/25","Jan/26","Fev/26","Mar/26","Abr/26","Mai/26","Jun/26"], volumes: [6,5,9,8,25,20,35,23,17,22,57,40,46,52,49,155,104,67], notas: [4.17,3.8,4.67,2.63,3.88,4.05,3.94,3.87,3.82,4.05,4.21,4.28,4.17,3.79,4.31,4.41,4.58,4.79] };
+    if (document.getElementById('googleChart')) new Chart(document.getElementById('googleChart'), { type:'bar', data:{ labels: googleData.labels, datasets:[{ type:'bar', label:'Avaliações', data: googleData.volumes, backgroundColor:'#00AEEF', borderRadius:4, yAxisID:'y' },{ type:'line', label:'Nota média', data: googleData.notas, borderColor:'#F27466', backgroundColor:'transparent', borderWidth:3, pointBackgroundColor:'#F27466', pointRadius:4, tension:0.3, yAxisID:'y1' }]}, options:{ responsive:true, maintainAspectRatio:false, interaction:{ intersect:false, mode:'index' }, plugins:{ legend:{ display:false }}, scales:{ x:{ grid:{ display:false }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' }, maxRotation:45 }}, y:{ position:'left', grid:{ color:gridColor }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' }}, title:{ display:true, text:'Qtd. avaliações', color:textColor, font:{ size:10, family:'Montserrat' }}}, y1:{ position:'right', min:1, max:5, grid:{ display:false }, ticks:{ color:'#F27466', font:{ size:10, family:'Montserrat' }, callback:v=>v.toFixed(1)+'★' }, title:{ display:true, text:'Nota média', color:'#F27466', font:{ size:10, family:'Montserrat' }}}}}});
 
     // NPS
-    new Chart(document.getElementById('npsEvolutionChart'), { type:'bar', data:{ labels:["Fevereiro 2026","Março 2026","Abril 2026","Maio 2026","Junho 2026"], datasets:[{ label:'Detratores', data:[17.2,8.9,15.9,20.0,8.3], backgroundColor:'#F27466', borderRadius:0 },{ label:'Neutros', data:[17.2,24.1,18.8,15.5,20.0], backgroundColor:'#F5C45D', borderRadius:0 },{ label:'Promotores', data:[65.6,67.0,65.2,64.5,71.7], backgroundColor:'#29948F', borderRadius:{ topLeft:4, topRight:4 }}]}, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false }}, scales:{ x:{ stacked:true, grid:{ display:false }, ticks:{ color:textColor, font:{ size:11, family:'Montserrat' }}}, y:{ stacked:true, max:100, grid:{ color:gridColor }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' }, callback:v=>v+'%' }}}}});
+    if (document.getElementById('npsEvolutionChart')) new Chart(document.getElementById('npsEvolutionChart'), { type:'bar', data:{ labels:["Fevereiro 2026","Março 2026","Abril 2026","Maio 2026","Junho 2026"], datasets:[{ label:'Detratores', data:[17.2,8.9,15.9,20.0,6.9], backgroundColor:'#F27466', borderRadius:0 },{ label:'Neutros', data:[17.2,24.1,18.8,15.5,24.8], backgroundColor:'#F5C45D', borderRadius:0 },{ label:'Promotores', data:[65.6,67.0,65.2,64.5,68.3], backgroundColor:'#29948F', borderRadius:{ topLeft:4, topRight:4 }}]}, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false }}, scales:{ x:{ stacked:true, grid:{ display:false }, ticks:{ color:textColor, font:{ size:11, family:'Montserrat' }}}, y:{ stacked:true, max:100, grid:{ color:gridColor }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' }, callback:v=>v+'%' }}}}});
 
     // DISTRIBUIÇÃO GOOGLE
-    new Chart(document.getElementById('distChart'), { type:'doughnut', data:{ labels:['5 estrelas','4 estrelas','3 estrelas','2 estrelas','1 estrela'], datasets:[{ data:[500,71,47,45,56], backgroundColor:['#29948F','#00AEEF','#F5C45D','#F27466','#1D1E46'], borderWidth:0 }]}, options:{ responsive:true, maintainAspectRatio:false, cutout:'60%', plugins:{ legend:{ position:'right', labels:{ color:textColor, font:{ size:10, family:'Montserrat' }, boxWidth:12, padding:8 }}}}});
-    new Chart(document.getElementById('yearChart'), { type:'bar', data:{ labels:['5★','4★','3★','2★','1★'], datasets:[{ label:'2025', data:[170,24,18,22,33], backgroundColor:'#1D1E46', borderRadius:4 },{ label:'2026', data:[330,47,29,23,23], backgroundColor:'#00AEEF', borderRadius:4 }]}, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'top', labels:{ color:textColor, font:{ size:10, family:'Montserrat' }, boxWidth:12 }}}, scales:{ x:{ grid:{ display:false }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' }}}, y:{ grid:{ color:gridColor }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' }}}}}});
+    if (document.getElementById('distChart')) new Chart(document.getElementById('distChart'), { type:'doughnut', data:{ labels:['5 estrelas','4 estrelas','3 estrelas','2 estrelas','1 estrela'], datasets:[{ data:[516,72,47,46,56], backgroundColor:['#29948F','#00AEEF','#F5C45D','#F27466','#1D1E46'], borderWidth:0 }]}, options:{ responsive:true, maintainAspectRatio:false, cutout:'60%', plugins:{ legend:{ position:'right', labels:{ color:textColor, font:{ size:10, family:'Montserrat' }, boxWidth:12, padding:8 }}}}});
+    if (document.getElementById('yearChart')) new Chart(document.getElementById('yearChart'), { type:'bar', data:{ labels:['5★','4★','3★','2★','1★'], datasets:[{ label:'2025', data:[170,24,18,22,33], backgroundColor:'#1D1E46', borderRadius:4 },{ label:'2026', data:[346,48,29,24,23], backgroundColor:'#00AEEF', borderRadius:4 }]}, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'top', labels:{ color:textColor, font:{ size:10, family:'Montserrat' }, boxWidth:12 }}}, scales:{ x:{ grid:{ display:false }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' }}}, y:{ grid:{ color:gridColor }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' }}}}}});
 
     // HEATMAP
     (function() {
-      const themes = ['Alimentação / Restaurante','Estrutura / Obras / Barro','Quarto / Manutenção / Limpeza','Águas / Temperatura','Acessibilidade / Sinalização','Pós-venda / Cancelamento','Lazer / Recreação','Atendimento','Preço / Custo-benefício','Expectativa Frustrada'];
-      const months = ['Abr/25','Mai/25','Jun/25','Jul/25','Ago/25','Set/25','Out/25','Nov/25','Dez/25','Jan/26','Fev/26','Mar/26','Abr/26','Mai/26','Jun/26'];
-      const data = [[5,7,4,7,6,4,4,10,6,7,8,10,16,5,2],[5,5,4,7,4,3,2,9,4,8,6,4,9,4,1],[5,7,3,7,4,4,6,11,5,9,10,10,15,4,1],[3,5,3,6,5,4,4,10,4,7,11,9,14,3,1],[5,2,1,2,2,1,1,5,3,4,5,3,5,1,2],[2,2,2,2,1,1,2,4,2,4,4,1,4,5,0],[5,3,2,4,3,2,4,6,2,3,5,5,8,2,1],[4,8,2,9,5,3,7,9,5,8,8,9,13,4,0],[3,4,2,3,2,0,1,2,1,7,3,1,7,1,1],[1,1,0,2,0,1,0,1,1,1,2,1,1,1,1]];
+      const themes = ["Alimentação / Restaurante","Águas / Temperatura","Pós-venda / Cancelamento","Quarto / Manutenção / Limpeza","Atendimento","Estrutura / Obras / Barro","Acessibilidade / Deslocamento","Lazer / Recreação / Programação","Preço / Custo-benefício","Comunicação / Expectativa Frustrada"];
+      const months = ["Abr/25","Mai/25","Jun/25","Jul/25","Ago/25","Set/25","Out/25","Nov/25","Dez/25","Jan/26","Fev/26","Mar/26","Abr/26","Mai/26","Jun/26"];
+      const data = [[5, 7, 3, 6, 6, 4, 5, 9, 6, 8, 10, 11, 17, 6, 5], [1, 0, 0, 3, 0, 0, 0, 5, 0, 2, 1, 0, 3, 1, 3], [1, 1, 2, 2, 1, 0, 0, 3, 2, 2, 2, 1, 4, 4, 0], [5, 7, 3, 7, 4, 4, 6, 13, 5, 12, 12, 12, 16, 5, 4], [4, 8, 3, 9, 5, 3, 6, 9, 5, 10, 10, 10, 14, 5, 3], [5, 7, 4, 8, 4, 3, 2, 8, 4, 9, 8, 5, 12, 6, 6], [5, 3, 1, 3, 1, 2, 2, 5, 1, 3, 3, 4, 4, 3, 0], [5, 3, 2, 5, 4, 2, 4, 8, 2, 3, 6, 7, 9, 2, 3], [3, 4, 2, 5, 3, 1, 2, 4, 2, 8, 3, 3, 9, 2, 2], [5, 5, 3, 5, 4, 4, 4, 10, 2, 10, 3, 7, 13, 4, 3]];
       function hmClass(v) { if(v===0) return 'hm-0'; if(v<=2) return 'hm-1'; if(v<=4) return 'hm-2'; if(v<=8) return 'hm-3'; if(v<=14) return 'hm-4'; return 'hm-5'; }
       const table = document.getElementById('heatmap');
+      if (!table) return;
       let html = '<thead><tr><th style="text-align:left;min-width:155px;">Tema</th>';
       months.forEach(m => html += '<th>'+m+'</th>');
       html += '<th style="background:#1D1E46;color:white;">Total</th></tr></thead><tbody>';
@@ -962,6 +964,6 @@
     })();
 
     // ELOGIOS DONUT
-    new Chart(document.getElementById('elogioDonut'), { type:'doughnut', data:{ labels:['Só colaborador','Só produto','Colaborador e produto','Sem texto útil'], datasets:[{ data:[84,83,138,195], backgroundColor:['#29948F','#00AEEF','#F5A623','#E0E0E0'], borderWidth:0, hoverOffset:6 }]}, options:{ responsive:false, cutout:'68%', plugins:{ legend:{ display:false }, tooltip:{ callbacks:{ label:function(ctx){ var pct=((ctx.parsed/500)*100).toFixed(1); return ' '+ctx.label+': '+ctx.parsed+' ('+pct+'%)'; }}}}}}); 
+    if (document.getElementById('elogioDonut')) new Chart(document.getElementById('elogioDonut'), { type:'doughnut', data:{ labels:['Só colaborador','Só produto','Colaborador e produto','Sem texto útil'], datasets:[{ data:[99,76,95,246], backgroundColor:['#29948F','#00AEEF','#F5A623','#E0E0E0'], borderWidth:0, hoverOffset:6 }]}, options:{ responsive:false, cutout:'68%', plugins:{ legend:{ display:false }, tooltip:{ callbacks:{ label:function(ctx){ var pct=((ctx.parsed/500)*100).toFixed(1); return ' '+ctx.label+': '+ctx.parsed+' ('+pct+'%)'; }}}}}}); 
   </script>
 </body>
