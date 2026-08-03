@@ -192,6 +192,13 @@ body {
   letter-spacing: 1.5px;
   white-space: nowrap;
 }
+.context-source {
+  margin-top: 3px;
+  font-size: 10.5px;
+  color: rgba(255,255,255,0.82);
+  line-height: 1.35;
+  white-space: nowrap;
+}
 .context-text {
   font-size: 13.5px;
   color: rgba(255,255,255,0.95);
@@ -1116,7 +1123,7 @@ tbody td:first-child {
       <div class="hero-badge">Big Data Comercial</div>
       <h1>Big Data<br><span>Comercial</span></h1>
       <p class="hero-resort">Morro dos Anjos Resort</p>
-      <p class="hero-sub">Evolução mensal dos principais indicadores digitais, comerciais, mídia e atendimento · Setembro/2025 a Junho/2026</p>
+      <p class="hero-sub">Evolução mensal dos principais indicadores digitais, comerciais, mídia e atendimento · Setembro/2025 a Julho/2026</p>
     </div>
     <div class="hero-stats">
       <div class="hero-stat-pill">
@@ -1125,7 +1132,7 @@ tbody td:first-child {
       </div>
       <div class="hero-stat-pill">
         <div class="label">Melhor Mês</div>
-        <div class="value"><span>Abril/2026</span></div>
+        <div class="value"><span>Julho/2026</span></div>
       </div>
       <div class="hero-stat-pill">
         <div class="label">Total de Reservas</div>
@@ -1147,9 +1154,10 @@ tbody td:first-child {
     <div class="context-icon">📊</div>
     <div>
       <div class="context-title">Leitura Executiva</div>
+      <div class="context-source">Fonte dos dados de receita: Omnibees.</div>
     </div>
     <div class="context-text">
-      <strong>Maio/2026</strong> fecha o período com R$ 1,33M em receita e 484 reservas. A leitura mostra retração natural em relação ao pico de abril, mas com ROAS estimado de <strong>30,0x</strong> e liderança da Central de Reservas no mix do mês.
+      <strong>Julho/2026</strong> fecha o período com R$ 3,32M em receita e 995 reservas — novo recorde em volume de reservas. O canal direto concentrou 80,4% da receita, com ROAS estimado de <strong>34,6x</strong> e forte avanço da Central de Reservas.
     </div>
   </div>
 </div>
@@ -1160,7 +1168,7 @@ tbody td:first-child {
        KPI STRIP — INDICADORES ACUMULADOS
   ══════════════════════════════════════════ -->
   <div class="section-label">Visão Geral do Período</div>
-  <div class="section-title">Indicadores Acumulados — Set/2025 a Jun/2026</div>
+  <div class="section-title">Indicadores Acumulados — Set/2025 a Jul/2026</div>
 
   <div class="kpi-strip fade-up">
     <div class="kpi-card blue">
@@ -1170,16 +1178,16 @@ tbody td:first-child {
       <div class="kpi-delta up">↑ 8 meses</div>
     </div>
     <div class="kpi-card green">
-      <div class="kpi-month">Receita — Junho/2026</div>
-      <div class="kpi-value">R$ 1,3M</div>
-      <div class="kpi-label">Junho/26: R$ 1.814.948 · último mês fechado</div>
+      <div class="kpi-month">Receita — Julho/2026</div>
+      <div class="kpi-value">R$ 3,32M</div>
+      <div class="kpi-label">Julho/26: R$ 3.317.690 · último mês fechado</div>
       <div class="kpi-delta neutral">Último mês</div>
     </div>
     <div class="kpi-card dark">
       <div class="kpi-month">Total de Reservas</div>
       <div class="kpi-value" id="kpiReservasTotal">—</div>
       <div class="kpi-label">Todos os canais · período</div>
-      <div class="kpi-delta info">Set/25 → Mai/26</div>
+      <div class="kpi-delta info">Set/25 → Jul/26</div>
     </div>
     <div class="kpi-card alert">
       <div class="kpi-month">Acessos Acumulados</div>
@@ -1229,14 +1237,14 @@ tbody td:first-child {
           <div class="chart-title">Receita Total Mensal</div>
           <div class="chart-sub">Booking Engine + Central de Reservas + OTAs (R$)</div>
         </div>
-        <span class="chart-badge alert">Pico Abr/26</span>
+        <span class="chart-badge green">Pico Jul/26</span>
       </div>
       <canvas id="chartReceita" height="220"></canvas>
     </div>
     <div class="chart-card">
       <div class="chart-header">
         <div>
-          <div class="chart-title">Mix de Receita — Junho/2026</div>
+          <div class="chart-title">Mix de Receita — Julho/2026</div>
           <div class="chart-sub">Participação percentual por canal · último mês fechado</div>
         </div>
         <span class="chart-badge">Canais</span>
@@ -1408,7 +1416,7 @@ tbody td:first-child {
     <div class="grupos-header">
       <div>
         <div class="grupos-title">Asksuite Grupos</div>
-        <div class="grupos-sub">Potencial de vendas e cotações de grupos · Set/2025 a Jun/2026</div>
+        <div class="grupos-sub">Potencial de vendas e cotações de grupos · Set/2025 a Jul/2026</div>
       </div>
       <span class="chart-badge" style="background:rgba(0,174,239,0.15);color:#00AEEF;">Canal Estratégico</span>
     </div>
@@ -1437,7 +1445,7 @@ tbody td:first-child {
         <div class="grupos-hl-item">
           <div class="hl-label">Potencial Acumulado</div>
           <div class="hl-value" id="gruposPotAcum">—</div>
-          <div class="hl-sub">Set/25 a Jun/26</div>
+          <div class="hl-sub">Set/25 a Jul/26</div>
         </div>
       </div>
     </div>
@@ -1451,37 +1459,37 @@ tbody td:first-child {
 
   <div class="insight-grid fade-up">
     <div class="insight-card good">
-      <div class="insight-label">Melhor Mês</div>
-      <div class="insight-num">R$ 3,0M</div>
-      <div class="insight-desc">Abril/2026 segue como o maior mês de receita do período, com R$ 3.019.979 — concentrando também o maior volume de acessos (165 mil) e o maior investimento em mídia.</div>
+      <div class="insight-label">Julho/26 — Novo Pico de Receita</div>
+      <div class="insight-num">R$ 3,32M</div>
+      <div class="insight-desc">Julho superou abril e tornou-se o maior mês de receita do período, com R$ 3.317.690 e crescimento de 82,8% sobre junho.</div>
     </div>
     <div class="insight-card warn">
-      <div class="insight-label">Junho/26 — Recuperação</div>
-      <div class="insight-num">R$ 1,8M</div>
-      <div class="insight-desc">Junho/2026 fechou com R$ 1.814.948 em receita e 587 reservas. O mês mostra recuperação frente a maio, com 29 mil acessos e investimento de R$ 75.391 em mídia.</div>
+      <div class="insight-label">Julho/26 — Recorde de Reservas</div>
+      <div class="insight-num">995</div>
+      <div class="insight-desc">O mês também registrou o maior volume de reservas da série: 995, alta de 69,5% sobre junho e 7,2% acima de abril.</div>
     </div>
     <div class="insight-card">
-      <div class="insight-label">Asksuite · Mar/26</div>
-      <div class="insight-num">13,8K</div>
-      <div class="insight-desc">Março/2026 foi o maior mês em atendimentos Asksuite, com 13.839 contatos e R$ 11,75 milhões em oportunidades — o maior pipeline mensal do período.</div>
+      <div class="insight-label">Julho/26 — Central de Reservas</div>
+      <div class="insight-num">R$ 1,76M</div>
+      <div class="insight-desc">A Central alcançou seu maior resultado mensal e respondeu por 53,1% da receita de julho. Somada ao Booking Engine, levou o canal direto a 80,4% do total.</div>
     </div>
   </div>
 
   <div class="insight-grid fade-up">
     <div class="insight-card mid">
-      <div class="insight-label">Junho/26 — Eficiência</div>
-      <div class="insight-num">24.1x</div>
-      <div class="insight-desc">Junho manteve retorno positivo, com ROAS estimado de 24.1x e CPA aproximado de R$ 128 por reserva.</div>
+      <div class="insight-label">Julho/26 — Mídia e Eficiência</div>
+      <div class="insight-num">34,6x</div>
+      <div class="insight-desc">Mesmo com o segundo maior investimento em Ads da série (R$ 95.986), julho combinou escala e eficiência: ROAS estimado de 34,6x e CPA de aproximadamente R$ 96.</div>
     </div>
     <div class="insight-card good">
-      <div class="insight-label">Canal Direto</div>
-      <div class="insight-num">↑ Direto</div>
-      <div class="insight-desc">Booking Engine + Central de Reservas representa a maior fatia da receita na maioria dos meses. Em junho, a Central liderou o mix com R$ 773 mil, seguida por OTAs, Agências e Operadores e pelo Booking Engine.</div>
+      <div class="insight-label">Julho/26 — Asksuite</div>
+      <div class="insight-num">10,6K</div>
+      <div class="insight-desc">Julho teve o segundo maior volume de atendimentos (10.591) e de oportunidades (5.204) do período, gerando R$ 6,23 milhões em pipeline comercial.</div>
     </div>
     <div class="insight-card">
-      <div class="insight-label">Grupos · Mar/26</div>
-      <div class="insight-num">48</div>
-      <div class="insight-desc">Março/2026 registrou 48 cotações de grupos com potencial de R$ 978.055 — maior volume do período, sinalizando oportunidade real no segmento de eventos e grupos.</div>
+      <div class="insight-label">Julho/26 — Canais Complementares</div>
+      <div class="insight-num">R$ 159K</div>
+      <div class="insight-desc">Influenciadores geraram R$ 117,6 mil; os agentes AskFlow, R$ 35,0 mil; e o CRM, R$ 6,3 mil. Juntos, somaram cerca de R$ 158,9 mil em vendas atribuídas no mês.</div>
     </div>
   </div>
 
@@ -1494,7 +1502,7 @@ tbody td:first-child {
   <div class="table-card fade-up">
     <div class="table-header">
       <div class="chart-title">Big Data Mensal Consolidado</div>
-      <div class="chart-sub">Set/2025 a Jun/2026 · Verde = melhor mês · Azul = 2º melhor · Laranja = maior investimento</div>
+      <div class="chart-sub">Set/2025 a Jul/2026 · Verde = melhor mês · Azul = 2º melhor · Laranja = maior investimento</div>
     </div>
     <div class="table-wrap">
       <table id="tabelaCompleta"></table>
@@ -1511,29 +1519,29 @@ tbody td:first-child {
     <div class="rational-card" data-num="01">
       <div class="rational-card-content">
         <div class="rational-icon">📈</div>
-        <div class="rational-title">Abril como Pico de Escala</div>
-        <div class="rational-text">Abril/2026 concentrou o maior volume em dimensões-chave: receita (R$ 3,0M), acessos (165K) e mídia (R$ 108K). Junho/2026 mostra recuperação parcial frente a maio e ajuda a calibrar o ritmo ideal de investimento em períodos de retomada.</div>
+        <div class="rational-title">Julho Redefine o Pico Comercial</div>
+        <div class="rational-text">Julho/2026 tornou-se o maior mês em receita (R$ 3,32M) e reservas (995), superando abril mesmo com 72,7% menos acessos e 11,5% menos investimento em Ads. O resultado indica maior produtividade comercial do tráfego e da verba no mês.</div>
       </div>
     </div>
     <div class="rational-card" data-num="02">
       <div class="rational-card-content">
         <div class="rational-icon">🎯</div>
         <div class="rational-title">Canal Direto como Ativo Estratégico</div>
-        <div class="rational-text">Booking Engine e Central de Reservas lideram a composição da receita na maioria dos meses. A redução progressiva da dependência de OTAs e agências protege margem e fortalece o relacionamento direto com o hóspede. Canal direto = menor CAC e maior LTV.</div>
+        <div class="rational-text">Em julho, Booking Engine e Central de Reservas somaram R$ 2,67M, ou 80,4% da receita. A Central atingiu seu recorde mensal de R$ 1,76M, confirmando o peso estratégico da combinação entre conversão humana e venda pelo site.</div>
       </div>
     </div>
     <div class="rational-card" data-num="03">
       <div class="rational-card-content">
         <div class="rational-icon">💬</div>
-        <div class="rational-title">Asksuite como Termômetro de Demanda</div>
-        <div class="rational-text">Os picos de atendimento (Mar/26: 13.839) e o volume de oportunidades (R$ 11,75M em mar) antecedem ou coincidem com meses de alta receita, tornando o Asksuite um indicador preditivo de demanda comercial a ser monitorado em tempo real.</div>
+        <div class="rational-title">Ecossistema de Conversão em Expansão</div>
+        <div class="rational-text">Julho reuniu o segundo maior volume de atendimentos e oportunidades Asksuite, 12 reservas atribuídas aos agentes AskFlow e R$ 158,9K em vendas somadas de AskFlow, CRM e influenciadores. O próximo avanço é acompanhar a contribuição e a eficiência de cada frente de forma integrada.</div>
       </div>
     </div>
     <div class="rational-card" data-num="04">
       <div class="rational-card-content">
         <div class="rational-icon">🤝</div>
-        <div class="rational-title">Grupos como Oportunidade Paralela</div>
-        <div class="rational-text">Março e abril concentram os maiores volumes de cotações de grupos (48 e 31) e potencial de vendas (R$ 978K e R$ 920K). O segmento de grupos e eventos representa uma frente comercial estratégica com menor sazonalidade e ticket médio mais elevado.</div>
+        <div class="rational-title">Grupos Retomam Força em Julho</div>
+        <div class="rational-text">Julho registrou 36 cotações de grupos, o segundo maior volume da série, e R$ 774,9K em potencial de vendas. O movimento recoloca grupos e eventos entre as principais oportunidades de pipeline para os próximos meses.</div>
       </div>
     </div>
   </div>
@@ -1578,7 +1586,8 @@ tbody td:first-child {
         <button class="month-btn" data-month="Mar/26">Mar/26</button>
         <button class="month-btn" data-month="Abr/26">Abr/26</button>
         <button class="month-btn" data-month="Mai/26">Mai/26</button>
-        <button class="month-btn active" data-month="Jun/26">Jun/26</button>
+        <button class="month-btn" data-month="Jun/26">Jun/26</button>
+        <button class="month-btn active" data-month="Jul/26">Jul/26</button>
       </div>
 
       <!-- KPI CARDS TOPO -->
@@ -1743,7 +1752,7 @@ tbody td:first-child {
 
         <div class="funil-chart-card">
           <div class="funil-chart-card-title">Mix de Canais de Receita</div>
-          <div class="funil-chart-card-sub" id="chart-sub-label">Distribuição da receita por canal — Mai/26</div>
+          <div class="funil-chart-card-sub" id="chart-sub-label">Distribuição da receita por canal — Jul/26</div>
           <div class="funil-chart-wrapper">
             <canvas id="chartMixReceitaMes"></canvas>
           </div>
@@ -1755,7 +1764,7 @@ tbody td:first-child {
               <div class="insight-icon-wrap">💡</div>
               <div class="insight-title-f">Insight do Mês</div>
             </div>
-            <div class="insight-month-tag" id="insight-month-tag">Mai/26</div>
+            <div class="insight-month-tag" id="insight-month-tag">Jul/26</div>
             <p class="insight-text funnel-animated" id="insightText">—</p>
           </div>
           <div>
@@ -1776,30 +1785,38 @@ tbody td:first-child {
 ══════════════════════════════════════════ -->
 <footer class="footer">
   <div class="footer-logo">Morro dos Anjos <span>Resort</span></div>
-  <div class="footer-sub">Big Data Comercial · Set/2025 a Jun/2026 · Uso Interno — Diretoria</div>
+  <div class="footer-sub">Big Data Comercial · Set/2025 a Jul/2026 · Uso Interno — Diretoria</div>
 </footer>
 
 <script>
 /* ══════════════════════════════════════════
    DADOS PRINCIPAIS
 ══════════════════════════════════════════ */
-const MESES = ["Set/25", "Out/25", "Nov/25", "Dez/25", "Jan/26", "Fev/26", "Mar/26", "Abr/26", "Mai/26", "Jun/26"];
+const MESES = ["Set/25", "Out/25", "Nov/25", "Dez/25", "Jan/26", "Fev/26", "Mar/26", "Abr/26", "Mai/26", "Jun/26", "Jul/26"];
 
 const D = {
-  acessos: [47000, 47000, 56000, 50000, 62000, 41000, 61000, 165000, 23000, 29000],
-  addCarr: [2300, 1900, 3500, 3000, 5400, 3100, 5400, 7200, 1600, 739],
-  booking: [342192, 194011, 870497, 566705, 807475, 348444, 670930, 1453785, 408404, 446195],
-  central: [352936, 253740, 1553532, 904353, 1614987, 938861, 1501236, 1318956, 784134, 772853],
-  otas: [847509, 509074, 140528, 204163, 403093, 381513, 284857, 247238, 137312, 595901],
-  receita: [1542637, 956825, 2564557, 1675221, 2825554, 1668819, 2457023, 3019979, 1329851, 1814948],
-  reservas: [660, 337, 882, 410, 838, 561, 822, 928, 484, 587],
-  arpu: [2337, 2839, 2908, 4086, 3372, 2975, 2989, 3254, 2748, 3092],
-  ads: [24934, 24771, 31249, 34622, 27717, 27061, 27811, 108463, 44377, 75391],
-  atend: [4395, 4655, 5484, 6498, 8400, 6476, 13839, 9353, 4607, 5200],
-  opors: [2262, 2316, 3156, 3799, 5151, 3350, 8041, 5013, 1642, 1940],
-  valOp: [1828978, 3632104, 5530352, 6991590, 9491119, 5421913, 11750350, 7031417, 2039127, 2571239],
-  grpPot: [648929, 461496, 278787, 149632, 420229, 392338, 978055, 920413, 396056, 78096],
-  grpCot: [16, 12, 7, 14, 13, 19, 48, 31, 11, 9]
+  acessos: [47000, 47000, 56000, 50000, 62000, 41000, 61000, 165000, 23000, 29000, 45000],
+  addCarr: [2300, 1900, 3500, 3000, 5400, 3100, 5400, 7200, 1600, 739, 3600],
+  booking: [342192, 194011, 870497, 566705, 807475, 348444, 670930, 1453785, 408404, 446195, 906351],
+  central: [352936, 253740, 1553532, 904353, 1614987, 938861, 1501236, 1318956, 784134, 772853, 1762086],
+  otas: [847509, 509074, 140528, 204163, 403093, 381513, 284857, 247238, 137312, 595901, 649252],
+  receita: [1542637, 956825, 2564557, 1675221, 2825554, 1668819, 2457023, 3019979, 1329851, 1814948, 3317690],
+  reservas: [660, 337, 882, 410, 838, 561, 822, 928, 484, 587, 995],
+  arpu: [2337, 2839, 2908, 4086, 3372, 2975, 2989, 3254, 2748, 3092, 3334],
+  ads: [24934, 24771, 31249, 34622, 27717, 27061, 27811, 108463, 44377, 75391, 95986],
+  atend: [4395, 4655, 5484, 6498, 8400, 6476, 13839, 9353, 4607, 5200, 10591],
+  opors: [2262, 2316, 3156, 3799, 5151, 3350, 8041, 5013, 1642, 1940, 5204],
+  valOp: [1828978, 3632104, 5530352, 6991590, 9491119, 5421913, 11750350, 7031417, 2039127, 2571239, 6228321],
+  grpPot: [648929, 461496, 278787, 149632, 420229, 392338, 978055, 920413, 396056, 78096, 774928],
+  grpCot: [16, 12, 7, 14, 13, 19, 48, 31, 11, 9, 36],
+  askFollowReservas: [0, 0, 0, 0, 0, 0, 1, 6, 0, 2, 7],
+  askFollowVendas: [0, 0, 0, 0, 0, 0, 4246.02, 23282.88, 0, 5690.36, 22474.60],
+  askAbandReservas: [0, 0, 0, 0, 0, 0, 0, 3, 0, 3, 5],
+  askAbandVendas: [0, 0, 0, 0, 0, 0, 0, 9729.40, 0, 9981.68, 12550.14],
+  crmReservas: [6, 3, 5, 23, 22, 17, 20, 51, 52, 28, 8],
+  crmVendas: [19745, 7337, 36120, 62721, 67360, 44967, 53301, 109780, 65846, 50681, 6300],
+  influReservas: [22, 0, 0, 0, 0, 14, 63, 0, 22, 35, 36],
+  influVendas: [40984, 0, 0, 0, 0, 39911, 158326, 0, 50856, 96038, 117587]
 };
 
 const sum = arr => arr.reduce((a, b) => a + b, 0);
@@ -1835,6 +1852,22 @@ const C = {
   jan: '#00C878', abr: '#FF6B35'
 };
 
+function rankIndexes(arr, bigger=true) {
+  return arr.map((v,i)=>({v,i})).sort((a,b)=>bigger ? b.v-a.v : a.v-b.v).map(x=>x.i);
+}
+function highlightBars(arr, bigger=true, cost=false, base='rgba(0,174,239,0.35)') {
+  const [best, second] = rankIndexes(arr, bigger);
+  return arr.map((v,i) => cost && i===best ? 'rgba(255,107,53,0.88)' : i===best ? 'rgba(0,200,120,0.88)' : i===second ? 'rgba(0,174,239,0.78)' : base);
+}
+function highlightBorders(arr, bigger=true, cost=false, base='transparent') {
+  const [best, second] = rankIndexes(arr, bigger);
+  return arr.map((v,i) => cost && i===best ? C.alerta : i===best ? C.verde : i===second ? C.azul : base);
+}
+function highlightRadius(arr, bigger=true) {
+  const [best, second] = rankIndexes(arr, bigger);
+  return arr.map((v,i) => i===best ? 7 : i===second ? 6 : 4);
+}
+
 const baseOpts = {
   responsive: true,
   maintainAspectRatio: true,
@@ -1860,20 +1893,20 @@ new Chart(document.getElementById('chartReceita'), {
     labels: MESES,
     datasets: [{
       data: D.receita,
-      backgroundColor: D.receita.map((v,i) => i===7 ? 'rgba(0,200,120,0.85)' : i===4 ? 'rgba(0,174,239,0.7)' : 'rgba(0,174,239,0.4)'),
-      borderColor: D.receita.map((v,i) => i===7 ? '#00C878' : i===4 ? '#00AEEF' : 'transparent'),
+      backgroundColor: highlightBars(D.receita),
+      borderColor: highlightBorders(D.receita),
       borderWidth: 2, borderRadius: 6
     }]
   },
   options: { ...baseOpts, plugins: { ...baseOpts.plugins, tooltip: { ...baseOpts.plugins.tooltip, callbacks: { label: ctx => ' Receita: ' + fBRL(ctx.raw) } } }, scales: { ...baseOpts.scales, y: { ...baseOpts.scales.y, ticks: { callback: v => 'R$' + (v/1000000).toFixed(1) + 'M' } } } }
 });
 
-/* Mix Maio */
+/* Mix do último mês fechado */
 new Chart(document.getElementById('chartMixAbr'), {
   type: 'doughnut',
   data: {
     labels: ['Booking Engine', 'Central de Reservas', 'OTAs / Agências'],
-    datasets: [{ data: [446195, 772853, 595901], backgroundColor: [C.azul, C.escuro, C.alerta], borderColor: ['#fff','#fff','#fff'], borderWidth: 3, hoverOffset: 8 }]
+    datasets: [{ data: [906351, 1762086, 649252], backgroundColor: [C.azul, C.escuro, C.alerta], borderColor: ['#fff','#fff','#fff'], borderWidth: 3, hoverOffset: 8 }]
   },
   options: { responsive: true, maintainAspectRatio: true, cutout: '65%', plugins: { legend: { position: 'bottom', labels: { font: { family: 'Montserrat', size: 10 }, padding: 14, usePointStyle: true } }, tooltip: { callbacks: { label: ctx => ' ' + fBRL(ctx.raw) }, backgroundColor: 'rgba(29,30,70,0.92)', bodyFont: { family: 'Montserrat' } } } }
 });
@@ -1884,9 +1917,9 @@ new Chart(document.getElementById('chartCanais'), {
   data: {
     labels: MESES,
     datasets: [
-      { label: 'Booking Engine',       data: D.booking, backgroundColor: C.azul + 'CC', borderRadius: 0 },
-      { label: 'Central de Reservas',  data: D.central, backgroundColor: C.escuro + 'BB', borderRadius: 0 },
-      { label: 'OTAs / Agências',      data: D.otas,    backgroundColor: C.alerta + 'AA', borderRadius: 6 }
+      { label: 'Booking Engine',       data: D.booking, backgroundColor: highlightBars(D.booking), borderRadius: 0 },
+      { label: 'Central de Reservas',  data: D.central, backgroundColor: highlightBars(D.central), borderRadius: 0 },
+      { label: 'OTAs / Agências',      data: D.otas,    backgroundColor: highlightBars(D.otas), borderRadius: 6 }
     ]
   },
   options: { ...baseOpts, plugins: { ...baseOpts.plugins, legend: { display: true, position: 'bottom', labels: { padding: 14, font: { size: 11 }, usePointStyle: true } }, tooltip: { ...baseOpts.plugins.tooltip, callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + fBRL(ctx.raw) } } }, scales: { ...baseOpts.scales, x: { ...baseOpts.scales.x, stacked: true }, y: { ...baseOpts.scales.y, stacked: true, ticks: { callback: v => 'R$' + (v/1000000).toFixed(1) + 'M' } } } }
@@ -1898,8 +1931,8 @@ new Chart(document.getElementById('chartReservasAds'), {
   data: {
     labels: MESES,
     datasets: [
-      { label: 'Reservas', data: D.reservas, backgroundColor: C.azul + '88', yAxisID: 'y', borderRadius: 4 },
-      { label: 'Ads (R$)', data: D.ads, type: 'line', borderColor: C.alerta, backgroundColor: C.alerta + '22', pointBackgroundColor: C.alerta, tension: 0.3, yAxisID: 'y2', fill: true }
+      { label: 'Reservas', data: D.reservas, backgroundColor: highlightBars(D.reservas), yAxisID: 'y', borderRadius: 4 },
+      { label: 'Ads (R$)', data: D.ads, type: 'line', borderColor: C.alerta, backgroundColor: C.alerta + '18', pointBackgroundColor: highlightBorders(D.ads, true, true, C.cinza), pointRadius: highlightRadius(D.ads), tension: 0.3, yAxisID: 'y2', fill: true }
     ]
   },
   options: { ...baseOpts, plugins: { ...baseOpts.plugins, legend: { display: true, position: 'bottom', labels: { padding: 14, font: { size: 11 }, usePointStyle: true } } }, scales: { x: baseOpts.scales.x, y: { ...baseOpts.scales.y, position: 'left', ticks: { callback: v => fNum(v) } }, y2: { ...baseOpts.scales.y, position: 'right', grid: { display: false }, ticks: { callback: v => 'R$' + (v/1000).toFixed(0) + 'K' } } } }
@@ -1914,8 +1947,8 @@ new Chart(document.getElementById('chartCpa'), {
       data: cpa,
       borderColor: C.alerta,
       backgroundColor: C.alerta + '18',
-      pointBackgroundColor: cpa.map((v,i) => i===3 ? C.alerta : C.azul),
-      pointRadius: cpa.map((v,i) => i===3 ? 7 : 4),
+      pointBackgroundColor: highlightBorders(cpa, false, false, C.cinza),
+      pointRadius: highlightRadius(cpa, false),
       tension: 0.3, fill: true
     }]
   },
@@ -1931,8 +1964,8 @@ new Chart(document.getElementById('chartRoas'), {
       data: roas,
       borderColor: C.verde,
       backgroundColor: C.verde + '18',
-      pointBackgroundColor: roas.map((v,i) => i===7 ? C.verde : C.azul),
-      pointRadius: roas.map((v,i) => i===7 ? 7 : 4),
+      pointBackgroundColor: highlightBorders(roas),
+      pointRadius: highlightRadius(roas),
       tension: 0.35, fill: true
     }]
   },
@@ -1946,8 +1979,8 @@ new Chart(document.getElementById('chartArpu'), {
     labels: MESES,
     datasets: [{
       data: D.arpu,
-      backgroundColor: D.arpu.map((v,i) => i===3 ? C.verde + 'CC' : C.azul + '88'),
-      borderColor: D.arpu.map((v,i) => i===3 ? C.verde : 'transparent'),
+      backgroundColor: highlightBars(D.arpu),
+      borderColor: highlightBorders(D.arpu),
       borderWidth: 1.5, borderRadius: 6
     }]
   },
@@ -1961,8 +1994,8 @@ new Chart(document.getElementById('chartAcessos'), {
     labels: MESES,
     datasets: [{
       data: D.acessos,
-      backgroundColor: D.acessos.map((v,i) => i===7 ? C.alerta + 'CC' : C.azul + '66'),
-      borderColor: D.acessos.map((v,i) => i===7 ? C.alerta : 'transparent'),
+      backgroundColor: highlightBars(D.acessos),
+      borderColor: highlightBorders(D.acessos),
       borderWidth: 1.5, borderRadius: 6
     }]
   },
@@ -1976,8 +2009,8 @@ new Chart(document.getElementById('chartAddCart'), {
     labels: MESES,
     datasets: [{
       data: txAdd,
-      backgroundColor: txAdd.map(v => v > 4 ? C.jan + 'AA' : '#00AEEF88'),
-      borderColor: txAdd.map(v => v > 4 ? C.jan : '#00AEEF'),
+      backgroundColor: highlightBars(txAdd),
+      borderColor: highlightBorders(txAdd),
       borderWidth: 1.5, borderRadius: 6
     }]
   },
@@ -1990,8 +2023,8 @@ new Chart(document.getElementById('chartFunil'), {
   data: {
     labels: MESES,
     datasets: [
-      { label: 'Acessos', data: D.acessos, backgroundColor: '#00AEEF77', borderRadius: 0, borderSkipped: false },
-      { label: 'Add Carrinho', data: D.addCarr, backgroundColor: '#00C87899', borderRadius: 6, borderSkipped: false }
+      { label: 'Acessos', data: D.acessos, backgroundColor: highlightBars(D.acessos), borderRadius: 0, borderSkipped: false },
+      { label: 'Add Carrinho', data: D.addCarr, backgroundColor: highlightBars(D.addCarr), borderRadius: 6, borderSkipped: false }
     ]
   },
   options: { ...baseOpts, plugins: { ...baseOpts.plugins, legend: { display: true, position: 'bottom', labels: { padding: 14, font: { size: 11 }, usePointStyle: true } }, tooltip: { ...baseOpts.plugins.tooltip, callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + fNum(ctx.raw) } } }, scales: { ...baseOpts.scales, y: { ...baseOpts.scales.y, ticks: { callback: v => (v/1000).toFixed(0) + 'K' } } } }
@@ -2003,8 +2036,8 @@ new Chart(document.getElementById('chartAsksuite'), {
   data: {
     labels: MESES,
     datasets: [
-      { label: 'Atendimentos', data: D.atend, backgroundColor: '#00AEEF88', borderRadius: 0 },
-      { label: 'Oportunidades', data: D.opors, backgroundColor: '#00C87899', borderRadius: 6 }
+      { label: 'Atendimentos', data: D.atend, backgroundColor: highlightBars(D.atend), borderRadius: 0 },
+      { label: 'Oportunidades', data: D.opors, backgroundColor: highlightBars(D.opors), borderRadius: 6 }
     ]
   },
   options: { ...baseOpts, plugins: { ...baseOpts.plugins, legend: { display: true, position: 'bottom', labels: { padding: 14, font: { size: 11 }, usePointStyle: true } }, tooltip: { ...baseOpts.plugins.tooltip, callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + fNum(ctx.raw) } } }, scales: { ...baseOpts.scales, y: { ...baseOpts.scales.y, ticks: { callback: v => (v/1000).toFixed(0) + 'K' } } } }
@@ -2019,8 +2052,8 @@ new Chart(document.getElementById('chartPipeline'), {
       data: D.valOp,
       borderColor: C.jan,
       backgroundColor: 'rgba(0,200,120,0.10)',
-      pointBackgroundColor: D.valOp.map((v,i) => i===6 ? C.abr : C.jan),
-      pointRadius: D.valOp.map((v,i) => i===6 ? 7 : 4),
+      pointBackgroundColor: highlightBorders(D.valOp),
+      pointRadius: highlightRadius(D.valOp),
       tension: 0.35, fill: true
     }]
   },
@@ -2034,8 +2067,8 @@ new Chart(document.getElementById('chartTaxaOp'), {
     labels: MESES,
     datasets: [{
       data: txOp,
-      backgroundColor: txOp.map(v => v > 57 ? C.jan + 'AA' : '#00AEEF88'),
-      borderColor: txOp.map(v => v > 57 ? C.jan : '#00AEEF'),
+      backgroundColor: highlightBars(txOp),
+      borderColor: highlightBorders(txOp),
       borderWidth: 1.5, borderRadius: 6
     }]
   },
@@ -2047,7 +2080,7 @@ const askInsights = [
   { label: 'Maior atendimento', val: '13.839', desc: 'Março/2026 — pico do período', color: '#FF6B35' },
   { label: 'Maior pipeline', val: 'R$ 11,75M', desc: 'Março/2026 em oportunidades', color: '#00C878' },
   { label: 'Taxa média de oportunidade', val: fPct(sum(txOp)/txOp.length), desc: 'Opors ÷ Atendimentos', color: '#00AEEF' },
-  { label: 'Total de atendimentos', val: fNum(sum(D.atend)), desc: 'Set/25 a Jun/26', color: '#0E6F99' }
+  { label: 'Total de atendimentos', val: fNum(sum(D.atend)), desc: 'Set/25 a Jul/26', color: '#0E6F99' }
 ];
 document.getElementById('asksuiteInsights').innerHTML = askInsights.map(i => `
   <div style="display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid rgba(29,30,70,0.06);">
@@ -2067,8 +2100,8 @@ new Chart(document.getElementById('chartGruposPot'), {
     labels: MESES,
     datasets: [{
       data: D.grpPot,
-      backgroundColor: D.grpPot.map((v,i) => i===6 ? 'rgba(0,174,239,0.8)' : 'rgba(255,255,255,0.15)'),
-      borderColor: D.grpPot.map((v,i) => i===6 ? '#00AEEF' : 'rgba(255,255,255,0.25)'),
+      backgroundColor: highlightBars(D.grpPot, true, false, 'rgba(255,255,255,0.15)'),
+      borderColor: highlightBorders(D.grpPot, true, false, 'rgba(255,255,255,0.25)'),
       borderWidth: 1.5, borderRadius: 6
     }]
   },
@@ -2081,8 +2114,8 @@ new Chart(document.getElementById('chartGruposCot'), {
     labels: MESES,
     datasets: [{
       data: D.grpCot,
-      backgroundColor: D.grpCot.map((v,i) => i===6 ? 'rgba(255,107,53,0.8)' : 'rgba(255,255,255,0.15)'),
-      borderColor: D.grpCot.map((v,i) => i===6 ? '#FF6B35' : 'rgba(255,255,255,0.25)'),
+      backgroundColor: highlightBars(D.grpCot, true, false, 'rgba(255,255,255,0.15)'),
+      borderColor: highlightBorders(D.grpCot, true, false, 'rgba(255,255,255,0.25)'),
       borderWidth: 1.5, borderRadius: 6
     }]
   },
@@ -2114,7 +2147,15 @@ const linhas = [
   { nome: 'Taxa de Oportunidade (%)', arr: txOp, fmt: v => v.toFixed(1).replace('.',',')+' %' },
   { nome: 'Valor em Oportunidades', arr: D.valOp, fmt: fBRL },
   { grupo: 'GRUPOS', nome: 'Potencial de Vendas', arr: D.grpPot, fmt: fBRL },
-  { nome: 'Cotações de Grupos', arr: D.grpCot, fmt: fNum }
+  { nome: 'Cotações de Grupos', arr: D.grpCot, fmt: fNum },
+  { grupo: 'ASKFLOW — FOLLOW UP DE VENDAS', nome: 'Reservas', arr: D.askFollowReservas, fmt: fNum },
+  { nome: 'Vendas', arr: D.askFollowVendas, fmt: fBRL },
+  { grupo: 'ASKFLOW — ABANDONO OMNIBEES', nome: 'Reservas', arr: D.askAbandReservas, fmt: fNum },
+  { nome: 'Vendas', arr: D.askAbandVendas, fmt: fBRL },
+  { grupo: 'CRM', nome: 'Reservas', arr: D.crmReservas, fmt: fNum },
+  { nome: 'Vendas', arr: D.crmVendas, fmt: fBRL },
+  { grupo: 'INFLUENCIADORES', nome: 'Reservas', arr: D.influReservas, fmt: fNum },
+  { nome: 'Vendas', arr: D.influVendas, fmt: fBRL }
 ];
 let htmlTabela = '<thead><tr><th>Indicador</th>' + MESES.map(m=>`<th>${m}</th>`).join('') + '</tr></thead><tbody>';
 linhas.forEach(l => {
@@ -2267,6 +2308,19 @@ const funnelData = {
     "atendimentos": 5200,
     "oportunidades": 1940,
     "valorOportunidades": 2571239
+  },
+  "Jul/26": {
+    "acessos": 45000,
+    "addCarrinho": 3600,
+    "reservas": 995,
+    "receitaTotal": 3317690,
+    "bookingEngine": 906351,
+    "centralReservas": 1762086,
+    "otasAgencias": 649252,
+    "ads": 95986,
+    "atendimentos": 10591,
+    "oportunidades": 5204,
+    "valorOportunidades": 6228321
   }
 };
 
@@ -2391,11 +2445,11 @@ const insightsCopy = {
     ]
   },
   "Abr/26": {
-    "text": "Abril/2026 foi o maior mês do período em receita (R$ 3,0M), acessos (165K) e investimento em mídia (R$ 108K). O Booking Engine assumiu a liderança do mix, sinalizando força do canal direto em escala.",
+    "text": "Abril/2026 foi o recorde de receita até então (R$ 3,0M) e permanece como pico de acessos (165K) e investimento em mídia (R$ 108K). O Booking Engine liderou o mix, sinalizando força do canal direto em escala.",
     "pills": [
       {
-        "label": "🏆 Maior receita do período",
-        "type": "verde"
+        "label": "🥈 2ª maior receita",
+        "type": "azul"
       },
       {
         "label": "🌐 165K acessos",
@@ -2439,6 +2493,14 @@ const insightsCopy = {
         "label": "⚡ ROAS 24.1x",
         "type": "verde"
       }
+    ]
+  },
+  "Jul/26": {
+    "text": "Julho/2026 estabeleceu novos recordes de receita (R$ 3,32M) e reservas (995). A Central também atingiu seu pico, o canal direto respondeu por 80,4% do faturamento e o Asksuite registrou o segundo maior volume de atendimentos e oportunidades da série.",
+    "pills": [
+      { "label": "🏆 Recorde de receita e reservas", "type": "verde" },
+      { "label": "📞 Direto: 80,4% do mix", "type": "azul" },
+      { "label": "⚡ ROAS 34,6x", "type": "verde" }
     ]
   }
 };
@@ -2572,8 +2634,8 @@ document.querySelectorAll('.month-btn').forEach(btn => {
   });
 });
 
-initFunnelChart(funnelData['Jun/26']);
-updateFunnel('Jun/26');
+initFunnelChart(funnelData['Jul/26']);
+updateFunnel('Jul/26');
 
 /* ══════════════════════════════════════════
    ANIMAÇÕES SCROLL
