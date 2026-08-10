@@ -156,12 +156,14 @@ const bcC = document.getElementById('budget-canais'); const totalInvest = 96014.
     {date:"04/08",v_CR:180908.84,r_CR:38,v_BE:37293.30,r_BE:10,v_GE:17670.20,r_GE:1,v_AG:10449.53,r_AG:5,v_OT:8964.88,r_OT:2,v_TOT:255286.75,r_tot:56},
     {date:"05/08",v_CR:109035.41,r_CR:35,v_BE:25432.06,r_BE:8,v_GE:54964.67,r_GE:2,v_AG:17296.27,r_AG:6,v_OT:21450.11,r_OT:8,v_TOT:228178.52,r_tot:59},
     {date:"06/08",v_CR:130453.64,r_CR:31,v_BE:16356.14,r_BE:6,v_GE:1805.40,r_GE:0,v_AG:8578.15,r_AG:3,v_OT:10168.22,r_OT:3,v_TOT:167361.55,r_tot:43},
-    {date:"07/08",v_CR:181913.54,r_CR:42,v_BE:39252.14,r_BE:14,v_GE:0,r_GE:0,v_AG:29175.45,r_AG:10,v_OT:8876.22,r_OT:3,v_TOT:259217.35,r_tot:69}
+    {date:"07/08",v_CR:181913.54,r_CR:42,v_BE:39252.14,r_BE:14,v_GE:0,r_GE:0,v_AG:29175.45,r_AG:10,v_OT:8876.22,r_OT:3,v_TOT:259217.35,r_tot:69},
+    {date:"08/08",v_CR:48246.53,r_CR:15,v_BE:29384.91,r_BE:4,v_GE:28272.30,r_GE:1,v_AG:5369.20,r_AG:2,v_OT:11055.44,r_OT:5,v_TOT:122328.38,r_tot:27},
+    {date:"09/08",v_CR:1093.95,r_CR:1,v_BE:34560.47,r_BE:10,v_GE:0,r_GE:0,v_AG:3441.70,r_AG:1,v_OT:11774.42,r_OT:4,v_TOT:50870.54,r_tot:16}
   ];
-  const invMeta    = [2315.18,2800.55,2243.61,1956.62,1824.10,1782.12,1878.64];
-  const invGoogle  = [659.93,858.12,763.46,598.10,594.38,804.35,826.26];
-  const invYoutube = [245.26,257.04,256.57,149.40,157.92,156.91,156.58];
-  const invInflu   = [0,0,0,0,0,0,0];
+  const invMeta    = [2315.18,2800.55,2243.61,1956.62,1824.10,1782.12,1878.64,2179.35,2206.87];
+  const invGoogle  = [659.93,858.12,763.46,598.10,594.38,804.35,826.26,758.71,764.65];
+  const invYoutube = [245.26,257.04,256.57,149.40,157.92,156.91,156.58,156.58,155.78];
+  const invInflu   = [0,0,0,0,0,0,0,0,0];
 
   const sum = arr => arr.reduce((a,b)=>a+b,0);
   const sumKey = k => sum(augustDays.map(d=>d[k]));
@@ -193,7 +195,7 @@ const bcC = document.getElementById('budget-canais'); const totalInvest = 96014.
   const pct1 = v => v.toFixed(1).replace(".", ",") + "%";
   const posColor = "#5DCAA5", negColor = "#E24B4A", warnColor = "#EF9F27";
 
-  document.title = "Morro dos Anjos — Super Agosto até 07/08";
+  document.title = "Morro dos Anjos — Super Agosto até 09/08";
   document.querySelector(".header p").textContent = "01/08/2026 a 31/08/2026 · Atualizado em 10/08/2026 · Super Agosto 2026";
   document.querySelector(".logo-pill span:last-child").textContent = "Morro dos Anjos · parcial conforme base enviada";
   document.querySelectorAll(".section-label")[0].textContent = "Panorama da campanha — Agosto 2026";
@@ -258,4 +260,4 @@ const bcC = document.getElementById('budget-canais'); const totalInvest = 96014.
     split.forEach((s,i)=>{document.getElementById("sbe-"+i).style.width="100%";document.getElementById("sba-"+i).style.width=Math.min(s.value/s.goal*100,100)+"%"});
   },500);
 })();
-</script></body></html><!-- agosto: meta R$ 4.165.736, budget R$ 90.000, corte até 07/08/2026 -->
+</script></body></html><!-- agosto: meta R$ 4.165.736, budget R$ 90.000, corte até 09/08/2026 -->
