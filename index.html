@@ -144,120 +144,113 @@ const budgetC = [{"name": "Meta Ads", "invested": 62736.390000000014, "target": 
 const bcC = document.getElementById('budget-canais'); const totalInvest = 96014.51; budgetC.forEach(ch => { const pct = (ch.invested/totalInvest*100); const used = ch.invested/ch.target*100; const barW = Math.min(used,100).toFixed(1); bcC.innerHTML += `<div class="channel-row"><div class="channel-meta"><div class="channel-name"><span style="width:10px;height:10px;border-radius:2px;background:${ch.color};display:inline-block;"></span>${ch.name}</div><div class="channel-vals">R$ ${ch.invested.toLocaleString('pt-BR',{minimumFractionDigits:2})} <span style="color:#888780">· ${pct.toFixed(1).replace('.',',')}% do investimento · ${used.toFixed(1).replace('.',',')}% do budget do canal</span></div></div><div style="position:relative;height:8px;border-radius:4px;background:rgba(0,0,0,0.08);"><div style="position:absolute;top:0;left:0;width:${barW}%;height:8px;border-radius:4px;background:${ch.color};"></div></div></div>`; });
 </script>
 <script>
-// Corte de agosto: dados consolidados de 01 a 07/08/2026.
+// Corte de agosto: dados consolidados de 01 a 10/08/2026.
 (() => {
   const salesGoal = 4165736;
   const mediaBudget = 90000;
-  const daysInMonth = 31;
+
   const augustDays = [
-    {date:"01/08",v_CR:37955.46,r_CR:14,v_BE:24719.80,r_BE:8,v_GE:72252.84,r_GE:2,v_AG:12610.90,r_AG:4,v_OT:980.17,r_OT:1,v_TOT:148519.17,r_tot:29},
-    {date:"02/08",v_CR:14196.50,r_CR:4,v_BE:44700.29,r_BE:19,v_GE:0,r_GE:0,v_AG:0,r_AG:0,v_OT:6258.44,r_OT:2,v_TOT:65155.23,r_tot:25},
-    {date:"03/08",v_CR:161941.24,r_CR:43,v_BE:36457.04,r_BE:16,v_GE:123210.98,r_GE:2,v_AG:20064.80,r_AG:6,v_OT:21750.62,r_OT:5,v_TOT:363424.68,r_tot:72},
-    {date:"04/08",v_CR:180908.84,r_CR:38,v_BE:37293.30,r_BE:10,v_GE:17670.20,r_GE:1,v_AG:10449.53,r_AG:5,v_OT:8964.88,r_OT:2,v_TOT:255286.75,r_tot:56},
-    {date:"05/08",v_CR:109035.41,r_CR:35,v_BE:25432.06,r_BE:8,v_GE:54964.67,r_GE:2,v_AG:17296.27,r_AG:6,v_OT:21450.11,r_OT:8,v_TOT:228178.52,r_tot:59},
-    {date:"06/08",v_CR:130453.64,r_CR:31,v_BE:16356.14,r_BE:6,v_GE:1805.40,r_GE:0,v_AG:8578.15,r_AG:3,v_OT:10168.22,r_OT:3,v_TOT:167361.55,r_tot:43},
-    {date:"07/08",v_CR:181913.54,r_CR:42,v_BE:39252.14,r_BE:14,v_GE:0,r_GE:0,v_AG:29175.45,r_AG:10,v_OT:8876.22,r_OT:3,v_TOT:259217.35,r_tot:69},
-    {date:"08/08",v_CR:48246.53,r_CR:15,v_BE:29384.91,r_BE:4,v_GE:28272.30,r_GE:1,v_AG:5369.20,r_AG:2,v_OT:11055.44,r_OT:5,v_TOT:122328.38,r_tot:27},
-    {date:"09/08",v_CR:1093.95,r_CR:1,v_BE:34560.47,r_BE:10,v_GE:0,r_GE:0,v_AG:3441.70,r_AG:1,v_OT:11774.42,r_OT:4,v_TOT:50870.54,r_tot:16}
+    {date:'01/08',v_CR:37955.46,r_CR:14,v_BE:24719.80,r_BE:8,v_GE:72252.84,r_GE:2,v_AG:12610.90,r_AG:4,v_OT:980.17,r_OT:1,v_TOT:148519.17,r_tot:29,inv_meta:2315.18,inv_google:659.93,inv_youtube:245.26,inv_influ:0},
+    {date:'02/08',v_CR:14196.50,r_CR:4,v_BE:44700.29,r_BE:19,v_GE:0,r_GE:0,v_AG:0,r_AG:0,v_OT:6258.44,r_OT:2,v_TOT:65155.23,r_tot:25,inv_meta:2800.55,inv_google:858.12,inv_youtube:257.04,inv_influ:0},
+    {date:'03/08',v_CR:161941.24,r_CR:43,v_BE:36457.04,r_BE:16,v_GE:123210.98,r_GE:2,v_AG:20064.80,r_AG:6,v_OT:21750.62,r_OT:5,v_TOT:363424.68,r_tot:72,inv_meta:2243.61,inv_google:763.46,inv_youtube:256.57,inv_influ:0},
+    {date:'04/08',v_CR:180908.84,r_CR:38,v_BE:37293.30,r_BE:10,v_GE:17670.20,r_GE:1,v_AG:10449.53,r_AG:5,v_OT:8964.88,r_OT:2,v_TOT:255286.75,r_tot:56,inv_meta:1956.62,inv_google:598.10,inv_youtube:149.40,inv_influ:0},
+    {date:'05/08',v_CR:109035.41,r_CR:35,v_BE:25432.06,r_BE:8,v_GE:54964.67,r_GE:2,v_AG:17296.27,r_AG:6,v_OT:21450.11,r_OT:8,v_TOT:228178.52,r_tot:59,inv_meta:1824.10,inv_google:594.38,inv_youtube:157.92,inv_influ:0},
+    {date:'06/08',v_CR:130453.64,r_CR:31,v_BE:16356.14,r_BE:6,v_GE:1805.40,r_GE:0,v_AG:8578.15,r_AG:3,v_OT:10168.22,r_OT:3,v_TOT:167361.55,r_tot:43,inv_meta:1782.12,inv_google:804.35,inv_youtube:156.91,inv_influ:0},
+    {date:'07/08',v_CR:181913.54,r_CR:42,v_BE:39252.14,r_BE:14,v_GE:0,r_GE:0,v_AG:29175.45,r_AG:10,v_OT:8876.22,r_OT:3,v_TOT:259217.35,r_tot:69,inv_meta:1878.64,inv_google:826.26,inv_youtube:156.58,inv_influ:0},
+    {date:'08/08',v_CR:48246.53,r_CR:15,v_BE:29384.91,r_BE:4,v_GE:28272.30,r_GE:1,v_AG:5369.20,r_AG:2,v_OT:11055.44,r_OT:5,v_TOT:122328.38,r_tot:27,inv_meta:2179.35,inv_google:758.71,inv_youtube:156.58,inv_influ:0},
+    {date:'09/08',v_CR:1093.95,r_CR:1,v_BE:34560.47,r_BE:10,v_GE:0,r_GE:0,v_AG:3441.70,r_AG:1,v_OT:11774.42,r_OT:4,v_TOT:50870.54,r_tot:16,inv_meta:2206.87,inv_google:764.65,inv_youtube:155.78,inv_influ:0},
+    {date:'10/08',v_CR:166711.41,r_CR:41,v_BE:29651.47,r_BE:9,v_GE:0,r_GE:0,v_AG:22264.15,r_AG:8,v_OT:38881.63,r_OT:19,v_TOT:257508.66,r_tot:77,inv_meta:2074.31,inv_google:671.80,inv_youtube:155.56,inv_influ:0}
   ];
-  const invMeta    = [2315.18,2800.55,2243.61,1956.62,1824.10,1782.12,1878.64,2179.35,2206.87];
-  const invGoogle  = [659.93,858.12,763.46,598.10,594.38,804.35,826.26,758.71,764.65];
-  const invYoutube = [245.26,257.04,256.57,149.40,157.92,156.91,156.58,156.58,155.78];
-  const invInflu   = [0,0,0,0,0,0,0,0,0];
+  const diasDecorridos = augustDays.length;
+  const diasNoMes = 31;
+  const elapsedPct = diasDecorridos / diasNoMes * 100;
 
   const sum = arr => arr.reduce((a,b)=>a+b,0);
-  const sumKey = k => sum(augustDays.map(d=>d[k]));
-  const daysElapsed = augustDays.length;
+  const totalSales = sum(augustDays.map(d=>d.v_TOT));
+  const totalReservations = sum(augustDays.map(d=>d.r_tot));
+  const crTotal = sum(augustDays.map(d=>d.v_CR));
+  const geTotal = sum(augustDays.map(d=>d.v_GE));
+  const beTotal = sum(augustDays.map(d=>d.v_BE));
+  const agTotal = sum(augustDays.map(d=>d.v_AG));
+  const otTotal = sum(augustDays.map(d=>d.v_OT));
+  const crRes = sum(augustDays.map(d=>d.r_CR));
+  const geRes = sum(augustDays.map(d=>d.r_GE));
+  const beRes = sum(augustDays.map(d=>d.r_BE));
+  const agRes = sum(augustDays.map(d=>d.r_AG));
+  const otRes = sum(augustDays.map(d=>d.r_OT));
+  const directSales = crTotal + geTotal + beTotal;
+  const directReservations = crRes + beRes;
+  const outrosSales = agTotal + otTotal;
+  const outrosRes = agRes + otRes;
 
-  const totalSales = sumKey("v_TOT");
-  const totalReservations = sumKey("r_tot");
-  const v_CR = sumKey("v_CR"), r_CR = sumKey("r_CR");
-  const v_BE = sumKey("v_BE"), r_BE = sumKey("r_BE");
-  const v_GE = sumKey("v_GE"), r_GE = sumKey("r_GE");
-  const v_AG = sumKey("v_AG"), r_AG = sumKey("r_AG");
-  const v_OT = sumKey("v_OT"), r_OT = sumKey("r_OT");
+  const invMetaTotal = sum(augustDays.map(d=>d.inv_meta));
+  const invGoogleTotal = sum(augustDays.map(d=>d.inv_google));
+  const invYoutubeTotal = sum(augustDays.map(d=>d.inv_youtube));
+  const invInfluTotal = sum(augustDays.map(d=>d.inv_influ));
+  const totalInvested = invMetaTotal + invGoogleTotal + invYoutubeTotal + invInfluTotal;
 
-  const directSales = v_CR + v_GE + v_BE;
-  const directReservations = r_CR + r_BE;
-  const totalInvested = sum(invMeta) + sum(invGoogle) + sum(invYoutube) + sum(invInflu);
-
-  const elapsedPct = daysElapsed / daysInMonth * 100;
-  const projectedSales = totalSales / daysElapsed * daysInMonth;
-  const projectedSpend = totalInvested / daysElapsed * daysInMonth;
+  const projectedSales = totalSales / diasDecorridos * diasNoMes;
+  const projectedSpend = totalInvested / diasDecorridos * diasNoMes;
   const pctSales = totalSales / salesGoal * 100;
   const pctSpend = totalInvested / mediaBudget * 100;
   const roas = directSales / totalInvested;
   const cpa = totalInvested / directReservations;
 
-  const money0 = v => "R$ " + Math.round(v).toLocaleString("pt-BR");
-  const money2 = v => "R$ " + v.toLocaleString("pt-BR", {minimumFractionDigits:2, maximumFractionDigits:2});
-  const moneyK = v => "R$ " + (v/1000).toLocaleString("pt-BR", {minimumFractionDigits:1, maximumFractionDigits:1}) + "k";
-  const pct1 = v => v.toFixed(1).replace(".", ",") + "%";
-  const posColor = "#5DCAA5", negColor = "#E24B4A", warnColor = "#EF9F27";
+  const money0 = v => 'R$ ' + Math.round(v).toLocaleString('pt-BR');
+  const money2 = v => 'R$ ' + v.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
+  const moneyK = v => 'R$ ' + (v/1000).toLocaleString('pt-BR', {minimumFractionDigits:1, maximumFractionDigits:1}) + 'k';
+  const pct1 = v => v.toFixed(1).replace('.', ',') + '%';
 
-  document.title = "Morro dos Anjos — Super Agosto até 09/08";
-  document.querySelector(".header p").textContent = "01/08/2026 a 31/08/2026 · Atualizado em 10/08/2026 · Super Agosto 2026";
-  document.querySelector(".logo-pill span:last-child").textContent = "Morro dos Anjos · parcial conforme base enviada";
-  document.querySelectorAll(".section-label")[0].textContent = "Panorama da campanha — Agosto 2026";
+  document.title = 'Morro dos Anjos — Super Agosto até ' + augustDays[augustDays.length-1].date;
+  document.querySelector('.header p').textContent = '01/08/2026 a 31/08/2026 · Atualizado em 11/08/2026 · Super Agosto 2026';
+  document.querySelector('.logo-pill span:last-child').textContent = 'Morro dos Anjos · parcial conforme base enviada';
+  document.querySelectorAll('.section-label')[0].textContent = 'Panorama da campanha — Agosto 2026';
 
-  const expectedTotal = salesGoal * elapsedPct / 100;
-  const diffTotalPct = (totalSales - expectedTotal) / expectedTotal * 100;
-  const totalColor = diffTotalPct >= 0 ? posColor : negColor;
-  const totalSign = diffTotalPct >= 0 ? "+" : "";
-
+  const expectedSales = salesGoal * elapsedPct / 100;
   const expectedDirect = salesGoal * 0.70 * elapsedPct / 100;
-  const diffDirectPct = (directSales - expectedDirect) / expectedDirect * 100;
-  const directColor = diffDirectPct >= 0 ? posColor : negColor;
-  const directSign = diffDirectPct >= 0 ? "+" : "";
+  const salesPaceVar = (totalSales - expectedSales) / expectedSales * 100;
+  const directPaceVar = (directSales - expectedDirect) / expectedDirect * 100;
+  const salesPaceColor = salesPaceVar >= 0 ? '#5DCAA5' : '#E24B4A';
+  const directPaceColor = directPaceVar >= 0 ? '#5DCAA5' : '#E24B4A';
 
-  const salesDiff = projectedSales - salesGoal;
-  const salesProjColor = salesDiff >= 0 ? posColor : warnColor;
-  const salesProjText = salesDiff >= 0 ? (money0(salesDiff) + " acima da meta") : (money0(-salesDiff) + " abaixo da meta");
-
-  const spendDiff = projectedSpend - mediaBudget;
-  const spendProjColor = spendDiff <= 0 ? posColor : negColor;
-  const spendProjText = spendDiff <= 0 ? (money0(-spendDiff) + " abaixo do budget") : (money0(spendDiff) + " acima do budget");
-
-  document.querySelector(".panorama").innerHTML = `
-    <div class="pan-top"><div class="pan-left"><div class="pan-tag">Progresso do mês</div><div class="pan-days">${daysElapsed} <span style="font-size:18px;font-weight:400;color:#9E9C93;">de ${daysInMonth} dias</span></div><div class="pan-sub">${pct1(elapsedPct)} do mês concluído &nbsp;·&nbsp; parcial até ${augustDays[augustDays.length-1].date}</div></div><div class="pan-right"><div class="pan-stat"><div class="ps-lbl">Vendas no ritmo esperado</div><div class="ps-val">${money0(expectedTotal)}</div><div class="ps-note" style="color:${totalColor}">Atual: ${money0(totalSales)} &nbsp;(${totalSign}${pct1(diffTotalPct)})</div></div><div class="pan-stat"><div class="ps-lbl">Venda Direta no ritmo esperado</div><div class="ps-val">${money0(expectedDirect)}</div><div class="ps-note" style="color:${directColor}">Atual: ${money0(directSales)} &nbsp;(${directSign}${pct1(diffDirectPct)})</div></div><div class="pan-stat"><div class="ps-lbl">Projeção de vendas/mês</div><div class="ps-val" style="color:${salesProjColor}">${money0(projectedSales)}</div><div class="ps-note" style="color:#9E9C93">Meta oficial: ${money0(salesGoal)}</div></div></div></div>
+  document.querySelector('.panorama').innerHTML = `
+    <div class="pan-top"><div class="pan-left"><div class="pan-tag">Progresso do mês</div><div class="pan-days">${diasDecorridos} <span style="font-size:18px;font-weight:400;color:#9E9C93;">de ${diasNoMes} dias</span></div><div class="pan-sub">${pct1(elapsedPct)} do mês concluído &nbsp;·&nbsp; parcial até ${augustDays[augustDays.length-1].date}</div></div><div class="pan-right"><div class="pan-stat"><div class="ps-lbl">Vendas no ritmo esperado</div><div class="ps-val">${money0(expectedSales)}</div><div class="ps-note" style="color:${salesPaceColor}">Atual: ${money0(totalSales)} &nbsp;(${salesPaceVar>=0?'+':''}${pct1(salesPaceVar)})</div></div><div class="pan-stat"><div class="ps-lbl">Venda Direta no ritmo esperado</div><div class="ps-val">${money0(expectedDirect)}</div><div class="ps-note" style="color:${directPaceColor}">Atual: ${money0(directSales)} &nbsp;(${directPaceVar>=0?'+':''}${pct1(directPaceVar)})</div></div><div class="pan-stat"><div class="ps-lbl">Projeção de vendas/mês</div><div class="ps-val" style="color:#EF9F27">${money0(projectedSales)}</div><div class="ps-note" style="color:#9E9C93">Meta oficial: ${money0(salesGoal)}</div></div></div></div>
     <div class="tl-wrap"><div style="position:relative;height:10px;margin-bottom:6px;"><div class="tl-bar-outer" style="position:absolute;top:0;left:0;width:100%;height:10px;"></div><div class="tl-bar-fill" id="tl-fill" style="width:0%"></div><div class="tl-marker" style="left:${elapsedPct}%"></div></div><div class="tl-labels"><span>01/08</span><span>10/08</span><span>20/08</span><span>25/08</span><span>31/08</span></div></div>
-    <div class="proj-grid"><div class="proj-card"><div class="pc-lbl">Meta total — ${money0(salesGoal)}</div><div class="pc-actual">${money0(totalSales)}</div><div class="pc-sub">${pct1(pctSales)} da meta &nbsp;·&nbsp; ${totalReservations} reservas</div><div class="pc-bar-outer"><div class="pc-bar-exp" id="pbe-total" style="width:0%"></div><div class="pc-bar-act" id="pba-total" style="width:0%;background:${salesProjColor};"></div></div><div class="pc-sep"></div><div class="pc-proj-lbl">Projeção no ritmo atual</div><div class="pc-proj-val" style="color:${salesProjColor}">${money0(projectedSales)}</div><div class="pc-diff" style="color:${salesProjColor}">${salesProjText}</div></div><div class="proj-card"><div class="pc-lbl">Budget de mídia — ${money0(mediaBudget)}</div><div class="pc-actual">${money0(totalInvested)}</div><div class="pc-sub">${pct1(pctSpend)} do budget utilizado</div><div class="pc-bar-outer"><div class="pc-bar-exp" id="pbe-budget" style="width:0%"></div><div class="pc-bar-act" id="pba-budget" style="width:0%;background:#378ADD;"></div></div><div class="pc-sep"></div><div class="pc-proj-lbl">Projeção de investimento</div><div class="pc-proj-val" style="color:${spendProjColor}">${money0(projectedSpend)}</div><div class="pc-diff" style="color:${spendProjColor}">${spendProjText}</div></div><div class="proj-card"><div class="pc-lbl">Eficiência da mídia paga</div><div class="pc-actual" style="color:#5DCAA5">ROAS ${roas.toFixed(1).replace(".", ",")}x</div><div class="pc-sub">${money2(roas)} gerados por R$ 1,00 investido</div><div class="pc-bar-outer" style="margin-top:10px;"><div class="pc-bar-act" style="width:100%;background:#5DCAA5;"></div></div><div class="pc-sep"></div><div class="pc-proj-lbl">Custo por Reserva (CPA)</div><div class="pc-proj-val" style="color:#5DCAA5">${money2(cpa)}</div><div class="pc-diff" style="color:#5DCAA5">Base: Booking Engine + Central de Reservas</div></div></div>`;
+    <div class="proj-grid"><div class="proj-card"><div class="pc-lbl">Meta total — ${money0(salesGoal)}</div><div class="pc-actual">${money0(totalSales)}</div><div class="pc-sub">${pct1(pctSales)} da meta &nbsp;·&nbsp; ${totalReservations} reservas</div><div class="pc-bar-outer"><div class="pc-bar-exp" id="pbe-total" style="width:0%"></div><div class="pc-bar-act" id="pba-total" style="width:0%;background:#EF9F27;"></div></div><div class="pc-sep"></div><div class="pc-proj-lbl">Projeção no ritmo atual</div><div class="pc-proj-val" style="color:#EF9F27">${money0(projectedSales)}</div><div class="pc-diff" style="color:${projectedSales>=salesGoal?'#5DCAA5':'#E24B4A'}">${money0(Math.abs(projectedSales-salesGoal))} ${projectedSales>=salesGoal?'acima da meta':'abaixo da meta'}</div></div><div class="proj-card"><div class="pc-lbl">Budget de mídia — ${money0(mediaBudget)}</div><div class="pc-actual">${money0(totalInvested)}</div><div class="pc-sub">${pct1(pctSpend)} do budget utilizado</div><div class="pc-bar-outer"><div class="pc-bar-exp" id="pbe-budget" style="width:0%"></div><div class="pc-bar-act" id="pba-budget" style="width:0%;background:#378ADD;"></div></div><div class="pc-sep"></div><div class="pc-proj-lbl">Projeção de investimento</div><div class="pc-proj-val" style="color:${projectedSpend>mediaBudget?'#E24B4A':'#5DCAA5'}">${money0(projectedSpend)}</div><div class="pc-diff" style="color:${projectedSpend>mediaBudget?'#E24B4A':'#5DCAA5'}">${money0(Math.abs(projectedSpend-mediaBudget))} ${projectedSpend>mediaBudget?'acima do budget':'abaixo do budget'}</div></div><div class="proj-card"><div class="pc-lbl">Eficiência da mídia paga</div><div class="pc-actual" style="color:#5DCAA5">ROAS ${roas.toFixed(1).replace('.', ',')}x</div><div class="pc-sub">${money2(roas)} gerados por R$ 1,00 investido</div><div class="pc-bar-outer" style="margin-top:10px;"><div class="pc-bar-act" style="width:100%;background:#5DCAA5;"></div></div><div class="pc-sep"></div><div class="pc-proj-lbl">Custo por Reserva (CPA)</div><div class="pc-proj-val" style="color:#5DCAA5">${money2(cpa)}</div><div class="pc-diff" style="color:#5DCAA5">Base: Booking Engine + Central de Reservas</div></div></div>`;
 
   const split = [
-    {name:"Central + Grupos", sub:"Central de Reservas + Grupos & Eventos", share:45, goal:salesGoal*0.45, value:v_CR+v_GE, mix:(v_CR+v_GE)/totalSales*100, count:r_CR + " reservas + G&E*", color:"#534AB7"},
-    {name:"Booking Engine", sub:"Motor de reservas / site", share:25, goal:salesGoal*0.25, value:v_BE, mix:v_BE/totalSales*100, count:r_BE + " reservas", color:"#7F77DD"},
-    {name:"Outros Canais", sub:"Agências + OTAs & Operadoras", share:30, goal:salesGoal*0.30, value:v_AG+v_OT, mix:(v_AG+v_OT)/totalSales*100, count:(r_AG+r_OT) + " reservas", color:"#EF9F27"}
+    {name:'Central + Grupos', sub:'Central de Reservas + Grupos & Eventos', share:45, goal:salesGoal*0.45, value:crTotal+geTotal, mix:(crTotal+geTotal)/totalSales*100, count:crRes+' reservas + G&E*', color:'#534AB7'},
+    {name:'Booking Engine', sub:'Motor de reservas / site', share:25, goal:salesGoal*0.25, value:beTotal, mix:beTotal/totalSales*100, count:beRes+' reservas', color:'#7F77DD'},
+    {name:'Outros Canais', sub:'Agências + OTAs & Operadoras', share:30, goal:salesGoal*0.30, value:outrosSales, mix:outrosSales/totalSales*100, count:outrosRes+' reservas', color:'#EF9F27'}
   ];
-  document.querySelector(".split-grid").innerHTML = split.map((s,i) => { const attained=s.value/s.goal*100; return `<div class="split-card ${i<2?"ads-card":"oth-card"}" style="border-left-color:${s.color};"><div class="split-header"><div><div class="split-title">${s.name}</div><div class="split-sub">${s.sub}</div></div><span class="split-badge ${i<2?"purple":"green"}">Meta: ${s.share}% · ${money0(s.goal)}</span></div><div class="split-value">${money0(s.value)}</div><div class="split-meta">${pct1(s.mix)} do total realizado &nbsp;·&nbsp; ${s.count}</div><div class="split-bar-outer"><div class="split-bar-exp" id="sbe-${i}" style="width:0%;background:${s.color};"></div><div class="split-bar-act" id="sba-${i}" style="width:0%;background:${s.color};"></div></div><div class="split-footer"><span>R$ 0</span><span>▲ 100% meta final</span><span>Meta: ${money0(s.goal)}</span></div><div class="split-row"><span class="sr-label">Meta final do canal</span><span class="sr-right"><span class="sr-val">${money0(s.goal)}</span></span></div><div class="split-row"><span class="sr-label">Realizado</span><span class="sr-right"><span class="sr-val">${money0(s.value)}</span><span class="sr-badge br">-${pct1(100-attained)} vs meta</span></span></div><div class="split-row"><span class="sr-label">Atingimento da meta final</span><span class="sr-right"><span class="sr-val" style="color:#EF9F27">${pct1(attained)}</span></span></div></div>`; }).join("");
+  document.querySelector('.split-grid').innerHTML = split.map((s,i) => { const attained=s.value/s.goal*100; return `<div class="split-card ${i<2?'ads-card':'oth-card'}" style="border-left-color:${s.color};"><div class="split-header"><div><div class="split-title">${s.name}</div><div class="split-sub">${s.sub}</div></div><span class="split-badge ${i<2?'purple':'green'}">Meta: ${s.share}% · ${money0(s.goal)}</span></div><div class="split-value">${money0(s.value)}</div><div class="split-meta">${pct1(s.mix)} do total realizado &nbsp;·&nbsp; ${s.count}</div><div class="split-bar-outer"><div class="split-bar-exp" id="sbe-${i}" style="width:0%;background:${s.color};"></div><div class="split-bar-act" id="sba-${i}" style="width:0%;background:${s.color};"></div></div><div class="split-footer"><span>R$ 0</span><span>▲ 100% meta final</span><span>Meta: ${money0(s.goal)}</span></div><div class="split-row"><span class="sr-label">Meta final do canal</span><span class="sr-right"><span class="sr-val">${money0(s.goal)}</span></span></div><div class="split-row"><span class="sr-label">Realizado</span><span class="sr-right"><span class="sr-val">${money0(s.value)}</span><span class="sr-badge br">-${pct1(100-attained)} vs meta</span></span></div><div class="split-row"><span class="sr-label">Atingimento da meta final</span><span class="sr-right"><span class="sr-val" style="color:#EF9F27">${pct1(attained)}</span></span></div></div>`; }).join('');
 
-  const metrics = document.querySelectorAll(".metrics");
-  metrics[0].innerHTML = `<div class="card ag"><div class="label">Total de Vendas</div><div class="value">${moneyK(totalSales)}</div><div class="sub">${money2(totalSales)}</div></div><div class="card"><div class="label">Total de Reservas</div><div class="value">${totalReservations}</div><div class="sub">contagem diária consolidada</div></div><div class="card"><div class="label">Ticket Médio Geral</div><div class="value">${money0(totalSales/totalReservations)}</div><div class="sub">${money2(totalSales/totalReservations)} por reserva</div></div><div class="card"><div class="label">Média diária de vendas</div><div class="value">${moneyK(totalSales/daysElapsed)}</div><div class="sub">base: ${daysElapsed} dias consolidados</div></div>`;
-  const progs = document.querySelectorAll(".prog-wrap");
-  const metaPctColor = pctSales >= 100 ? "#1D9E75" : "#EF9F27";
-  progs[0].innerHTML = `<div class="prog-header"><span class="prog-title">Meta total de vendas atingida</span><div style="text-align:right"><div class="prog-pct" style="color:${metaPctColor}">${pct1(pctSales)}</div><div class="prog-goal">${money0(totalSales)} de ${money0(salesGoal)} &nbsp;·&nbsp; ritmo esperado: ${pct1(elapsedPct)}</div></div></div><div class="bar-outer"><div class="bar-exp" id="be-meta" style="width:0%;background:#1D9E75;"></div><div class="bar-fill" id="bf-meta" style="width:0%;background:#1D9E75;"></div></div>`;
+  const metrics = document.querySelectorAll('.metrics');
+  metrics[0].innerHTML = `<div class="card ag"><div class="label">Total de Vendas</div><div class="value">${moneyK(totalSales)}</div><div class="sub">${money2(totalSales)}</div></div><div class="card"><div class="label">Total de Reservas</div><div class="value">${totalReservations}</div><div class="sub">contagem diária consolidada</div></div><div class="card"><div class="label">Ticket Médio Geral</div><div class="value">${money0(totalSales/totalReservations)}</div><div class="sub">${money2(totalSales/totalReservations)} por reserva</div></div><div class="card"><div class="label">Média diária de vendas</div><div class="value">${moneyK(totalSales/diasDecorridos)}</div><div class="sub">base: ${diasDecorridos} dias consolidados</div></div>`;
+  const progs = document.querySelectorAll('.prog-wrap');
+  progs[0].innerHTML = `<div class="prog-header"><span class="prog-title">Meta total de vendas atingida</span><div style="text-align:right"><div class="prog-pct" style="color:#EF9F27">${pct1(pctSales)}</div><div class="prog-goal">${money0(totalSales)} de ${money0(salesGoal)} &nbsp;·&nbsp; ritmo esperado: ${pct1(elapsedPct)}</div></div></div><div class="bar-outer"><div class="bar-exp" id="be-meta" style="width:0%;background:#1D9E75;"></div><div class="bar-fill" id="bf-meta" style="width:0%;background:#1D9E75;"></div></div>`;
 
-  metrics[1].innerHTML = `<div class="card aa"><div class="label">Total investido (${daysElapsed} dias)</div><div class="value">${moneyK(totalInvested)}</div><div class="sub">de ${moneyK(mediaBudget)} de budget</div></div><div class="card"><div class="label">ROAS</div><div class="value">${roas.toFixed(1).replace(".", ",")}x</div><div class="sub">${moneyK(directSales)} venda direta / ${moneyK(totalInvested)} invest.</div></div><div class="card"><div class="label">Custo por Reserva (CPA)</div><div class="value">${money2(cpa)}</div><div class="sub">${directReservations} reservas de venda direta (sem G&E)</div></div><div class="card"><div class="label">Ritmo de budget</div><div class="value">${pct1(pctSpend)}</div><div class="sub">ritmo esperado: ${pct1(elapsedPct)}</div></div>`;
+  metrics[1].innerHTML = `<div class="card aa"><div class="label">Total investido (${diasDecorridos} dias)</div><div class="value">${moneyK(totalInvested)}</div><div class="sub">de ${moneyK(mediaBudget)} de budget</div></div><div class="card"><div class="label">ROAS</div><div class="value">${roas.toFixed(1).replace('.', ',')}x</div><div class="sub">${moneyK(directSales)} venda direta / ${moneyK(totalInvested)} invest.</div></div><div class="card"><div class="label">Custo por Reserva (CPA)</div><div class="value">${money2(cpa)}</div><div class="sub">${directReservations} reservas de venda direta (sem G&E)</div></div><div class="card"><div class="label">Ritmo de budget</div><div class="value">${pct1(pctSpend)}</div><div class="sub">ritmo esperado: ${pct1(elapsedPct)}</div></div>`;
   progs[1].innerHTML = `<div class="prog-header"><span class="prog-title">Budget total de mídia utilizado</span><div style="text-align:right"><div class="prog-pct">${pct1(pctSpend)}</div><div class="prog-goal">${money0(totalInvested)} de ${money0(mediaBudget)} &nbsp;·&nbsp; ritmo esperado: ${pct1(elapsedPct)}</div></div></div><div class="bar-outer"><div class="bar-exp" id="be-budget" style="width:0%;background:#378ADD;"></div><div class="bar-fill" id="bf-budget" style="width:0%;background:#378ADD;"></div></div><div class="bar-footer"><span>R$ 0</span><span>▲ ${pct1(elapsedPct)} seria o ritmo esperado</span><span>Budget: ${money0(mediaBudget)}</span></div>`;
 
-  const tabs = document.getElementById("daily-tabs-container"); tabs.innerHTML="";
-  const renderAugustDay = i => { const d=augustDays[i]; const rows=[["Central de Reservas",d.v_CR,d.r_CR],["Booking Engine",d.v_BE,d.r_BE],["Grupos & Eventos",d.v_GE,d.r_GE],["Agências",d.v_AG,d.r_AG],["OTAs & Operadoras",d.v_OT,d.r_OT]].map(c=>`<tr><td>${c[0]}</td><td class="val">${money2(c[1])}</td><td class="cnt">${c[2]}</td></tr>`).join(""); document.getElementById("daily-content").innerHTML=`<table class="day-table"><thead><tr><th>Canal</th><th class="val">Vendas totais</th><th class="cnt">Reservas</th></tr></thead><tbody>${rows}<tr><td>Total do Dia</td><td class="val">${money2(d.v_TOT)}</td><td class="cnt">${d.r_tot}</td></tr></tbody></table>`; };
-  const lastIdx = augustDays.length - 1;
-  augustDays.forEach((d,i)=>{const b=document.createElement("button");b.className="daily-tab"+(i===lastIdx?" active":"");b.textContent=d.date;b.onclick=()=>{tabs.querySelectorAll(".daily-tab").forEach((x,j)=>x.classList.toggle("active",j===i));renderAugustDay(i)};tabs.appendChild(b)}); renderAugustDay(lastIdx);
+  const tabs = document.getElementById('daily-tabs-container'); tabs.innerHTML='';
+  const renderAugustDay = i => { const d=augustDays[i]; const rows=[['Central de Reservas',d.v_CR,d.r_CR],['Booking Engine',d.v_BE,d.r_BE],['Grupos & Eventos',d.v_GE,d.r_GE],['Agências',d.v_AG,d.r_AG],['OTAs & Operadoras',d.v_OT,d.r_OT]].map(c=>`<tr><td>${c[0]}</td><td class="val">${money2(c[1])}</td><td class="cnt">${c[2]}</td></tr>`).join(''); document.getElementById('daily-content').innerHTML=`<table class="day-table"><thead><tr><th>Canal</th><th class="val">Vendas totais</th><th class="cnt">Reservas</th></tr></thead><tbody>${rows}<tr><td>Total do Dia</td><td class="val">${money2(d.v_TOT)}</td><td class="cnt">${d.r_tot}</td></tr></tbody></table>`; };
+  augustDays.forEach((d,i)=>{const b=document.createElement('button');b.className='daily-tab'+(i===augustDays.length-1?' active':'');b.textContent=d.date;b.onclick=()=>{tabs.querySelectorAll('.daily-tab').forEach((x,j)=>x.classList.toggle('active',j===i));renderAugustDay(i)};tabs.appendChild(b)});
+  renderAugustDay(augustDays.length-1);
 
   const dayLabels = augustDays.map(d=>d.date);
-  const salesChart=Chart.getChart("chartVendas"); salesChart.data.labels=dayLabels; salesChart.data.datasets[0].data=augustDays.map(d=>d.v_TOT); salesChart.update();
-  const resChart=Chart.getChart("chartReservas"); resChart.data.labels=dayLabels; resChart.data.datasets[0].data=augustDays.map(d=>d.r_tot); resChart.update();
-  const adChart=Chart.getChart("chartAdsDaily"); adChart.data.labels=dayLabels; adChart.data.datasets[0].data=invMeta; adChart.data.datasets[1].data=invGoogle; adChart.data.datasets[2].data=invYoutube; adChart.data.datasets[3].data=invInflu; adChart.update();
-
-  const budgetAugust=[{name:"Meta Ads",invested:sum(invMeta),target:62000,color:"#534AB7"},{name:"Google Pesquisa",invested:sum(invGoogle),target:20000,color:"#1D9E75"},{name:"YouTube",invested:sum(invYoutube),target:5000,color:"#D4537E"},{name:"Influ",invested:sum(invInflu),target:3000,color:"#A55EEA"}];
-  const pie=Chart.getChart("chartAdsPie"); pie.data.labels=budgetAugust.map(x=>x.name);pie.data.datasets[0].data=budgetAugust.map(x=>x.invested);pie.data.datasets[0].backgroundColor=budgetAugust.map(x=>x.color);pie.update();
-  document.querySelector("#budget-canais").parentElement.querySelector(".chart-title").textContent="Investimento por canal — acumulado até " + augustDays[lastIdx].date;
-  document.getElementById("budget-canais").innerHTML=budgetAugust.map(ch=>{const share=ch.invested/totalInvested*100,used=ch.invested/ch.target*100;return `<div class="channel-row"><div class="channel-meta"><div class="channel-name"><span style="width:10px;height:10px;border-radius:2px;background:${ch.color};display:inline-block;"></span>${ch.name}</div><div class="channel-vals">${money2(ch.invested)} <span style="color:#888780">· ${pct1(share)} do investimento · ${pct1(used)} do budget do canal</span></div></div><div style="position:relative;height:8px;border-radius:4px;background:rgba(0,0,0,0.08);"><div style="position:absolute;top:0;left:0;width:${Math.min(used,100)}%;height:8px;border-radius:4px;background:${ch.color};"></div></div></div>`}).join("");
-  document.getElementById("canais-vendas").innerHTML=split.map((ch,i)=>{const diff=ch.mix-ch.share,max=Math.max(ch.mix,ch.share),bc=diff>=0?"bg":diff>-5?"ba":"br";return `<div class="channel-row"><div class="channel-meta"><div class="channel-name"><span style="width:10px;height:10px;border-radius:2px;background:${ch.color};display:inline-block;"></span>${ch.name}<span style="font-size:10px;padding:2px 6px;border-radius:6px;background:${i<2?"#EEEDFE":"#FAEEDA"};color:${i<2?"#3C3489":"#854F0B"};">${i<2?"Venda Direta":"Outros Canais"}</span></div><div class="channel-vals">${pct1(ch.mix)} &nbsp;·&nbsp; Meta ${ch.share}% &nbsp;·&nbsp; ${ch.count} &nbsp;·&nbsp; ${money0(ch.value)}<span class="badge ${bc}">${diff>=0?"+":""}${diff.toFixed(1).replace(".", ",")}pp vs meta</span></div></div><div class="bar2-outer" style="position:relative;height:6px;"><div style="position:absolute;top:0;left:0;width:${(ch.share/max*90).toFixed(1)}%;height:6px;border-radius:4px;background:${ch.color};opacity:.18;"></div><div style="position:absolute;top:0;left:0;width:${(ch.mix/max*90).toFixed(1)}%;height:6px;border-radius:4px;background:${ch.color};"></div></div></div>`}).join("");
+  const salesChart=Chart.getChart('chartVendas'); salesChart.data.labels=dayLabels; salesChart.data.datasets[0].data=augustDays.map(d=>d.v_TOT); salesChart.update();
+  const resChart=Chart.getChart('chartReservas'); resChart.data.labels=dayLabels; resChart.data.datasets[0].data=augustDays.map(d=>d.r_tot); resChart.update();
+  const adChart=Chart.getChart('chartAdsDaily'); adChart.data.labels=dayLabels; adChart.data.datasets[0].data=augustDays.map(d=>d.inv_meta); adChart.data.datasets[1].data=augustDays.map(d=>d.inv_google); adChart.data.datasets[2].data=augustDays.map(d=>d.inv_youtube); adChart.data.datasets[3].data=augustDays.map(d=>d.inv_influ); adChart.update();
+  const budgetAugust=[{name:'Meta Ads',invested:invMetaTotal,target:62000,color:'#534AB7'},{name:'Google Pesquisa',invested:invGoogleTotal,target:20000,color:'#1D9E75'},{name:'YouTube',invested:invYoutubeTotal,target:5000,color:'#D4537E'},{name:'Influ',invested:invInfluTotal,target:3000,color:'#A55EEA'}];
+  const pie=Chart.getChart('chartAdsPie'); pie.data.labels=budgetAugust.map(x=>x.name);pie.data.datasets[0].data=budgetAugust.map(x=>x.invested);pie.data.datasets[0].backgroundColor=budgetAugust.map(x=>x.color);pie.update();
+  document.querySelector('#budget-canais').parentElement.querySelector('.chart-title').textContent='Investimento por canal — acumulado até ' + augustDays[augustDays.length-1].date;
+  document.getElementById('budget-canais').innerHTML=budgetAugust.map(ch=>{const share=ch.invested/totalInvested*100,used=ch.invested/ch.target*100;return `<div class="channel-row"><div class="channel-meta"><div class="channel-name"><span style="width:10px;height:10px;border-radius:2px;background:${ch.color};display:inline-block;"></span>${ch.name}</div><div class="channel-vals">${money2(ch.invested)} <span style="color:#888780">· ${pct1(share)} do investimento · ${pct1(used)} do budget do canal</span></div></div><div style="position:relative;height:8px;border-radius:4px;background:rgba(0,0,0,0.08);"><div style="position:absolute;top:0;left:0;width:${Math.min(used,100)}%;height:8px;border-radius:4px;background:${ch.color};"></div></div></div>`}).join('');
+  document.getElementById('canais-vendas').innerHTML=split.map((ch,i)=>{const diff=ch.mix-ch.share,max=Math.max(ch.mix,ch.share),bc=diff>=0?'bg':diff>-5?'ba':'br';return `<div class="channel-row"><div class="channel-meta"><div class="channel-name"><span style="width:10px;height:10px;border-radius:2px;background:${ch.color};display:inline-block;"></span>${ch.name}<span style="font-size:10px;padding:2px 6px;border-radius:6px;background:${i<2?'#EEEDFE':'#FAEEDA'};color:${i<2?'#3C3489':'#854F0B'};">${i<2?'Venda Direta':'Outros Canais'}</span></div><div class="channel-vals">${pct1(ch.mix)} &nbsp;·&nbsp; Meta ${ch.share}% &nbsp;·&nbsp; ${ch.count} &nbsp;·&nbsp; ${money0(ch.value)}<span class="badge ${bc}">${diff>=0?'+':''}${diff.toFixed(1).replace('.',',')}pp vs meta</span></div></div><div class="bar2-outer" style="position:relative;height:6px;"><div style="position:absolute;top:0;left:0;width:${(ch.share/max*90).toFixed(1)}%;height:6px;border-radius:4px;background:${ch.color};opacity:.18;"></div><div style="position:absolute;top:0;left:0;width:${(ch.mix/max*90).toFixed(1)}%;height:6px;border-radius:4px;background:${ch.color};"></div></div></div>`}).join('');
 
   setTimeout(()=>{
-    [["tl-fill",elapsedPct],["pbe-total",elapsedPct],["pba-total",pctSales],["pbe-budget",elapsedPct],["pba-budget",pctSpend],["be-meta",elapsedPct],["bf-meta",pctSales],["be-budget",elapsedPct],["bf-budget",pctSpend]].forEach(([id,p])=>document.getElementById(id).style.width=Math.min(p,100)+"%");
-    split.forEach((s,i)=>{document.getElementById("sbe-"+i).style.width="100%";document.getElementById("sba-"+i).style.width=Math.min(s.value/s.goal*100,100)+"%"});
+    [['tl-fill',elapsedPct],['pbe-total',elapsedPct],['pba-total',pctSales],['pbe-budget',elapsedPct],['pba-budget',pctSpend],['be-meta',elapsedPct],['bf-meta',pctSales],['be-budget',elapsedPct],['bf-budget',pctSpend]].forEach(([id,p])=>document.getElementById(id).style.width=Math.min(p,100)+'%');
+    split.forEach((s,i)=>{document.getElementById('sbe-'+i).style.width='100%';document.getElementById('sba-'+i).style.width=Math.min(s.value/s.goal*100,100)+'%'});
   },500);
 })();
-</script></body></html><!-- agosto: meta R$ 4.165.736, budget R$ 90.000, corte até 09/08/2026 -->
+</script></body></html><!-- agosto: meta R$ 4.165.736, budget R$ 90.000, corte até 10/08/2026 -->
