@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Morro × Mercado | Mini Apresentação</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #1D1E46;
+      --brand-mid: #252660;
+      --brand-light: #2F317B;
+      --accent: #00AEEF;
+      --accent-2: #7DD8F8;
+      --cream: #FFF7E6;
+      --coral: #F27466;
+      --gold: #CB9C66;
+      --teal: #29948F;
+      --teal-dark: #124747;
+      --white: #FFFFFF;
+      --ink: #12182B;
+      --muted: #6B7A99;
+      --muted-dark: #98A3B8;
+      --line: rgba(255,255,255,0.12);
+      --soft-line: rgba(29,30,70,0.08);
+      --bg-soft: #F3F8FC;
+      --shadow: 0 20px 60px rgba(8, 16, 42, 0.18);
+      --shadow-soft: 0 14px 40px rgba(29, 30, 70, 0.08);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--white);
+      background: var(--brand);
+      overflow-x: hidden;
+    }
+
+    #pb {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      z-index: 9999;
+      transition: width .12s linear;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 40px;
+      background: linear-gradient(to bottom, rgba(29,30,70,.96), rgba(29,30,70,.66), transparent);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .nav-brand .mark {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, var(--accent-2), var(--accent));
+      box-shadow: 0 0 0 6px rgba(0,174,239,.13);
+      flex-shrink: 0;
+    }
+
+    .nav-dots {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.18);
+      transition: all .25s ease;
+      cursor: pointer;
+    }
+    .dot.active {
+      width: 28px;
+      background: var(--accent);
+    }
+
+    .slide {
+      min-height: 100vh;
+      padding: 108px 82px 72px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .slide::after {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,174,239,.08), transparent 70%);
+      pointer-events: none;
+    }
+    .slide.cream::after,
+    .slide.white::after { background: radial-gradient(circle, rgba(0,174,239,.08), transparent 72%); }
+
+    .brand { background: var(--brand); }
+    .brand-mid { background: var(--brand-mid); }
+    .cream {
+      background: linear-gradient(180deg, #FFF9EE 0%, #FFF5E1 100%);
+      color: var(--brand);
+    }
+    .white {
+      background: linear-gradient(180deg, #FFFFFF 0%, #F4F8FC 100%);
+      color: var(--brand);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,174,239,.35);
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .28em;
+      margin-bottom: 24px;
+      width: fit-content;
+    }
+    .badge::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    .cream .badge, .white .badge {
+      border-color: rgba(0,174,239,.25);
+    }
+
+    h1.st {
+      font-size: clamp(34px, 4.6vw, 58px);
+      line-height: 1.02;
+      letter-spacing: -.04em;
+      font-weight: 700;
+      max-width: 980px;
+      margin-bottom: 18px;
+    }
+    h2.st {
+      font-size: clamp(27px, 3.5vw, 44px);
+      line-height: 1.06;
+      letter-spacing: -.035em;
+      font-weight: 700;
+      max-width: 980px;
+      margin-bottom: 18px;
+    }
+    .accent { color: var(--accent); }
+    .coral { color: var(--coral); }
+    .gold { color: var(--gold); }
+    .lead {
+      max-width: 780px;
+      font-size: 14px;
+      line-height: 1.75;
+      color: rgba(255,255,255,.82);
+      margin-bottom: 36px;
+    }
+    .cream .lead, .white .lead {
+      color: var(--muted);
+    }
+    .divider {
+      width: 58px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--accent);
+      margin: 12px 0 28px;
+    }
+
+    .chips {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .chip {
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.86);
+    }
+    .cream .chip, .white .chip {
+      border-color: rgba(29,30,70,.08);
+      background: rgba(29,30,70,.04);
+      color: var(--brand);
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      max-width: 940px;
+      gap: 34px;
+      align-items: end;
+    }
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius-xl);
+      padding: 30px 30px 26px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(6px);
+    }
+    .hero-card .eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .25em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .hero-big {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -.05em;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .hero-card p {
+      font-size: 13px;
+      color: rgba(255,255,255,.76);
+      line-height: 1.75;
+    }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+
+    .panel, .metric-card, .note-card, .compare-card {
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.09);
+    }
+    .panel .kicker,
+    .metric-card .kicker,
+    .compare-card .kicker,
+    .note-card .kicker {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .panel h3,
+    .compare-card h3,
+    .note-card h3 {
+      font-size: 19px;
+      line-height: 1.15;
+      letter-spacing: -.03em;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .panel p,
+    .compare-card p,
+    .note-card p {
+      font-size: 13px;
+      line-height: 1.75;
+      color: rgba(255,255,255,.78);
+    }
+
+    .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .metric-card {
+      background: rgba(255,255,255,.94);
+      color: var(--brand);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(29,30,70,.06);
+    }
+    .metric-value {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -.05em;
+      color: var(--brand);
+      margin-bottom: 10px;
+    }
+    .metric-value.accent { color: var(--accent); }
+    .metric-value.coral { color: var(--coral); }
+    .metric-value.gold { color: var(--gold); }
+    .metric-value.teal { color: var(--teal); }
+    .metric-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 8px;
+    }
+    .metric-note {
+      font-size: 12px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .statement {
+      margin-top: 26px;
+      padding: 26px 28px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(90deg, rgba(0,174,239,.12), rgba(0,174,239,.03));
+      border: 1px solid rgba(0,174,239,.18);
+      font-size: 19px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -.02em;
+    }
+
+    .compare-card {
+      background: rgba(255,255,255,.96);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(29,30,70,.06);
+      color: var(--brand);
+      min-height: 100%;
+    }
+    .compare-card p { color: var(--muted); }
+
+    .bar-group { margin-top: 18px; display: grid; gap: 15px; }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 165px 1fr 56px;
+      gap: 14px;
+      align-items: center;
+    }
+    .bar-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brand);
+    }
+    .bar-track {
+      height: 14px;
+      border-radius: 999px;
+      background: #E9EEF5;
+      position: relative;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+    }
+    .bar-value {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brand);
+      text-align: right;
+    }
+
+    .stack-card {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+    }
+    .stack-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 12px;
+    }
+    .stack-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .stack-big {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -.04em;
+    }
+    .stack-bar {
+      display: flex;
+      width: 100%;
+      height: 24px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255,255,255,.08);
+      margin: 14px 0 18px;
+    }
+    .seg { height: 100%; }
+    .legend {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px 18px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,.82);
+    }
+    .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .ecosystem {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    .flow {
+      display: grid;
+      gap: 10px;
+    }
+    .flow-item {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      align-items: stretch;
+      gap: 0;
+      overflow: hidden;
+      border-radius: 18px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .flow-label {
+      background: linear-gradient(180deg, var(--accent), #05A1DE);
+      color: var(--white);
+      padding: 18px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+    }
+    .flow-desc {
+      padding: 18px 20px;
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(255,255,255,.82);
+      background: rgba(255,255,255,.04);
+    }
+
+    .list-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .list-chip {
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-size: 13px;
+      font-weight: 700;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.08);
+      color: rgba(255,255,255,.88);
+    }
+
+    .otb-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 10px; }
+
+    .dashboard-chain {
+      margin-top: 34px;
+      padding: 26px;
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .chain-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+    .chain-items {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .chain-pill {
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.1);
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255,255,255,.9);
+    }
+    .chain-arrow {
+      font-size: 18px;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .conclusion {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 24px;
+    }
+    .conclusion .panel h3 { font-size: 19px; }
+
+    .source-box {
+      margin-top: 34px;
+      padding: 18px 22px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      font-size: 13px;
+      line-height: 1.8;
+      color: rgba(255,255,255,.82);
+    }
+    .source-box a {
+      color: var(--accent-2);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .foot {
+      position: absolute;
+      left: 72px;
+      right: 72px;
+      bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      font-size: 11px;
+      line-height: 1.5;
+      color: rgba(255,255,255,.46);
+    }
+    .cream .foot, .white .foot {
+      color: rgba(29,30,70,.44);
+    }
+
+    .rv {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .rv.on {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1100px) {
+      nav { padding: 14px 20px; }
+      .slide { padding: 98px 24px 72px; }
+      .hero-layout, .ecosystem, .grid-2, .grid-3, .grid-4, .metric-grid, .otb-grid, .conclusion { grid-template-columns: 1fr; }
+      .bar-row { grid-template-columns: 1fr; }
+      .flow-item { grid-template-columns: 1fr; }
+      .legend, .list-grid { grid-template-columns: 1fr; }
+      .foot { left: 24px; right: 24px; flex-direction: column; gap: 6px; }
+      .stack-head { gap: 10px; align-items: start; flex-direction: column; }
+    }
+
+    /* REFINO EXECUTIVO */
+    .slide h1.st, .slide h2.st { font-weight: 700; }
+    .panel h3, .compare-card h3, .note-card h3 { font-weight: 600; }
+    .metric-value, .stack-big, .hero-big { font-weight: 700; }
+    .metric-label, .bar-label, .stack-title, .list-chip, .chain-pill { font-weight: 600; }
+    .statement { font-weight: 600; }
+    .cover-sub { max-width: 700px; font-size: 15px; color: rgba(255,255,255,.76); line-height: 1.75; }
+    .cover-rule { width: 54px; height: 3px; background: var(--accent); border-radius: 999px; margin: 24px 0 0; }
+    .central-reading { max-width: 1040px; display:grid; grid-template-columns:.72fr 1.28fr; gap:30px; align-items:center; }
+    .central-reading .central-kicker { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
+    .central-reading .central-side { font-size:14px; line-height:1.75; color:rgba(255,255,255,.72); }
+    .central-reading .central-main { padding:30px 32px; border-left:3px solid var(--accent); background:rgba(255,255,255,.055); border-radius:0 18px 18px 0; }
+    .central-reading .central-main p { font-size:20px; line-height:1.55; font-weight:500; color:rgba(255,255,255,.94); }
+    .white .dashboard-chain { background:#F3F8FC; border-color:rgba(29,30,70,.08); }
+    .white .chain-title { color:var(--accent); }
+    .white .chain-pill { background:#FFFFFF; border-color:rgba(29,30,70,.10); color:var(--brand); box-shadow:0 6px 18px rgba(29,30,70,.05); }
+    .white .chain-arrow { color:var(--gold); }
+    @media (max-width:1100px){ .central-reading{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+  <div id="pb"></div>
+
+  <nav>
+    <div class="nav-brand"><span class="mark"></span> MORRO × MERCADO</div>
+    <div class="nav-dots">
+      <div class="dot active" data-target="s1"></div>
+      <div class="dot" data-target="s2"></div>
+      <div class="dot" data-target="s3"></div>
+      <div class="dot" data-target="s4"></div>
+      <div class="dot" data-target="s5"></div>
+      <div class="dot" data-target="s6"></div>
+      <div class="dot" data-target="s7"></div>
+      <div class="dot" data-target="s8"></div>
+      <div class="dot" data-target="s9"></div>
+      <div class="dot" data-target="s10"></div>
+    </div>
+  </nav>
+
+  <section id="s1" class="slide brand">
+    <div class="hero-layout">
+      <div>
+        <div class="badge rv">Apresentação Estratégica</div>
+        <h1 class="st rv">Mercado em alta.<br><span class="accent">Morro em aceleração.</span></h1>
+        <p class="cover-sub rv">Uma leitura do desempenho recente do Morro dos Anjos à luz do Resort Report Omnibees 2026.</p>
+        <div class="cover-rule rv"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="s2" class="slide brand-mid">
+    <div class="badge rv">Leitura central</div>
+    <div class="central-reading">
+      <div class="rv">
+        <h2 class="st">O mercado ajuda.<br><span class="accent">A estratégia captura.</span></h2>
+        <p class="central-side">A Omnibees não prova causalidade entre marketing e vendas. Mas mostra algo estratégico: o Morro está inserido nos recortes mais aquecidos do setor e vem transformando essa oportunidade em crescimento por canais relevantes.</p>
+      </div>
+      <div class="central-main rv">
+        <div class="central-kicker">Nossa leitura</div>
+        <p>Existe uma expansão real do mercado. E a estratégia de marketing do Morro está ajudando a empresa a capturar essa expansão de forma muito eficiente, com geração contínua de demanda, recuperação de intenção e força crescente em Central de Reservas + Booking Engine.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="s3" class="slide brand-mid">
+    <div class="badge rv">A tese</div>
+    <h2 class="st rv">Como estamos <span class="accent">capturando a oportunidade</span></h2>
+    <div class="divider rv"></div>
+    <div class="grid-3">
+      <div class="panel rv">
+        <div class="kicker">1 · Mercado favorável</div>
+        <h3>Há vento a favor.</h3>
+        <p>O mercado de resorts está aquecido. Paraná, interior e destinos associados a termas aparecem entre os motores relevantes do crescimento. Isso cria um contexto ótimo para o Morro.</p>
+      </div>
+      <div class="panel rv">
+        <div class="kicker">2 · Estratégia de captura</div>
+        <h3>Mas demanda não escolhe sozinha.</h3>
+        <p>Alguém precisa gerar awareness, provocar interesse, colocar oferta, fazer remarketing, recuperar indisponibilidade, nutrir intenção e transformar esse interesse em reserva.</p>
+      </div>
+      <div class="panel rv">
+        <div class="kicker">3 · Crescimento qualificado</div>
+        <h3>Estamos crescendo do jeito certo.</h3>
+        <p>O melhor sinal não é só o volume: é o fato de estarmos puxando esse crescimento principalmente por <strong>Central de Reservas + Booking Engine</strong>, ou seja, canais próprios e controlados pelo Morro.</p>
+      </div>
+    </div>
+    <div class="statement rv">Conclusão executiva: <span class="accent">o mercado explica parte do crescimento</span>, mas a estratégia explica <span class="accent">como o Morro está convertendo essa expansão em resultado relevante e economicamente mais saudável.</span></div>
+    
+  </section>
+
+  <section id="s4" class="slide cream">
+    <div class="badge rv">Pulso do mercado</div>
+    <h2 class="st rv">A Omnibees confirma um <span class="accent">mercado aquecido</span> para resorts.</h2>
+    <p class="lead rv">O panorama do 1º semestre de 2026 vs. 2025 foi construído com base em <strong>221 resorts ativos</strong> e um universo de <strong>mais de 20 milhões de reservas por ano</strong>.</p>
+    <div class="metric-grid">
+      <div class="metric-card rv">
+        <div class="kicker">Brasil · resorts</div>
+        <div class="metric-value accent">+14,3%</div>
+        <div class="metric-label">Reservas</div>
+        <div class="metric-note">O setor cresceu em emissão de reservas no primeiro semestre.</div>
+      </div>
+      <div class="metric-card rv">
+        <div class="kicker">Brasil · resorts</div>
+        <div class="metric-value teal">+9,9%</div>
+        <div class="metric-label">Room nights</div>
+        <div class="metric-note">Crescimento puxado principalmente por volume, não apenas por preço.</div>
+      </div>
+      <div class="metric-card rv">
+        <div class="kicker">Brasil · resorts</div>
+        <div class="metric-value coral">+13,2%</div>
+        <div class="metric-label">Receita</div>
+        <div class="metric-note">Há expansão real de demanda e espaço para capturá-la.</div>
+      </div>
+      <div class="metric-card rv">
+        <div class="kicker">Qualidade da demanda</div>
+        <div class="metric-value gold">29,2% → 27,2%</div>
+        <div class="metric-label">Cancelamentos</div>
+        <div class="metric-note">O relatório destaca uma demanda mais qualificada no período.</div>
+      </div>
+    </div>
+    <div class="statement rv">A leitura da Omnibees é clara: <span class="coral">a demanda existe</span>. O desafio estratégico é <span class="coral">capturá-la melhor</span>, com inteligência de canal, pricing e distribuição.</div>
+    
+  </section>
+
+  <section id="s5" class="slide white">
+    <div class="badge rv">Onde o Morro se encaixa</div>
+    <h2 class="st rv">Os dados favorecem exatamente o nosso território competitivo.</h2>
+    <p class="lead rv">Entre os muitos recortes possíveis, três são especialmente importantes para o Morro: <strong>Paraná</strong>, <strong>interior</strong> e <strong>termas/parques</strong>.</p>
+    <div class="grid-2">
+      <div class="compare-card rv">
+        <div class="kicker">Estado · Paraná</div>
+        <h3>Os resorts do PR crescem acima do próprio mercado de lazer.</h3>
+        <p>A Omnibees destaca o Paraná como um dos estados em que os resorts estão performando acima do mercado de lazer ativo.</p>
+        <div class="bar-group">
+          <div class="bar-row">
+            <div class="bar-label">Resorts no PR</div>
+            <div class="bar-track"><div class="bar-fill" style="width:93%; background: linear-gradient(90deg, var(--accent), #5CCAF5)"></div></div>
+            <div class="bar-value">+37,2%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Mercado de lazer PR</div>
+            <div class="bar-track"><div class="bar-fill" style="width:63.5%; background: linear-gradient(90deg, var(--teal), #61BDB8)"></div></div>
+            <div class="bar-value">+25,4%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="compare-card rv">
+        <div class="kicker">Destino · Interior</div>
+        <h3>O interior está disparando, e as termas aparecem como motor desse ciclo.</h3>
+        <p>O relatório separa litoral de interior e aponta que <strong>serra, termas e parques</strong> estão entre os principais vetores do crescimento.</p>
+        <div class="bar-group">
+          <div class="bar-row">
+            <div class="bar-label">Interior · room nights</div>
+            <div class="bar-track"><div class="bar-fill" style="width:95.5%; background: linear-gradient(90deg, var(--coral), #F7A299)"></div></div>
+            <div class="bar-value">+19,1%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Interior · tarifa média</div>
+            <div class="bar-track"><div class="bar-fill" style="width:21.5%; background: linear-gradient(90deg, var(--gold), #D9B282)"></div></div>
+            <div class="bar-value">+4,3%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Litoral · room nights</div>
+            <div class="bar-track"><div class="bar-fill" style="width:10%; background: #AEB8CA"></div></div>
+            <div class="bar-value">+2,0%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Litoral · tarifa média</div>
+            <div class="bar-track"><div class="bar-fill" style="width:15%; background: #C4CCDA"></div></div>
+            <div class="bar-value">+3,0%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="statement rv">Ou seja: <span class="accent">parte do que estamos vendo no Morro não é coincidência</span>. Há uma mudança de demanda muito favorável ao produto que temos nas mãos.</div>
+    
+  </section>
+
+  <section id="s6" class="slide brand">
+    <div class="badge rv">Canais</div>
+    <h2 class="st rv">A melhor prova de qualidade do crescimento está nos <span class="accent">canais</span>.</h2>
+    <p class="lead rv">A Omnibees mostra que <strong>Central de Reservas</strong> é o canal que mais cresce nos resorts. E o Morro está fortíssimo exatamente aí.</p>
+
+    <div class="grid-2">
+      <div class="compare-card rv">
+        <div class="kicker">Benchmark Omnibees</div>
+        <h3>Central de Reservas lidera o crescimento do setor.</h3>
+        <p>Se existe um canal que o mercado está premiando, é justamente aquele em que estamos mais fortes.</p>
+        <div class="bar-group">
+          <div class="bar-row">
+            <div class="bar-label">Central de Reservas</div>
+            <div class="bar-track"><div class="bar-fill" style="width:93.7%; background: linear-gradient(90deg, var(--coral), #F6A59B)"></div></div>
+            <div class="bar-value">+28,1%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">OTAs</div>
+            <div class="bar-track"><div class="bar-fill" style="width:57%; background: linear-gradient(90deg, var(--gold), #DEBA90)"></div></div>
+            <div class="bar-value">+17,1%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Venda Direta</div>
+            <div class="bar-track"><div class="bar-fill" style="width:44%; background: linear-gradient(90deg, var(--accent), #66CEF5)"></div></div>
+            <div class="bar-value">+13,2%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Operadoras</div>
+            <div class="bar-track"><div class="bar-fill" style="width:24%; background: linear-gradient(90deg, var(--teal), #68C1BC)"></div></div>
+            <div class="bar-value">+7,2%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rv" style="display:grid; gap:18px;">
+        <div class="stack-card">
+          <div class="stack-head">
+            <div>
+              <div class="stack-title">Morro · Julho (1–15)</div>
+              <div style="font-size:12px; color: rgba(255,255,255,.7); margin-top:4px;">Mix de vendas por canal</div>
+            </div>
+            <div class="stack-big">82%</div>
+          </div>
+          <div class="stack-bar">
+            <div class="seg" style="width:55%; background: var(--accent);"></div>
+            <div class="seg" style="width:27%; background: var(--coral);"></div>
+            <div class="seg" style="width:11%; background: var(--gold);"></div>
+            <div class="seg" style="width:7%; background: var(--teal);"></div>
+          </div>
+          <div class="legend">
+            <div class="legend-item"><span class="swatch" style="background: var(--accent)"></span>Central · 55%</div>
+            <div class="legend-item"><span class="swatch" style="background: var(--coral)"></span>Booking Engine · 27%</div>
+            <div class="legend-item"><span class="swatch" style="background: var(--gold)"></span>OTAs/Operadores · 11%</div>
+            <div class="legend-item"><span class="swatch" style="background: var(--teal)"></span>Agências · 7%</div>
+          </div>
+          <div style="margin-top:14px; font-size:13px; color: rgba(255,255,255,.82);"><strong>82% = Central + Booking Engine</strong></div>
+        </div>
+
+        <div class="stack-card">
+          <div class="stack-head">
+            <div>
+              <div class="stack-title">Morro · Agosto (1–15)</div>
+              <div style="font-size:12px; color: rgba(255,255,255,.7); margin-top:4px;">Mix de vendas por canal</div>
+            </div>
+            <div class="stack-big" style="color: var(--coral);">83%</div>
+          </div>
+          <div class="stack-bar">
+            <div class="seg" style="width:50%; background: var(--accent);"></div>
+            <div class="seg" style="width:33%; background: var(--coral);"></div>
+            <div class="seg" style="width:11%; background: var(--gold);"></div>
+            <div class="seg" style="width:6%; background: var(--teal);"></div>
+          </div>
+          <div class="legend">
+            <div class="legend-item"><span class="swatch" style="background: var(--accent)"></span>Central · 50%</div>
+            <div class="legend-item"><span class="swatch" style="background: var(--coral)"></span>Booking Engine · 33%</div>
+            <div class="legend-item"><span class="swatch" style="background: var(--gold)"></span>OTAs/Operadores · 11%</div>
+            <div class="legend-item"><span class="swatch" style="background: var(--teal)"></span>Agências · 6%</div>
+          </div>
+          <div style="margin-top:14px; font-size:13px; color: rgba(255,255,255,.82);"><strong>83% = Central + Booking Engine</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="statement rv" style="background: linear-gradient(90deg, rgba(0,174,239,.16), rgba(0,174,239,.05)); border-color: rgba(0,174,239,.22); color: var(--white);">Não estamos crescendo dependentes de intermediários. Estamos crescendo principalmente por <span class="accent">canais próprios/controlados pelo Morro</span>, exatamente a direção recomendada pelo mercado.</div>
+    
+  </section>
+
+  <section id="s7" class="slide brand-mid">
+    <div class="badge rv">Estratégia em ação</div>
+    <h2 class="st rv">A Omnibees recomenda <span class="accent">demanda contínua</span>.<br>O Morro já está operando exatamente assim.</h2>
+    <p class="lead rv">O estudo encontrou crescimento relevante em datas que não eram apenas feriados: fins de semana comuns de março crescendo <strong>+47% a +51%</strong>, uma quarta-feira de maio em <strong>+41%</strong> e Dia dos Namorados em <strong>+36%</strong>. A recomendação é clara: gerar demanda também fora das datas óbvias.</p>
+
+    <div class="ecosystem">
+      <div class="panel rv">
+        <div class="kicker">Nossa arquitetura</div>
+        <h3>O Morro já trabalha uma máquina contínua de demanda.</h3>
+        <div class="list-grid">
+          <div class="list-chip">Super Agosto</div>
+          <div class="list-chip">Esquenta Inverno</div>
+          <div class="list-chip">Outlet domingo–quinta</div>
+          <div class="list-chip">Feriado Garantido</div>
+          <div class="list-chip">Remarketing</div>
+          <div class="list-chip">AskFlow · indisponibilidade · follow up de reserva · abandono de carrinho</div>
+          <div class="list-chip">E-mail marketing</div>
+          <div class="list-chip">WhatsApp + CRM</div>
+          <div class="list-chip">Meta Ads</div>
+          <div class="list-chip">Google Ads</div>
+          <div class="list-chip">Central de Reservas</div>
+          <div class="list-chip">Booking Engine</div>
+        </div>
+      </div>
+
+      <div class="flow rv">
+        <div class="flow-item">
+          <div class="flow-label">Awareness</div>
+          <div class="flow-desc">Campanhas e presença digital mantêm o Morro vivo na cabeça do consumidor, inclusive fora dos períodos de feriados.</div>
+        </div>
+        <div class="flow-item">
+          <div class="flow-label">Interesse</div>
+          <div class="flow-desc">Ofertas, criativos, mensagens e posicionamento transformam atenção em intenção real de viagem.</div>
+        </div>
+        <div class="flow-item">
+          <div class="flow-label">Oferta</div>
+          <div class="flow-desc">Campanhas como Outlet, Super Agosto e Esquenta Inverno criam motivos concretos para reservar.</div>
+        </div>
+        <div class="flow-item">
+          <div class="flow-label">Recaptura</div>
+          <div class="flow-desc">Remarketing, CRM e AskFlow recuperam demanda que poderia se perder no caminho.</div>
+        </div>
+        <div class="flow-item">
+          <div class="flow-label">Conversão</div>
+          <div class="flow-desc">Central de Reservas, WhatsApp e Booking Engine absorvem e fecham essa demanda em canais estratégicos.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="statement rv" style="background: linear-gradient(90deg, rgba(0,174,239,.14), rgba(0,174,239,.05)); border-color: rgba(0,174,239,.22); color: var(--white);">O marketing deixou de ser apenas calendário promocional. <span class="accent">Virou uma engrenagem contínua de geração, recuperação e conversão de demanda.</span></div>
+    
+  </section>
+
+  <section id="s8" class="slide white">
+    <div class="badge rv">Segundo semestre</div>
+    <h2 class="st rv">Julho e agosto não estão isolados.<br><span class="accent">O próprio mercado já vinha sinalizando força à frente.</span></h2>
+    <p class="lead rv">No bloco “on the books”, a Omnibees mostra que agosto–outubro de 2026 já apareciam mais fortes do que o mesmo momento do ano anterior.</p>
+
+    <div class="otb-grid">
+      <div class="metric-card rv"><div class="kicker">OTB ago–out</div><div class="metric-value coral">+19,1%</div><div class="metric-label">GMV</div><div class="metric-note">Mercado com potencial financeiro crescente no semestre.</div></div>
+      <div class="metric-card rv"><div class="kicker">OTB ago–out</div><div class="metric-value accent">+18,5%</div><div class="metric-label">Reservas</div><div class="metric-note">Base de demanda consistente entrando no 2º semestre.</div></div>
+      <div class="metric-card rv"><div class="kicker">OTB ago–out</div><div class="metric-value teal">+14,2%</div><div class="metric-label">Room nights</div><div class="metric-note">Volume projetado em aceleração.</div></div>
+      <div class="metric-card rv"><div class="kicker">OTB ago–out</div><div class="metric-value gold">+4,3%</div><div class="metric-label">ADR</div><div class="metric-note">Há crescimento de diária, mas abaixo do volume.</div></div>
+      <div class="metric-card rv"><div class="kicker">OTB ago–out</div><div class="metric-value teal">-5,6%</div><div class="metric-label">Cancelamentos</div><div class="metric-note">Sinal de maior maturidade e previsibilidade de demanda.</div></div>
+    </div>
+
+    <div class="statement rv">A grande oportunidade agora não é apenas continuar vendendo mais. É <span class="coral">vender melhor</span>.</div>
+
+    <div class="dashboard-chain rv">
+      <div class="chain-title">Próximo nível do dashboard</div>
+      <div class="chain-items">
+        <div class="chain-pill">Receita</div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-pill">Reservas</div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-pill">ADR / Ticket médio</div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-pill">Antecedência</div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-pill">Canal</div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-pill">Investimento + ROAS</div>
+      </div>
+    </div>
+    
+  </section>
+
+  <section id="s9" class="slide brand">
+    <div class="badge rv">Fechamento</div>
+    <h2 class="st rv">Existe uma expansão real do mercado.<br><span class="accent">E a estratégia do Morro está capturando essa expansão de forma muito eficiente.</span></h2>
+    <div class="divider rv"></div>
+
+    <div class="conclusion">
+      <div class="panel rv">
+        <div class="kicker">Leitura 1</div>
+        <h3>Não é só “pegamos a onda”.</h3>
+        <p>Há vento a favor, sem dúvida. Mas o Morro está inserido exatamente nos recortes mais aquecidos do estudo: <strong>Paraná + interior + termas/resort</strong>.</p>
+      </div>
+      <div class="panel rv">
+        <div class="kicker">Leitura 2</div>
+        <h3>Estamos capturando pelos canais certos.</h3>
+        <p>Julho e agosto mostram concentração superior a <strong>80% em Central + Booking Engine</strong>, o que é um indicador forte de saúde comercial e melhor qualidade da distribuição.</p>
+      </div>
+      <div class="panel rv">
+        <div class="kicker">Leitura 3</div>
+        <h3>O próximo passo é sofisticar a leitura.</h3>
+        <p>A conversa deixa de ser apenas “quanto vendemos” e passa a ser: <strong>como estamos capturando demanda, por quais canais e com qual valor econômico.</strong></p>
+      </div>
+    </div>
+
+    <div class="source-box rv">
+      <strong>Fontes usadas nesta leitura</strong><br>
+      Omnibees Resort Report: <a href="https://omnibees.com/resort-report/" target="_blank">omnibees.com/resort-report/</a><br>
+      Omnibees Resort Report 2026: <a href="https://omnibees.com/resort-report-2026/" target="_blank">omnibees.com/resort-report-2026/</a><br>
+      Dados internos Morro dos Anjos: distribuição de vendas por canal (jan–ago/2026, dias 1–15) e leitura de performance recente.
+    </div>
+
+    
+  </section>
+
+
+  <section id="s10" class="slide brand">
+    <div class="badge rv">A próxima fase</div>
+    <h2 class="st rv" style="max-width:920px;">Estamos capturando melhor.<br><span class="accent">Agora precisamos ampliar o tamanho da oportunidade.</span></h2>
+    <div class="divider rv"></div>
+
+    <div class="bridge-wrap rv" style="max-width:900px; margin-top:8px;">
+      <p style="font-size:17px; line-height:1.8; color:rgba(255,255,255,.78); max-width:780px;">Hoje, o Morro já mostra capacidade de transformar demanda em venda. O próximo crescimento passa por colocar mais gente dentro dessa jornada.</p>
+      <div style="margin-top:34px; padding:30px 32px; border-radius:22px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.10);">
+        <div style="font-size:10px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--accent); margin-bottom:14px;">A próxima pergunta</div>
+        <div style="font-size:26px; line-height:1.4; font-weight:600; letter-spacing:-.02em; color:var(--white);">Se já estamos performando assim dentro do nosso aquário, o que acontece quando começarmos a <span class="accent">pescar no oceano?</span></div>
+      </div>
+      <div style="margin-top:28px; font-size:14px; font-weight:600; color:rgba(255,255,255,.68);">É hora de construir demanda.</div>
+      <div style="margin-top:8px; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--accent);">Próxima apresentação: Plano de Awareness</div>
+    </div>
+  </section>
+
+  <script>
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        document.getElementById(dot.dataset.target).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    const sections = document.querySelectorAll('.slide');
+    const progressBar = document.getElementById('pb');
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          dots.forEach(d => d.classList.toggle('active', d.dataset.target === id));
+          entry.target.querySelectorAll('.rv').forEach((el, idx) => {
+            setTimeout(() => el.classList.add('on'), idx * 65);
+          });
+        }
+      });
+    }, { threshold: 0.35 });
+    sections.forEach(section => io.observe(section));
+
+    window.addEventListener('scroll', () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const p = max > 0 ? (window.scrollY / max) * 100 : 0;
+      progressBar.style.width = p + '%';
+    });
+  </script>
+</body>
+</html>
