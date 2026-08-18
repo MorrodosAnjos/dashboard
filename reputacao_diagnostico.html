@@ -254,9 +254,9 @@
     .ranking-title { font-size:12px; font-weight:700; color:#1D1E46; margin-bottom:10px; }
     .rank-line { display:grid; grid-template-columns:150px 1fr 38px; gap:8px; align-items:center; margin:7px 0; font-size:11px; color:#1D1E46; }
     .rank-track { background:#eee; height:8px; border-radius:10px; overflow:hidden; }
-    .rank-fill { height:8px; border-radius:10px; background:#00AEEF; }
+    .rank-fill { display:block; height:8px; border-radius:10px; background:#00AEEF; }
     .rank-line.morro .rank-fill { background:#F27466; }
-    .rank-line.morro { font-weight:700; }
+    .rank-line.morro { font-weight:700; background:#FFF7E6; border-radius:8px; padding:5px 7px; }
 
     /* FOOTER */
     .footer { margin-top: 24px; padding-top: 16px; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
@@ -309,17 +309,17 @@
         <h1>Dashboard de Reputação</h1>
         <p>Morro dos Anjos · Águas Quentes Hotel Resort</p>
       </div>
-      <div style="margin-left: auto;"><span class="periodo-badge">Atualizado até 10/ago/2026</span></div>
+      <div style="margin-left: auto;"><span class="periodo-badge">Atualizado até 18/ago/2026</span></div>
     </div>
 
     <!-- BLOCO 1: PANORAMA EXECUTIVO -->
     <div class="block-divider b1"><span class="block-num">①</span> Panorama Executivo</div>
 
     <div class="kpi-grid">
-      <div class="kpi-card accent"><div class="kpi-label">NPS Médio</div><div class="kpi-value">+55</div><div class="kpi-sub">Zona de Qualidade</div></div>
-      <div class="kpi-card"><div class="kpi-label">Google Reviews</div><div class="kpi-value">4,4★</div><div class="kpi-sub">1.082 avaliações totais</div></div>
+      <div class="kpi-card accent"><div class="kpi-label">NPS Médio</div><div class="kpi-value">+56</div><div class="kpi-sub">Zona de Qualidade</div></div>
+      <div class="kpi-card"><div class="kpi-label">Google Reviews</div><div class="kpi-value">4,4★</div><div class="kpi-sub">1.094 avaliações totais</div></div>
       <div class="kpi-card accent"><div class="kpi-label">Reclame Aqui</div><div class="kpi-value">7,0</div><div class="kpi-sub">Reputação: Bom</div></div>
-      <div class="kpi-card"><div class="kpi-label">Aval. 5 Estrelas</div><div class="kpi-value">71,4%</div><div class="kpi-sub">5 estrelas Google</div></div>
+      <div class="kpi-card"><div class="kpi-label">Aval. 5 Estrelas</div><div class="kpi-value">70,6%</div><div class="kpi-sub">5 estrelas Google</div></div>
       <div class="kpi-card warning"><div class="kpi-label">IRC (Índice de Recorrência Crítica)</div><div class="kpi-value">100%</div><div class="kpi-sub">5 de 5 temas críticos recorrentes em ago/26</div></div>
     </div>
 
@@ -343,13 +343,13 @@
             <circle cx="80" cy="80" r="8" fill="#1D1E46"/><circle cx="80" cy="80" r="4" fill="white"/>
             <text x="12" y="88" font-size="9" fill="#999" font-family="Montserrat">-100</text><text x="136" y="88" font-size="9" fill="#999" font-family="Montserrat">+100</text>
           </svg>
-          <div class="gauge-value">+55</div><div class="gauge-label">pontos</div>
+          <div class="gauge-value">+56</div><div class="gauge-label">pontos</div>
         </div>
         <div class="fonte-metrics">
-          <div class="fonte-metric"><div class="label">Promotores</div><div class="val">68%</div></div>
+          <div class="fonte-metric"><div class="label">Promotores</div><div class="val">69%</div></div>
           <div class="fonte-metric"><div class="label">Detratores</div><div class="val">13%</div></div>
-          <div class="fonte-metric"><div class="label">Respostas</div><div class="val">595</div></div>
-          <div class="fonte-metric"><div class="label">Período</div><div class="val">Fev-26/10 Ago</div></div>
+          <div class="fonte-metric"><div class="label">Respostas</div><div class="val">615</div></div>
+          <div class="fonte-metric"><div class="label">Período</div><div class="val">Fev-26/18 Ago</div></div>
         </div>
       </div>
       <div>
@@ -373,6 +373,9 @@
         </div>
       </div>
     </div>
+    <div style="font-size:10px;color:#777;background:#f8f9fa;border-radius:8px;padding:9px 12px;margin:0 0 12px;">
+      Base NPS atualizada até 18/ago/2026. Total acumulado usado no dashboard: <strong>615 respostas</strong>, correspondente à soma dos volumes mensais da aba NPS.
+    </div>
     <div class="chart-container">
       <div class="chart-title">Evolução mensal: Detratores, Neutros e Promotores</div>
       <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#F27466;"></span>Detratores</span><span class="legend-item"><span class="legend-dot" style="background:#F5C45D;"></span>Neutros</span><span class="legend-item"><span class="legend-dot" style="background:#29948F;"></span>Promotores</span></div>
@@ -384,7 +387,7 @@
         <div><div style="font-size:24px;font-weight:700;color:#F5C45D;">+45</div><div style="font-size:10px;color:#666;">Mai/26 · 110 resp.</div></div>
         <div><div style="font-size:24px;font-weight:700;color:#29948F;">+66</div><div style="font-size:10px;color:#666;">Jun/26 · 137 resp.</div></div>
         <div><div style="font-size:24px;font-weight:700;color:#29948F;">+67</div><div style="font-size:10px;color:#666;">Jul/26 · 61 resp.</div></div>
-        <div><div style="font-size:24px;font-weight:700;color:#F5C45D;">+38</div><div style="font-size:10px;color:#666;">Ago/26 · 13 resp.</div></div>
+        <div><div style="font-size:24px;font-weight:700;color:#29948F;">+64</div><div style="font-size:10px;color:#666;">Ago/26 · 33 resp.</div></div>
       </div>
     </div>
 
@@ -395,10 +398,10 @@
       <div style="display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;">
         <div><div class="fonte-main"><span class="value">4,4</span><span class="unit">estrelas</span></div></div>
         <div class="fonte-metrics">
-          <div class="fonte-metric"><div class="label">Total Aval.</div><div class="val">1.082</div></div>
-          <div class="fonte-metric"><div class="label">5 Estrelas</div><div class="val">71,4%</div></div>
+          <div class="fonte-metric"><div class="label">Total Aval.</div><div class="val">1.094</div></div>
+          <div class="fonte-metric"><div class="label">5 Estrelas</div><div class="val">70,6%</div></div>
           <div class="fonte-metric"><div class="label">Negativas</div><div class="val">13%</div></div>
-          <div class="fonte-metric"><div class="label">Média 2026</div><div class="val">4,42★</div></div>
+          <div class="fonte-metric"><div class="label">Média 2026</div><div class="val">4,32★</div></div>
         </div>
       </div>
     </div>
@@ -414,10 +417,10 @@
       </div>
     </div>
     <div class="insights-grid" style="margin-bottom:20px;">
-      <div class="insight-card success"><div class="insight-title">NPS permanece saudável</div><div class="insight-text">O NPS médio fechou em +55, com 595 respostas entre fevereiro e 10/ago/26. A leitura segue em zona de qualidade, com 68% de promotores e 13% de detratores.</div></div>
-      <div class="insight-card success"><div class="insight-title">Julho fechou bem; agosto começou</div><div class="insight-text">Julho fechou em +67, com 61 respostas. Agosto iniciou com base pequena: NPS +33 em 3 respostas, exigindo leitura cautelosa até ganhar volume.</div></div>
-      <div class="insight-card success"><div class="insight-title">Google sobe em volume e mix positivo</div><div class="insight-text">A nota geral indicada para o topo é 4,4, com 1.082 avaliações totais. Na base Google classificada, 71,4% são 5 estrelas e 13% são negativas até 2 estrelas. Agosto soma 29 avaliações e média 4,38.</div></div>
-      <div class="insight-card success"><div class="insight-title">Reclame Aqui segue como Bom</div><div class="insight-text">A reputação do Reclame Aqui permanece como Bom. A nota atual é 7,0, com 55 reclamações, 92,7% respondidas, 66,7% resolvidas e 63% de clientes que voltariam. O canal segue pedindo foco em resolução, sem mudança de status.</div></div>
+      <div class="insight-card success"><div class="insight-title">NPS permanece saudável</div><div class="insight-text">O NPS médio está em +56, com 615 respostas acumuladas entre fevereiro e 18/ago/26. A leitura permanece em zona de qualidade, com 69% de promotores e 13% de detratores.</div></div>
+      <div class="insight-card success"><div class="insight-title">Julho forte; agosto mantém qualidade</div><div class="insight-text">Julho fechou em +67, com 61 respostas. Agosto ganhou volume e segue forte: NPS +64 em 33 respostas, com 75,8% de promotores e 12,1% de detratores. Ainda é parcial, mas já apresenta uma base mais representativa que a leitura anterior.</div></div>
+      <div class="insight-card success"><div class="insight-title">Google sobe em volume e mix positivo</div><div class="insight-text">A nota geral indicada para o topo é 4,4, com 1.094 avaliações totais. Na base Google classificada, 70,6% são 5 estrelas e 13% são negativas até 2 estrelas. Agosto soma 41 avaliações e média 4,54.</div></div>
+      <div class="insight-card success"><div class="insight-title">Reclame Aqui segue como Bom</div><div class="insight-text">A reputação do Reclame Aqui permanece como Bom. A nota atual é 7,0, com 57 reclamações, 94,7% respondidas, 66,7% resolvidas e 63% de clientes que voltariam. O canal segue pedindo foco em resolução, sem mudança de status.</div></div>
     </div>
 
     <!-- OTAs -->
@@ -430,10 +433,10 @@
         <div class="ota-card-header"><span class="ota-card-title">Booking.com</span><span class="ota-card-badge" style="background:#E8F1FF;color:#003B95;">Experiência OTA</span></div>
         <div class="ota-score-row"><span class="ota-score">8,0</span><span class="ota-unit">/ 10</span></div>
         <div class="ota-metrics">
-          <div class="ota-metric"><div class="label">Avaliações</div><div class="val">99</div></div>
-          <div class="ota-metric good"><div class="label">Promotores</div><div class="val">43,4%</div></div>
-          <div class="ota-metric"><div class="label">Neutros</div><div class="val">31,3%</div></div>
-          <div class="ota-metric alert"><div class="label">Críticos</div><div class="val">25,3%</div></div>
+          <div class="ota-metric"><div class="label">Avaliações</div><div class="val">113</div></div>
+          <div class="ota-metric good"><div class="label">Promotores</div><div class="val">41,6%</div></div>
+          <div class="ota-metric"><div class="label">Neutros</div><div class="val">39,8%</div></div>
+          <div class="ota-metric alert"><div class="label">Críticos</div><div class="val">18,6%</div></div>
         </div>
       </div>
       <div class="ota-card trip">
@@ -441,7 +444,7 @@
         <div class="ota-score-row"><span class="ota-score">3,5</span><span class="ota-unit">/ 5, equivalente a 7,0/10</span></div>
         <div class="ota-metrics">
           <div class="ota-metric"><div class="label">Avaliações</div><div class="val">29</div></div>
-          <div class="ota-metric good"><div class="label">Positivas 4 a 5 estrelas</div><div class="val">44,8%</div></div>
+          <div class="ota-metric good"><div class="label">Positivas 4 a 5 estrelas</div><div class="val">48,3%</div></div>
           <div class="ota-metric"><div class="label">Neutras 3 estrelas</div><div class="val">24,1%</div></div>
           <div class="ota-metric alert"><div class="label">Críticas 1 a 2 estrelas</div><div class="val">27,6%</div></div>
         </div>
@@ -450,7 +453,7 @@
     <div class="ota-reading">
       <div class="ota-reading-card alert">
         <div class="ota-reading-title">Alerta de consistência operacional</div>
-        <div class="ota-reading-text">Booking fecha em 8,0/10 no acumulado, com 99 avaliações. Julho segue como o mês mais volumoso da série, com 27 avaliações e nota média 8,4. Agosto avançou para 8 avaliações e média 8,1; os textos recentes reforçam limpeza de quarto, estrutura em dias de chuva, carrinho/deslocamento, acessibilidade/PCD e operação de restaurante.</div>
+        <div class="ota-reading-text">Booking fecha em 8,0/10 no acumulado, com 113 avaliações. Julho segue como o mês mais volumoso da série, com 31 avaliações e nota média 8,4. Agosto avançou para 18 avaliações e média 7,9; os textos recentes reforçam restaurante/filas, reposição, carrinho/deslocamento, estrutura em dias de chuva, toalhas e privacidade do quarto.</div>
       </div>
       <div class="ota-reading-card alert">
         <div class="ota-reading-title">Tripadvisor como termômetro de risco</div>
@@ -584,28 +587,28 @@
       <div class="top5-card">
         <div class="top5-rank">#1</div>
         <div class="top5-theme">Atendimento</div>
-        <div class="top5-count">131</div><div class="top5-label">menções críticas</div>
+        <div class="top5-count">132</div><div class="top5-label">menções críticas</div>
         <div class="top5-sector">Atendimento / Operação</div>
         <div class="top5-gravity alta">Alta gravidade</div>
-        <div class="source-chips"><span class="source-chip hot">Google 116</span><span class="source-chip medium">Booking 8</span><span class="source-chip hot">Tripadvisor 7</span></div>
+        <div class="source-chips"><span class="source-chip hot">Google 116</span><span class="source-chip medium">Booking 9</span><span class="source-chip hot">Tripadvisor 7</span></div>
         <div class="top5-desc">Recepção, WhatsApp, carrinho, lentidão, atendimento PCD e falta de autonomia seguem aparecendo nas críticas.<br><strong>Leitura operacional:</strong> O problema central não é simpatia individual, mas processo, tempo de resposta e escalonamento.</div>
       </div>
       <div class="top5-card">
         <div class="top5-rank">#2</div>
         <div class="top5-theme">Quarto / Manutenção / Limpeza</div>
-        <div class="top5-count">129</div><div class="top5-label">menções críticas</div>
+        <div class="top5-count">130</div><div class="top5-label">menções críticas</div>
         <div class="top5-sector">Governança / Manutenção</div>
         <div class="top5-gravity alta">Alta gravidade</div>
-        <div class="source-chips"><span class="source-chip hot">Google 114</span><span class="source-chip medium">Booking 11</span><span class="source-chip hot">Tripadvisor 4</span></div>
+        <div class="source-chips"><span class="source-chip hot">Google 114</span><span class="source-chip medium">Booking 12</span><span class="source-chip hot">Tripadvisor 4</span></div>
         <div class="top5-desc">Quarto, banheiro, limpeza, tapetes, toalhas, vazamento, manutenção e itens mínimos aparecem como desconforto básico.<br><strong>Leitura operacional:</strong> Ação imediata: checklist de entrada, governança reforçada e rotina preventiva por unidade.</div>
       </div>
       <div class="top5-card">
         <div class="top5-rank">#3</div>
         <div class="top5-theme">Alimentação / Restaurante</div>
-        <div class="top5-count">128</div><div class="top5-label">menções críticas</div>
+        <div class="top5-count">129</div><div class="top5-label">menções críticas</div>
         <div class="top5-sector">Alimentos e Bebidas</div>
         <div class="top5-gravity alta">Alta gravidade</div>
-        <div class="source-chips"><span class="source-chip hot">Google 113</span><span class="source-chip medium">Booking 8</span><span class="source-chip hot">Tripadvisor 7</span></div>
+        <div class="source-chips"><span class="source-chip hot">Google 113</span><span class="source-chip medium">Booking 9</span><span class="source-chip hot">Tripadvisor 7</span></div>
         <div class="top5-desc">Cardápio, qualidade, reposição, mesas, filas, utensílios e organização do salão seguem contaminando a percepção de valor.<br><strong>Leitura operacional:</strong> Prioridade: liderança de salão, buffet/jantar, reposição e conforto das áreas de refeição.</div>
       </div>
       <div class="top5-card">
@@ -620,10 +623,10 @@
       <div class="top5-card">
         <div class="top5-rank">#5</div>
         <div class="top5-theme">Estrutura / Obras / Barro</div>
-        <div class="top5-count">97</div><div class="top5-label">menções críticas</div>
+        <div class="top5-count">98</div><div class="top5-label">menções críticas</div>
         <div class="top5-sector">Infraestrutura</div>
         <div class="top5-gravity media">Média gravidade</div>
-        <div class="source-chips"><span class="source-chip hot">Google 89</span><span class="source-chip medium">Booking 7</span><span class="source-chip medium">Tripadvisor 1</span></div>
+        <div class="source-chips"><span class="source-chip hot">Google 89</span><span class="source-chip medium">Booking 8</span><span class="source-chip medium">Tripadvisor 1</span></div>
         <div class="top5-desc">Sinalização, chegada, acesso, lama/barro, ruas até os quartos e aparência de produto incompleto seguem fortes em agosto.<br><strong>Leitura operacional:</strong> Prioridade prática: acesso, sinalização e contenção de barro/poeira antes de ações de volume comercial.</div>
       </div>
     </div>
@@ -700,10 +703,10 @@
     </div>
 
     <div class="exec-box" style="background: linear-gradient(135deg, #1D1E46 0%, #2a2b5a 100%);">
-      <h3>Análise Consolidada · Até 10 de Agosto de 2026</h3>
-      <p>A reputação <strong>segue saudável no topo</strong> — NPS médio +55 e Google 4,4 — mas a leitura operacional continua sensível. O volume do Google chegou a 1.082 avaliações totais, com 71,4% de 5 estrelas, enquanto Booking fecha em <strong>8,0/10</strong> e Tripadvisor sobe para <strong>3,5/5</strong>.</p>
-      <p>O Reclame Aqui permanece <strong>sem nova alteração</strong>: a nota atual é <strong>7,0</strong> e a reputação segue como <strong>Bom</strong>. Mesmo com 92,7% das reclamações respondidas, o ponto crítico continua sendo resolver melhor: 66,7% de resolução e 63% de clientes que voltariam ainda deixam margem clara de recuperação.</p>
-      <p>O alerta central é recorrência. Em agosto, <strong>5 temas críticos</strong> seguem ativos e todos já tinham aparecido antes: atendimento, quarto/limpeza/manutenção, alimentação/restaurante, águas/temperatura e acesso/obras/barro. No Google, agosto soma 29 avaliações e média 4,38. No Booking, agosto soma 8 avaliações e nota média 8,1. O Tripadvisor recebeu uma nova avaliação 5 estrelas em agosto, enquanto o Reclame Aqui não teve nova atualização.</p>
+      <h3>Análise Consolidada · Até 18 de Agosto de 2026</h3>
+      <p>A reputação <strong>segue saudável no topo</strong> — NPS médio +56 e Google 4,4 — mas a leitura operacional continua sensível. O volume do Google chegou a 1.094 avaliações totais, com 70,6% de 5 estrelas, enquanto Booking fecha em <strong>8,0/10</strong> e Tripadvisor sobe para <strong>3,5/5</strong>.</p>
+      <p>O Reclame Aqui permanece <strong>sem nova alteração</strong>: a nota atual é <strong>7,0</strong> e a reputação segue como <strong>Bom</strong>. Mesmo com 94,7% das reclamações respondidas, o ponto crítico continua sendo resolver melhor: 66,7% de resolução e 63% de clientes que voltariam ainda deixam margem clara de recuperação.</p>
+      <p>O alerta central é recorrência. Em agosto, <strong>5 temas críticos</strong> seguem ativos e todos já tinham aparecido antes: atendimento, quarto/limpeza/manutenção, alimentação/restaurante, águas/temperatura e acesso/obras/barro. No Google, agosto soma 41 avaliações e média 4,54. No Booking, agosto soma 18 avaliações e nota média 7,9. O Tripadvisor recebeu uma nova avaliação 5 estrelas em agosto, enquanto o Reclame Aqui não teve nova atualização.</p>
     </div>
 
     <!-- ABERTURA vs MAIO -->
@@ -886,7 +889,7 @@
     </div>
 
     <div class="footer">
-      <div class="footer-text">Dados atualizados até 10/ago/2026 · Dashboard de Reputação</div>
+      <div class="footer-text">Dados atualizados até 18/ago/2026 · Dashboard de Reputação</div>
       <div class="footer-text" style="color:#00AEEF;font-weight:600;">Morro dos Anjos Resort</div>
     </div>
   </div>
@@ -897,34 +900,34 @@
     const gridColor = 'rgba(0,0,0,0.05)';
 
     // BOOKING
-    const bookingOtaData = { labels: ["Nov/25", "Dez/25", "Jan/26", "Fev/26", "Mar/26", "Abr/26", "Mai/26", "Jun/26", "Jul/26", "Ago/26"], volumes: [1, 2, 6, 13, 11, 10, 7, 14, 27, 8], notas: [7.0, 8.5, 7.3, 8.1, 7.2, 8.7, 7.7, 7.4, 8.4, 8.1] };
+    const bookingOtaData = { labels: ["Nov/25", "Dez/25", "Jan/26", "Fev/26", "Mar/26", "Abr/26", "Mai/26", "Jun/26", "Jul/26", "Ago/26"], volumes: [1, 2, 6, 13, 11, 10, 7, 14, 31, 18], notas: [7.0, 8.5, 7.3, 8.1, 7.2, 8.7, 7.7, 7.4, 8.4, 7.9] };
     if (document.getElementById('bookingChart')) new Chart(document.getElementById('bookingChart'), { type:'bar', data:{ labels: bookingOtaData.labels, datasets:[{ type:'bar', label:'Avaliações', data:bookingOtaData.volumes, backgroundColor:'#003B95', borderRadius:4, yAxisID:'y' },{ type:'line', label:'Nota média', data:bookingOtaData.notas, borderColor:'#F27466', backgroundColor:'transparent', borderWidth:3, pointBackgroundColor:'#F27466', pointRadius:4, tension:.3, yAxisID:'y1' }]}, options:{ responsive:true, maintainAspectRatio:false, interaction:{intersect:false,mode:'index'}, plugins:{legend:{display:true, position:'top', align:'start', labels:{color:textColor, font:{size:10,family:'Montserrat'}, boxWidth:12, usePointStyle:true, pointStyle:'rectRounded'}}}, scales:{ x:{grid:{display:false}, ticks:{color:textColor,font:{size:10,family:'Montserrat'}}}, y:{position:'left', beginAtZero:true, grid:{color:gridColor}, ticks:{color:textColor,font:{size:10,family:'Montserrat'}}}, y1:{position:'right', min:0, max:10, grid:{display:false}, ticks:{color:'#F27466',font:{size:10,family:'Montserrat'}, callback:v=>v.toFixed(0)}}}}});
 
     // TRIPADVISOR
     const tripOtaData = { labels: ["Set/25","Out/25","Nov/25","Dez/25","Jan/26","Fev/26","Mar/26","Abr/26","Mai/26","Jun/26","Jul/26","Ago/26"], volumes: [1,3,3,5,2,2,0,5,5,1,1,1], notas: [1.0,2.7,4.0,4.4,4.0,4.0,null,3.6,2.8,2.0,3.0,5.0] };
     if (document.getElementById('tripChart')) new Chart(document.getElementById('tripChart'), { type:'bar', data:{ labels: tripOtaData.labels, datasets:[{ type:'bar', label:'Avaliações', data:tripOtaData.volumes, backgroundColor:'#29948F', borderRadius:4, yAxisID:'y' },{ type:'line', label:'Nota média', data:tripOtaData.notas, borderColor:'#F27466', backgroundColor:'transparent', borderWidth:3, pointBackgroundColor:'#F27466', pointRadius:4, tension:.3, yAxisID:'y1', spanGaps:false }]}, options:{ responsive:true, maintainAspectRatio:false, interaction:{intersect:false,mode:'index'}, plugins:{legend:{display:true, position:'top', align:'start', labels:{color:textColor, font:{size:10,family:'Montserrat'}, boxWidth:12, usePointStyle:true, pointStyle:'rectRounded'}}}, scales:{ x:{grid:{display:false}, ticks:{color:textColor,font:{size:10,family:'Montserrat'}, maxRotation:45}}, y:{position:'left', beginAtZero:true, grid:{color:gridColor}, ticks:{color:textColor,font:{size:10,family:'Montserrat'}}}, y1:{position:'right', min:0, max:5, grid:{display:false}, ticks:{color:'#F27466',font:{size:10,family:'Montserrat'}, callback:v=>v.toFixed(0)+'★'}}}}});
 
-    if (document.getElementById('bookingDistChart')) new Chart(document.getElementById('bookingDistChart'), { type:'doughnut', data:{ labels:['Críticos até 6','Nota 7','Nota 8','Nota 9','Nota 10'], datasets:[{ data:[25, 6, 25, 16, 27], backgroundColor:['#F27466','#F5C45D','#00AEEF','#29948F','#1D1E46'], borderWidth:0 }]}, options:{ responsive:true, maintainAspectRatio:false, cutout:'58%', plugins:{ legend:{ position:'right', labels:{ color:textColor, font:{ size:10, family:'Montserrat' }, boxWidth:12, padding:8 }}}}});
+    if (document.getElementById('bookingDistChart')) new Chart(document.getElementById('bookingDistChart'), { type:'doughnut', data:{ labels:['Críticos até 6','Nota 7','Nota 8','Nota 9','Nota 10'], datasets:[{ data:[21, 15, 30, 18, 29], backgroundColor:['#F27466','#F5C45D','#00AEEF','#29948F','#1D1E46'], borderWidth:0 }]}, options:{ responsive:true, maintainAspectRatio:false, cutout:'58%', plugins:{ legend:{ position:'right', labels:{ color:textColor, font:{ size:10, family:'Montserrat' }, boxWidth:12, padding:8 }}}}});
     if (document.getElementById('tripDistChart')) new Chart(document.getElementById('tripDistChart'), { type:'doughnut', data:{ labels:['1 estrela','2 estrelas','3 estrelas','4 estrelas','5 estrelas'], datasets:[{ data:[4,4,7,2,12], backgroundColor:['#1D1E46','#F27466','#F5C45D','#00AEEF','#29948F'], borderWidth:0 }]}, options:{ responsive:true, maintainAspectRatio:false, cutout:'58%', plugins:{ legend:{ position:'right', labels:{ color:textColor, font:{ size:10, family:'Montserrat' }, boxWidth:12, padding:8 }}}}});
 
     // Radar chart removed; replaced by ranking bars
 
     // GOOGLE
-    const googleData = { labels: ["Jan/25", "Fev/25", "Mar/25", "Abr/25", "Mai/25", "Jun/25", "Jul/25", "Ago/25", "Set/25", "Out/25", "Nov/25", "Dez/25", "Jan/26", "Fev/26", "Mar/26", "Abr/26", "Mai/26", "Jun/26", "Jul/26", "Ago/26"], volumes: [6, 5, 9, 8, 25, 20, 35, 23, 17, 22, 57, 40, 46, 52, 49, 155, 104, 118, 76, 29], notas: [4.17, 3.8, 4.67, 2.63, 3.88, 4.05, 3.94, 3.87, 3.82, 4.05, 4.21, 4.28, 4.17, 3.79, 4.31, 4.41, 4.58, 4.78, 4.43, 4.38] };
+    const googleData = { labels: ["Jan/25", "Fev/25", "Mar/25", "Abr/25", "Mai/25", "Jun/25", "Jul/25", "Ago/25", "Set/25", "Out/25", "Nov/25", "Dez/25", "Jan/26", "Fev/26", "Mar/26", "Abr/26", "Mai/26", "Jun/26", "Jul/26", "Ago/26"], volumes: [6, 5, 9, 8, 25, 20, 35, 23, 17, 22, 57, 40, 46, 128, 59, 151, 107, 183, 77, 41], notas: [4.17, 3.8, 4.67, 2.63, 3.88, 4.05, 3.94, 3.87, 3.82, 4.05, 4.21, 4.28, 4.17, 3.93, 4.15, 4.30, 4.36, 4.75, 4.35, 4.54] };
     if (document.getElementById('googleChart')) new Chart(document.getElementById('googleChart'), { type:'bar', data:{ labels: googleData.labels, datasets:[{ type:'bar', label:'Avaliações', data: googleData.volumes, backgroundColor:'#00AEEF', borderRadius:4, yAxisID:'y' },{ type:'line', label:'Nota média', data: googleData.notas, borderColor:'#F27466', backgroundColor:'transparent', borderWidth:3, pointBackgroundColor:'#F27466', pointRadius:4, tension:0.3, yAxisID:'y1' }]}, options:{ responsive:true, maintainAspectRatio:false, interaction:{ intersect:false, mode:'index' }, plugins:{ legend:{ display:false }}, scales:{ x:{ grid:{ display:false }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' }, maxRotation:45 }}, y:{ position:'left', grid:{ color:gridColor }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' }}, title:{ display:true, text:'Qtd. avaliações', color:textColor, font:{ size:10, family:'Montserrat' }}}, y1:{ position:'right', min:1, max:5, grid:{ display:false }, ticks:{ color:'#F27466', font:{ size:10, family:'Montserrat' }, callback:v=>v.toFixed(1)+'★' }, title:{ display:true, text:'Nota média', color:'#F27466', font:{ size:10, family:'Montserrat' }}}}}});
 
     // NPS
-    if (document.getElementById('npsEvolutionChart')) new Chart(document.getElementById('npsEvolutionChart'), { type:'bar', data:{ labels:["Fevereiro 2026", "Março 2026", "Abril 2026", "Maio 2026", "Junho 2026", "Julho 2026", "Agosto 2026"], datasets:[{ label:'Detratores', data:[17.2, 8.9, 15.9, 20.0, 6.6, 8.2, 23.1], backgroundColor:'#F27466', borderRadius:0 },{ label:'Neutros', data:[17.2, 24.1, 18.8, 15.5, 20.4, 16.4, 15.4], backgroundColor:'#F5C45D', borderRadius:0 },{ label:'Promotores', data:[65.6, 67.0, 65.2, 64.5, 73.0, 75.4, 61.5], backgroundColor:'#29948F', borderRadius:{ topLeft:4, topRight:4 }}]}, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false }}, scales:{ x:{ stacked:true, grid:{ display:false }, ticks:{ color:textColor, font:{ size:11, family:'Montserrat' }}}, y:{ stacked:true, max:100, grid:{ color:gridColor }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' }, callback:v=>v+'%' }}}}});
+    if (document.getElementById('npsEvolutionChart')) new Chart(document.getElementById('npsEvolutionChart'), { type:'bar', data:{ labels:["Fevereiro 2026", "Março 2026", "Abril 2026", "Maio 2026", "Junho 2026", "Julho 2026", "Agosto 2026"], datasets:[{ label:'Detratores', data:[17.2, 8.9, 15.9, 20.0, 6.6, 8.2, 12.1], backgroundColor:'#F27466', borderRadius:0 },{ label:'Neutros', data:[17.2, 24.1, 18.8, 15.5, 20.4, 16.4, 12.1], backgroundColor:'#F5C45D', borderRadius:0 },{ label:'Promotores', data:[65.6, 67.0, 65.2, 64.5, 73.0, 75.4, 75.8], backgroundColor:'#29948F', borderRadius:{ topLeft:4, topRight:4 }}]}, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false }}, scales:{ x:{ stacked:true, grid:{ display:false }, ticks:{ color:textColor, font:{ size:11, family:'Montserrat' }}}, y:{ stacked:true, max:100, grid:{ color:gridColor }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' }, callback:v=>v+'%' }}}}});
 
     // DISTRIBUIÇÃO GOOGLE
-    if (document.getElementById('distChart')) new Chart(document.getElementById('distChart'), { type:'doughnut', data:{ labels:['5 estrelas','4 estrelas','3 estrelas','2 estrelas','1 estrela'], datasets:[{ data:[640, 83, 54, 54, 62], backgroundColor:['#29948F','#00AEEF','#F5C45D','#F27466','#1D1E46'], borderWidth:0 }]}, options:{ responsive:true, maintainAspectRatio:false, cutout:'60%', plugins:{ legend:{ position:'right', labels:{ color:textColor, font:{ size:10, family:'Montserrat' }, boxWidth:12, padding:8 }}}}});
-    if (document.getElementById('yearChart')) new Chart(document.getElementById('yearChart'), { type:'bar', data:{ labels:['5★','4★','3★','2★','1★'], datasets:[{ label:'2025', data:[170, 24, 18, 22, 33], backgroundColor:'#1D1E46', borderRadius:4 },{ label:'2026', data:[470, 59, 36, 32, 29], backgroundColor:'#00AEEF', borderRadius:4 }]}, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'top', labels:{ color:textColor, font:{ size:10, family:'Montserrat' }, boxWidth:12 }}}, scales:{ x:{ grid:{ display:false }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' }}}, y:{ grid:{ color:gridColor }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' }}}}}});
+    if (document.getElementById('distChart')) new Chart(document.getElementById('distChart'), { type:'doughnut', data:{ labels:['5 estrelas','4 estrelas','3 estrelas','2 estrelas','1 estrela'], datasets:[{ data:[748, 99, 63, 62, 74], backgroundColor:['#29948F','#00AEEF','#F5C45D','#F27466','#1D1E46'], borderWidth:0 }]}, options:{ responsive:true, maintainAspectRatio:false, cutout:'60%', plugins:{ legend:{ position:'right', labels:{ color:textColor, font:{ size:10, family:'Montserrat' }, boxWidth:12, padding:8 }}}}});
+    if (document.getElementById('yearChart')) new Chart(document.getElementById('yearChart'), { type:'bar', data:{ labels:['5★','4★','3★','2★','1★'], datasets:[{ label:'2025', data:[170, 24, 18, 22, 33], backgroundColor:'#1D1E46', borderRadius:4 },{ label:'2026', data:[578, 75, 45, 40, 41], backgroundColor:'#00AEEF', borderRadius:4 }]}, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'top', labels:{ color:textColor, font:{ size:10, family:'Montserrat' }, boxWidth:12 }}}, scales:{ x:{ grid:{ display:false }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' }}}, y:{ grid:{ color:gridColor }, ticks:{ color:textColor, font:{ size:10, family:'Montserrat' }}}}}});
 
     // HEATMAP
     (function() {
       const themes = ["Alimentação / Restaurante","Águas / Temperatura","Pós-venda / Cancelamento","Quarto / Manutenção / Limpeza","Atendimento","Estrutura / Obras / Barro","Acessibilidade / Deslocamento","Lazer / Recreação / Programação","Preço / Custo-benefício","Comunicação / Expectativa Frustrada"];
       const months = ["Abr/25","Mai/25","Jun/25","Jul/25","Ago/25","Set/25","Out/25","Nov/25","Dez/25","Jan/26","Fev/26","Mar/26","Abr/26","Mai/26","Jun/26","Jul/26","Ago/26"];
-      const data = [[5, 7, 3, 6, 6, 4, 5, 9, 6, 8, 10, 11, 17, 6, 8, 10, 8], [1, 0, 0, 3, 0, 0, 0, 5, 0, 2, 1, 0, 3, 1, 5, 5, 5], [1, 1, 2, 2, 1, 0, 0, 3, 2, 2, 2, 1, 4, 4, 0, 0, 0], [5, 7, 3, 7, 4, 4, 6, 13, 5, 12, 12, 12, 16, 5, 6, 12, 9], [4, 8, 3, 9, 5, 3, 6, 9, 5, 10, 10, 10, 14, 5, 6, 11, 8], [5, 7, 4, 8, 4, 3, 2, 8, 4, 9, 8, 5, 12, 6, 10, 7, 7], [5, 3, 1, 3, 1, 2, 2, 5, 1, 3, 3, 4, 4, 3, 0, 3, 4], [5, 3, 2, 5, 4, 2, 4, 8, 2, 3, 6, 7, 9, 2, 4, 7, 3], [3, 4, 2, 5, 3, 1, 2, 4, 2, 8, 3, 3, 9, 2, 2, 1, 2], [5, 5, 3, 5, 4, 4, 4, 10, 2, 10, 3, 7, 13, 4, 5, 7, 4]];
+      const data = [[5, 7, 3, 6, 6, 4, 5, 9, 6, 8, 10, 11, 17, 6, 8, 10, 9], [1, 0, 0, 3, 0, 0, 0, 5, 0, 2, 1, 0, 3, 1, 5, 5, 5], [1, 1, 2, 2, 1, 0, 0, 3, 2, 2, 2, 1, 4, 4, 0, 0, 0], [5, 7, 3, 7, 4, 4, 6, 13, 5, 12, 12, 12, 16, 5, 6, 12, 10], [4, 8, 3, 9, 5, 3, 6, 9, 5, 10, 10, 10, 14, 5, 6, 11, 9], [5, 7, 4, 8, 4, 3, 2, 8, 4, 9, 8, 5, 12, 6, 10, 7, 8], [5, 3, 1, 3, 1, 2, 2, 5, 1, 3, 3, 4, 4, 3, 0, 3, 5], [5, 3, 2, 5, 4, 2, 4, 8, 2, 3, 6, 7, 9, 2, 4, 7, 3], [3, 4, 2, 5, 3, 1, 2, 4, 2, 8, 3, 3, 9, 2, 2, 1, 2], [5, 5, 3, 5, 4, 4, 4, 10, 2, 10, 3, 7, 13, 4, 5, 7, 4]];
       function hmClass(v) { if(v===0) return 'hm-0'; if(v<=2) return 'hm-1'; if(v<=4) return 'hm-2'; if(v<=8) return 'hm-3'; if(v<=14) return 'hm-4'; return 'hm-5'; }
       const table = document.getElementById('heatmap');
       if (!table) return;
