@@ -245,8 +245,8 @@ const salesOk = pctSales >= 100;
 const spendOk = projectedSpend < mediaBudget;
 const salesAheadOfGoal = projectedSales >= salesGoal;
 
-document.title = 'Morro dos Anjos — Super Agosto até 26/08';
-document.querySelector('.header p').textContent = '01/08/2026 a 31/08/2026 · Atualizado em 27/08/2026 · Super Agosto 2026';
+document.title = 'Morro dos Anjos — Super Agosto até 27/08';
+document.querySelector('.header p').textContent = '01/08/2026 a 31/08/2026 · Atualizado em 28/08/2026 · Super Agosto 2026';
 document.querySelector('.logo-pill span:last-child').textContent = 'Morro dos Anjos · parcial conforme base enviada';
 document.querySelectorAll('.section-label')[0].textContent = 'Panorama da campanha — Agosto 2026';
 document.querySelector('.panorama').innerHTML = `<div class="pan-top"><div class="pan-left"><div class="pan-tag">Progresso do mês</div><div class="pan-days">${day} <span style="font-size:18px;font-weight:400;color:#9E9C93;">de 31 dias</span></div><div class="pan-sub">${pct1(elapsedPct)} do mês concluído &nbsp;·&nbsp; parcial até 26/08</div></div><div class="pan-right"><div class="pan-stat"><div class="ps-lbl">Vendas no ritmo esperado</div><div class="ps-val">${money0(expectedTotal)}</div><div class="ps-note" style="color:${deltaTotal>=0?'#5DCAA5':'#E24B4A'}">Atual: ${money0(totalSales)} &nbsp;(${deltaTotal>=0?'+':''}${deltaTotal.toFixed(1).replace('.', ',')}%)</div></div><div class="pan-stat"><div class="ps-lbl">Venda Direta no ritmo esperado</div><div class="ps-val">${money0(expectedDirect)}</div><div class="ps-note" style="color:${deltaDirect>=0?'#5DCAA5':'#E24B4A'}">Atual: ${money0(directSales)} &nbsp;(${deltaDirect>=0?'+':''}${deltaDirect.toFixed(1).replace('.', ',')}%)</div></div><div class="pan-stat"><div class="ps-lbl">Projeção de vendas/mês</div><div class="ps-val" style="color:${salesAheadOfGoal?'#5DCAA5':'#E24B4A'}">${money0(projectedSales)}</div><div class="ps-note" style="color:#9E9C93">Meta oficial: ${money0(salesGoal)}</div></div></div></div>
