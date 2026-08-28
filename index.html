@@ -172,7 +172,8 @@ const rows = [
 ["23/08",0,22094.68,0,0,7400.01,29494.69,0,8,0,0,2,10],
 ["24/08",143583.6,12830.44,86471.5,12568.99,12081.05,267535.58,19,5,19,3,6,52],
 ["25/08",112013.39,19255.54,44972.06,16492.94,20057.25,212791.18,24,5,2,3,7,41],
-["26/08",93043.09,16956.71,45442.19,23343.16,38225.7,217010.85,20,5,24,9,10,68]
+["26/08",93043.09,16956.71,45442.19,23343.16,38225.7,217010.85,20,5,24,9,10,68],
+["27/08",90624.21,28000.79,21754.7,13048.94,6496.42,159925.06,31,10,17,4,2,64]
 ];
 const inv = [
 ["01/08",2315.18,659.93,245.26,3220.37],
@@ -200,7 +201,8 @@ const inv = [
 ["23/08",2084.99,525.35,100.84,2711.18],
 ["24/08",0,518.62,100.24,618.86],
 ["25/08",1836.29,538.84,99.56,2474.69],
-["26/08",1209.94,472.06,98.37,1780.37]
+["26/08",1209.94,472.06,98.37,1780.37],
+["27/08",1540.08,506.75,97.98,2144.81]
 ];
 const augustDays = rows.map(r => ({date:r[0],v_CR:r[1],r_CR:r[7],v_BE:r[2],r_BE:r[8],v_GE:r[3],r_GE:r[9],v_AG:r[4],r_AG:r[10],v_OT:r[5],r_OT:r[11],v_TOT:r[6],r_tot:r[12]}));
 const labels = rows.map(r=>r[0]);
@@ -211,18 +213,18 @@ const google_arr = inv.map(i=>i[2]);
 const yt_arr = inv.map(i=>i[3]);
 const zero_arr = rows.map(()=>0);
 
-const day = 26;
+const day = 27;
 const salesGoal = 4165736;
 const mediaBudget = 90000;
 const elapsedPct = day / 31 * 100;
-const central_grupos = 3434508.45, booking_engine = 690668.7, outros = 811537.57;
-const totalSales = 4936714.61;
+const central_grupos = 3546887.36, booking_engine = 718669.49, outros = 831082.93;
+const totalSales = 5096639.67;
 const directSales = central_grupos + booking_engine;
-const totalReservations = 1271;
-const r_central_grupos = 777, r_booking = 228;
+const totalReservations = 1335;
+const r_central_grupos = 825, r_booking = 238;
 // CPA usa apenas Central de Reservas + Booking Engine (G&E não conta, conforme nota abaixo do split).
-const directReservations = 680 + 228;
-const totalInvested = 67130.91;
+const directReservations = 711 + 238;
+const totalInvested = 69275.72;
 const inv_meta_total = meta_arr.reduce((a,b)=>a+b,0);
 const inv_google_total = google_arr.reduce((a,b)=>a+b,0);
 const inv_yt_total = yt_arr.reduce((a,b)=>a+b,0);
