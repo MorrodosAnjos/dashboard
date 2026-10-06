@@ -52,7 +52,7 @@ body {
 .hero {
   background: var(--azul-escuro);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   padding: 60px 48px 80px;
 }
 .hero::before {
@@ -251,13 +251,16 @@ body {
   padding: 22px 20px;
   box-shadow: var(--shadow-card);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: default;
+  z-index: 1;
 }
-.kpi-card:hover {
+.kpi-card:hover,
+.kpi-card:focus-within {
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(29,30,70,0.14);
+  z-index: 200;
 }
 .kpi-card::before {
   content: '';
@@ -1110,6 +1113,196 @@ tbody td:first-child {
   .kpi-strip, .kpi-strip-2 { grid-template-columns: 1fr; }
   .funnel-kpi-grid { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* Tooltips informativos — renderizados fora dos cards */
+.info-tip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6px;
+  color: var(--azul-escuro);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1;
+  cursor: help;
+  vertical-align: middle;
+  background: transparent;
+  border: 0;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  position: relative;
+  z-index: 5;
+}
+.info-tip::before,
+.info-tip::after { content: none !important; display: none !important; }
+.info-tip:focus-visible {
+  outline: 2px solid rgba(0,174,239,.35);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.floating-info-tooltip {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: min(320px, calc(100vw - 24px));
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: rgba(21,23,50,.98);
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: normal;
+  box-shadow: 0 18px 40px rgba(17,24,39,.28);
+  z-index: 2147483647;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: opacity .14s ease, transform .14s ease, visibility .14s ease;
+}
+.floating-info-tooltip.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.floating-info-tooltip::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: rgba(21,23,50,.98);
+  transform: rotate(45deg);
+}
+.floating-info-tooltip[data-side="top"]::after {
+  left: var(--arrow-left, 24px);
+  bottom: -5px;
+}
+.floating-info-tooltip[data-side="bottom"]::after {
+  left: var(--arrow-left, 24px);
+  top: -5px;
+}
+.chart-note {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--texto-sec);
+}
+.summary-funnel-card {
+  background: #fff;
+  border: 1px solid rgba(29,30,70,.08);
+  border-radius: 28px;
+  padding: 30px 32px;
+  box-shadow: 0 14px 36px rgba(29,30,70,.06);
+}
+.summary-funnel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+.summary-funnel-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr);
+  gap: 28px;
+  align-items: start;
+}
+.purchase-funnel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+.purchase-stage {
+  height: 88px;
+  width: var(--stage-width, 100%);
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  clip-path: polygon(7% 0, 93% 0, 100% 100%, 0 100%);
+  border-radius: 18px;
+  box-shadow: 0 14px 28px rgba(29,30,70,.08);
+}
+.purchase-stage.stage-1 { background: linear-gradient(135deg, #1D1E46 0%, #2B2F77 100%); }
+.purchase-stage.stage-2 { background: linear-gradient(135deg, #F27466 0%, #FF8D7F 100%); }
+.purchase-stage.stage-3 { background: linear-gradient(135deg, #29948F 0%, #37B8B1 100%); }
+.purchase-stage-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 18px;
+}
+.purchase-stage-step {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -.02em;
+}
+.purchase-stage-meta {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .95;
+}
+.summary-funnel-caption {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--texto-sec);
+  line-height: 1.55;
+}
+.summary-funnel-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.sf-stat {
+  border: 1px solid rgba(29,30,70,.08);
+  background: linear-gradient(180deg, rgba(0,174,239,.05), rgba(0,174,239,0));
+  border-radius: 20px;
+  padding: 18px;
+}
+.sf-stat-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--texto-sec);
+  line-height: 1.4;
+}
+.sf-stat-value {
+  margin-top: 10px;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--azul-escuro);
+  letter-spacing: -.03em;
+}
+.sf-stat-sub {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--texto-sec);
+}
+@media (max-width: 980px) {
+  .summary-funnel-layout {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .summary-funnel-card { padding: 24px 18px; }
+  .summary-funnel-head { flex-direction: column; }
+  .purchase-stage { height: auto; min-height: 80px; }
+  .purchase-stage-step { font-size: 16px; }
+  .summary-funnel-stats { grid-template-columns: 1fr; }
+}
+
 </style>
 </head>
 <body>
@@ -1123,7 +1316,7 @@ tbody td:first-child {
       <div class="hero-badge">Big Data Comercial</div>
       <h1>Big Data<br><span>Comercial</span></h1>
       <p class="hero-resort">Morro dos Anjos Resort</p>
-      <p class="hero-sub">Evolução mensal dos principais indicadores digitais, comerciais, mídia e atendimento · Setembro/2025 a Julho/2026</p>
+      <p class="hero-sub">Evolução mensal dos principais indicadores digitais, comerciais, mídia e atendimento · Janeiro a Setembro/2026</p>
     </div>
     <div class="hero-stats">
       <div class="hero-stat-pill">
@@ -1132,7 +1325,7 @@ tbody td:first-child {
       </div>
       <div class="hero-stat-pill">
         <div class="label">Melhor Mês</div>
-        <div class="value"><span>Julho/2026</span></div>
+        <div class="value"><span>Jul/2026</span></div>
       </div>
       <div class="hero-stat-pill">
         <div class="label">Total de Reservas</div>
@@ -1140,7 +1333,7 @@ tbody td:first-child {
       </div>
       <div class="hero-stat-pill">
         <div class="label">Pico de Acessos</div>
-        <div class="value"><span>165K</span> Abr/26</div>
+        <div class="value"><span>218K</span> Ago/26</div>
       </div>
     </div>
   </div>
@@ -1154,10 +1347,10 @@ tbody td:first-child {
     <div class="context-icon">📊</div>
     <div>
       <div class="context-title">Leitura Executiva</div>
-      <div class="context-source">Fonte dos dados de receita: Omnibees.</div>
+      <div class="context-source">Fonte dos dados: Comercial.</div>
     </div>
     <div class="context-text">
-      <strong>Julho/2026</strong> fecha o período com R$ 3,32M em receita e 995 reservas — novo recorde em volume de reservas. O canal direto concentrou 80,4% da receita, com ROAS estimado de <strong>34,6x</strong> e forte avanço da Central de Reservas.
+      <strong>Setembro/2026</strong> fecha o período com R$ 4.077.116 em receita e 1.062 reservas. O canal direto (Booking Engine + Central de Reservas + Grupos e Eventos) concentrou 85,5% da receita no mês, com ROAS estimado de <strong>58,9x</strong>. Agosto permanece como pico de reservas e acessos; julho, como maior receita do ano.
     </div>
   </div>
 </div>
@@ -1168,26 +1361,26 @@ tbody td:first-child {
        KPI STRIP — INDICADORES ACUMULADOS
   ══════════════════════════════════════════ -->
   <div class="section-label">Visão Geral do Período</div>
-  <div class="section-title">Indicadores Acumulados — Set/2025 a Jul/2026</div>
+  <div class="section-title">Indicadores Acumulados — Jan a Set/2026</div>
 
   <div class="kpi-strip fade-up">
     <div class="kpi-card blue">
       <div class="kpi-month">Receita Total Acumulada</div>
       <div class="kpi-value" id="kpiReceitaTotal">—</div>
-      <div class="kpi-label">Booking + Central + OTAs</div>
-      <div class="kpi-delta up">↑ 8 meses</div>
+      <div class="kpi-label">Venda vendida · todos os canais</div>
+      <div class="kpi-delta up">9 meses fechados</div>
     </div>
     <div class="kpi-card green">
-      <div class="kpi-month">Receita — Julho/2026</div>
-      <div class="kpi-value">R$ 3,32M</div>
-      <div class="kpi-label">Julho/26: R$ 3.317.690 · último mês fechado</div>
+      <div class="kpi-month">Receita — Setembro/2026</div>
+      <div class="kpi-value">R$ 4,08M</div>
+      <div class="kpi-label">Setembro/26: R$ 4.077.116 · último mês fechado</div>
       <div class="kpi-delta neutral">Último mês</div>
     </div>
     <div class="kpi-card dark">
       <div class="kpi-month">Total de Reservas</div>
       <div class="kpi-value" id="kpiReservasTotal">—</div>
       <div class="kpi-label">Todos os canais · período</div>
-      <div class="kpi-delta info">Set/25 → Jul/26</div>
+      <div class="kpi-delta info">Jan/26 → Set/26</div>
     </div>
     <div class="kpi-card alert">
       <div class="kpi-month">Acessos Acumulados</div>
@@ -1199,9 +1392,9 @@ tbody td:first-child {
 
   <div class="kpi-strip-2 fade-up">
     <div class="kpi-card mid">
-      <div class="kpi-month">Valor em Oportunidades</div>
+      <div class="kpi-month">Valor em Oportunidades <span class="info-tip" tabindex="0" role="button" data-tooltip="É considerada uma oportunidade quando o atendimento teve uma cotação feita pela equipe via Asksuite." aria-label="Mais informações">ⓘ</span></div>
       <div class="kpi-value" id="kpiOportunidades">—</div>
-      <div class="kpi-label">Asksuite · pipeline total</div>
+      <div class="kpi-label">Asksuite · soma do pipeline de oportunidades</div>
       <div class="kpi-delta up">↑ Inteligência comercial</div>
     </div>
     <div class="kpi-card dark">
@@ -1211,15 +1404,15 @@ tbody td:first-child {
       <div class="kpi-delta neutral">Meta + Google Ads</div>
     </div>
     <div class="kpi-card green">
-      <div class="kpi-month">ROAS Geral</div>
+      <div class="kpi-month">ROAS Geral <span class="info-tip" tabindex="0" role="button" data-tooltip="Cálculo: Receita Total do período ÷ Investimento em Ads. Neste dashboard, o ROAS Geral considera a receita total de todos os canais, e não apenas Booking Engine." aria-label="Mais informações">ⓘ</span></div>
       <div class="kpi-value" id="kpiRoas">—</div>
-      <div class="kpi-label">Receita ÷ Investimento em Ads</div>
+      <div class="kpi-label">Receita Total ÷ Investimento em Ads</div>
       <div class="kpi-delta up">↑ Eficiência de mídia</div>
     </div>
     <div class="kpi-card blue">
-      <div class="kpi-month">CPA Médio</div>
+      <div class="kpi-month">CPA Médio <span class="info-tip" tabindex="0" role="button" data-tooltip="Cálculo: Investimento em Ads ÷ Total de Reservas. Segue a mesma lógica agregada do ROAS Geral, olhando o total do período." aria-label="Mais informações">ⓘ</span></div>
       <div class="kpi-value" id="kpiCpa">—</div>
-      <div class="kpi-label">Custo por reserva gerada</div>
+      <div class="kpi-label">Investimento em Ads ÷ Total de Reservas</div>
       <div class="kpi-delta info">Ads ÷ Reservas</div>
     </div>
   </div>
@@ -1235,7 +1428,7 @@ tbody td:first-child {
       <div class="chart-header">
         <div>
           <div class="chart-title">Receita Total Mensal</div>
-          <div class="chart-sub">Booking Engine + Central de Reservas + OTAs (R$)</div>
+          <div class="chart-sub">Venda vendida total por mês (R$)</div>
         </div>
         <span class="chart-badge green">Pico Jul/26</span>
       </div>
@@ -1244,7 +1437,7 @@ tbody td:first-child {
     <div class="chart-card">
       <div class="chart-header">
         <div>
-          <div class="chart-title">Mix de Receita — Julho/2026</div>
+          <div class="chart-title">Mix de Receita — Setembro/2026</div>
           <div class="chart-sub">Participação percentual por canal · último mês fechado</div>
         </div>
         <span class="chart-badge">Canais</span>
@@ -1258,7 +1451,7 @@ tbody td:first-child {
       <div class="chart-header">
         <div>
           <div class="chart-title">Receita por Canal — Mensal</div>
-          <div class="chart-sub">Booking Engine · Central de Reservas · OTAs, Agências e Operadores (R$)</div>
+          <div class="chart-sub">Booking Engine · Central · Grupos e Eventos · Agências · OTAs e Operadores (R$)<span class="chart-note">Canal direto = Booking Engine + Central de Reservas + Grupos e Eventos.</span></div>
         </div>
         <span class="chart-badge dark">Canais Empilhados</span>
       </div>
@@ -1323,9 +1516,9 @@ tbody td:first-child {
       <div class="chart-header">
         <div>
           <div class="chart-title">Acessos ao Site</div>
-          <div class="chart-sub">Visitantes mensais · pico em Abril/2026 com 165 mil acessos</div>
+          <div class="chart-sub">Visitantes mensais · pico em Agosto/2026 com 218.000 acessos</div>
         </div>
-        <span class="chart-badge alert">165K Abr</span>
+        <span class="chart-badge alert">218K Ago</span>
       </div>
       <canvas id="chartAcessos" height="220"></canvas>
     </div>
@@ -1416,7 +1609,7 @@ tbody td:first-child {
     <div class="grupos-header">
       <div>
         <div class="grupos-title">Asksuite Grupos</div>
-        <div class="grupos-sub">Potencial de vendas e cotações de grupos · Set/2025 a Jul/2026</div>
+        <div class="grupos-sub">Potencial de vendas e cotações de grupos · Jan a Set/2026</div>
       </div>
       <span class="chart-badge" style="background:rgba(0,174,239,0.15);color:#00AEEF;">Canal Estratégico</span>
     </div>
@@ -1438,14 +1631,14 @@ tbody td:first-child {
         <div style="height:1px;background:rgba(255,255,255,0.08);"></div>
         <div class="grupos-hl-item">
           <div class="hl-label">Maior Potencial</div>
-          <div class="hl-value"><span>R$ 978K</span></div>
+          <div class="hl-value"><span>R$ 770K</span></div>
           <div class="hl-sub">Março/2026</div>
         </div>
         <div style="height:1px;background:rgba(255,255,255,0.08);"></div>
         <div class="grupos-hl-item">
           <div class="hl-label">Potencial Acumulado</div>
           <div class="hl-value" id="gruposPotAcum">—</div>
-          <div class="hl-sub">Set/25 a Jul/26</div>
+          <div class="hl-sub">Jan a Set/26</div>
         </div>
       </div>
     </div>
@@ -1459,37 +1652,37 @@ tbody td:first-child {
 
   <div class="insight-grid fade-up">
     <div class="insight-card good">
-      <div class="insight-label">Julho/26 — Novo Pico de Receita</div>
-      <div class="insight-num">R$ 3,32M</div>
-      <div class="insight-desc">Julho superou abril e tornou-se o maior mês de receita do período, com R$ 3.317.690 e crescimento de 82,8% sobre junho.</div>
+      <div class="insight-label">Julho/26 — Pico de Receita</div>
+      <div class="insight-num">R$ 5,87M</div>
+      <div class="insight-desc">Julho segue como maior receita de 2026, com R$ 5.866.986. Agosto veio logo atrás, com R$ 5.795.146.</div>
     </div>
     <div class="insight-card warn">
-      <div class="insight-label">Julho/26 — Recorde de Reservas</div>
-      <div class="insight-num">995</div>
-      <div class="insight-desc">O mês também registrou o maior volume de reservas da série: 995, alta de 69,5% sobre junho e 7,2% acima de abril.</div>
+      <div class="insight-label">Agosto/26 — Recorde de Reservas</div>
+      <div class="insight-num">1.507</div>
+      <div class="insight-desc">Agosto registrou o maior volume de reservas do período e também o pico de acessos, com 218.000 visitas ao site.</div>
     </div>
     <div class="insight-card">
-      <div class="insight-label">Julho/26 — Central de Reservas</div>
-      <div class="insight-num">R$ 1,76M</div>
-      <div class="insight-desc">A Central alcançou seu maior resultado mensal e respondeu por 53,1% da receita de julho. Somada ao Booking Engine, levou o canal direto a 80,4% do total.</div>
+      <div class="insight-label">Setembro/26 — Central de Reservas</div>
+      <div class="insight-num">R$ 1,78M</div>
+      <div class="insight-desc">A Central respondeu por 43,6% da receita de setembro. Booking + Central somaram R$ 2,47M.</div>
     </div>
   </div>
 
   <div class="insight-grid fade-up">
     <div class="insight-card mid">
-      <div class="insight-label">Julho/26 — Mídia e Eficiência</div>
-      <div class="insight-num">34,6x</div>
-      <div class="insight-desc">Mesmo com o segundo maior investimento em Ads da série (R$ 95.986), julho combinou escala e eficiência: ROAS estimado de 34,6x e CPA de aproximadamente R$ 96.</div>
+      <div class="insight-label">Setembro/26 — Mídia e Eficiência</div>
+      <div class="insight-num">58,9x</div>
+      <div class="insight-desc">Com R$ 69.273 em Ads, setembro apresentou CPA de aproximadamente R$ 65 e ROAS estimado de 58,9x.</div>
     </div>
     <div class="insight-card good">
-      <div class="insight-label">Julho/26 — Asksuite</div>
-      <div class="insight-num">10,6K</div>
-      <div class="insight-desc">Julho teve o segundo maior volume de atendimentos (10.591) e de oportunidades (5.204) do período, gerando R$ 6,23 milhões em pipeline comercial.</div>
+      <div class="insight-label">Março/26 — Asksuite</div>
+      <div class="insight-num">13,8K</div>
+      <div class="insight-desc">Março segue como pico de atendimentos (13.839), oportunidades (8.041) e valor em oportunidades (R$ 11,75M).</div>
     </div>
     <div class="insight-card">
-      <div class="insight-label">Julho/26 — Canais Complementares</div>
-      <div class="insight-num">R$ 159K</div>
-      <div class="insight-desc">Influenciadores geraram R$ 117,6 mil; os agentes AskFlow, R$ 35,0 mil; e o CRM, R$ 6,3 mil. Juntos, somaram cerca de R$ 158,9 mil em vendas atribuídas no mês.</div>
+      <div class="insight-label">Setembro/26 — Canais Complementares</div>
+      <div class="insight-num">R$ 119K</div>
+      <div class="insight-desc">AskFlow gerou R$ 91.829; CRM, R$ 15.122; e influenciadores, R$ 11.786. Juntos, somaram R$ 118.737.</div>
     </div>
   </div>
 
@@ -1502,7 +1695,7 @@ tbody td:first-child {
   <div class="table-card fade-up">
     <div class="table-header">
       <div class="chart-title">Big Data Mensal Consolidado</div>
-      <div class="chart-sub">Set/2025 a Jul/2026 · Verde = melhor mês · Azul = 2º melhor · Laranja = maior investimento</div>
+      <div class="chart-sub">Jan a Set/2026 · Verde = melhor mês · Azul = 2º melhor · Laranja = maior investimento</div>
     </div>
     <div class="table-wrap">
       <table id="tabelaCompleta"></table>
@@ -1519,32 +1712,34 @@ tbody td:first-child {
     <div class="rational-card" data-num="01">
       <div class="rational-card-content">
         <div class="rational-icon">📈</div>
-        <div class="rational-title">Julho Redefine o Pico Comercial</div>
-        <div class="rational-text">Julho/2026 tornou-se o maior mês em receita (R$ 3,32M) e reservas (995), superando abril mesmo com 72,7% menos acessos e 11,5% menos investimento em Ads. O resultado indica maior produtividade comercial do tráfego e da verba no mês.</div>
+        <div class="rational-title">Julho Mantém o Pico de Receita</div>
+        <div class="rational-text">Julho permanece como maior mês de receita de 2026 (R$ 5.866.986), enquanto agosto lidera em reservas (1.507) e acessos (218.000). Setembro fecha com retração frente a agosto, mas preserva alta eficiência de mídia.</div>
       </div>
     </div>
     <div class="rational-card" data-num="02">
       <div class="rational-card-content">
         <div class="rational-icon">🎯</div>
         <div class="rational-title">Canal Direto como Ativo Estratégico</div>
-        <div class="rational-text">Em julho, Booking Engine e Central de Reservas somaram R$ 2,67M, ou 80,4% da receita. A Central atingiu seu recorde mensal de R$ 1,76M, confirmando o peso estratégico da combinação entre conversão humana e venda pelo site.</div>
+        <div class="rational-text">Em setembro, Booking Engine e Central de Reservas somaram R$ 2.472.777, ou 60,7% da venda vendida do mês. A Central segue como principal canal individual.</div>
       </div>
     </div>
     <div class="rational-card" data-num="03">
       <div class="rational-card-content">
         <div class="rational-icon">💬</div>
         <div class="rational-title">Ecossistema de Conversão em Expansão</div>
-        <div class="rational-text">Julho reuniu o segundo maior volume de atendimentos e oportunidades Asksuite, 12 reservas atribuídas aos agentes AskFlow e R$ 158,9K em vendas somadas de AskFlow, CRM e influenciadores. O próximo avanço é acompanhar a contribuição e a eficiência de cada frente de forma integrada.</div>
+        <div class="rational-text">Setembro registrou 22 reservas via AskFlow e R$ 118.737 em vendas atribuídas somando AskFlow, CRM e influenciadores. A leitura integrada dessas frentes ajuda a separar geração de demanda, conversão e atribuição.</div>
       </div>
     </div>
     <div class="rational-card" data-num="04">
       <div class="rational-card-content">
         <div class="rational-icon">🤝</div>
-        <div class="rational-title">Grupos Retomam Força em Julho</div>
-        <div class="rational-text">Julho registrou 36 cotações de grupos, o segundo maior volume da série, e R$ 774,9K em potencial de vendas. O movimento recoloca grupos e eventos entre as principais oportunidades de pipeline para os próximos meses.</div>
+        <div class="rational-title">Grupos Ganham Peso em Setembro</div>
+        <div class="rational-text">Setembro registrou 31 cotações de grupos e R$ 730.691 em potencial de vendas. No mesmo mês, Grupos e Eventos respondeu por R$ 1.011.946 em venda vendida.</div>
       </div>
     </div>
   </div>
+
+
 
 </main>
 
@@ -1573,22 +1768,80 @@ tbody td:first-child {
       <div class="funil-section-header">
         <div class="funil-section-label">Funil Mensal</div>
         <h2 class="funil-section-title">Funil Comercial Interativo</h2>
-        <p class="funil-section-subtitle">Selecione um mês para visualizar a jornada completa: tráfego, intenção, reservas, receita e oportunidades.</p>
+        <p class="funil-section-subtitle">Selecione um mês para visualizar o funil da jornada e, abaixo, os indicadores detalhados de tráfego, intenção, reservas, receita e oportunidades.</p>
       </div>
 
       <div class="month-selector">
-        <button class="month-btn" data-month="Set/25">Set/25</button>
-        <button class="month-btn" data-month="Out/25">Out/25</button>
-        <button class="month-btn" data-month="Nov/25">Nov/25</button>
-        <button class="month-btn" data-month="Dez/25">Dez/25</button>
         <button class="month-btn" data-month="Jan/26">Jan/26</button>
         <button class="month-btn" data-month="Fev/26">Fev/26</button>
         <button class="month-btn" data-month="Mar/26">Mar/26</button>
         <button class="month-btn" data-month="Abr/26">Abr/26</button>
         <button class="month-btn" data-month="Mai/26">Mai/26</button>
         <button class="month-btn" data-month="Jun/26">Jun/26</button>
-        <button class="month-btn active" data-month="Jul/26">Jul/26</button>
+        <button class="month-btn" data-month="Jul/26">Jul/26</button>
+        <button class="month-btn" data-month="Ago/26">Ago/26</button>
+        <button class="month-btn active" data-month="Set/26">Set/26</button>
       </div>
+
+      <div class="summary-funnel-card funnel-animated" id="monthlyJourneyFunnel">
+        <div class="summary-funnel-head">
+          <div>
+            <div class="chart-title">Funil da Jornada de Compra — <span id="sf-month-label">Set/26</span></div>
+            <div class="chart-sub">Leitura visual do mês selecionado: acessos ao site → add ao carrinho → reservas.</div>
+          </div>
+          <span class="chart-badge dark">Jornada Mensal</span>
+        </div>
+
+        <div class="summary-funnel-layout">
+          <div>
+            <div class="purchase-funnel">
+              <div class="purchase-stage stage-1" id="sf-stage-1" style="--stage-width:100%">
+                <div class="purchase-stage-content">
+                  <span class="purchase-stage-step">1. Acessos ao Site</span>
+                  <span class="purchase-stage-meta" id="sf-meta-1">—</span>
+                </div>
+              </div>
+              <div class="purchase-stage stage-2" id="sf-stage-2" style="--stage-width:72%">
+                <div class="purchase-stage-content">
+                  <span class="purchase-stage-step">2. Add ao Carrinho</span>
+                  <span class="purchase-stage-meta" id="sf-meta-2">—</span>
+                </div>
+              </div>
+              <div class="purchase-stage stage-3" id="sf-stage-3" style="--stage-width:54%">
+                <div class="purchase-stage-content">
+                  <span class="purchase-stage-step">3. Reservas</span>
+                  <span class="purchase-stage-meta" id="sf-meta-3">—</span>
+                </div>
+              </div>
+            </div>
+            <div class="summary-funnel-caption">O desenho resume a jornada do mês. As taxas ao lado usam os valores reais da base Comercial; a largura das etapas é suavizada apenas para manter a leitura visual.</div>
+          </div>
+
+          <div class="summary-funnel-stats">
+            <div class="sf-stat">
+              <div class="sf-stat-label">Conv. Acesso → Add</div>
+              <div class="sf-stat-value" id="sf-stat-add">—</div>
+              <div class="sf-stat-sub">Add ao carrinho sobre acessos no mês.</div>
+            </div>
+            <div class="sf-stat">
+              <div class="sf-stat-label">Conv. Acesso → Reserva</div>
+              <div class="sf-stat-value" id="sf-stat-res">—</div>
+              <div class="sf-stat-sub">Reservas sobre acessos no mês.</div>
+            </div>
+            <div class="sf-stat">
+              <div class="sf-stat-label">Conv. Add → Reserva</div>
+              <div class="sf-stat-value" id="sf-stat-addres">—</div>
+              <div class="sf-stat-sub">Reservas sobre add ao carrinho no mês.</div>
+            </div>
+            <div class="sf-stat">
+              <div class="sf-stat-label">Canal Direto</div>
+              <div class="sf-stat-value" id="sf-stat-direto">—</div>
+              <div class="sf-stat-sub" id="sf-stat-direto-sub">Booking Engine + Central de Reservas + Grupos e Eventos.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
       <!-- KPI CARDS TOPO -->
       <div class="funnel-kpi-grid funnel-animated" id="kpiGrid">
@@ -1752,7 +2005,7 @@ tbody td:first-child {
 
         <div class="funil-chart-card">
           <div class="funil-chart-card-title">Mix de Canais de Receita</div>
-          <div class="funil-chart-card-sub" id="chart-sub-label">Distribuição da receita por canal — Jul/26</div>
+          <div class="funil-chart-card-sub" id="chart-sub-label">Distribuição da receita por canal — Set/26</div>
           <div class="funil-chart-wrapper">
             <canvas id="chartMixReceitaMes"></canvas>
           </div>
@@ -1764,7 +2017,7 @@ tbody td:first-child {
               <div class="insight-icon-wrap">💡</div>
               <div class="insight-title-f">Insight do Mês</div>
             </div>
-            <div class="insight-month-tag" id="insight-month-tag">Jul/26</div>
+            <div class="insight-month-tag" id="insight-month-tag">Set/26</div>
             <p class="insight-text funnel-animated" id="insightText">—</p>
           </div>
           <div>
@@ -1785,38 +2038,258 @@ tbody td:first-child {
 ══════════════════════════════════════════ -->
 <footer class="footer">
   <div class="footer-logo">Morro dos Anjos <span>Resort</span></div>
-  <div class="footer-sub">Big Data Comercial · Set/2025 a Jul/2026 · Uso Interno — Diretoria</div>
+  <div class="footer-sub">Big Data Comercial · Jan a Set/2026 · Uso Interno — Diretoria</div>
 </footer>
 
 <script>
 /* ══════════════════════════════════════════
    DADOS PRINCIPAIS
 ══════════════════════════════════════════ */
-const MESES = ["Set/25", "Out/25", "Nov/25", "Dez/25", "Jan/26", "Fev/26", "Mar/26", "Abr/26", "Mai/26", "Jun/26", "Jul/26"];
+const MESES = ["Jan/26", "Fev/26", "Mar/26", "Abr/26", "Mai/26", "Jun/26", "Jul/26", "Ago/26", "Set/26"];
 
 const D = {
-  acessos: [47000, 47000, 56000, 50000, 62000, 41000, 61000, 165000, 23000, 29000, 45000],
-  addCarr: [2300, 1900, 3500, 3000, 5400, 3100, 5400, 7200, 1600, 739, 3600],
-  booking: [342192, 194011, 870497, 566705, 807475, 348444, 670930, 1453785, 408404, 446195, 906351],
-  central: [352936, 253740, 1553532, 904353, 1614987, 938861, 1501236, 1318956, 784134, 772853, 1762086],
-  otas: [847509, 509074, 140528, 204163, 403093, 381513, 284857, 247238, 137312, 595901, 649252],
-  receita: [1542637, 956825, 2564557, 1675221, 2825554, 1668819, 2457023, 3019979, 1329851, 1814948, 3317690],
-  reservas: [660, 337, 882, 410, 838, 561, 822, 928, 484, 587, 995],
-  arpu: [2337, 2839, 2908, 4086, 3372, 2975, 2989, 3254, 2748, 3092, 3334],
-  ads: [24934, 24771, 31249, 34622, 27717, 27061, 27811, 108463, 44377, 75391, 95986],
-  atend: [4395, 4655, 5484, 6498, 8400, 6476, 13839, 9353, 4607, 5200, 10591],
-  opors: [2262, 2316, 3156, 3799, 5151, 3350, 8041, 5013, 1642, 1940, 5204],
-  valOp: [1828978, 3632104, 5530352, 6991590, 9491119, 5421913, 11750350, 7031417, 2039127, 2571239, 6228321],
-  grpPot: [648929, 461496, 278787, 149632, 420229, 392338, 978055, 920413, 396056, 78096, 774928],
-  grpCot: [16, 12, 7, 14, 13, 19, 48, 31, 11, 9, 36],
-  askFollowReservas: [0, 0, 0, 0, 0, 0, 1, 6, 0, 2, 7],
-  askFollowVendas: [0, 0, 0, 0, 0, 0, 4246.02, 23282.88, 0, 5690.36, 22474.60],
-  askAbandReservas: [0, 0, 0, 0, 0, 0, 0, 3, 0, 3, 5],
-  askAbandVendas: [0, 0, 0, 0, 0, 0, 0, 9729.40, 0, 9981.68, 12550.14],
-  crmReservas: [6, 3, 5, 23, 22, 17, 20, 51, 52, 28, 8],
-  crmVendas: [19745, 7337, 36120, 62721, 67360, 44967, 53301, 109780, 65846, 50681, 6300],
-  influReservas: [22, 0, 0, 0, 0, 14, 63, 0, 22, 35, 36],
-  influVendas: [40984, 0, 0, 0, 0, 39911, 158326, 0, 50856, 96038, 117587]
+  "acessos": [
+    64000,
+    43000,
+    62000,
+    168000,
+    25000,
+    29000,
+    45000,
+    218000,
+    195000
+  ],
+  "addCarr": [
+    5400,
+    3100,
+    5400,
+    7200,
+    1600,
+    739,
+    2250,
+    3500,
+    3200
+  ],
+  "booking": [
+    917777,
+    430242,
+    785453,
+    1550906,
+    408185,
+    436279,
+    924534,
+    835397,
+    694958
+  ],
+  "central": [
+    2233189,
+    1139720,
+    1809867,
+    1878998,
+    1032255,
+    1326826,
+    3083852,
+    3091208,
+    1777819
+  ],
+  "gruposReceita": [
+    400754,
+    294898,
+    557140,
+    1485777,
+    957355,
+    640790,
+    975448,
+    907050,
+    1011946
+  ],
+  "agencias": [
+    767905,
+    223562,
+    342455,
+    433981,
+    300233,
+    311983,
+    471364,
+    372285,
+    328595
+  ],
+  "otas": [
+    587801,
+    361726,
+    315884,
+    348558,
+    393562,
+    412933,
+    411788,
+    589207,
+    263797
+  ],
+  "receita": [
+    4907426,
+    2450148,
+    3810799,
+    5698220,
+    3091588,
+    3128810,
+    5866986,
+    5795146,
+    4077116
+  ],
+  "reservas": [
+    1085,
+    652,
+    1002,
+    1236,
+    665,
+    828,
+    1458,
+    1507,
+    1062
+  ],
+  "arpu": [
+    4523,
+    3758,
+    3803,
+    4610,
+    4649,
+    3779,
+    4024,
+    3845,
+    3839
+  ],
+  "ads": [
+    27717,
+    27061,
+    27811,
+    108463,
+    44377,
+    75391,
+    95986,
+    84302,
+    69273
+  ],
+  "atend": [
+    8400,
+    6476,
+    13839,
+    9353,
+    4607,
+    5200,
+    10591,
+    9307,
+    8959
+  ],
+  "opors": [
+    5151,
+    3350,
+    8041,
+    5013,
+    1642,
+    1940,
+    5204,
+    5209,
+    4374
+  ],
+  "valOp": [
+    9491119,
+    5421913,
+    11750350,
+    7031417,
+    2039127,
+    2571239,
+    6228321,
+    7689339,
+    5928103
+  ],
+  "grpPot": [
+    330924,
+    308969,
+    770227,
+    724833,
+    311898,
+    61501,
+    767298,
+    538866,
+    730691
+  ],
+  "grpCot": [
+    13,
+    19,
+    48,
+    31,
+    11,
+    9,
+    36,
+    23,
+    31
+  ],
+  "askflowReservas": [
+    0,
+    0,
+    1,
+    9,
+    0,
+    5,
+    12,
+    6,
+    22
+  ],
+  "askflowVendas": [
+    0,
+    0,
+    4246.02,
+    33012.28,
+    0,
+    15672.04,
+    35024.74,
+    24713.82,
+    91828.6
+  ],
+  "crmReservas": [
+    23,
+    23,
+    20,
+    49,
+    38,
+    27,
+    6,
+    74,
+    10
+  ],
+  "crmVendas": [
+    75966,
+    49418,
+    54462,
+    107160,
+    84195,
+    62460,
+    13683,
+    109143,
+    15122
+  ],
+  "influReservas": [
+    0,
+    15,
+    46,
+    0,
+    22,
+    38,
+    40,
+    9,
+    4
+  ],
+  "influVendas": [
+    0,
+    43393,
+    120971,
+    0,
+    50856,
+    103111,
+    130085,
+    27966,
+    11786
+  ]
 };
 
 const sum = arr => arr.reduce((a, b) => a + b, 0);
@@ -1905,8 +2378,8 @@ new Chart(document.getElementById('chartReceita'), {
 new Chart(document.getElementById('chartMixAbr'), {
   type: 'doughnut',
   data: {
-    labels: ['Booking Engine', 'Central de Reservas', 'OTAs / Agências'],
-    datasets: [{ data: [906351, 1762086, 649252], backgroundColor: [C.azul, C.escuro, C.alerta], borderColor: ['#fff','#fff','#fff'], borderWidth: 3, hoverOffset: 8 }]
+    labels: ['Booking Engine', 'Central de Reservas', 'Grupos e Eventos', 'Agências', 'OTAs / Operadores'],
+    datasets: [{ data: [D.booking.at(-1), D.central.at(-1), D.gruposReceita.at(-1), D.agencias.at(-1), D.otas.at(-1)], backgroundColor: [C.azul, C.escuro, C.verde, '#7A5AF8', C.alerta], borderColor: ['#fff','#fff','#fff','#fff','#fff'], borderWidth: 3, hoverOffset: 8 }]
   },
   options: { responsive: true, maintainAspectRatio: true, cutout: '65%', plugins: { legend: { position: 'bottom', labels: { font: { family: 'Montserrat', size: 10 }, padding: 14, usePointStyle: true } }, tooltip: { callbacks: { label: ctx => ' ' + fBRL(ctx.raw) }, backgroundColor: 'rgba(29,30,70,0.92)', bodyFont: { family: 'Montserrat' } } } }
 });
@@ -1919,7 +2392,9 @@ new Chart(document.getElementById('chartCanais'), {
     datasets: [
       { label: 'Booking Engine',       data: D.booking, backgroundColor: highlightBars(D.booking), borderRadius: 0 },
       { label: 'Central de Reservas',  data: D.central, backgroundColor: highlightBars(D.central), borderRadius: 0 },
-      { label: 'OTAs / Agências',      data: D.otas,    backgroundColor: highlightBars(D.otas), borderRadius: 6 }
+      { label: 'Grupos e Eventos',     data: D.gruposReceita, backgroundColor: highlightBars(D.gruposReceita), borderRadius: 0 },
+      { label: 'Agências',             data: D.agencias, backgroundColor: highlightBars(D.agencias), borderRadius: 0 },
+      { label: 'OTAs / Operadores',    data: D.otas, backgroundColor: highlightBars(D.otas), borderRadius: 6 }
     ]
   },
   options: { ...baseOpts, plugins: { ...baseOpts.plugins, legend: { display: true, position: 'bottom', labels: { padding: 14, font: { size: 11 }, usePointStyle: true } }, tooltip: { ...baseOpts.plugins.tooltip, callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + fBRL(ctx.raw) } } }, scales: { ...baseOpts.scales, x: { ...baseOpts.scales.x, stacked: true }, y: { ...baseOpts.scales.y, stacked: true, ticks: { callback: v => 'R$' + (v/1000000).toFixed(1) + 'M' } } } }
@@ -2080,7 +2555,7 @@ const askInsights = [
   { label: 'Maior atendimento', val: '13.839', desc: 'Março/2026 — pico do período', color: '#FF6B35' },
   { label: 'Maior pipeline', val: 'R$ 11,75M', desc: 'Março/2026 em oportunidades', color: '#00C878' },
   { label: 'Taxa média de oportunidade', val: fPct(sum(txOp)/txOp.length), desc: 'Opors ÷ Atendimentos', color: '#00AEEF' },
-  { label: 'Total de atendimentos', val: fNum(sum(D.atend)), desc: 'Set/25 a Jul/26', color: '#0E6F99' }
+  { label: 'Total de atendimentos', val: fNum(sum(D.atend)), desc: 'Jan a Set/26', color: '#0E6F99' }
 ];
 document.getElementById('asksuiteInsights').innerHTML = askInsights.map(i => `
   <div style="display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid rgba(29,30,70,0.06);">
@@ -2135,7 +2610,9 @@ const linhas = [
   { nome: 'Taxa Add Carrinho (%)', arr: txAdd, fmt: v => v.toFixed(2).replace('.',',')+' %' },
   { grupo: 'VENDAS', nome: 'Booking Engine', arr: D.booking, fmt: fBRL },
   { nome: 'Central de Reservas', arr: D.central, fmt: fBRL },
-  { nome: 'OTAs, Agências e Op.', arr: D.otas, fmt: fBRL },
+  { nome: 'Grupos e Eventos', arr: D.gruposReceita, fmt: fBRL },
+  { nome: 'Agências', arr: D.agencias, fmt: fBRL },
+  { nome: 'OTAs e Operadores', arr: D.otas, fmt: fBRL },
   { nome: 'Receita Total', arr: D.receita, fmt: fBRL, destaque: true },
   { nome: 'Reservas', arr: D.reservas, fmt: fNum },
   { nome: 'ARPU', arr: D.arpu, fmt: fBRL },
@@ -2148,10 +2625,8 @@ const linhas = [
   { nome: 'Valor em Oportunidades', arr: D.valOp, fmt: fBRL },
   { grupo: 'GRUPOS', nome: 'Potencial de Vendas', arr: D.grpPot, fmt: fBRL },
   { nome: 'Cotações de Grupos', arr: D.grpCot, fmt: fNum },
-  { grupo: 'ASKFLOW — FOLLOW UP DE VENDAS', nome: 'Reservas', arr: D.askFollowReservas, fmt: fNum },
-  { nome: 'Vendas', arr: D.askFollowVendas, fmt: fBRL },
-  { grupo: 'ASKFLOW — ABANDONO OMNIBEES', nome: 'Reservas', arr: D.askAbandReservas, fmt: fNum },
-  { nome: 'Vendas', arr: D.askAbandVendas, fmt: fBRL },
+  { grupo: 'ASKFLOW — AGENTES', nome: 'Reservas', arr: D.askflowReservas, fmt: fNum },
+  { nome: 'Vendas', arr: D.askflowVendas, fmt: fBRL },
   { grupo: 'CRM', nome: 'Reservas', arr: D.crmReservas, fmt: fNum },
   { nome: 'Vendas', arr: D.crmVendas, fmt: fBRL },
   { grupo: 'INFLUENCIADORES', nome: 'Reservas', arr: D.influReservas, fmt: fNum },
@@ -2178,329 +2653,174 @@ document.getElementById('tabelaCompleta').innerHTML = htmlTabela;
 /* ══════════════════════════════════════════
    FUNIL INTERATIVO — DADOS E LÓGICA
 ══════════════════════════════════════════ */
-const funnelData = {
-  "Set/25": {
-    "acessos": 47000,
-    "addCarrinho": 2300,
-    "reservas": 660,
-    "receitaTotal": 1542637,
-    "bookingEngine": 342192,
-    "centralReservas": 352936,
-    "otasAgencias": 847509,
-    "ads": 24934,
-    "atendimentos": 4395,
-    "oportunidades": 2262,
-    "valorOportunidades": 1828978
-  },
-  "Out/25": {
-    "acessos": 47000,
-    "addCarrinho": 1900,
-    "reservas": 337,
-    "receitaTotal": 956825,
-    "bookingEngine": 194011,
-    "centralReservas": 253740,
-    "otasAgencias": 509074,
-    "ads": 24771,
-    "atendimentos": 4655,
-    "oportunidades": 2316,
-    "valorOportunidades": 3632104
-  },
-  "Nov/25": {
-    "acessos": 56000,
-    "addCarrinho": 3500,
-    "reservas": 882,
-    "receitaTotal": 2564557,
-    "bookingEngine": 870497,
-    "centralReservas": 1553532,
-    "otasAgencias": 140528,
-    "ads": 31249,
-    "atendimentos": 5484,
-    "oportunidades": 3156,
-    "valorOportunidades": 5530352
-  },
-  "Dez/25": {
-    "acessos": 50000,
-    "addCarrinho": 3000,
-    "reservas": 410,
-    "receitaTotal": 1675221,
-    "bookingEngine": 566705,
-    "centralReservas": 904353,
-    "otasAgencias": 204163,
-    "ads": 34622,
-    "atendimentos": 6498,
-    "oportunidades": 3799,
-    "valorOportunidades": 6991590
-  },
-  "Jan/26": {
-    "acessos": 62000,
-    "addCarrinho": 5400,
-    "reservas": 838,
-    "receitaTotal": 2825554,
-    "bookingEngine": 807475,
-    "centralReservas": 1614987,
-    "otasAgencias": 403093,
-    "ads": 27717,
-    "atendimentos": 8400,
-    "oportunidades": 5151,
-    "valorOportunidades": 9491119
-  },
-  "Fev/26": {
-    "acessos": 41000,
-    "addCarrinho": 3100,
-    "reservas": 561,
-    "receitaTotal": 1668819,
-    "bookingEngine": 348444,
-    "centralReservas": 938861,
-    "otasAgencias": 381513,
-    "ads": 27061,
-    "atendimentos": 6476,
-    "oportunidades": 3350,
-    "valorOportunidades": 5421913
-  },
-  "Mar/26": {
-    "acessos": 61000,
-    "addCarrinho": 5400,
-    "reservas": 822,
-    "receitaTotal": 2457023,
-    "bookingEngine": 670930,
-    "centralReservas": 1501236,
-    "otasAgencias": 284857,
-    "ads": 27811,
-    "atendimentos": 13839,
-    "oportunidades": 8041,
-    "valorOportunidades": 11750350
-  },
-  "Abr/26": {
-    "acessos": 165000,
-    "addCarrinho": 7200,
-    "reservas": 928,
-    "receitaTotal": 3019979,
-    "bookingEngine": 1453785,
-    "centralReservas": 1318956,
-    "otasAgencias": 247238,
-    "ads": 108463,
-    "atendimentos": 9353,
-    "oportunidades": 5013,
-    "valorOportunidades": 7031417
-  },
-  "Mai/26": {
-    "acessos": 23000,
-    "addCarrinho": 1600,
-    "reservas": 484,
-    "receitaTotal": 1329851,
-    "bookingEngine": 408404,
-    "centralReservas": 784134,
-    "otasAgencias": 137312,
-    "ads": 44377,
-    "atendimentos": 4607,
-    "oportunidades": 1642,
-    "valorOportunidades": 2039127
-  },
-  "Jun/26": {
-    "acessos": 29000,
-    "addCarrinho": 739,
-    "reservas": 587,
-    "receitaTotal": 1814948,
-    "bookingEngine": 446195,
-    "centralReservas": 772853,
-    "otasAgencias": 595901,
-    "ads": 75391,
-    "atendimentos": 5200,
-    "oportunidades": 1940,
-    "valorOportunidades": 2571239
-  },
-  "Jul/26": {
-    "acessos": 45000,
-    "addCarrinho": 3600,
-    "reservas": 995,
-    "receitaTotal": 3317690,
-    "bookingEngine": 906351,
-    "centralReservas": 1762086,
-    "otasAgencias": 649252,
-    "ads": 95986,
-    "atendimentos": 10591,
-    "oportunidades": 5204,
-    "valorOportunidades": 6228321
-  }
-};
+const funnelData = Object.fromEntries(MESES.map((m, i) => [m, {
+  acessos: D.acessos[i],
+  addCarrinho: D.addCarr[i],
+  reservas: D.reservas[i],
+  receitaTotal: D.receita[i],
+  bookingEngine: D.booking[i],
+  centralReservas: D.central[i],
+  gruposEventos: D.gruposReceita[i],
+  agencias: D.agencias[i],
+  otasOperadores: D.otas[i],
+  ads: D.ads[i],
+  atendimentos: D.atend[i],
+  oportunidades: D.opors[i],
+  valorOportunidades: D.valOp[i]
+}]));
 
 const insightsCopy = {
-  "Set/25": {
-    "text": "Setembro/2025 marcou o início do período de análise com performance sólida em atendimentos e oportunidades Asksuite. A receita foi impulsionada principalmente por OTAs e agências, que responderam por mais da metade do faturamento mensal.",
-    "pills": [
-      {
-        "label": "📊 OTAs dominam mix",
-        "type": "azul"
-      },
-      {
-        "label": "🔁 Boa taxa de carrinho",
-        "type": "verde"
-      },
-      {
-        "label": "💬 4.395 atendimentos",
-        "type": ""
-      }
-    ]
-  },
-  "Out/25": {
-    "text": "Outubro/2025 apresentou queda nas reservas em relação a setembro, com menor taxa de conversão do funil. O volume de oportunidades geradas pela Asksuite, porém, mais que compensou em valor, registrando R$ 3,6M em pipeline.",
-    "pills": [
-      {
-        "label": "📉 Menor taxa reserva",
-        "type": "laranja"
-      },
-      {
-        "label": "📈 R$ 3,6M em pipeline",
-        "type": "verde"
-      },
-      {
-        "label": "🏨 OTAs ainda lideram",
-        "type": "azul"
-      }
-    ]
-  },
-  "Nov/25": {
-    "text": "Novembro/2025 foi o melhor mês da primeira temporada em receita, com forte presença da Central de Reservas (61% do mix). A taxa de add ao carrinho atingiu 6,25% — a mais alta do período set-dez. Excelente performance de conversão.",
-    "pills": [
-      {
-        "label": "🏆 Maior receita set-dez",
-        "type": "verde"
-      },
-      {
-        "label": "📞 Central 61% do mix",
-        "type": "azul"
-      },
-      {
-        "label": "🛒 6,25% taxa carrinho",
-        "type": "verde"
-      }
-    ]
-  },
-  "Dez/25": {
-    "text": "Dezembro/2025 registrou CPA elevado em relação aos meses anteriores, com investimento em ads mais alto frente às reservas geradas. A Central de Reservas consolidou liderança no mix com 54%, e o volume de atendimentos indicou aquecimento de demanda para janeiro.",
-    "pills": [
-      {
-        "label": "📣 CPA elevado",
-        "type": "laranja"
-      },
-      {
-        "label": "📞 Central lidera mix",
-        "type": "azul"
-      },
-      {
-        "label": "💬 6.498 atendimentos",
-        "type": ""
-      }
-    ]
-  },
   "Jan/26": {
-    "text": "Janeiro/2026 apresentou forte performance comercial: receita acima de R$ 2,8M, boa conversão e ROAS elevado. A Central de Reservas manteve protagonismo com 57% da receita, enquanto o pipeline Asksuite chegou a R$ 9,5M.",
+    "text": "Janeiro/2026 registrou R$ 4.907.426 em venda vendida, 1.085 reservas e 64.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 72,4% da receita; o ROAS estimado foi de 177,1x.",
     "pills": [
       {
-        "label": "💰 R$ 2,8M receita",
+        "label": "💰 Receita R$ 4,91M",
         "type": "verde"
       },
       {
-        "label": "🎯 5.151 oportunidades",
+        "label": "🎫 1.085 reservas",
         "type": "azul"
       },
       {
-        "label": "📈 ROAS alto",
+        "label": "⚡ ROAS 177,1x",
         "type": "verde"
       }
     ]
   },
   "Fev/26": {
-    "text": "Fevereiro/2026 registrou menor volume de acessos em relação ao ciclo de alta, impactando naturalmente o funil comercial. Ainda assim, a Central de Reservas respondeu por 56% da receita, com pipeline de oportunidades robusto de R$ 5,4M.",
+    "text": "Fevereiro/2026 registrou R$ 2.450.148 em venda vendida, 652 reservas e 43.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 76,1% da receita; o ROAS estimado foi de 90,5x.",
     "pills": [
       {
-        "label": "📉 Tráfego baixo",
-        "type": "laranja"
+        "label": "💰 Receita R$ 2,45M",
+        "type": "verde"
       },
       {
-        "label": "📞 Central segura mix",
+        "label": "🎫 652 reservas",
         "type": "azul"
       },
       {
-        "label": "🎯 R$ 5,4M pipeline",
+        "label": "⚡ ROAS 90,5x",
         "type": "verde"
       }
     ]
   },
   "Mar/26": {
-    "text": "Março/2026 teve o maior volume de atendimentos Asksuite de todo o período (13.839), gerando 8.041 oportunidades e R$ 11,75M em pipeline — recordes absolutos. Forte sinal de demanda crescente que se confirmou em abril.",
+    "text": "Março/2026 registrou R$ 3.810.799 em venda vendida, 1.002 reservas e 62.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 82,7% da receita; o ROAS estimado foi de 137,0x.",
     "pills": [
       {
-        "label": "🏆 Recorde atendimentos",
+        "label": "💰 Receita R$ 3,81M",
         "type": "verde"
       },
       {
-        "label": "📈 R$ 11,75M pipeline",
-        "type": "verde"
+        "label": "🎫 1.002 reservas",
+        "type": "azul"
       },
       {
-        "label": "🔥 Demanda aquecida",
-        "type": "laranja"
+        "label": "⚡ ROAS 137,0x",
+        "type": "verde"
       }
     ]
   },
   "Abr/26": {
-    "text": "Abril/2026 foi o recorde de receita até então (R$ 3,0M) e permanece como pico de acessos (165K) e investimento em mídia (R$ 108K). O Booking Engine liderou o mix, sinalizando força do canal direto em escala.",
+    "text": "Abril/2026 registrou R$ 5.698.220 em venda vendida, 1.236 reservas e 168.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 86,3% da receita; o ROAS estimado foi de 52,5x.",
     "pills": [
       {
-        "label": "🥈 2ª maior receita",
+        "label": "💰 Receita R$ 5,70M",
+        "type": "verde"
+      },
+      {
+        "label": "🎫 1.236 reservas",
         "type": "azul"
       },
       {
-        "label": "🌐 165K acessos",
-        "type": "azul"
-      },
-      {
-        "label": "📣 Pico de mídia",
-        "type": "laranja"
+        "label": "⚡ ROAS 52,5x",
+        "type": "verde"
       }
     ]
   },
   "Mai/26": {
-    "text": "Maio/2026 fechou com R$ 1,33M em receita, 484 reservas e 23 mil acessos. O mês mostra retração em volume após o pico de abril, mas mantém eficiência de mídia relevante: ROAS estimado de 30,0x.",
+    "text": "Maio/2026 registrou R$ 3.091.588 em venda vendida, 665 reservas e 25.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 77,6% da receita; o ROAS estimado foi de 69,7x.",
     "pills": [
       {
-        "label": "📉 Retração pós-pico",
-        "type": "laranja"
+        "label": "💰 Receita R$ 3,09M",
+        "type": "verde"
       },
       {
-        "label": "📞 Central lidera mix",
+        "label": "🎫 665 reservas",
         "type": "azul"
       },
       {
-        "label": "⚡ ROAS 30,0x",
+        "label": "⚡ ROAS 69,7x",
         "type": "verde"
       }
     ]
   },
   "Jun/26": {
-    "text": "Junho/2026 fechou com R$ 1.814.948 em receita, 587 reservas e 29.000 acessos. O mês recupera volume frente a maio, com Central de Reservas na liderança, OTAs ganhando participação no mix e ROAS estimado de 24.1x.",
+    "text": "Junho/2026 registrou R$ 3.128.810 em venda vendida, 828 reservas e 29.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 76,8% da receita; o ROAS estimado foi de 41,5x.",
     "pills": [
       {
-        "label": "📈 Receita acima de maio",
+        "label": "💰 Receita R$ 3,13M",
         "type": "verde"
       },
       {
-        "label": "📞 Central lidera mix",
+        "label": "🎫 828 reservas",
         "type": "azul"
       },
       {
-        "label": "⚡ ROAS 24.1x",
+        "label": "⚡ ROAS 41,5x",
         "type": "verde"
       }
     ]
   },
   "Jul/26": {
-    "text": "Julho/2026 estabeleceu novos recordes de receita (R$ 3,32M) e reservas (995). A Central também atingiu seu pico, o canal direto respondeu por 80,4% do faturamento e o Asksuite registrou o segundo maior volume de atendimentos e oportunidades da série.",
+    "text": "Julho/2026 registrou R$ 5.866.986 em venda vendida, 1.458 reservas e 45.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 84,9% da receita; o ROAS estimado foi de 61,1x.",
     "pills": [
-      { "label": "🏆 Recorde de receita e reservas", "type": "verde" },
-      { "label": "📞 Direto: 80,4% do mix", "type": "azul" },
-      { "label": "⚡ ROAS 34,6x", "type": "verde" }
+      {
+        "label": "💰 Receita R$ 5,87M",
+        "type": "verde"
+      },
+      {
+        "label": "🎫 1.458 reservas",
+        "type": "azul"
+      },
+      {
+        "label": "⚡ ROAS 61,1x",
+        "type": "verde"
+      }
+    ]
+  },
+  "Ago/26": {
+    "text": "Agosto/2026 registrou R$ 5.795.146 em venda vendida, 1.507 reservas e 218.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 83,4% da receita; o ROAS estimado foi de 68,7x.",
+    "pills": [
+      {
+        "label": "💰 Receita R$ 5,80M",
+        "type": "verde"
+      },
+      {
+        "label": "🎫 1.507 reservas",
+        "type": "azul"
+      },
+      {
+        "label": "⚡ ROAS 68,7x",
+        "type": "verde"
+      }
+    ]
+  },
+  "Set/26": {
+    "text": "Setembro/2026 registrou R$ 4.077.116 em venda vendida, 1.062 reservas e 195.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 85,5% da receita; o ROAS estimado foi de 58,9x.",
+    "pills": [
+      {
+        "label": "💰 Receita R$ 4,08M",
+        "type": "verde"
+      },
+      {
+        "label": "🎫 1.062 reservas",
+        "type": "azul"
+      },
+      {
+        "label": "⚡ ROAS 58,9x",
+        "type": "verde"
+      }
     ]
   }
 };
@@ -2522,11 +2842,11 @@ function initFunnelChart(data) {
   mixChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-      labels: ['Booking Engine', 'Central de Reservas', 'OTAs / Agências'],
+      labels: ['Booking Engine', 'Central de Reservas', 'Grupos e Eventos', 'Agências', 'OTAs / Operadores'],
       datasets: [{
-        data: [data.bookingEngine, data.centralReservas, data.otasAgencias],
-        backgroundColor: ['#00AEEF', '#1D1E46', '#FF6B35'],
-        borderColor: ['#fff', '#fff', '#fff'],
+        data: [data.bookingEngine, data.centralReservas, data.gruposEventos, data.agencias, data.otasOperadores],
+        backgroundColor: ['#00AEEF', '#1D1E46', '#00C878', '#7A5AF8', '#FF6B35'],
+        borderColor: ['#fff', '#fff', '#fff', '#fff', '#fff'],
         borderWidth: 3, hoverOffset: 8
       }]
     },
@@ -2572,6 +2892,25 @@ function updateFunnel(month) {
     document.getElementById('kpi-oportunidades').textContent = fmtNumber(d.oportunidades);
     document.getElementById('kpi-oport-val').textContent     = fmtCurrency(d.valorOportunidades);
 
+    // Funil visual mensal — jornada de compra
+    const taxaCartRes = d.addCarrinho > 0 ? d.reservas / d.addCarrinho * 100 : 0;
+    const receitaDiretaMes = d.bookingEngine + d.centralReservas + d.gruposEventos;
+    const shareDiretoMes = d.receitaTotal > 0 ? receitaDiretaMes / d.receitaTotal * 100 : 0;
+    const visualCartWidth = Math.max(52, Math.min(82, 48 + taxaCart * 4));
+    const visualResWidth = Math.max(40, Math.min(68, 38 + taxaRes * 14));
+
+    document.getElementById('sf-month-label').textContent = month;
+    document.getElementById('sf-meta-1').textContent = fmtNumber(d.acessos) + ' · 100% do topo do funil';
+    document.getElementById('sf-meta-2').textContent = fmtNumber(d.addCarrinho) + ' · ' + fmtPercent(taxaCart) + ' dos acessos';
+    document.getElementById('sf-meta-3').textContent = fmtNumber(d.reservas) + ' · ' + fmtPercent(taxaRes) + ' dos acessos';
+    document.getElementById('sf-stat-add').textContent = fmtPercent(taxaCart);
+    document.getElementById('sf-stat-res').textContent = fmtPercent(taxaRes);
+    document.getElementById('sf-stat-addres').textContent = fmtPercent(taxaCartRes);
+    document.getElementById('sf-stat-direto').textContent = fmtPercent(shareDiretoMes);
+    document.getElementById('sf-stat-direto-sub').textContent = fmtCurrency(receitaDiretaMes) + ' · Booking Engine + Central de Reservas + Grupos e Eventos.';
+    document.getElementById('sf-stage-2').style.setProperty('--stage-width', visualCartWidth.toFixed(0) + '%');
+    document.getElementById('sf-stage-3').style.setProperty('--stage-width', visualResWidth.toFixed(0) + '%');
+
     document.getElementById('fc-acessos-val').textContent = fmtNumber(d.acessos);
     document.getElementById('fc-cart-val').textContent    = fmtNumber(d.addCarrinho);
     document.getElementById('fc-cart-pct').textContent    = fmtPercent(taxaCart);
@@ -2603,7 +2942,7 @@ function updateFunnel(month) {
     document.getElementById('chart-sub-label').textContent = 'Distribuição da receita por canal — ' + month;
 
     if (mixChart) {
-      mixChart.data.datasets[0].data = [d.bookingEngine, d.centralReservas, d.otasAgencias];
+      mixChart.data.datasets[0].data = [d.bookingEngine, d.centralReservas, d.gruposEventos, d.agencias, d.otasOperadores];
       mixChart.update('active');
     }
 
@@ -2634,8 +2973,8 @@ document.querySelectorAll('.month-btn').forEach(btn => {
   });
 });
 
-initFunnelChart(funnelData['Jul/26']);
-updateFunnel('Jul/26');
+initFunnelChart(funnelData['Set/26']);
+updateFunnel('Set/26');
 
 /* ══════════════════════════════════════════
    ANIMAÇÕES SCROLL
@@ -2651,5 +2990,99 @@ const obs = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 </script>
+
+<script>
+(function () {
+  const tips = Array.from(document.querySelectorAll('.info-tip[data-tooltip]'));
+  if (!tips.length) return;
+
+  const bubble = document.createElement('div');
+  bubble.className = 'floating-info-tooltip';
+  bubble.setAttribute('role', 'tooltip');
+  bubble.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(bubble);
+
+  let activeTip = null;
+
+  function positionBubble(tip) {
+    const r = tip.getBoundingClientRect();
+    const margin = 12;
+    const gap = 10;
+    const vw = document.documentElement.clientWidth;
+    const vh = document.documentElement.clientHeight;
+
+    bubble.style.left = '0px';
+    bubble.style.top = '0px';
+    bubble.style.maxWidth = Math.max(240, Math.min(320, vw - margin * 2)) + 'px';
+    bubble.style.visibility = 'hidden';
+    bubble.classList.add('is-visible');
+
+    const br = bubble.getBoundingClientRect();
+    const roomAbove = r.top;
+    const roomBelow = vh - r.bottom;
+    const side = roomAbove >= br.height + gap + margin || roomAbove > roomBelow ? 'top' : 'bottom';
+
+    let left = r.left + r.width / 2 - br.width / 2;
+    left = Math.max(margin, Math.min(left, vw - br.width - margin));
+
+    let top;
+    if (side === 'top') {
+      top = r.top - br.height - gap;
+    } else {
+      top = r.bottom + gap;
+    }
+    top = Math.max(margin, Math.min(top, vh - br.height - margin));
+
+    const arrowCenter = r.left + r.width / 2 - left - 5;
+    const arrowLeft = Math.max(12, Math.min(arrowCenter, br.width - 22));
+
+    bubble.dataset.side = side;
+    bubble.style.setProperty('--arrow-left', arrowLeft + 'px');
+    bubble.style.left = left + 'px';
+    bubble.style.top = top + 'px';
+    bubble.style.visibility = 'visible';
+  }
+
+  function show(tip) {
+    activeTip = tip;
+    bubble.textContent = tip.getAttribute('data-tooltip') || '';
+    bubble.setAttribute('aria-hidden', 'false');
+    positionBubble(tip);
+  }
+
+  function hide(tip) {
+    if (tip && activeTip !== tip) return;
+    activeTip = null;
+    bubble.classList.remove('is-visible');
+    bubble.setAttribute('aria-hidden', 'true');
+    bubble.style.visibility = 'hidden';
+  }
+
+  tips.forEach((tip) => {
+    tip.addEventListener('mouseenter', () => show(tip));
+    tip.addEventListener('mouseleave', () => hide(tip));
+    tip.addEventListener('focus', () => show(tip));
+    tip.addEventListener('blur', () => hide(tip));
+    tip.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (activeTip === tip && bubble.classList.contains('is-visible')) hide(tip);
+      else show(tip);
+    });
+  });
+
+  window.addEventListener('scroll', () => {
+    if (activeTip) positionBubble(activeTip);
+  }, true);
+  window.addEventListener('resize', () => {
+    if (activeTip) positionBubble(activeTip);
+  });
+  document.addEventListener('click', () => hide());
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') hide();
+  });
+})();
+</script>
+
 </body>
 </html>
