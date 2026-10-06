@@ -1303,6 +1303,50 @@ tbody td:first-child {
   .summary-funnel-stats { grid-template-columns: 1fr; }
 }
 
+
+/* Legenda executiva — Receita por Canal */
+.channel-legend-exec {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(29,30,70,.08);
+}
+.channel-legend-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.channel-legend-group-title {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #64748B;
+  margin-right: 2px;
+}
+.channel-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #1D1E46;
+  white-space: nowrap;
+}
+.channel-legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex: 0 0 12px;
+}
+@media (max-width: 720px) {
+  .channel-legend-exec { gap: 12px; }
+  .channel-legend-group { width: 100%; }
+}
+
 </style>
 </head>
 <body>
@@ -1350,7 +1394,7 @@ tbody td:first-child {
       <div class="context-source">Fonte dos dados: Comercial.</div>
     </div>
     <div class="context-text">
-      <strong>Setembro/2026</strong> fecha o período com R$ 4.077.116 em receita e 1.062 reservas. O canal direto (Booking Engine + Central de Reservas + Grupos e Eventos) concentrou 85,5% da receita no mês, com ROAS estimado de <strong>58,9x</strong>. Agosto permanece como pico de reservas e acessos; julho, como maior receita do ano.
+      <strong>Setembro/2026</strong> fecha o período com R$ 4.077.116 em receita e 1.062 reservas. O canal direto (Booking Engine + Central de Reservas + Grupos e Eventos) concentrou 85,5% da receita no mês, com ROAS direto estimado de <strong>50,3x</strong>. Agosto permanece como pico de reservas e acessos; julho, como maior receita do ano.
     </div>
   </div>
 </div>
@@ -1404,9 +1448,9 @@ tbody td:first-child {
       <div class="kpi-delta neutral">Meta + Google Ads</div>
     </div>
     <div class="kpi-card green">
-      <div class="kpi-month">ROAS Geral <span class="info-tip" tabindex="0" role="button" data-tooltip="Cálculo: Receita Total do período ÷ Investimento em Ads. Neste dashboard, o ROAS Geral considera a receita total de todos os canais, e não apenas Booking Engine." aria-label="Mais informações">ⓘ</span></div>
+      <div class="kpi-month">ROAS Geral <span class="info-tip" tabindex="0" role="button" data-tooltip="Cálculo: Receita Direta do período ÷ Investimento em Ads. Para o ROAS, estamos considerando apenas as vendas diretas com influência de mídia: Booking Engine + Central de Reservas + Grupos e Eventos." aria-label="Mais informações">ⓘ</span></div>
       <div class="kpi-value" id="kpiRoas">—</div>
-      <div class="kpi-label">Receita Total ÷ Investimento em Ads</div>
+      <div class="kpi-label">Receita Direta ÷ Investimento em Ads</div>
       <div class="kpi-delta up">↑ Eficiência de mídia</div>
     </div>
     <div class="kpi-card blue">
@@ -1455,7 +1499,20 @@ tbody td:first-child {
         </div>
         <span class="chart-badge dark">Canais Empilhados</span>
       </div>
-      <canvas id="chartCanais" height="160"></canvas>
+      <canvas id="chartCanais" height="170"></canvas>
+      <div class="channel-legend-exec" aria-label="Legenda do gráfico de receita por canal">
+        <div class="channel-legend-group">
+          <span class="channel-legend-group-title">Canais diretos</span>
+          <span class="channel-legend-item"><span class="channel-legend-swatch" style="background:#1D1E46"></span>Booking Engine</span>
+          <span class="channel-legend-item"><span class="channel-legend-swatch" style="background:#00AEEF"></span>Central de Reservas</span>
+          <span class="channel-legend-item"><span class="channel-legend-swatch" style="background:#8FD3F4"></span>Grupos e Eventos</span>
+        </div>
+        <div class="channel-legend-group">
+          <span class="channel-legend-group-title">Outros canais</span>
+          <span class="channel-legend-item"><span class="channel-legend-swatch" style="background:#31C77B"></span>Agências</span>
+          <span class="channel-legend-item"><span class="channel-legend-swatch" style="background:#FF8A4C"></span>OTAs / Operadores</span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1486,8 +1543,8 @@ tbody td:first-child {
     <div class="chart-card">
       <div class="chart-header">
         <div>
-          <div class="chart-title">ROAS Mensal Aproximado</div>
-          <div class="chart-sub">Receita Total ÷ Investimento em Ads</div>
+          <div class="chart-title">ROAS Mensal — Direto</div>
+          <div class="chart-sub">Receita Direta ÷ Investimento em Ads</div>
         </div>
         <span class="chart-badge green">Retorno</span>
       </div>
@@ -1671,8 +1728,8 @@ tbody td:first-child {
   <div class="insight-grid fade-up">
     <div class="insight-card mid">
       <div class="insight-label">Setembro/26 — Mídia e Eficiência</div>
-      <div class="insight-num">58,9x</div>
-      <div class="insight-desc">Com R$ 69.273 em Ads, setembro apresentou CPA de aproximadamente R$ 65 e ROAS estimado de 58,9x.</div>
+      <div class="insight-num">50,3x</div>
+      <div class="insight-desc">Com R$ 69.273 em Ads, setembro apresentou CPA de aproximadamente R$ 65 e ROAS direto estimado de 50,3x.</div>
     </div>
     <div class="insight-card good">
       <div class="insight-label">Março/26 — Asksuite</div>
@@ -2296,7 +2353,8 @@ const sum = arr => arr.reduce((a, b) => a + b, 0);
 const txAdd = D.addCarr.map((v, i) => v / D.acessos[i] * 100);
 const txOp  = D.opors.map((v, i) => v / D.atend[i] * 100);
 const cpa   = D.ads.map((v, i) => v / D.reservas[i]);
-const roas  = D.receita.map((v, i) => v / D.ads[i]);
+const receitaDireta = D.booking.map((v, i) => v + D.central[i] + D.gruposReceita[i]);
+const roas  = receitaDireta.map((v, i) => v / D.ads[i]);
 
 /* formatadores */
 const fNum = v => new Intl.NumberFormat('pt-BR').format(Math.round(v));
@@ -2312,7 +2370,7 @@ document.getElementById('kpiReservasTotal').textContent = fNum(sum(D.reservas));
 document.getElementById('kpiAcessos').textContent = fNum(sum(D.acessos));
 document.getElementById('kpiOportunidades').textContent = fBRL(sum(D.valOp));
 document.getElementById('kpiAds').textContent = fBRL(sum(D.ads));
-document.getElementById('kpiRoas').textContent = (sum(D.receita)/sum(D.ads)).toFixed(1).replace('.',',') + 'x';
+document.getElementById('kpiRoas').textContent = (sum(receitaDireta)/sum(D.ads)).toFixed(1).replace('.',',') + 'x';
 document.getElementById('kpiCpa').textContent = fBRL(sum(D.ads)/sum(D.reservas));
 document.getElementById('gruposPotAcum').textContent = fBRL(sum(D.grpPot));
 
@@ -2322,7 +2380,12 @@ document.getElementById('gruposPotAcum').textContent = fBRL(sum(D.grpPot));
 const C = {
   azul: '#00AEEF', escuro: '#1D1E46', verde: '#00C878',
   alerta: '#FF6B35', cinza: '#94A3B8',
-  jan: '#00C878', abr: '#FF6B35'
+  jan: '#00C878', abr: '#FF6B35',
+  canalBooking: '#1D1E46',
+  canalCentral: '#00AEEF',
+  canalGrupos: '#8FD3F4',
+  canalAgencias: '#31C77B',
+  canalOtas: '#FF8A4C'
 };
 
 function rankIndexes(arr, bigger=true) {
@@ -2379,9 +2442,9 @@ new Chart(document.getElementById('chartMixAbr'), {
   type: 'doughnut',
   data: {
     labels: ['Booking Engine', 'Central de Reservas', 'Grupos e Eventos', 'Agências', 'OTAs / Operadores'],
-    datasets: [{ data: [D.booking.at(-1), D.central.at(-1), D.gruposReceita.at(-1), D.agencias.at(-1), D.otas.at(-1)], backgroundColor: [C.azul, C.escuro, C.verde, '#7A5AF8', C.alerta], borderColor: ['#fff','#fff','#fff','#fff','#fff'], borderWidth: 3, hoverOffset: 8 }]
+    datasets: [{ data: [D.booking.at(-1), D.central.at(-1), D.gruposReceita.at(-1), D.agencias.at(-1), D.otas.at(-1)], backgroundColor: [C.canalBooking, C.canalCentral, C.canalGrupos, C.canalAgencias, C.canalOtas], borderColor: ['#fff','#fff','#fff','#fff','#fff'], borderWidth: 3, hoverOffset: 8 }]
   },
-  options: { responsive: true, maintainAspectRatio: true, cutout: '65%', plugins: { legend: { position: 'bottom', labels: { font: { family: 'Montserrat', size: 10 }, padding: 14, usePointStyle: true } }, tooltip: { callbacks: { label: ctx => ' ' + fBRL(ctx.raw) }, backgroundColor: 'rgba(29,30,70,0.92)', bodyFont: { family: 'Montserrat' } } } }
+  options: { responsive: true, maintainAspectRatio: true, cutout: '65%', plugins: { legend: { position: 'bottom', align: 'center', labels: { font: { family: 'Montserrat', size: 11, weight: '600' }, color: '#1D1E46', padding: 16, usePointStyle: false, boxWidth: 14, boxHeight: 14 } }, tooltip: { callbacks: { label: ctx => ' ' + fBRL(ctx.raw) }, backgroundColor: 'rgba(29,30,70,0.92)', bodyFont: { family: 'Montserrat' } } } }
 });
 
 /* Canais empilhados */
@@ -2390,14 +2453,14 @@ new Chart(document.getElementById('chartCanais'), {
   data: {
     labels: MESES,
     datasets: [
-      { label: 'Booking Engine',       data: D.booking, backgroundColor: highlightBars(D.booking), borderRadius: 0 },
-      { label: 'Central de Reservas',  data: D.central, backgroundColor: highlightBars(D.central), borderRadius: 0 },
-      { label: 'Grupos e Eventos',     data: D.gruposReceita, backgroundColor: highlightBars(D.gruposReceita), borderRadius: 0 },
-      { label: 'Agências',             data: D.agencias, backgroundColor: highlightBars(D.agencias), borderRadius: 0 },
-      { label: 'OTAs / Operadores',    data: D.otas, backgroundColor: highlightBars(D.otas), borderRadius: 6 }
+      { label: 'Booking Engine',       data: D.booking, backgroundColor: C.canalBooking, borderColor: '#ffffff', borderWidth: 1, borderRadius: 0 },
+      { label: 'Central de Reservas',  data: D.central, backgroundColor: C.canalCentral, borderColor: '#ffffff', borderWidth: 1, borderRadius: 0 },
+      { label: 'Grupos e Eventos',     data: D.gruposReceita, backgroundColor: C.canalGrupos, borderColor: '#ffffff', borderWidth: 1, borderRadius: 0 },
+      { label: 'Agências',             data: D.agencias, backgroundColor: C.canalAgencias, borderColor: '#ffffff', borderWidth: 1, borderRadius: 0 },
+      { label: 'OTAs / Operadores',    data: D.otas, backgroundColor: C.canalOtas, borderColor: '#ffffff', borderWidth: 1, borderRadius: 6 }
     ]
   },
-  options: { ...baseOpts, plugins: { ...baseOpts.plugins, legend: { display: true, position: 'bottom', labels: { padding: 14, font: { size: 11 }, usePointStyle: true } }, tooltip: { ...baseOpts.plugins.tooltip, callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + fBRL(ctx.raw) } } }, scales: { ...baseOpts.scales, x: { ...baseOpts.scales.x, stacked: true }, y: { ...baseOpts.scales.y, stacked: true, ticks: { callback: v => 'R$' + (v/1000000).toFixed(1) + 'M' } } } }
+  options: { ...baseOpts, plugins: { ...baseOpts.plugins, legend: { display: false }, tooltip: { ...baseOpts.plugins.tooltip, callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + fBRL(ctx.raw) } } }, scales: { ...baseOpts.scales, x: { ...baseOpts.scales.x, stacked: true }, y: { ...baseOpts.scales.y, stacked: true, ticks: { callback: v => 'R$' + (v/1000000).toFixed(1) + 'M' } } } }
 });
 
 /* Reservas x Ads */
@@ -2671,7 +2734,7 @@ const funnelData = Object.fromEntries(MESES.map((m, i) => [m, {
 
 const insightsCopy = {
   "Jan/26": {
-    "text": "Janeiro/2026 registrou R$ 4.907.426 em venda vendida, 1.085 reservas e 64.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 72,4% da receita; o ROAS estimado foi de 177,1x.",
+    "text": "Janeiro/2026 registrou R$ 4.907.426 em venda vendida, 1.085 reservas e 64.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 72,4% da receita; o ROAS direto estimado foi de 128,1x.",
     "pills": [
       {
         "label": "💰 Receita R$ 4,91M",
@@ -2682,13 +2745,13 @@ const insightsCopy = {
         "type": "azul"
       },
       {
-        "label": "⚡ ROAS 177,1x",
+        "label": "⚡ ROAS 128,1x",
         "type": "verde"
       }
     ]
   },
   "Fev/26": {
-    "text": "Fevereiro/2026 registrou R$ 2.450.148 em venda vendida, 652 reservas e 43.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 76,1% da receita; o ROAS estimado foi de 90,5x.",
+    "text": "Fevereiro/2026 registrou R$ 2.450.148 em venda vendida, 652 reservas e 43.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 76,1% da receita; o ROAS direto estimado foi de 68,9x.",
     "pills": [
       {
         "label": "💰 Receita R$ 2,45M",
@@ -2699,13 +2762,13 @@ const insightsCopy = {
         "type": "azul"
       },
       {
-        "label": "⚡ ROAS 90,5x",
+        "label": "⚡ ROAS 68,9x",
         "type": "verde"
       }
     ]
   },
   "Mar/26": {
-    "text": "Março/2026 registrou R$ 3.810.799 em venda vendida, 1.002 reservas e 62.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 82,7% da receita; o ROAS estimado foi de 137,0x.",
+    "text": "Março/2026 registrou R$ 3.810.799 em venda vendida, 1.002 reservas e 62.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 82,7% da receita; o ROAS direto estimado foi de 113,4x.",
     "pills": [
       {
         "label": "💰 Receita R$ 3,81M",
@@ -2716,13 +2779,13 @@ const insightsCopy = {
         "type": "azul"
       },
       {
-        "label": "⚡ ROAS 137,0x",
+        "label": "⚡ ROAS 113,4x",
         "type": "verde"
       }
     ]
   },
   "Abr/26": {
-    "text": "Abril/2026 registrou R$ 5.698.220 em venda vendida, 1.236 reservas e 168.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 86,3% da receita; o ROAS estimado foi de 52,5x.",
+    "text": "Abril/2026 registrou R$ 5.698.220 em venda vendida, 1.236 reservas e 168.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 86,3% da receita; o ROAS direto estimado foi de 45,3x.",
     "pills": [
       {
         "label": "💰 Receita R$ 5,70M",
@@ -2733,13 +2796,13 @@ const insightsCopy = {
         "type": "azul"
       },
       {
-        "label": "⚡ ROAS 52,5x",
+        "label": "⚡ ROAS 45,3x",
         "type": "verde"
       }
     ]
   },
   "Mai/26": {
-    "text": "Maio/2026 registrou R$ 3.091.588 em venda vendida, 665 reservas e 25.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 77,6% da receita; o ROAS estimado foi de 69,7x.",
+    "text": "Maio/2026 registrou R$ 3.091.588 em venda vendida, 665 reservas e 25.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 77,6% da receita; o ROAS direto estimado foi de 54,0x.",
     "pills": [
       {
         "label": "💰 Receita R$ 3,09M",
@@ -2750,13 +2813,13 @@ const insightsCopy = {
         "type": "azul"
       },
       {
-        "label": "⚡ ROAS 69,7x",
+        "label": "⚡ ROAS 54,0x",
         "type": "verde"
       }
     ]
   },
   "Jun/26": {
-    "text": "Junho/2026 registrou R$ 3.128.810 em venda vendida, 828 reservas e 29.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 76,8% da receita; o ROAS estimado foi de 41,5x.",
+    "text": "Junho/2026 registrou R$ 3.128.810 em venda vendida, 828 reservas e 29.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 76,8% da receita; o ROAS direto estimado foi de 31,9x.",
     "pills": [
       {
         "label": "💰 Receita R$ 3,13M",
@@ -2767,13 +2830,13 @@ const insightsCopy = {
         "type": "azul"
       },
       {
-        "label": "⚡ ROAS 41,5x",
+        "label": "⚡ ROAS 31,9x",
         "type": "verde"
       }
     ]
   },
   "Jul/26": {
-    "text": "Julho/2026 registrou R$ 5.866.986 em venda vendida, 1.458 reservas e 45.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 84,9% da receita; o ROAS estimado foi de 61,1x.",
+    "text": "Julho/2026 registrou R$ 5.866.986 em venda vendida, 1.458 reservas e 45.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 84,9% da receita; o ROAS direto estimado foi de 51,9x.",
     "pills": [
       {
         "label": "💰 Receita R$ 5,87M",
@@ -2784,13 +2847,13 @@ const insightsCopy = {
         "type": "azul"
       },
       {
-        "label": "⚡ ROAS 61,1x",
+        "label": "⚡ ROAS 51,9x",
         "type": "verde"
       }
     ]
   },
   "Ago/26": {
-    "text": "Agosto/2026 registrou R$ 5.795.146 em venda vendida, 1.507 reservas e 218.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 83,4% da receita; o ROAS estimado foi de 68,7x.",
+    "text": "Agosto/2026 registrou R$ 5.795.146 em venda vendida, 1.507 reservas e 218.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 83,4% da receita; o ROAS direto estimado foi de 57,3x.",
     "pills": [
       {
         "label": "💰 Receita R$ 5,80M",
@@ -2801,13 +2864,13 @@ const insightsCopy = {
         "type": "azul"
       },
       {
-        "label": "⚡ ROAS 68,7x",
+        "label": "⚡ ROAS 57,3x",
         "type": "verde"
       }
     ]
   },
   "Set/26": {
-    "text": "Setembro/2026 registrou R$ 4.077.116 em venda vendida, 1.062 reservas e 195.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 85,5% da receita; o ROAS estimado foi de 58,9x.",
+    "text": "Setembro/2026 registrou R$ 4.077.116 em venda vendida, 1.062 reservas e 195.000 acessos. O canal direto (Booking Engine + Central + Grupos e Eventos) representou 85,5% da receita; o ROAS direto estimado foi de 50,3x.",
     "pills": [
       {
         "label": "💰 Receita R$ 4,08M",
@@ -2818,7 +2881,7 @@ const insightsCopy = {
         "type": "azul"
       },
       {
-        "label": "⚡ ROAS 58,9x",
+        "label": "⚡ ROAS 50,3x",
         "type": "verde"
       }
     ]
@@ -2874,7 +2937,7 @@ function updateFunnel(month) {
   const taxaRes   = d.reservas    / d.acessos * 100;
   const taxaAds   = d.ads         / d.acessos * 100;
   const cpaF      = d.ads         / d.reservas;
-  const roasF     = d.receitaTotal / d.ads;
+  const roasF     = (d.bookingEngine + d.centralReservas + d.gruposEventos) / d.ads;
   const taxaOport = d.oportunidades / d.atendimentos * 100;
   const ticketOp  = d.valorOportunidades / d.oportunidades;
 
