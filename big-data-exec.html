@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard Executivo 2026 — Morro dos Anjos</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{--navy:#1D1E46;--blue:#00AEEF;--blue2:#4CC6F2;--pale:#EEF8FD;--green:#00A878;--orange:#F47C4E;--ink:#20233F;--muted:#71809A;--line:#DCE8F0;--bg:#F5F9FC;--white:#fff;--shadow:0 10px 34px rgba(29,30,70,.08)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Montserrat,Arial,sans-serif;color:var(--ink)}button{font:inherit}.shell{max-width:1380px;margin:0 auto;padding:0 34px 44px}
+.hero{background:var(--navy);color:#fff;position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:560px;height:560px;border-radius:50%;right:-160px;top:-260px;background:radial-gradient(circle,rgba(0,174,239,.22),transparent 68%)}.hero-in{max-width:1380px;margin:auto;padding:34px 34px 32px;position:relative;z-index:1;display:flex;justify-content:space-between;gap:28px;align-items:end}.eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#79D8FA;font-weight:700;margin-bottom:10px}.hero h1{margin:0;font-size:34px;line-height:1.08}.hero h1 span{color:var(--blue)}.hero p{margin:9px 0 0;color:rgba(255,255,255,.62);font-size:13px}.hero-side{text-align:right}.hero-side .label{font-size:10px;letter-spacing:1.3px;text-transform:uppercase;color:rgba(255,255,255,.5)}.hero-side .value{font-size:28px;font-weight:800;margin-top:4px}.hero-side .sub{font-size:11px;color:#7BDBFB;margin-top:3px}
+.tabs-wrap{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:30}.tabs{max-width:1380px;margin:auto;padding:0 34px;display:flex;gap:8px}.tab{appearance:none;border:0;background:transparent;padding:17px 18px 14px;color:var(--muted);font-weight:700;font-size:12px;cursor:pointer;border-bottom:3px solid transparent}.tab.active{color:var(--navy);border-bottom-color:var(--blue)}
+.panel{display:none}.panel.active{display:block}.exec-summary{margin:24px 0 18px;background:linear-gradient(135deg,#E9F8FE,#F7FCFF);border:1px solid #CFEFFA;border-radius:18px;padding:18px 22px;display:flex;align-items:center;gap:16px}.summary-mark{width:40px;height:40px;border-radius:12px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:800;flex:0 0 auto}.summary-text{font-size:14px;line-height:1.55}.summary-text strong{color:var(--navy)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}.card{background:#fff;border:1px solid rgba(29,30,70,.07);border-radius:18px;box-shadow:var(--shadow)}.kpi{padding:20px 20px 18px;position:relative;overflow:hidden}.kpi:before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--blue)}.kpi.green:before{background:var(--green)}.kpi.orange:before{background:var(--orange)}.kpi.navy:before{background:var(--navy)}.k-label{font-size:10px;letter-spacing:1.3px;text-transform:uppercase;color:var(--muted);font-weight:700}.k-value{font-size:27px;font-weight:800;color:var(--navy);margin:9px 0 5px}.k-sub{font-size:11px;color:var(--muted);line-height:1.45}.pill{display:inline-flex;margin-top:10px;padding:4px 8px;border-radius:999px;font-size:10px;font-weight:700;background:#E9F9F3;color:#047857}.pill.warn{background:#FFF2EB;color:#B45309}.pill.info{background:#EAF7FD;color:#0879A9}
+.main-grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(300px,.7fr);gap:16px;margin-bottom:16px}.chart-card{padding:20px 20px 16px;min-width:0}.card-head{display:flex;justify-content:space-between;align-items:start;gap:16px;margin-bottom:14px}.card-title{font-size:16px;font-weight:800;color:var(--navy)}.card-sub{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.45}.badge{font-size:10px;font-weight:700;padding:6px 9px;border-radius:999px;background:var(--pale);color:#0879A9;white-space:nowrap}.result-box{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.annual-goal{margin-top:13px;padding-top:13px;border-top:1px solid var(--line)}.annual-goal-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:8px}.annual-goal-title{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.9px;color:var(--muted)}.annual-goal-value{font-size:13px;font-weight:800;color:var(--navy)}.annual-goal-track{height:12px;background:#E8EEF3;border-radius:999px;overflow:hidden;position:relative}.annual-goal-fill{height:100%;width:76.1%;background:linear-gradient(90deg,var(--blue),var(--green));border-radius:999px}.annual-goal-foot{display:flex;justify-content:space-between;gap:12px;margin-top:7px;font-size:9px;color:var(--muted)}.annual-goal-foot strong{color:var(--navy)}.mini{background:#F8FBFD;border:1px solid var(--line);border-radius:12px;padding:12px}.mini .ml{font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.9px}.mini .mv{font-size:18px;color:var(--navy);font-weight:800;margin-top:5px}.mini .ms{font-size:10px;color:var(--muted);margin-top:3px}
+.origin-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:16px;margin-bottom:16px;align-items:start}.origin-main{padding:22px}.origin-split{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0 18px}.origin-block{border-radius:14px;padding:15px}.origin-block.direct{background:#EAF8FE}.origin-block.indirect{background:#FFF2EB}.origin-block .pct{font-size:27px;font-weight:800;color:var(--navy)}.origin-block .name{font-size:12px;font-weight:800;margin-top:3px}.origin-block .desc{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.4}.origin-chart-wrap{display:grid;grid-template-columns:minmax(220px,260px) 1fr;align-items:center;gap:18px}.origin-chart-box{position:relative;max-width:260px;width:100%;margin:0 auto}.origin-chart-box canvas{width:100%!important;height:auto!important}.origin-chart-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}.origin-chart-center .oc-big{font-size:28px;font-weight:800;color:var(--navy);line-height:1}.origin-chart-center .oc-small{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:6px}.origin-mini-list{display:grid;gap:10px}.origin-mini-item{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border:1px solid var(--line);border-radius:13px;background:#FBFDFF}.origin-mini-dot{width:10px;height:10px;border-radius:50%;margin-top:4px;flex:0 0 auto}.origin-mini-dot.direct{background:#1D1E46}.origin-mini-dot.indirect{background:#F47C4E}.origin-mini-dot.mix{background:#00AEEF}.origin-mini-copy{font-size:10px;color:var(--muted);line-height:1.45}.origin-mini-copy strong{display:block;font-size:12px;color:var(--navy);margin-bottom:2px}.channel-list{display:grid;gap:11px}.ch-row{display:grid;grid-template-columns:160px 1fr 58px;align-items:center;gap:12px;font-size:11px}.ch-name{font-weight:600;color:var(--ink)}.ch-track{height:10px;background:#EDF2F7;border-radius:999px;overflow:hidden}.ch-fill{height:100%;border-radius:999px}.ch-pct{text-align:right;font-weight:700;color:var(--navy)}.channel-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.channel-note{padding:12px 13px;border:1px solid var(--line);border-radius:13px;background:#FBFDFF}.channel-note .lab{display:block;font-size:9px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:var(--blue)}.channel-note .val{display:block;font-size:15px;font-weight:800;color:var(--navy);margin-top:6px}.channel-note .sub{display:block;font-size:10px;color:var(--muted);line-height:1.45;margin-top:4px}
+.takeaways{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:8px}.take{padding:18px 18px 17px}.take .num{font-size:10px;font-weight:800;color:var(--blue);letter-spacing:1.2px}.take h3{font-size:14px;margin:8px 0 6px;color:var(--navy)}.take p{font-size:11px;line-height:1.55;color:var(--muted);margin:0}
+.details-top{display:flex;justify-content:space-between;align-items:end;gap:20px;margin:26px 0 14px}.details-top h2{margin:0;color:var(--navy);font-size:22px}.details-top p{margin:5px 0 0;color:var(--muted);font-size:12px}.table-wrap{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:auto;box-shadow:var(--shadow);max-height:72vh}.data-table{width:100%;border-collapse:separate;border-spacing:0;font-size:11px;min-width:1160px}.data-table th{position:sticky;top:0;background:var(--navy);color:#fff;padding:12px 10px;text-align:right;font-size:10px;z-index:3}.data-table th:first-child{text-align:left;left:0;z-index:4}.data-table td{padding:10px;border-bottom:1px solid #EDF2F6;text-align:right;white-space:nowrap}.data-table td:first-child{position:sticky;left:0;background:#fff;text-align:left;font-weight:600;color:var(--navy);z-index:2}.data-table tr:hover td{background:#F8FCFE}.data-table tr:hover td:first-child{background:#F8FCFE}.data-table .group td{background:#EEF8FD!important;color:#0879A9!important;font-weight:800!important;text-transform:uppercase;letter-spacing:.9px;font-size:9px}.data-table .group td:first-child{position:sticky;left:0}.acc{font-weight:800;color:var(--navy);background:#FAFCFE}.foot{font-size:10px;color:var(--muted);margin-top:10px;text-align:right}.print-btn{border:1px solid var(--line);background:#fff;color:var(--navy);font-size:11px;font-weight:700;border-radius:10px;padding:9px 12px;cursor:pointer}
+@media(max-width:980px){.kpis{grid-template-columns:repeat(2,1fr)}.main-grid,.origin-grid{grid-template-columns:1fr}.takeaways{grid-template-columns:1fr}.hero-in{align-items:start}.hero-side{display:none}.origin-chart-wrap,.channel-summary{grid-template-columns:1fr}}@media(max-width:600px){.shell{padding:0 16px 32px}.hero-in,.tabs{padding-left:16px;padding-right:16px}.hero h1{font-size:28px}.kpis{grid-template-columns:1fr}.origin-split{grid-template-columns:1fr}.origin-chart-wrap{grid-template-columns:1fr}.ch-row{grid-template-columns:120px 1fr 48px}.tab{padding-left:10px;padding-right:10px}.exec-summary{align-items:flex-start}.channel-summary{grid-template-columns:1fr}}
+@media print{.tabs-wrap,.print-btn{display:none!important}.panel{display:block!important}.hero{print-color-adjust:exact;-webkit-print-color-adjust:exact}.shell{max-width:none;padding:0 10px}.table-wrap{max-height:none;overflow:visible;box-shadow:none}.data-table th,.data-table td:first-child{position:static}.details-panel{page-break-before:always}}
+
+/* ══════════════════════════════════════════
+   FUNIL COMERCIAL — ABA EXECUTIVA
+══════════════════════════════════════════ */
+.funnel-panel{padding-bottom:30px}
+.funnel-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin:24px 0 16px}
+.funnel-top h2{margin:0 0 6px;color:var(--navy);font-size:25px}.funnel-top p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
+.month-switch{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.month-btn{border:1px solid var(--line);background:#fff;color:var(--muted);font:700 11px Montserrat,sans-serif;padding:9px 11px;border-radius:9px;cursor:pointer;transition:.18s ease}
+.month-btn:hover{border-color:#9FDFF5;color:var(--navy)}.month-btn.active{background:var(--navy);border-color:var(--navy);color:#fff}
+.funnel-callout{display:flex;gap:13px;align-items:center;padding:14px 17px;margin-bottom:14px;background:#F3FAFD;border:1px solid #D9F0F8;border-radius:14px;color:#536079;font-size:12px;line-height:1.5}
+.funnel-callout strong{color:var(--navy)}.funnel-callout .dot{width:9px;height:9px;border-radius:50%;background:var(--blue);flex:0 0 auto}
+.funnel-kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:11px;margin-bottom:16px}
+.funnel-mini{background:#fff;border:1px solid rgba(29,30,70,.07);border-radius:16px;padding:15px 16px;box-shadow:var(--shadow);min-width:0}
+.fm-label{font-size:9px;text-transform:uppercase;letter-spacing:1px;font-weight:800;color:var(--muted)}
+.fm-value{font-size:21px;font-weight:800;color:var(--navy);margin-top:7px;letter-spacing:-.5px;white-space:nowrap}.fm-sub{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.35}
+.funnel-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:14px;margin-bottom:14px}
+.funnel-card{background:#fff;border:1px solid rgba(29,30,70,.07);border-radius:18px;padding:20px;box-shadow:var(--shadow)}
+.fc-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:16px}.fc-title{font-size:15px;font-weight:800;color:var(--navy)}.fc-sub{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.45}.fc-badge{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;border-radius:999px;padding:6px 9px;background:#EEF8FC;color:#168AB6;white-space:nowrap}
+.journey{display:flex;flex-direction:column;align-items:center;gap:8px;margin:4px 0 12px}.journey-step{width:var(--w);min-height:63px;border-radius:13px;display:flex;align-items:center;justify-content:space-between;padding:10px 17px;color:#fff;transition:width .25s ease;box-sizing:border-box;overflow:hidden}.journey-step.s1{background:#1D1E46}.journey-step.s2{background:#2A9AC5}.journey-step.s3{background:#27B978}.journey-step.s4{background:#F47C4E}.js-name{font-size:11px;font-weight:700}.js-val{font-size:17px;font-weight:800;text-align:right}.js-meta{font-size:9px;opacity:.8;margin-top:2px;text-align:right}.journey-step.segmented{padding:0;display:block;min-height:76px;position:relative;background:transparent}.seg-head{height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;color:var(--navy);font-size:10px;font-weight:800}.seg-total{font-size:12px}.seg-bar{height:48px;display:flex;border-radius:12px;overflow:hidden;color:#fff}.seg{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:5px 6px;text-align:center;font-size:8px;font-weight:700;line-height:1.05}.seg strong{font-size:11px;white-space:nowrap}.seg .seg-pct{font-size:8px;opacity:.86;font-weight:700;white-space:nowrap}.seg.green-a{background:#1E9E68}.seg.green-b{background:#52C58D}.seg.orange-a{background:#E9693E}.seg.orange-b{background:#F79A75}.seg span{opacity:.88}.opp-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.opp-card{border:1px solid #E7ECF1;border-radius:14px;padding:14px;background:#fff}.opp-card .opp-kicker{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}.opp-card .opp-main{font-size:21px;font-weight:800;color:var(--navy);margin-top:6px}.opp-card .opp-sub{font-size:10px;color:var(--muted);margin-top:4px;line-height:1.4}.opp-card .opp-money{font-size:15px;font-weight:800;color:var(--navy);margin-top:9px}.opp-card.ask{border-top:3px solid var(--blue)}.opp-card.central{border-top:3px solid var(--green)}.opp-note{margin-top:10px;font-size:9px;color:var(--muted);line-height:1.45}.opp-note strong{color:var(--navy)}
+.metric-pairs{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:13px}.metric-box{background:#F8FAFC;border:1px solid #EDF1F5;border-radius:12px;padding:11px}.metric-box .l{font-size:9px;text-transform:uppercase;font-weight:800;color:var(--muted);letter-spacing:.55px}.metric-box .v{font-size:17px;font-weight:800;color:var(--navy);margin-top:5px}.metric-box .s{font-size:9px;color:var(--muted);margin-top:3px}.benchmark-box{margin-top:12px;padding:14px 15px;border:1px solid #D8EAF3;border-radius:13px;background:linear-gradient(180deg,#F7FCFE 0%,#F3F9FC 100%);display:flex;gap:12px;align-items:flex-start}.benchmark-icon{width:28px;height:28px;border-radius:9px;background:#E1F4FB;color:#0879A9;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;flex:0 0 auto}.benchmark-copy{min-width:0}.benchmark-title{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:#0879A9;margin-bottom:5px}.benchmark-text{font-size:10px;line-height:1.55;color:#536079}.benchmark-text strong{color:var(--navy)}.benchmark-sources{margin-top:6px;font-size:9px;color:var(--muted)}.benchmark-sources a{color:#0879A9;text-decoration:none;font-weight:700}.benchmark-sources a:hover{text-decoration:underline}
+.ask-flow{display:flex;flex-direction:column;gap:10px}.ask-step{border:1px solid #E7ECF1;border-radius:13px;padding:13px 14px;position:relative;overflow:hidden}.ask-step:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--blue)}.ask-step.opp:before{background:#27B978}.ask-step.value:before{background:#F47C4E}.ask-row{display:flex;align-items:center;justify-content:space-between;gap:12px}.ask-name{font-size:11px;font-weight:700;color:#536079}.ask-value{font-size:20px;font-weight:800;color:var(--navy)}.ask-meta{font-size:10px;color:var(--muted);margin-top:5px}.ask-progress{height:6px;background:#EEF2F5;border-radius:99px;margin-top:9px;overflow:hidden}.ask-progress span{display:block;height:100%;border-radius:99px;background:var(--blue);transition:width .25s ease}.ask-step.opp .ask-progress span{background:#27B978}
+.funnel-bottom{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.bottom-stat{padding:14px 15px;background:#fff;border:1px solid rgba(29,30,70,.07);border-radius:14px}.bottom-stat .l{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--muted)}.bottom-stat .v{font-size:18px;font-weight:800;color:var(--navy);margin-top:5px}.bottom-stat .s{font-size:9px;color:var(--muted);margin-top:3px}
+@media(max-width:1100px){.funnel-kpis{grid-template-columns:repeat(3,1fr)}.funnel-grid{grid-template-columns:1fr}.funnel-bottom{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.funnel-top{flex-direction:column}.month-switch{justify-content:flex-start}.funnel-kpis{grid-template-columns:repeat(2,1fr)}.metric-pairs{grid-template-columns:1fr}.funnel-bottom{grid-template-columns:1fr}.journey-step{width:100%!important}.fm-value{font-size:18px}}
+
+</style>
+</head>
+<body>
+<header class="hero"><div class="hero-in"><div><div class="eyebrow">Conselho & Diretoria · Hotelaria</div><h1>Performance <span>2026</span></h1><p>Morro dos Anjos Resort · Jan a Set/2026 · Fonte: Comercial</p></div><div class="hero-side"><div class="label">Realizado acumulado</div><div class="value">R$ 38,83 mi</div><div class="sub">109,0% da meta acumulada</div></div></div></header>
+<nav class="tabs-wrap"><div class="tabs"><button class="tab active" data-tab="executiva">VISÃO EXECUTIVA</button><button class="tab" data-tab="detalhes">NÚMEROS DETALHADOS</button><button class="tab" data-tab="funil">FUNIL COMERCIAL</button></div></nav>
+
+<div class="shell">
+<section id="executiva" class="panel active">
+  <div class="exec-summary"><div class="summary-mark">↑</div><div class="summary-text"><strong>Até setembro, a hotelaria acumula R$ 38,83 milhões em receita — 9,0% acima da meta do período.</strong> Os canais diretos concentram 81,4% da receita e o investimento em mídia apresenta ROAS direto acumulado de 56,4x. Setembro fechou abaixo da meta mensal, mas o acumulado segue R$ 3,21 milhões acima do planejado.</div></div>
+
+  <div class="kpis">
+    <div class="card kpi"><div class="k-label">Receita acumulada</div><div class="k-value">R$ 38,83 mi</div><div class="k-sub">Meta Jan–Set: R$ 35,62 mi</div><span class="pill">+9,0% acima da meta</span></div>
+    <div class="card kpi orange"><div class="k-label">Setembro / 2026</div><div class="k-value">R$ 4,08 mi</div><div class="k-sub">Meta do mês: R$ 4,48 mi</div><span class="pill warn">91,0% da meta mensal</span></div>
+    <div class="card kpi navy"><div class="k-label">Reservas acumuladas</div><div class="k-value">9.495</div><div class="k-sub">1.062 reservas em setembro</div><span class="pill info">Jan → Set/26</span></div>
+    <div class="card kpi green"><div class="k-label">ROAS direto</div><div class="k-value">56,4x</div><div class="k-sub">Receita direta ÷ R$ 560 mil em Ads</div><span class="pill">R$ 31,59 mi em vendas diretas</span></div>
+  </div>
+
+  <div class="main-grid">
+    <div class="card chart-card"><div class="card-head"><div><div class="card-title">Meta × Receita Realizada</div><div class="card-sub">Leitura mensal do desempenho comercial da hotelaria.</div></div><span class="badge">Jan–Set/2026</span></div><canvas id="metaChart" height="120"></canvas></div>
+    <div class="card chart-card"><div class="card-head"><div><div class="card-title">Resultado acumulado</div><div class="card-sub">Onde estamos em relação ao planejado.</div></div></div><div class="result-box"><div class="mini"><div class="ml">Meta acumulada</div><div class="mv">R$ 35,62 mi</div><div class="ms">Jan–Set/26</div></div><div class="mini"><div class="ml">Realizado</div><div class="mv">R$ 38,83 mi</div><div class="ms">Jan–Set/26</div></div><div class="mini"><div class="ml">Atingimento</div><div class="mv">109,0%</div><div class="ms">Acima do plano</div></div><div class="mini"><div class="ml">Saldo vs. meta</div><div class="mv">+R$ 3,21 mi</div><div class="ms">Resultado acumulado</div></div></div><div class="annual-goal"><div class="annual-goal-head"><div class="annual-goal-title">Meta anual 2026</div><div class="annual-goal-value">76,1% atingido</div></div><div class="annual-goal-track"><div class="annual-goal-fill"></div></div><div class="annual-goal-foot"><span><strong>R$ 38,83 mi</strong> realizados</span><span>Meta: <strong>R$ 51,00 mi</strong> · faltam <strong>R$ 12,17 mi</strong></span></div></div></div>
+  </div>
+
+  <div class="origin-grid">
+    <div class="card origin-main"><div class="card-head"><div><div class="card-title">Origem da Receita</div><div class="card-sub">A leitura que importa para o negócio: direto vs. indireto.</div></div><span class="badge">R$ 38,83 mi</span></div><div class="origin-split"><div class="origin-block direct"><div class="pct">81,4%</div><div class="name">Canais Diretos</div><div class="desc">Booking Engine + Central de Reservas + Grupos e Eventos<br><strong>R$ 31,59 mi</strong></div></div><div class="origin-block indirect"><div class="pct">18,6%</div><div class="name">Canais Indiretos</div><div class="desc">Agências + OTAs / Operadores<br><strong>R$ 7,24 mi</strong></div></div></div><div class="origin-chart-wrap"><div class="origin-chart-box"><canvas id="originChart" height="78"></canvas><div class="origin-chart-center"><div class="oc-big">81,4%</div><div class="oc-small">Receita Direta</div></div></div><div class="origin-mini-list"><div class="origin-mini-item"><span class="origin-mini-dot direct"></span><div class="origin-mini-copy"><strong>Predomínio do canal direto</strong>Central + Grupos + Booking Engine respondem pela maior parte da receita do período.</div></div><div class="origin-mini-item"><span class="origin-mini-dot indirect"></span><div class="origin-mini-copy"><strong>Participação indireta controlada</strong>Agências + OTAs somam 18,6% do acumulado, com papel complementar na distribuição.</div></div><div class="origin-mini-item"><span class="origin-mini-dot mix"></span><div class="origin-mini-copy"><strong>Leitura executiva</strong>O mix favorece margem e relacionamento próprio, com forte concentração nos canais sob gestão direta.</div></div></div></div></div>
+    <div class="card origin-main"><div class="card-head"><div><div class="card-title">Composição por canal</div><div class="card-sub">Abertura do acumulado de receita.</div></div></div><div class="channel-list">
+      <div class="ch-row"><div class="ch-name">Central de Reservas</div><div class="ch-track"><div class="ch-fill" style="width:100%;background:#1D1E46"></div></div><div class="ch-pct">44,7%</div></div>
+      <div class="ch-row"><div class="ch-name">Grupos e Eventos</div><div class="ch-track"><div class="ch-fill" style="width:41.6%;background:#00AEEF"></div></div><div class="ch-pct">18,6%</div></div>
+      <div class="ch-row"><div class="ch-name">Booking Engine</div><div class="ch-track"><div class="ch-fill" style="width:40.2%;background:#4CC6F2"></div></div><div class="ch-pct">18,0%</div></div>
+      <div class="ch-row"><div class="ch-name">OTAs / Operadores</div><div class="ch-track"><div class="ch-fill" style="width:21.2%;background:#F47C4E"></div></div><div class="ch-pct">9,5%</div></div>
+      <div class="ch-row"><div class="ch-name">Agências</div><div class="ch-track"><div class="ch-fill" style="width:20.5%;background:#00A878"></div></div><div class="ch-pct">9,1%</div></div>
+    </div><div class="channel-summary"><div class="channel-note"><span class="lab">Maior canal</span><span class="val">44,7%</span><span class="sub">Central de Reservas lidera a receita acumulada.</span></div><div class="channel-note"><span class="lab">Top 3 canais</span><span class="val">81,4%</span><span class="sub">Central + Grupos + Booking Engine concentram a receita direta.</span></div><div class="channel-note"><span class="lab">Canais indiretos</span><span class="val">18,6%</span><span class="sub">Agências e OTAs mantêm papel complementar no mix.</span></div></div></div>
+  </div>
+
+  <div class="takeaways">
+    <div class="card take"><div class="num">01 · RESULTADO</div><h3>Acumulado acima da meta</h3><p>R$ 38,83 mi realizados contra R$ 35,62 mi planejados: vantagem de R$ 3,21 mi no acumulado até setembro.</p></div>
+    <div class="card take"><div class="num">02 · DISTRIBUIÇÃO</div><h3>81,4% da receita é direta</h3><p>Central, Grupos e Booking Engine são responsáveis por R$ 31,59 mi da receita do período.</p></div>
+    <div class="card take"><div class="num">03 · RETORNO</div><h3>ROAS direto de 56,4x</h3><p>R$ 560 mil em mídia para R$ 31,59 mi em vendas diretas, considerando os canais com influência dos Ads.</p></div>
+  </div>
+</section>
+
+<section id="detalhes" class="panel details-panel">
+  <div class="details-top"><div><h2>Números Detalhados</h2><p>Base mensal para consulta durante a reunião. Valores de Jan a Set/2026.</p></div><button class="print-btn" onclick="window.print()">Imprimir / Salvar PDF</button></div>
+  <div class="table-wrap"><table class="data-table" id="detailTable"></table></div>
+  <div class="foot">Fonte: Comercial · ROAS = Receita Direta (Booking Engine + Central + Grupos e Eventos) ÷ Investimento em Ads.</div>
+</section>
+
+<section id="funil" class="panel funnel-panel">
+  <div class="funnel-top">
+    <div><h2>Funil Comercial</h2><p>Jornada mensal de compra e geração de oportunidades comerciais. Selecione um mês para acompanhar o caminho do tráfego até receita e potencial de vendas.</p></div>
+    <div class="month-switch" id="monthSwitch"></div>
+  </div>
+
+  <div class="funnel-callout"><span class="dot"></span><div><strong>Leitura das oportunidades:</strong> Asksuite e Central/Motor são apresentados separadamente para evitar dupla contagem. Na Central, “oportunidades” representam os registros/cotações criados pelos usuários corporativos identificados com e-mail @morrodosanjos.com.br.</div></div>
+
+  <div class="funnel-kpis">
+    <div class="funnel-mini"><div class="fm-label">Usuários do site</div><div class="fm-value" id="fkAcessos">—</div><div class="fm-sub">Total de usuários · GA4</div></div>
+    <div class="funnel-mini"><div class="fm-label">Acessos ao motor</div><div class="fm-value" id="fkMotor">—</div><div class="fm-sub" id="fkMotorSub">Motor de Reservas</div></div>
+    <div class="funnel-mini"><div class="fm-label">Reservas diretas</div><div class="fm-value" id="fkReservas">—</div><div class="fm-sub" id="fkReservasSub">Booking + Central</div></div>
+    <div class="funnel-mini"><div class="fm-label">Receita Booking + Central</div><div class="fm-value" id="fkReceita">—</div><div class="fm-sub" id="fkRoas">Vendas ganhas</div></div>
+    <div class="funnel-mini"><div class="fm-label">Oportunidades Asksuite</div><div class="fm-value" id="fkOpors">—</div><div class="fm-sub" id="fkTaxaOp">—</div></div>
+    <div class="funnel-mini"><div class="fm-label">Oportunidades Central</div><div class="fm-value" id="fkCentralOp">—</div><div class="fm-sub" id="fkCentralOpSub">Motor de Reservas</div></div>
+  </div>
+
+  <div class="funnel-grid">
+    <div class="funnel-card">
+      <div class="fc-head"><div><div class="fc-title">Jornada de Compra</div><div class="fc-sub">Leitura omnicanal: o usuário pode avançar pelo Booking Engine ou concluir com apoio da Central de Reservas.</div></div><span class="fc-badge" id="fcMonth">Set/26</span></div>
+      <div class="journey">
+        <div class="journey-step s1" style="--w:100%"><div class="js-name">01 · Usuários do site</div><div><div class="js-val" id="jAcessos">—</div><div class="js-meta">Audiência digital</div></div></div>
+        <div class="journey-step s2" id="jStepMotor" style="--w:88%"><div class="js-name">02 · Acessos ao Motor de Reservas</div><div><div class="js-val" id="jMotor">—</div><div class="js-meta" id="jMotorMeta">—</div></div></div>
+        <div class="journey-step s2" id="jStepAdd" style="--w:79%"><div class="js-name">03 · Add ao carrinho</div><div><div class="js-val" id="jAdd">—</div><div class="js-meta" id="jAddMeta">—</div></div></div>
+        <div class="journey-step segmented" id="jStepRes" style="--w:70%"><div class="seg-head"><span>04 · Reservas diretas</span><span class="seg-total" id="jResTotal">—</span></div><div class="seg-bar"><div class="seg green-a" id="segBookingRes"><span>Booking</span><strong id="jBookingRes">—</strong><span class="seg-pct" id="jBookingResPct">—</span></div><div class="seg green-b" id="segCentralRes"><span>Central</span><strong id="jCentralRes">—</strong><span class="seg-pct" id="jCentralResPct">—</span></div></div></div>
+        <div class="journey-step segmented" id="jStepRec" style="--w:61%"><div class="seg-head"><span>05 · Receita Booking + Central</span><span class="seg-total" id="jRecTotal">—</span></div><div class="seg-bar"><div class="seg orange-a" id="segBookingRec"><span>Booking</span><strong id="jBookingRec">—</strong><span class="seg-pct" id="jBookingRecPct">—</span></div><div class="seg orange-b" id="segCentralRec"><span>Central</span><strong id="jCentralRec">—</strong><span class="seg-pct" id="jCentralRecPct">—</span></div></div></div>
+      </div>
+      <div class="metric-pairs">
+        <div class="metric-box"><div class="l">Site → Motor</div><div class="v" id="mSiteMotor">—</div><div class="s">Avanço para ambiente de reserva</div></div>
+        <div class="metric-box"><div class="l">Motor → Reserva Booking</div><div class="v" id="mMotorBooking">—</div><div class="s">Fechamento no Booking Engine</div></div>
+        <div class="metric-box"><div class="l">Central · taxa de ganho</div><div class="v" id="mCentralWin">—</div><div class="s">Ganhas ÷ oportunidades da Central</div></div>
+      </div>
+      <div class="benchmark-box"><div class="benchmark-icon">ⓘ</div><div class="benchmark-copy"><div class="benchmark-title">Como ler esta jornada</div><div class="benchmark-text">O site e a mídia não conduzem o hóspede por um único caminho. O <strong>Add ao carrinho</strong> ajuda a visualizar intenção dentro da jornada digital; o fechamento pode acontecer no <strong>Booking Engine</strong> ou com apoio da <strong>Central de Reservas</strong>. Por isso, as barras 04 e 05 mostram os dois fechamentos separadamente, sem atribuir toda a venda ao site.</div><div class="benchmark-text" style="margin-top:6px">O indicador <strong>Motor → Reserva Booking</strong> mede apenas o fechamento transacional dentro do motor. Já a <strong>taxa de ganho da Central</strong> considera as oportunidades criadas pela equipe e efetivamente ganhas.</div></div></div>
+    </div>
+
+    <div class="funnel-card">
+      <div class="fc-head"><div><div class="fc-title">Jornada Comercial · Oportunidades</div><div class="fc-sub">Duas origens, apresentadas separadamente para preservar a leitura correta do funil.</div></div><span class="fc-badge">Comercial</span></div>
+      <div class="opp-grid">
+        <div class="opp-card ask"><div class="opp-kicker">Asksuite</div><div class="opp-main" id="aOpors">—</div><div class="opp-sub" id="aOpMeta">Oportunidades geradas</div><div class="opp-money" id="aVal">—</div><div class="opp-sub" id="aTicket">Valor potencial</div></div>
+        <div class="opp-card central"><div class="opp-kicker">Central · Motor</div><div class="opp-main" id="cOpors">—</div><div class="opp-sub" id="cOpMeta">Oportunidades geradas</div><div class="opp-money" id="cVal">—</div><div class="opp-sub" id="cValMeta">Valor gerado</div></div>
+      </div>
+      <div class="metric-pairs">
+        <div class="metric-box"><div class="l">Asksuite · taxa oportunidade</div><div class="v" id="mTaxOp">—</div><div class="s">Oportunidades ÷ atendimentos</div></div>
+        <div class="metric-box"><div class="l">Central · oportunidades ganhas</div><div class="v" id="mCentralWon">—</div><div class="s" id="mCentralWonSub">—</div></div>
+        <div class="metric-box"><div class="l">Central · valor ganho</div><div class="v" id="mCentralWonVal">—</div><div class="s" id="mCentralLostVal">—</div></div>
+      </div>
+      <div class="opp-note"><strong>Sem soma entre as origens:</strong> os volumes de Asksuite e Central/Motor podem representar etapas ou registros diferentes da mesma jornada comercial.</div>
+    </div>
+  </div>
+
+  <div class="funnel-bottom">
+    <div class="bottom-stat"><div class="l">Investimento em Ads</div><div class="v" id="bAds">—</div><div class="s">Meta + Google Ads</div></div>
+    <div class="bottom-stat"><div class="l">CPA Central + Booking</div><div class="v" id="bCpa">—</div><div class="s">Ads ÷ reservas Central + Booking</div></div>
+    <div class="bottom-stat"><div class="l">ROAS Direto</div><div class="v" id="bRoas">—</div><div class="s">Receita direta ÷ Ads</div></div>
+    <div class="bottom-stat"><div class="l">Receita Direta</div><div class="v" id="bDirect">—</div><div class="s" id="bDirectShare">—</div></div>
+  </div>
+  <div class="foot">Fonte: Comercial · Canal direto = Booking Engine + Central de Reservas + Grupos e Eventos.</div>
+</section>
+</div>
+<script>
+const meses=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set'];
+const D={
+ meta:[3393181,2941516,3441228,3402164,4074832,5308203,4410590,4165736,4482029],
+ receita:[4907426,2450148,3810799,5698220,3091588,3128810,5866986,5795146,4077116],
+ booking:[917777,430242,785453,1550906,408185,436279,924534,835397,694958],
+ central:[2233189,1139720,1809867,1878998,1032255,1326826,3083852,3091208,1777819],
+ grupos:[400754,294898,557140,1485777,957355,640790,975448,907050,1011946],
+ agencias:[767905,223562,342455,433981,300233,311983,471364,372285,328595],
+ otas:[587801,361726,315884,348558,393562,412933,411788,589207,263797],
+ reservas:[1085,652,1002,1236,665,828,1458,1507,1062],
+ siteReservas:[228,143,275,464,165,144,291,270,172],
+ centralReservas:[490,314,503,497,305,421,875,795,304],
+ arpu:[4523,3758,3803,4610,4649,3779,4024,3845,3839],
+ ads:[27717,27061,27811,108463,44377,75391,95986,84302,69273],
+ atend:[8400,6476,13839,9353,4607,5200,10591,9307,8959],
+ opors:[5151,3350,8041,5013,1642,1940,5204,5209,4374],
+ valOp:[9491119,5421913,11750350,7031417,2039127,2571239,6228321,7689339,5928103],
+ grpPot:[330924,308969,770227,724833,311898,61501,767298,538866,730691],
+ grpCot:[13,19,48,31,11,9,36,23,31],
+ acessos:[64000,43000,62000,168000,25000,30000,47000,74000,73000],
+ motorAcessos:[41446,26427,42382,74945,16851,7831,15000,33251,34908],
+ centralOp:[4206,4101,5025,4491,3668,6064,15338,10080,6644],
+ centralWon:[154,85,289,211,150,250,752,584,316],
+ centralGerado:[18590000,16720000,19980000,19750000,15120000,26240000,69330000,48400000,34190000],
+ centralWonVal:[590000,250000,850000,670000,400000,840000,2670000,1940000,1210000],
+ centralLostVal:[18000000,16170000,19130000,19080000,14720000,25410000,66670000,46460000,32980000],
+ add:[5400,3100,5400,7200,1600,739,2250,3500,3200],
+ siteReceita:[917777,430242,785453,1550906,408185,436279,924534,835397,694958],
+ crmRes:[23,23,20,49,38,27,6,74,10],crmVend:[75966,49418,54462,107160,84195,62460,13683,109143,15122],
+ infRes:[0,15,46,0,22,38,40,9,4],infVend:[0,43393,120971,0,50856,103111,130085,27966,11786],
+ askRes:[0,0,1,9,0,5,12,6,22],askVend:[0,0,4246.02,33012.28,0,15672.04,35024.74,24713.82,91828.60]
+};
+const sum=a=>a.reduce((x,y)=>x+y,0);const direct=D.booking.map((v,i)=>v+D.central[i]+D.grupos[i]);const roas=direct.map((v,i)=>v/D.ads[i]);const reservasMidia=D.siteReservas.map((v,i)=>v+D.centralReservas[i]);const cpaMidia=D.ads.map((v,i)=>v/reservasMidia[i]);const txAdd=D.add.map((v,i)=>v/D.acessos[i]*100);const txOp=D.opors.map((v,i)=>v/D.atend[i]*100);
+const brl=v=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}).format(v);const num=v=>new Intl.NumberFormat('pt-BR',{maximumFractionDigits:0}).format(v);const pct=v=>v.toFixed(1).replace('.',',')+'%';
+
+new Chart(document.getElementById('metaChart'),{type:'bar',data:{labels:meses,datasets:[{label:'Meta',data:D.meta,backgroundColor:'#DCE8F0',borderRadius:5},{label:'Realizado',data:D.receita,backgroundColor:'#00AEEF',borderRadius:5}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{usePointStyle:false,boxWidth:12,boxHeight:12,padding:18,font:{family:'Montserrat',size:11}}},tooltip:{callbacks:{label:c=>' '+c.dataset.label+': '+brl(c.raw)}}},scales:{x:{grid:{display:false},ticks:{font:{family:'Montserrat',size:10},color:'#71809A'}},y:{beginAtZero:true,grid:{color:'rgba(29,30,70,.06)'},ticks:{callback:v=>'R$ '+(v/1e6).toFixed(0)+'M',font:{family:'Montserrat',size:10},color:'#71809A'}}}}});
+new Chart(document.getElementById('originChart'),{type:'doughnut',data:{labels:['Direto','Indireto'],datasets:[{data:[sum(direct),sum(D.agencias)+sum(D.otas)],backgroundColor:['#1D1E46','#F47C4E'],borderColor:'#fff',borderWidth:4,hoverOffset:4}]},options:{cutout:'76%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.label+': '+brl(c.raw)+' ('+pct(c.raw/sum(D.receita)*100)+')'}}}}});
+
+const rows=[
+ {g:'Receita e Vendas'},
+ {n:'Meta · Venda Vendida',a:D.meta,f:brl,acc:()=>brl(sum(D.meta))},{n:'Receita Total',a:D.receita,f:brl,acc:()=>brl(sum(D.receita))},{n:'Booking Engine',a:D.booking,f:brl,acc:()=>brl(sum(D.booking))},{n:'Central de Reservas',a:D.central,f:brl,acc:()=>brl(sum(D.central))},{n:'Grupos e Eventos',a:D.grupos,f:brl,acc:()=>brl(sum(D.grupos))},{n:'Agências',a:D.agencias,f:brl,acc:()=>brl(sum(D.agencias))},{n:'OTAs e Operadores',a:D.otas,f:brl,acc:()=>brl(sum(D.otas))},{n:'Reservas',a:D.reservas,f:num,acc:()=>num(sum(D.reservas))},{n:'Reservas Central de Reservas',a:D.centralReservas,f:num,acc:()=>num(sum(D.centralReservas))},{n:'Reservas Central + Booking',a:reservasMidia,f:num,acc:()=>num(sum(reservasMidia))},{n:'ARPU',a:D.arpu,f:brl,acc:()=>brl(sum(D.receita)/sum(D.reservas))},{n:'Investimento em Ads',a:D.ads,f:brl,acc:()=>brl(sum(D.ads))},{n:'CPA Central + Booking',a:cpaMidia,f:brl,acc:()=>brl(sum(D.ads)/sum(reservasMidia))},{n:'ROAS Direto',a:roas,f:v=>v.toFixed(1).replace('.',',')+'x',acc:()=> (sum(direct)/sum(D.ads)).toFixed(1).replace('.',',')+'x'},
+ {g:'Asksuite'},
+ {n:'Atendimentos',a:D.atend,f:num,acc:()=>num(sum(D.atend))},{n:'Oportunidades',a:D.opors,f:num,acc:()=>num(sum(D.opors))},{n:'Taxa de Oportunidade',a:txOp,f:pct,acc:()=>pct(sum(D.opors)/sum(D.atend)*100)},{n:'Valor em Oportunidades',a:D.valOp,f:brl,acc:()=>brl(sum(D.valOp))},
+ {g:'Asksuite · Grupos'},
+ {n:'Potencial de Vendas',a:D.grpPot,f:brl,acc:()=>brl(sum(D.grpPot))},{n:'Cotações de Grupos',a:D.grpCot,f:num,acc:()=>num(sum(D.grpCot))},
+ {g:'Site'},
+ {n:'Usuários do site · GA4',a:D.acessos,f:num,acc:()=>num(sum(D.acessos))},{n:'Acessos ao Motor de Reservas',a:D.motorAcessos,f:num,acc:()=>num(sum(D.motorAcessos))},{n:'Add ao Carrinho',a:D.add,f:num,acc:()=>num(sum(D.add))},{n:'Taxa Add ao Carrinho',a:txAdd,f:pct,acc:()=>pct(sum(D.add)/sum(D.acessos)*100)},{n:'Reservas Booking Engine',a:D.siteReservas,f:num,acc:()=>num(sum(D.siteReservas))},{n:'Conversão Motor → Reserva Booking',a:D.siteReservas.map((v,i)=>v/D.motorAcessos[i]*100),f:pct,acc:()=>pct(sum(D.siteReservas)/sum(D.motorAcessos)*100)},{n:'Receita Booking Engine',a:D.siteReceita,f:brl,acc:()=>brl(sum(D.siteReceita))},
+ {g:'Central · Motor de Reservas'},
+ {n:'Oportunidades geradas',a:D.centralOp,f:num,acc:()=>num(sum(D.centralOp))},{n:'Oportunidades ganhas',a:D.centralWon,f:num,acc:()=>num(sum(D.centralWon))},{n:'% ganhas',a:D.centralWon.map((v,i)=>v/D.centralOp[i]*100),f:pct,acc:()=>pct(sum(D.centralWon)/sum(D.centralOp)*100)},{n:'Valor gerado',a:D.centralGerado,f:brl,acc:()=>brl(268330000)},
+ {g:'CRM'},
+ {n:'Reservas CRM',a:D.crmRes,f:num,acc:()=>num(sum(D.crmRes))},{n:'Vendas CRM',a:D.crmVend,f:brl,acc:()=>brl(sum(D.crmVend))},
+ {g:'Influenciadores'},
+ {n:'Reservas Influenciadores',a:D.infRes,f:num,acc:()=>num(sum(D.infRes))},{n:'Vendas Influenciadores',a:D.infVend,f:brl,acc:()=>brl(sum(D.infVend))},
+ {g:'AskFlow · Agentes'},
+ {n:'Reservas AskFlow',a:D.askRes,f:num,acc:()=>num(sum(D.askRes))},{n:'Vendas AskFlow',a:D.askVend,f:brl,acc:()=>brl(sum(D.askVend))}
+];
+const table=document.getElementById('detailTable');table.innerHTML='<thead><tr><th>Indicador</th>'+meses.map(m=>'<th>'+m+'/26</th>').join('')+'<th>Acumulado</th></tr></thead><tbody>'+rows.map(r=>r.g?'<tr class="group"><td colspan="11">'+r.g+'</td></tr>':'<tr><td>'+r.n+'</td>'+r.a.map(v=>'<td>'+r.f(v)+'</td>').join('')+'<td class="acc">'+r.acc()+'</td></tr>').join('')+'</tbody>';
+
+
+/* FUNIL COMERCIAL INTERATIVO */
+const mesLabels=meses.map(m=>m+'/26');
+const monthSwitch=document.getElementById('monthSwitch');
+monthSwitch.innerHTML='<button type="button" class="month-btn" data-mi="acc">ACUMULADO 2026</button>'+mesLabels.map((m,i)=>'<button type="button" class="month-btn '+(i===8?'active':'')+'" data-mi="'+i+'">'+m+'</button>').join('');
+const moneyCompact=v=>'R$ '+(v>=1000000?(v/1000000).toFixed(2).replace('.',',')+' mi':(v/1000).toFixed(0).replace('.',',')+' mil');
+const xfmt=v=>v.toFixed(1).replace('.',',')+'x';
+const val=(a,i)=>i==='acc'?sum(a):a[i];
+
+function setSegments(idA,idB,a,b){
+  const total=a+b; const pa=total?a/total*100:50; const pb=100-pa;
+  document.getElementById(idA).style.width=pa+'%';
+  document.getElementById(idB).style.width=pb+'%';
+}
+
+function renderFunnel(i){
+  const isAcc=i==='acc';
+  const acessos=val(D.acessos,i), motor=val(D.motorAcessos,i), add=val(D.add,i), bookingRes=val(D.siteReservas,i), centralRes=val(D.centralReservas,i), centralWon=val(D.centralWon,i), reservasDiretas=bookingRes+centralRes;
+  const receita=val(D.receita,i), bookingRec=val(D.siteReceita,i), centralRec=val(D.central,i), centralWonVal=isAcc?9420000:val(D.centralWonVal,i), receitaBC=bookingRec+centralRec;
+  const reservasTotais=val(D.reservas,i), atend=val(D.atend,i), op=val(D.opors,i), valAsk=val(D.valOp,i), ads=val(D.ads,i), cOp=val(D.centralOp,i), cGer=isAcc?268330000:val(D.centralGerado,i), cLost=isAcc?258600000:val(D.centralLostVal,i);
+  const dir=isAcc?sum(direct):direct[i];
+  const tSiteMotor=acessos?motor/acessos*100:0, tMotorAdd=motor?add/motor*100:0, tMotorBooking=motor?bookingRes/motor*100:0, tCentralMotor=motor?centralRes/motor*100:0, tDirectMotor=motor?reservasDiretas/motor*100:0, tCentralWin=cOp?centralWon/cOp*100:0;
+  const tOp=atend?op/atend*100:0, ticket=op?valAsk/op:0, cpa=reservasDiretas?ads/reservasDiretas:0, r=ads?dir/ads:0, share=receita?dir/receita*100:0;
+
+  document.getElementById('fcMonth').textContent=isAcc?'Jan–Set/26':mesLabels[i];
+  document.getElementById('fkAcessos').textContent=num(acessos);
+  document.getElementById('fkMotor').textContent=num(motor); document.getElementById('fkMotorSub').textContent=pct(tSiteMotor)+' dos usuários do site';
+  document.getElementById('fkReservas').textContent=num(reservasDiretas); document.getElementById('fkReservasSub').textContent=num(bookingRes)+' Booking + '+num(centralRes)+' Central';
+  document.getElementById('fkReceita').textContent=moneyCompact(receitaBC); document.getElementById('fkRoas').textContent=moneyCompact(bookingRec)+' Booking + '+moneyCompact(centralRec)+' Central';
+  document.getElementById('fkOpors').textContent=num(op); document.getElementById('fkTaxaOp').textContent=pct(tOp)+' dos atendimentos';
+  document.getElementById('fkCentralOp').textContent=num(cOp); document.getElementById('fkCentralOpSub').textContent=num(centralWon)+' ganhas · '+pct(tCentralWin);
+
+  document.getElementById('jAcessos').textContent=num(acessos);
+  document.getElementById('jMotor').textContent=num(motor); document.getElementById('jMotorMeta').textContent=pct(tSiteMotor)+' dos usuários do site';
+  document.getElementById('jAdd').textContent=num(add); document.getElementById('jAddMeta').textContent=pct(tMotorAdd)+' dos acessos ao motor';
+  document.getElementById('jResTotal').textContent=num(reservasDiretas)+' total · '+pct(tDirectMotor)+' do motor'; document.getElementById('jBookingRes').textContent=num(bookingRes); document.getElementById('jCentralRes').textContent=num(centralRes); document.getElementById('jBookingResPct').textContent=pct(tMotorBooking)+' do motor'; document.getElementById('jCentralResPct').textContent=pct(tCentralMotor)+' do motor';
+  document.getElementById('jRecTotal').textContent=moneyCompact(receitaBC); document.getElementById('jBookingRec').textContent=moneyCompact(bookingRec); document.getElementById('jCentralRec').textContent=moneyCompact(centralRec);
+  document.getElementById('jBookingRecPct').textContent=pct(tMotorBooking)+' do motor'; document.getElementById('jCentralRecPct').textContent=pct(tCentralMotor)+' do motor';
+  setSegments('segBookingRes','segCentralRes',bookingRes,centralRes); setSegments('segBookingRec','segCentralRec',bookingRec,centralRec);
+  const widthMotor=Math.max(78,Math.min(94,76+tSiteMotor*.13));
+  const widthAdd=Math.max(68,Math.min(86,66+tMotorAdd*.18));
+  const tAddRes=add?reservasDiretas/add*100:0;
+  const widthRes=Math.max(46,Math.min(widthAdd-4,40+tAddRes*.9));
+  const widthRec=Math.max(40,Math.min(widthRes-4,widthRes-4));
+  document.getElementById('jStepMotor').style.setProperty('--w',widthMotor+'%');
+  document.getElementById('jStepAdd').style.setProperty('--w',widthAdd+'%');
+  document.getElementById('jStepRes').style.setProperty('--w',widthRes+'%');
+  document.getElementById('jStepRec').style.setProperty('--w',widthRec+'%');
+  document.getElementById('mSiteMotor').textContent=pct(tSiteMotor); document.getElementById('mMotorBooking').textContent=pct(tMotorBooking); document.getElementById('mCentralWin').textContent=pct(tCentralWin);
+
+  document.getElementById('aOpors').textContent=num(op); document.getElementById('aOpMeta').textContent=pct(tOp)+' dos '+num(atend)+' atendimentos';
+  document.getElementById('aVal').textContent=moneyCompact(valAsk); document.getElementById('aTicket').textContent='Ticket potencial médio: '+brl(ticket);
+  document.getElementById('cOpors').textContent=num(cOp); document.getElementById('cOpMeta').textContent=num(centralWon)+' ganhas · '+pct(tCentralWin)+' de ganho';
+  document.getElementById('cVal').textContent=moneyCompact(cGer); document.getElementById('cValMeta').textContent='Valor gerado em oportunidades';
+  document.getElementById('mTaxOp').textContent=pct(tOp); document.getElementById('mCentralWon').textContent=num(centralWon); document.getElementById('mCentralWonSub').textContent=pct(tCentralWin)+' das oportunidades';
+  document.getElementById('mCentralWonVal').textContent=moneyCompact(centralWonVal); document.getElementById('mCentralLostVal').textContent='Perdido: '+moneyCompact(cLost);
+
+  document.getElementById('bAds').textContent=brl(ads); document.getElementById('bCpa').textContent=brl(cpa); document.getElementById('bRoas').textContent=xfmt(r); document.getElementById('bDirect').textContent=moneyCompact(dir); document.getElementById('bDirectShare').textContent=pct(share)+(isAcc?' da receita acumulada':' da receita do mês');
+}
+monthSwitch.querySelectorAll('.month-btn').forEach(btn=>btn.addEventListener('click',()=>{monthSwitch.querySelectorAll('.month-btn').forEach(b=>b.classList.toggle('active',b===btn));renderFunnel(btn.dataset.mi==='acc'?'acc':Number(btn.dataset.mi));}));
+renderFunnel(8);
+
+document.querySelectorAll('.tab').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b===btn));document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===btn.dataset.tab));window.scrollTo({top:0,behavior:'smooth'})}));
+</script>
+</body></html>
