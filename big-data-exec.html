@@ -48,52 +48,31 @@
 </style>
 </head>
 <body>
-<header class="hero"><div class="hero-in"><div><div class="eyebrow">Conselho & Diretoria · Hotelaria</div><h1>Performance <span>2026</span></h1><p>Morro dos Anjos Resort · Jan a Set/2026 · Fonte: Comercial</p></div><div class="hero-side"><div class="label">Realizado acumulado</div><div class="value">R$ 38,83 mi</div><div class="sub">109,0% da meta acumulada</div></div></div></header>
+<header class="hero"><div class="hero-in"><div><div class="eyebrow">Conselho & Diretoria · Hotelaria</div><h1>Performance <span>2026</span></h1><p>Morro dos Anjos Resort · Jan a Out/2026 · Fonte: Comercial</p></div><div class="hero-side"><div class="label">Realizado acumulado</div><div class="value">R$ 38,83 mi</div><div class="sub">109,0% da meta acumulada</div></div></div></header>
 <nav class="tabs-wrap"><div class="tabs"><button class="tab active" data-tab="executiva">VISÃO EXECUTIVA</button><button class="tab" data-tab="detalhes">NÚMEROS DETALHADOS</button><button class="tab" data-tab="funil">FUNIL COMERCIAL</button></div></nav>
 
 <div class="shell">
 <section id="executiva" class="panel active">
-  <div class="exec-summary"><div class="summary-mark">↑</div><div class="summary-text"><strong>Até setembro, a hotelaria acumula R$ 38,83 milhões em receita — 9,0% acima da meta do período.</strong> Os canais diretos concentram 81,4% da receita e o investimento em mídia apresenta ROAS direto acumulado de 56,4x. Setembro fechou abaixo da meta mensal, mas o acumulado segue R$ 3,21 milhões acima do planejado.</div></div>
-
-  <div class="kpis">
-    <div class="card kpi"><div class="k-label">Receita acumulada</div><div class="k-value">R$ 38,83 mi</div><div class="k-sub">Meta Jan–Set: R$ 35,62 mi</div><span class="pill">+9,0% acima da meta</span></div>
-    <div class="card kpi orange"><div class="k-label">Setembro / 2026</div><div class="k-value">R$ 4,08 mi</div><div class="k-sub">Meta do mês: R$ 4,48 mi</div><span class="pill warn">91,0% da meta mensal</span></div>
-    <div class="card kpi navy"><div class="k-label">Reservas acumuladas</div><div class="k-value">9.495</div><div class="k-sub">1.062 reservas em setembro</div><span class="pill info">Jan → Set/26</span></div>
-    <div class="card kpi green"><div class="k-label">ROAS direto</div><div class="k-value">56,4x</div><div class="k-sub">Receita direta ÷ R$ 560 mil em Ads</div><span class="pill">R$ 31,59 mi em vendas diretas</span></div>
-  </div>
-
+  <div class="exec-summary"><div class="summary-mark">↑</div><div class="summary-text" id="execSummary"></div></div>
+  <div class="kpis" id="execKpis"></div>
   <div class="main-grid">
-    <div class="card chart-card"><div class="card-head"><div><div class="card-title">Meta × Receita Realizada</div><div class="card-sub">Leitura mensal do desempenho comercial da hotelaria.</div></div><span class="badge">Jan–Set/2026</span></div><canvas id="metaChart" height="120"></canvas></div>
-    <div class="card chart-card"><div class="card-head"><div><div class="card-title">Resultado acumulado</div><div class="card-sub">Onde estamos em relação ao planejado.</div></div></div><div class="result-box"><div class="mini"><div class="ml">Meta acumulada</div><div class="mv">R$ 35,62 mi</div><div class="ms">Jan–Set/26</div></div><div class="mini"><div class="ml">Realizado</div><div class="mv">R$ 38,83 mi</div><div class="ms">Jan–Set/26</div></div><div class="mini"><div class="ml">Atingimento</div><div class="mv">109,0%</div><div class="ms">Acima do plano</div></div><div class="mini"><div class="ml">Saldo vs. meta</div><div class="mv">+R$ 3,21 mi</div><div class="ms">Resultado acumulado</div></div></div><div class="annual-goal"><div class="annual-goal-head"><div class="annual-goal-title">Meta anual 2026</div><div class="annual-goal-value">76,1% atingido</div></div><div class="annual-goal-track"><div class="annual-goal-fill"></div></div><div class="annual-goal-foot"><span><strong>R$ 38,83 mi</strong> realizados</span><span>Meta: <strong>R$ 51,00 mi</strong> · faltam <strong>R$ 12,17 mi</strong></span></div></div></div>
+    <div class="card chart-card"><div class="card-head"><div><div class="card-title">Meta × Receita Realizada</div><div class="card-sub">Leitura mensal do desempenho comercial da hotelaria.</div></div><span class="badge">Jan–Out/2026</span></div><canvas id="metaChart" height="120"></canvas></div>
+    <div class="card chart-card"><div class="card-head"><div><div class="card-title">Resultado acumulado</div><div class="card-sub">Onde estamos em relação ao planejado.</div></div></div><div class="result-box" id="execResults"></div><div class="annual-goal"><div class="annual-goal-head"><div class="annual-goal-title">Meta anual 2026</div><div class="annual-goal-value" id="goalPct"></div></div><div class="annual-goal-track"><div class="annual-goal-fill" id="goalFill"></div></div><div class="annual-goal-foot" id="goalFoot"></div></div></div>
   </div>
 
-  <div class="origin-grid">
-    <div class="card origin-main"><div class="card-head"><div><div class="card-title">Origem da Receita</div><div class="card-sub">A leitura que importa para o negócio: direto vs. indireto.</div></div><span class="badge">R$ 38,83 mi</span></div><div class="origin-split"><div class="origin-block direct"><div class="pct">81,4%</div><div class="name">Canais Diretos</div><div class="desc">Booking Engine + Central de Reservas + Grupos e Eventos<br><strong>R$ 31,59 mi</strong></div></div><div class="origin-block indirect"><div class="pct">18,6%</div><div class="name">Canais Indiretos</div><div class="desc">Agências + OTAs / Operadores<br><strong>R$ 7,24 mi</strong></div></div></div><div class="origin-chart-wrap"><div class="origin-chart-box"><canvas id="originChart" height="78"></canvas><div class="origin-chart-center"><div class="oc-big">81,4%</div><div class="oc-small">Receita Direta</div></div></div><div class="origin-mini-list"><div class="origin-mini-item"><span class="origin-mini-dot direct"></span><div class="origin-mini-copy"><strong>Predomínio do canal direto</strong>Central + Grupos + Booking Engine respondem pela maior parte da receita do período.</div></div><div class="origin-mini-item"><span class="origin-mini-dot indirect"></span><div class="origin-mini-copy"><strong>Participação indireta controlada</strong>Agências + OTAs somam 18,6% do acumulado, com papel complementar na distribuição.</div></div><div class="origin-mini-item"><span class="origin-mini-dot mix"></span><div class="origin-mini-copy"><strong>Leitura executiva</strong>O mix favorece margem e relacionamento próprio, com forte concentração nos canais sob gestão direta.</div></div></div></div></div>
-    <div class="card origin-main"><div class="card-head"><div><div class="card-title">Composição por canal</div><div class="card-sub">Abertura do acumulado de receita.</div></div></div><div class="channel-list">
-      <div class="ch-row"><div class="ch-name">Central de Reservas</div><div class="ch-track"><div class="ch-fill" style="width:100%;background:#1D1E46"></div></div><div class="ch-pct">44,7%</div></div>
-      <div class="ch-row"><div class="ch-name">Grupos e Eventos</div><div class="ch-track"><div class="ch-fill" style="width:41.6%;background:#00AEEF"></div></div><div class="ch-pct">18,6%</div></div>
-      <div class="ch-row"><div class="ch-name">Booking Engine</div><div class="ch-track"><div class="ch-fill" style="width:40.2%;background:#4CC6F2"></div></div><div class="ch-pct">18,0%</div></div>
-      <div class="ch-row"><div class="ch-name">OTAs / Operadores</div><div class="ch-track"><div class="ch-fill" style="width:21.2%;background:#F47C4E"></div></div><div class="ch-pct">9,5%</div></div>
-      <div class="ch-row"><div class="ch-name">Agências</div><div class="ch-track"><div class="ch-fill" style="width:20.5%;background:#00A878"></div></div><div class="ch-pct">9,1%</div></div>
-    </div><div class="channel-summary"><div class="channel-note"><span class="lab">Maior canal</span><span class="val">44,7%</span><span class="sub">Central de Reservas lidera a receita acumulada.</span></div><div class="channel-note"><span class="lab">Top 3 canais</span><span class="val">81,4%</span><span class="sub">Central + Grupos + Booking Engine concentram a receita direta.</span></div><div class="channel-note"><span class="lab">Canais indiretos</span><span class="val">18,6%</span><span class="sub">Agências e OTAs mantêm papel complementar no mix.</span></div></div></div>
-  </div>
-
-  <div class="takeaways">
-    <div class="card take"><div class="num">01 · RESULTADO</div><h3>Acumulado acima da meta</h3><p>R$ 38,83 mi realizados contra R$ 35,62 mi planejados: vantagem de R$ 3,21 mi no acumulado até setembro.</p></div>
-    <div class="card take"><div class="num">02 · DISTRIBUIÇÃO</div><h3>81,4% da receita é direta</h3><p>Central, Grupos e Booking Engine são responsáveis por R$ 31,59 mi da receita do período.</p></div>
-    <div class="card take"><div class="num">03 · RETORNO</div><h3>ROAS direto de 56,4x</h3><p>R$ 560 mil em mídia para R$ 31,59 mi em vendas diretas, considerando os canais com influência dos Ads.</p></div>
-  </div>
+  <div class="origin-grid"><div class="card origin-main"><div class="card-head"><div><div class="card-title">Origem da Receita</div><div class="card-sub">Direto vs. indireto no acumulado.</div></div></div><div class="origin-split" id="originSplit"></div><div class="origin-chart-wrap"><div class="origin-chart-box"><canvas id="originChart" height="78"></canvas><div class="origin-chart-center"><div class="oc-big" id="directPct"></div><div class="oc-small">Receita Direta</div></div></div><div class="origin-mini-list"><div class="origin-mini-item"><span class="origin-mini-dot direct"></span><div class="origin-mini-copy"><strong>Canais diretos</strong>Booking Engine, Central e Grupos e Eventos.</div></div><div class="origin-mini-item"><span class="origin-mini-dot indirect"></span><div class="origin-mini-copy"><strong>Canais indiretos</strong>Agências e OTAs / Operadores.</div></div></div></div></div><div class="card origin-main"><div class="card-head"><div><div class="card-title">Composição por canal</div><div class="card-sub">Participação na receita acumulada.</div></div></div><div class="channel-list" id="channelList"></div><div class="channel-summary" id="channelSummary"></div></div></div>
+  <div class="takeaways" id="execTakeaways"></div>
 </section>
 
 <section id="detalhes" class="panel details-panel">
-  <div class="details-top"><div><h2>Números Detalhados</h2><p>Base mensal para consulta durante a reunião. Valores de Jan a Set/2026.</p></div><button class="print-btn" onclick="window.print()">Imprimir / Salvar PDF</button></div>
+  <div class="details-top"><div><h2>Números Detalhados</h2><p>Base mensal para consulta durante a reunião. Valores de Jan a Out/2026.</p></div><button class="print-btn" onclick="window.print()">Imprimir / Salvar PDF</button></div>
   <div class="table-wrap"><table class="data-table" id="detailTable"></table></div>
   <div class="foot">Fonte: Comercial · ROAS = Receita Direta (Booking Engine + Central + Grupos e Eventos) ÷ Investimento em Ads.</div>
 </section>
 
 <section id="funil" class="panel funnel-panel">
   <div class="funnel-top">
-    <div><h2>Funil Comercial</h2><p>Jornada mensal de compra e geração de oportunidades comerciais. Selecione um mês para acompanhar o caminho do tráfego até receita e potencial de vendas.</p></div>
+    <div><h2>Funil Comercial</h2><p>Jornada mensal de compra e geração de oportunidades comerciais. Selecione um mês para acompanhar o caminho do tráfego até receita e potencial de vendas. Dados de outubro consolidados das bases Comercial, Reservas e Cotações (Central).</p></div>
     <div class="month-switch" id="monthSwitch"></div>
   </div>
 
@@ -110,7 +89,7 @@
 
   <div class="funnel-grid">
     <div class="funnel-card">
-      <div class="fc-head"><div><div class="fc-title">Jornada de Compra</div><div class="fc-sub">Leitura omnicanal: o usuário pode avançar pelo Booking Engine ou concluir com apoio da Central de Reservas.</div></div><span class="fc-badge" id="fcMonth">Set/26</span></div>
+      <div class="fc-head"><div><div class="fc-title">Jornada de Compra</div><div class="fc-sub">Leitura omnicanal: o usuário pode avançar pelo Booking Engine ou concluir com apoio da Central de Reservas.</div></div><span class="fc-badge" id="fcMonth">Out/26</span></div>
       <div class="journey">
         <div class="journey-step s1" style="--w:100%"><div class="js-name">01 · Usuários do site</div><div><div class="js-val" id="jAcessos">—</div><div class="js-meta">Audiência digital</div></div></div>
         <div class="journey-step s2" id="jStepMotor" style="--w:88%"><div class="js-name">02 · Acessos ao Motor de Reservas</div><div><div class="js-val" id="jMotor">—</div><div class="js-meta" id="jMotorMeta">—</div></div></div>
@@ -147,44 +126,67 @@
     <div class="bottom-stat"><div class="l">ROAS Direto</div><div class="v" id="bRoas">—</div><div class="s">Receita direta ÷ Ads</div></div>
     <div class="bottom-stat"><div class="l">Receita Direta</div><div class="v" id="bDirect">—</div><div class="s" id="bDirectShare">—</div></div>
   </div>
-  <div class="foot">Fonte: Comercial · Canal direto = Booking Engine + Central de Reservas + Grupos e Eventos.</div>
+  <div class="foot">Fontes: Comercial, relatório diário de reservas e cotações do motor (outubro: apenas Central de Reservas). Cotações geradas/ganhas contabilizadas por ID único; valores financeiros calculados pela primeira opção de preço de cada ID (estimativa; cotações podem ter múltiplas opções, não somadas para evitar dupla contagem). Reservas por canal representam o relatório diário e não necessariamente o mesmo conjunto de cotações ganhas. Canal direto = Booking Engine + Central + Grupos e Eventos.</div>
 </section>
 </div>
 <script>
-const meses=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set'];
+const meses=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out'];
 const D={
- meta:[3393181,2941516,3441228,3402164,4074832,5308203,4410590,4165736,4482029],
- receita:[4907426,2450148,3810799,5698220,3091588,3128810,5866986,5795146,4077116],
- booking:[917777,430242,785453,1550906,408185,436279,924534,835397,694958],
- central:[2233189,1139720,1809867,1878998,1032255,1326826,3083852,3091208,1777819],
- grupos:[400754,294898,557140,1485777,957355,640790,975448,907050,1011946],
- agencias:[767905,223562,342455,433981,300233,311983,471364,372285,328595],
- otas:[587801,361726,315884,348558,393562,412933,411788,589207,263797],
- reservas:[1085,652,1002,1236,665,828,1458,1507,1062],
- siteReservas:[228,143,275,464,165,144,291,270,172],
- centralReservas:[490,314,503,497,305,421,875,795,304],
- arpu:[4523,3758,3803,4610,4649,3779,4024,3845,3839],
- ads:[27717,27061,27811,108463,44377,75391,95986,84302,69273],
- atend:[8400,6476,13839,9353,4607,5200,10591,9307,8959],
- opors:[5151,3350,8041,5013,1642,1940,5204,5209,4374],
- valOp:[9491119,5421913,11750350,7031417,2039127,2571239,6228321,7689339,5928103],
- grpPot:[330924,308969,770227,724833,311898,61501,767298,538866,730691],
- grpCot:[13,19,48,31,11,9,36,23,31],
- acessos:[64000,43000,62000,168000,25000,30000,47000,74000,73000],
- motorAcessos:[41446,26427,42382,74945,16851,7831,15000,33251,34908],
- centralOp:[4206,4101,5025,4491,3668,6064,15338,10080,6644],
- centralWon:[154,85,289,211,150,250,752,584,316],
- centralGerado:[18590000,16720000,19980000,19750000,15120000,26240000,69330000,48400000,34190000],
- centralWonVal:[590000,250000,850000,670000,400000,840000,2670000,1940000,1210000],
- centralLostVal:[18000000,16170000,19130000,19080000,14720000,25410000,66670000,46460000,32980000],
- add:[5400,3100,5400,7200,1600,739,2250,3500,3200],
- siteReceita:[917777,430242,785453,1550906,408185,436279,924534,835397,694958],
- crmRes:[23,23,20,49,38,27,6,74,10],crmVend:[75966,49418,54462,107160,84195,62460,13683,109143,15122],
- infRes:[0,15,46,0,22,38,40,9,4],infVend:[0,43393,120971,0,50856,103111,130085,27966,11786],
- askRes:[0,0,1,9,0,5,12,6,22],askVend:[0,0,4246.02,33012.28,0,15672.04,35024.74,24713.82,91828.60]
+ meta:[3393181,2941516,3441228,3402164,4074832,5308203,4410590,4165736,4482029,5137644],
+ receita:[4907426,2450148,3810799,5698220,3091588,3128810,5866986,5795146,4077116,3828801],
+ booking:[917777,430242,785453,1550906,408185,436279,924534,835397,694958,487339],
+ central:[2233189,1139720,1809867,1878998,1032255,1326826,3083852,3091208,1777819,1693619],
+ grupos:[400754,294898,557140,1485777,957355,640790,975448,907050,1011946,1050421],
+ agencias:[767905,223562,342455,433981,300233,311983,471364,372285,328595,328633],
+ otas:[587801,361726,315884,348558,393562,412933,411788,589207,263797,268789],
+ reservas:[1085,652,1002,1236,665,828,1458,1507,1062,779],
+ siteReservas:[228,143,275,464,165,144,291,270,172,127],
+ centralReservas:[490,314,503,497,305,421,875,795,304,418],
+ arpu:[4523,3758,3803,4610,4649,3779,4024,3845,3839,4915],
+ ads:[27717,27061,27811,108463,44377,75391,95986,84302,69273,52487],
+ atend:[8400,6476,13839,9353,4607,5200,10591,9307,8959,7998],
+ opors:[5151,3350,8041,5013,1642,1940,5204,5209,4374,4006],
+ valOp:[9491119,5421913,11750350,7031417,2039127,2571239,6228321,7689339,5928103,3753844],
+ grpPot:[330924,308969,770227,724833,311898,61501,767298,538866,730691,387947],
+ grpCot:[13,19,48,31,11,9,36,23,31,34],
+ acessos:[64000,43000,62000,168000,25000,29000,45000,218000,195000,79000],
+ motorAcessos:[41446,26427,42382,74945,16851,7831,15000,33251,34908,21965],
+ centralOp:[4206,4101,5025,4491,3668,6064,15338,10080,6644,2928],
+ centralWon:[154,85,289,211,150,250,752,584,316,111],
+ centralGerado:[18590000,16720000,19980000,19750000,15120000,26240000,69330000,48400000,34190000,13466972.44],
+ centralWonVal:[590000,250000,850000,670000,400000,840000,2670000,1940000,1210000,367509.98],
+ centralLostVal:[18000000,16170000,19130000,19080000,14720000,25410000,66670000,46460000,32980000,13099462.46],
+ add:[5400,3100,5400,7200,1600,739,2250,3500,3200,2300],
+ siteReceita:[917777,430242,785453,1550906,408185,436279,924534,835397,694958,487339],
+ crmRes:[23,23,20,49,38,27,6,74,10,7],crmVend:[75966,49418,54462,107160,84195,62460,13683,109143,15122,12021],
+ infRes:[0,15,46,0,22,38,40,9,4,0],infVend:[0,43393,120971,0,50856,103111,130085,27966,11786,0],
+ askRes:[0,0,1,9,0,5,12,6,22,7],askVend:[0,0,4246.02,33012.28,0,15672.04,35024.74,24713.82,91828.60,29238.7]
 };
-const sum=a=>a.reduce((x,y)=>x+y,0);const direct=D.booking.map((v,i)=>v+D.central[i]+D.grupos[i]);const roas=direct.map((v,i)=>v/D.ads[i]);const reservasMidia=D.siteReservas.map((v,i)=>v+D.centralReservas[i]);const cpaMidia=D.ads.map((v,i)=>v/reservasMidia[i]);const txAdd=D.add.map((v,i)=>v/D.acessos[i]*100);const txOp=D.opors.map((v,i)=>v/D.atend[i]*100);
-const brl=v=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}).format(v);const num=v=>new Intl.NumberFormat('pt-BR',{maximumFractionDigits:0}).format(v);const pct=v=>v.toFixed(1).replace('.',',')+'%';
+const sum=a=>a.reduce((x,y)=>x+(Number.isFinite(y)?y:0),0);const direct=D.booking.map((v,i)=>v+D.central[i]+D.grupos[i]);const roas=direct.map((v,i)=>D.ads[i]?v/D.ads[i]:null);const reservasMidia=D.siteReservas.map((v,i)=>v+D.centralReservas[i]);const cpaMidia=D.ads.map((v,i)=>reservasMidia[i]?v/reservasMidia[i]:null);const txAdd=D.add.map((v,i)=>D.acessos[i]?v/D.acessos[i]*100:null);const txOp=D.opors.map((v,i)=>D.atend[i]?v/D.atend[i]*100:null);
+const brl=v=>v==null?'—':new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}).format(v);const num=v=>v==null?'—':new Intl.NumberFormat('pt-BR',{maximumFractionDigits:0}).format(v);const pct=v=>v==null?'—':v.toFixed(1).replace('.',',')+'%';
+
+
+const total=sum(D.receita), target=sum(D.meta), directTotal=sum(direct), indirectTotal=sum(D.agencias)+sum(D.otas), adTotal=sum(D.ads), annualGoal=51000000;
+const delta=total-target, attainment=total/target*100, directShare=directTotal/total*100, indirectShare=indirectTotal/total*100;
+const xfmt=v=>v==null?'—':v.toFixed(1).replace('.',',')+'x';
+const short=v=>'R$ '+(v/1e6).toFixed(2).replace('.',',')+' mi';
+const kpi=(label,value,sub,pill,cls='')=>`<div class="card kpi ${cls}"><div class="k-label">${label}</div><div class="k-value">${value}</div><div class="k-sub">${sub}</div><span class="pill ${cls==='orange'?'warn':'info'}">${pill}</span></div>`;
+document.querySelector('.hero-side .value').textContent=short(total);
+document.querySelector('.hero-side .sub').textContent=pct(attainment)+' da meta acumulada';
+document.getElementById('execSummary').innerHTML=`<strong>Até outubro, a hotelaria acumula ${short(total)} em receita — ${pct(Math.abs(attainment-100))} ${attainment>=100?'acima':'abaixo'} da meta do período.</strong> Outubro realizou ${short(D.receita[9])}, equivalente a ${pct(D.receita[9]/D.meta[9]*100)} da meta mensal. Os canais diretos representam ${pct(directShare)} da receita e o ROAS direto acumulado é de ${xfmt(directTotal/adTotal)}.`;
+document.getElementById('execKpis').innerHTML=kpi('Receita acumulada',short(total),'Meta Jan–Out: '+short(target),pct(attainment)+' da meta')+kpi('Outubro / 2026',short(D.receita[9]),'Meta do mês: '+short(D.meta[9]),pct(D.receita[9]/D.meta[9]*100)+' da meta mensal','orange')+kpi('Reservas acumuladas',num(sum(D.reservas)),num(D.reservas[9])+' reservas em outubro','Jan → Out/26','navy')+kpi('ROAS direto',xfmt(directTotal/adTotal),'Receita direta ÷ '+short(adTotal)+' em Ads',short(directTotal)+' em vendas diretas','green');
+const mini=(label,value,sub)=>`<div class="mini"><div class="ml">${label}</div><div class="mv">${value}</div><div class="ms">${sub}</div></div>`;
+document.getElementById('execResults').innerHTML=mini('Meta acumulada',short(target),'Jan–Out/26')+mini('Realizado',short(total),'Jan–Out/26')+mini('Atingimento',pct(attainment),'Meta do período')+mini('Saldo vs. meta',(delta>=0?'+':'−')+short(Math.abs(delta)),'Resultado acumulado');
+document.getElementById('goalPct').textContent=pct(total/annualGoal*100)+' atingido';
+document.getElementById('goalFill').style.width=Math.min(100,total/annualGoal*100)+'%';
+document.getElementById('goalFoot').innerHTML=`<span><strong>${short(total)}</strong> realizados</span><span>Meta: <strong>${short(annualGoal)}</strong> · faltam <strong>${short(Math.max(0,annualGoal-total))}</strong></span>`;
+document.getElementById('originSplit').innerHTML=`<div class="origin-block direct"><div class="pct">${pct(directShare)}</div><div class="name">Canais Diretos</div><div class="desc">Booking + Central + Grupos<br><strong>${short(directTotal)}</strong></div></div><div class="origin-block indirect"><div class="pct">${pct(indirectShare)}</div><div class="name">Canais Indiretos</div><div class="desc">Agências + OTAs<br><strong>${short(indirectTotal)}</strong></div></div>`;
+document.getElementById('directPct').textContent=pct(directShare);
+const channels=[['Central de Reservas',sum(D.central),'#1D1E46'],['Grupos e Eventos',sum(D.grupos),'#00AEEF'],['Booking Engine',sum(D.booking),'#4CC6F2'],['OTAs / Operadores',sum(D.otas),'#F47C4E'],['Agências',sum(D.agencias),'#00A878']].sort((a,b)=>b[1]-a[1]);
+document.getElementById('channelList').innerHTML=channels.map(([name,value,color])=>`<div class="ch-row"><div class="ch-name">${name}</div><div class="ch-track"><div class="ch-fill" style="width:${value/channels[0][1]*100}%;background:${color}"></div></div><div class="ch-pct">${pct(value/total*100)}</div></div>`).join('');
+document.getElementById('channelSummary').innerHTML=`<div class="channel-note"><span class="lab">Maior canal</span><span class="val">${pct(channels[0][1]/total*100)}</span><span class="sub">${channels[0][0]}</span></div><div class="channel-note"><span class="lab">Canais diretos</span><span class="val">${pct(directShare)}</span><span class="sub">Booking + Central + Grupos</span></div><div class="channel-note"><span class="lab">Canais indiretos</span><span class="val">${pct(indirectShare)}</span><span class="sub">Agências e OTAs</span></div>`;
+const take=(n,title,copy)=>`<div class="card take"><div class="num">${n}</div><h3>${title}</h3><p>${copy}</p></div>`;
+document.getElementById('execTakeaways').innerHTML=take('01 · RESULTADO',attainment>=100?'Acumulado acima da meta':'Acumulado abaixo da meta',`${short(total)} realizados contra ${short(target)} planejados; diferença de ${short(Math.abs(delta))}.`)+take('02 · DISTRIBUIÇÃO',`${pct(directShare)} da receita é direta`,`${short(directTotal)} provenientes de Central, Grupos e Booking Engine.`)+take('03 · RETORNO',`ROAS direto de ${xfmt(directTotal/adTotal)}`,`${short(adTotal)} em Ads para ${short(directTotal)} em receita direta. Indicador agregado, não atribuição causal.`);
 
 new Chart(document.getElementById('metaChart'),{type:'bar',data:{labels:meses,datasets:[{label:'Meta',data:D.meta,backgroundColor:'#DCE8F0',borderRadius:5},{label:'Realizado',data:D.receita,backgroundColor:'#00AEEF',borderRadius:5}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{usePointStyle:false,boxWidth:12,boxHeight:12,padding:18,font:{family:'Montserrat',size:11}}},tooltip:{callbacks:{label:c=>' '+c.dataset.label+': '+brl(c.raw)}}},scales:{x:{grid:{display:false},ticks:{font:{family:'Montserrat',size:10},color:'#71809A'}},y:{beginAtZero:true,grid:{color:'rgba(29,30,70,.06)'},ticks:{callback:v=>'R$ '+(v/1e6).toFixed(0)+'M',font:{family:'Montserrat',size:10},color:'#71809A'}}}}});
 new Chart(document.getElementById('originChart'),{type:'doughnut',data:{labels:['Direto','Indireto'],datasets:[{data:[sum(direct),sum(D.agencias)+sum(D.otas)],backgroundColor:['#1D1E46','#F47C4E'],borderColor:'#fff',borderWidth:4,hoverOffset:4}]},options:{cutout:'76%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.label+': '+brl(c.raw)+' ('+pct(c.raw/sum(D.receita)*100)+')'}}}}});
@@ -197,9 +199,9 @@ const rows=[
  {g:'Asksuite · Grupos'},
  {n:'Potencial de Vendas',a:D.grpPot,f:brl,acc:()=>brl(sum(D.grpPot))},{n:'Cotações de Grupos',a:D.grpCot,f:num,acc:()=>num(sum(D.grpCot))},
  {g:'Site'},
- {n:'Usuários do site · GA4',a:D.acessos,f:num,acc:()=>num(sum(D.acessos))},{n:'Acessos ao Motor de Reservas',a:D.motorAcessos,f:num,acc:()=>num(sum(D.motorAcessos))},{n:'Add ao Carrinho',a:D.add,f:num,acc:()=>num(sum(D.add))},{n:'Taxa Add ao Carrinho',a:txAdd,f:pct,acc:()=>pct(sum(D.add)/sum(D.acessos)*100)},{n:'Reservas Booking Engine',a:D.siteReservas,f:num,acc:()=>num(sum(D.siteReservas))},{n:'Conversão Motor → Reserva Booking',a:D.siteReservas.map((v,i)=>v/D.motorAcessos[i]*100),f:pct,acc:()=>pct(sum(D.siteReservas)/sum(D.motorAcessos)*100)},{n:'Receita Booking Engine',a:D.siteReceita,f:brl,acc:()=>brl(sum(D.siteReceita))},
+ {n:'Usuários do site · GA4',a:D.acessos,f:num,acc:()=>num(sum(D.acessos))},{n:'Acessos ao Motor de Reservas',a:D.motorAcessos,f:num,acc:()=>num(sum(D.motorAcessos))},{n:'Add ao Carrinho',a:D.add,f:num,acc:()=>num(sum(D.add))},{n:'Taxa Add ao Carrinho',a:txAdd,f:pct,acc:()=>pct(sum(D.add)/sum(D.acessos)*100)},{n:'Reservas Booking Engine',a:D.siteReservas,f:num,acc:()=>num(sum(D.siteReservas))},{n:'Conversão Motor → Reserva Booking',a:D.siteReservas.map((v,i)=>D.motorAcessos[i]?v/D.motorAcessos[i]*100:null),f:pct,acc:()=>pct(sum(D.siteReservas)/sum(D.motorAcessos)*100)},{n:'Receita Booking Engine',a:D.siteReceita,f:brl,acc:()=>brl(sum(D.siteReceita))},
  {g:'Central · Motor de Reservas'},
- {n:'Oportunidades geradas',a:D.centralOp,f:num,acc:()=>num(sum(D.centralOp))},{n:'Oportunidades ganhas',a:D.centralWon,f:num,acc:()=>num(sum(D.centralWon))},{n:'% ganhas',a:D.centralWon.map((v,i)=>v/D.centralOp[i]*100),f:pct,acc:()=>pct(sum(D.centralWon)/sum(D.centralOp)*100)},{n:'Valor gerado',a:D.centralGerado,f:brl,acc:()=>brl(268330000)},
+ {n:'Oportunidades geradas',a:D.centralOp,f:num,acc:()=>num(sum(D.centralOp))},{n:'Oportunidades ganhas',a:D.centralWon,f:num,acc:()=>num(sum(D.centralWon))},{n:'% ganhas',a:D.centralWon.map((v,i)=>D.centralOp[i]?v/D.centralOp[i]*100:null),f:pct,acc:()=>pct(sum(D.centralWon)/sum(D.centralOp)*100)},{n:'Valor gerado',a:D.centralGerado,f:brl,acc:()=>brl(sum(D.centralGerado))},
  {g:'CRM'},
  {n:'Reservas CRM',a:D.crmRes,f:num,acc:()=>num(sum(D.crmRes))},{n:'Vendas CRM',a:D.crmVend,f:brl,acc:()=>brl(sum(D.crmVend))},
  {g:'Influenciadores'},
@@ -207,16 +209,16 @@ const rows=[
  {g:'AskFlow · Agentes'},
  {n:'Reservas AskFlow',a:D.askRes,f:num,acc:()=>num(sum(D.askRes))},{n:'Vendas AskFlow',a:D.askVend,f:brl,acc:()=>brl(sum(D.askVend))}
 ];
-const table=document.getElementById('detailTable');table.innerHTML='<thead><tr><th>Indicador</th>'+meses.map(m=>'<th>'+m+'/26</th>').join('')+'<th>Acumulado</th></tr></thead><tbody>'+rows.map(r=>r.g?'<tr class="group"><td colspan="11">'+r.g+'</td></tr>':'<tr><td>'+r.n+'</td>'+r.a.map(v=>'<td>'+r.f(v)+'</td>').join('')+'<td class="acc">'+r.acc()+'</td></tr>').join('')+'</tbody>';
+const table=document.getElementById('detailTable');table.innerHTML='<thead><tr><th>Indicador</th>'+meses.map(m=>'<th>'+m+'/26</th>').join('')+'<th>Acumulado</th></tr></thead><tbody>'+rows.map(r=>r.g?'<tr class="group"><td colspan="'+(meses.length+2)+'">'+r.g+'</td></tr>':'<tr><td>'+r.n+'</td>'+r.a.map(v=>'<td>'+(v==null?'—':r.f(v))+'</td>').join('')+'<td class="acc">'+r.acc()+'</td></tr>').join('')+'</tbody>';
 
 
 /* FUNIL COMERCIAL INTERATIVO */
 const mesLabels=meses.map(m=>m+'/26');
 const monthSwitch=document.getElementById('monthSwitch');
-monthSwitch.innerHTML='<button type="button" class="month-btn" data-mi="acc">ACUMULADO 2026</button>'+mesLabels.map((m,i)=>'<button type="button" class="month-btn '+(i===8?'active':'')+'" data-mi="'+i+'">'+m+'</button>').join('');
-const moneyCompact=v=>'R$ '+(v>=1000000?(v/1000000).toFixed(2).replace('.',',')+' mi':(v/1000).toFixed(0).replace('.',',')+' mil');
-const xfmt=v=>v.toFixed(1).replace('.',',')+'x';
-const val=(a,i)=>i==='acc'?sum(a):a[i];
+monthSwitch.innerHTML='<button type="button" class="month-btn" data-mi="acc">ACUMULADO 2026</button>'+mesLabels.map((m,i)=>'<button type="button" class="month-btn '+(i===9?'active':'')+'" data-mi="'+i+'">'+m+'</button>').join('');
+const moneyCompact=v=>v==null?'—':'R$ '+(v>=1000000?(v/1000000).toFixed(2).replace('.',',')+' mi':(v/1000).toFixed(0).replace('.',',')+' mil');
+
+const val=(a,i)=>i==='acc'?(a.some(x=>x==null)?null:sum(a)):a[i];
 
 function setSegments(idA,idB,a,b){
   const total=a+b; const pa=total?a/total*100:50; const pb=100-pa;
@@ -225,15 +227,16 @@ function setSegments(idA,idB,a,b){
 }
 
 function renderFunnel(i){
+
   const isAcc=i==='acc';
   const acessos=val(D.acessos,i), motor=val(D.motorAcessos,i), add=val(D.add,i), bookingRes=val(D.siteReservas,i), centralRes=val(D.centralReservas,i), centralWon=val(D.centralWon,i), reservasDiretas=bookingRes+centralRes;
   const receita=val(D.receita,i), bookingRec=val(D.siteReceita,i), centralRec=val(D.central,i), centralWonVal=isAcc?9420000:val(D.centralWonVal,i), receitaBC=bookingRec+centralRec;
-  const reservasTotais=val(D.reservas,i), atend=val(D.atend,i), op=val(D.opors,i), valAsk=val(D.valOp,i), ads=val(D.ads,i), cOp=val(D.centralOp,i), cGer=isAcc?268330000:val(D.centralGerado,i), cLost=isAcc?258600000:val(D.centralLostVal,i);
+  const reservasTotais=val(D.reservas,i), atend=val(D.atend,i), op=val(D.opors,i), valAsk=val(D.valOp,i), ads=val(D.ads,i), cOp=val(D.centralOp,i), cGer=val(D.centralGerado,i), cLost=val(D.centralLostVal,i);
   const dir=isAcc?sum(direct):direct[i];
-  const tSiteMotor=acessos?motor/acessos*100:0, tMotorAdd=motor?add/motor*100:0, tMotorBooking=motor?bookingRes/motor*100:0, tCentralMotor=motor?centralRes/motor*100:0, tDirectMotor=motor?reservasDiretas/motor*100:0, tCentralWin=cOp?centralWon/cOp*100:0;
+  const tSiteMotor=acessos&&motor!=null?motor/acessos*100:null, tMotorAdd=motor?add/motor*100:0, tMotorBooking=motor?bookingRes/motor*100:0, tCentralMotor=motor?centralRes/motor*100:0, tDirectMotor=motor?reservasDiretas/motor*100:0, tCentralWin=cOp?centralWon/cOp*100:0;
   const tOp=atend?op/atend*100:0, ticket=op?valAsk/op:0, cpa=reservasDiretas?ads/reservasDiretas:0, r=ads?dir/ads:0, share=receita?dir/receita*100:0;
 
-  document.getElementById('fcMonth').textContent=isAcc?'Jan–Set/26':mesLabels[i];
+  document.getElementById('fcMonth').textContent=isAcc?'Jan–Out/26':mesLabels[i];
   document.getElementById('fkAcessos').textContent=num(acessos);
   document.getElementById('fkMotor').textContent=num(motor); document.getElementById('fkMotorSub').textContent=pct(tSiteMotor)+' dos usuários do site';
   document.getElementById('fkReservas').textContent=num(reservasDiretas); document.getElementById('fkReservasSub').textContent=num(bookingRes)+' Booking + '+num(centralRes)+' Central';
@@ -248,9 +251,9 @@ function renderFunnel(i){
   document.getElementById('jRecTotal').textContent=moneyCompact(receitaBC); document.getElementById('jBookingRec').textContent=moneyCompact(bookingRec); document.getElementById('jCentralRec').textContent=moneyCompact(centralRec);
   document.getElementById('jBookingRecPct').textContent=pct(tMotorBooking)+' do motor'; document.getElementById('jCentralRecPct').textContent=pct(tCentralMotor)+' do motor';
   setSegments('segBookingRes','segCentralRes',bookingRes,centralRes); setSegments('segBookingRec','segCentralRec',bookingRec,centralRec);
-  const widthMotor=Math.max(78,Math.min(94,76+tSiteMotor*.13));
+  const widthMotor=Math.max(78,Math.min(94,76+(tSiteMotor||0)*.13));
   const widthAdd=Math.max(68,Math.min(86,66+tMotorAdd*.18));
-  const tAddRes=add?reservasDiretas/add*100:0;
+  const tAddRes=add&&bookingRes!=null&&centralRes!=null?reservasDiretas/add*100:0;
   const widthRes=Math.max(46,Math.min(widthAdd-4,40+tAddRes*.9));
   const widthRec=Math.max(40,Math.min(widthRes-4,widthRes-4));
   document.getElementById('jStepMotor').style.setProperty('--w',widthMotor+'%');
@@ -269,7 +272,7 @@ function renderFunnel(i){
   document.getElementById('bAds').textContent=brl(ads); document.getElementById('bCpa').textContent=brl(cpa); document.getElementById('bRoas').textContent=xfmt(r); document.getElementById('bDirect').textContent=moneyCompact(dir); document.getElementById('bDirectShare').textContent=pct(share)+(isAcc?' da receita acumulada':' da receita do mês');
 }
 monthSwitch.querySelectorAll('.month-btn').forEach(btn=>btn.addEventListener('click',()=>{monthSwitch.querySelectorAll('.month-btn').forEach(b=>b.classList.toggle('active',b===btn));renderFunnel(btn.dataset.mi==='acc'?'acc':Number(btn.dataset.mi));}));
-renderFunnel(8);
+renderFunnel(9);
 
 document.querySelectorAll('.tab').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b===btn));document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===btn.dataset.tab));window.scrollTo({top:0,behavior:'smooth'})}));
 </script>
