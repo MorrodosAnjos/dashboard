@@ -91,7 +91,12 @@ body{font-size:14px;line-height:1.5}
 .note{color:var(--muted);font-size:11px;margin:14px 0 0}
 .callout{background:#eaf8fe;border:1px solid #cfeffa;border-radius:13px;padding:13px 15px;font-size:12px;color:var(--muted);margin-top:16px}
 .callout strong{display:block;color:var(--navy);margin-bottom:3px}
-.geo-check{background:#fff5ed;border-color:#f7dfcd}
+.critical-card{border-top:3px solid var(--orange)}
+.critical-list{display:grid;gap:10px;margin:12px 0 0;padding-left:19px;color:var(--muted)}
+.critical-list strong{color:var(--navy)}
+.todo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,275px),1fr));gap:16px}
+.todo-grid p{margin:8px 0 0;color:var(--muted)}
+.todo-grid a{color:#076f97;font-weight:700}
 details{border-top:1px solid var(--line);margin-top:16px;padding-top:11px}
 summary{cursor:pointer;font-size:12px;font-weight:700;color:var(--navy)}
 table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
@@ -117,6 +122,7 @@ tbody tr:nth-child(even){background:#f8fbfd}
   <button class="tab" data-view="all" aria-pressed="false" aria-controls="profile">Todos os hóspedes</button>
   <button class="tab" data-view="compare" aria-pressed="false" aria-controls="comparativo">Comparativo</button>
   <button class="tab" data-view="method" aria-pressed="false" aria-controls="metodo">Metodologia</button>
+  <button class="tab" data-view="todo" aria-pressed="false" aria-controls="todo">TO DO</button>
 </div></nav>
 <main class="shell">
 <section id="profile" aria-labelledby="baseLabel">
@@ -132,7 +138,14 @@ tbody tr:nth-child(even){background:#f8fbfd}
     <article class="card chart-card"><h3 class="card-title">Municípios cadastrados</h3><p class="card-sub">Dez municípios mais frequentes na base selecionada.</p><div class="bar-list" id="cities"></div><p class="note" id="cityNote"></p></article>
     <article class="card chart-card"><h3 class="card-title">Estados e países</h3><p class="card-sub">Cinco estados identificados com mais cadastros.</p><div class="bar-list" id="states"></div><p class="note" id="stateNote"></p><details><summary>Ver distribuição por país</summary><div class="bar-list" id="countries" style="margin-top:12px"></div></details></article>
   </div>
-  <div class="callout geo-check"><strong>Bandeirantes é a cidade preenchida por padrão</strong>O sistema inicia o cadastro com Bandeirantes. Ao registrar a reserva ou receber o hóspede, as equipes Comercial e de Recepção devem substituir esse campo pela cidade de residência informada. Quando o cadastro fica com o valor padrão, Bandeirantes pode ficar super-representada. A cidade aparece em 23,2% dos cadastros dos hóspedes principais e em 68,3% da base completa.</div>
+  <section class="card chart-card critical-card" aria-labelledby="critical-title">
+    <h2 class="card-title" id="critical-title">Pontos críticos</h2>
+    <ul class="critical-list">
+      <li><strong>Bandeirantes como praça padrão.</strong> O sistema já preenche a cidade com Bandeirantes. Comercial e Recepção devem confirmar a cidade de residência com o hóspede. Bandeirantes aparece em 23,2% dos cadastros dos principais e em 68,3% da base completa.</li>
+      <li><strong>Campos em branco entre os hóspedes principais.</strong> 31,6% estão sem informação de gênero e 21,4% sem data de nascimento.</li>
+      <li><strong>Preenchimento dos dados de acompanhantes.</strong> Na base completa, que inclui os acompanhantes, 70,7% dos registros estão sem informação de gênero e 62,5% sem data de nascimento.</li>
+    </ul>
+  </section>
 </section>
 <section id="comparativo" hidden>
   <div class="details-top"><div><h2>As duas bases, lado a lado</h2><p>Todos os hóspedes inclui principais e acompanhantes. As duas bases se sobrepõem.</p></div></div>
@@ -146,6 +159,25 @@ tbody tr:nth-child(even){background:#f8fbfd}
 <li>Percentuais recalculados a partir das contagens. Idade usa a soma das faixas exibidas. Gênero e localização usam o total do perfil.</li>
 <li>Município, estado e país refletem a localização registrada no cadastro.</li>
 </ul></div>
+</section>
+<section id="todo" hidden>
+  <div class="details-top"><h2>Plano de ação</h2></div>
+  <div class="todo-grid">
+    <article class="card chart-card">
+      <h3 class="card-title">Padronizar o cadastro e treinar a equipe</h3>
+      <p>Definir os dados que o Comercial confirma na reserva e os que a Recepção valida no check-in, incluindo os acompanhantes. Treinar toda a equipe da Recepção e alinhar o procedimento com o Comercial.</p>
+    </article>
+    <article class="card chart-card">
+      <h3 class="card-title">Monitorar os cadastros diariamente</h3>
+      <p>Acompanhar gênero e data de nascimento em branco e a confirmação da cidade de residência, com indicadores separados para hóspedes principais e acompanhantes. Definir quem trata as pendências.</p>
+    </article>
+    <article class="card chart-card">
+      <h3 class="card-title">Implantar o questionário de perfil progressivo</h3>
+      <p>Usar perguntas curtas em etapas da jornada para conhecer o motivo da viagem e os interesses dos hóspedes.</p>
+      <p><strong>Custo informado de R$ 5.000.</strong></p>
+      <p><a href="https://morrodosanjos.github.io/dashboard/mda_survey2" target="_blank" rel="noopener">Ver questionário de referência</a></p>
+    </article>
+  </div>
 </section>
 <footer class="foot">Morro dos Anjos · Fonte: Letsbook · 01 jan a 13 nov de 2026</footer>
 </main>
@@ -226,7 +258,7 @@ function render(mode) {
   set('genderNote', `<strong>Entre os ${fmt(validGender)} com gênero informado</strong>${pct(p.gender[0],validGender)} feminino e ${pct(p.gender[1],validGender)} masculino.`);
   set('geoInsight',p.geo);
   bars('cities',p.cities,p.total,'Bandeirantes');
-  set('cityNote', `Outras cidades: ${fmt(p.otherCities)} (${pct(p.otherCities,p.total)}). Sem cidade: 1.`);
+  set('cityNote', `Outras cidades: ${fmt(p.otherCities)} (${pct(p.otherCities,p.total)}).`);
   bars('states',p.states,p.total,'Paraná');
   set('stateNote', `Demais estados identificados: ${fmt(p.otherStates)}. UF sem rótulo no relatório: ${fmt(p.unlabeledStates)}. Sem estado: 1.`);
   bars('countries',[['Brasil',p.brazil],['Estados Unidos',1],['Itália',1],['México',1],['País sem rótulo',p.unlabeledCountries],['Sem país',1]],p.total,'Brasil');
@@ -251,6 +283,7 @@ document.querySelectorAll('[data-view]').forEach(button => {
     document.getElementById('profile').hidden = !showProfile;
     document.getElementById('comparativo').hidden = view !== 'compare';
     document.getElementById('metodo').hidden = view !== 'method';
+    document.getElementById('todo').hidden = view !== 'todo';
     document.querySelectorAll('[data-view]').forEach(item => {
       const active = item === button;
       item.classList.toggle('active', active);
